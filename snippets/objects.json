@@ -1,0 +1,537 @@
+{
+    "MacroModel - CreateMacroModel": {
+        "prefix": "CreateMacroModel",
+        "body": "CreateMacroModel('${1:1}')",
+        "description": "[MacroModel] CreateMacroModel('1')"
+    },
+    "MacroModel - MacroObject.CreateMacroModel": {
+        "prefix": "MacroObject.CreateMacroModel",
+        "body": "MacroObject.CreateMacroModel('${1:1}')",
+        "description": "[MacroModel] MacroObject.CreateMacroModel('1')"
+    },
+    "MacroModel - GetModelClassName": {
+        "prefix": "GetModelClassName",
+        "body": "GetModelClassName($1)",
+        "description": "[MacroModel] GetModelClassName()"
+    },
+    "MacroModel - GetValue": {
+        "prefix": "GetValue",
+        "body": "GetValue($1)",
+        "description": "[MacroModel] GetValue()"
+    },
+    "MacroModel - SetValue": {
+        "prefix": "SetValue",
+        "body": "SetValue($1)",
+        "description": "[MacroModel] SetValue()"
+    },
+    "MacroModel - GetPostItText": {
+        "prefix": "GetPostItText",
+        "body": "GetPostItText($1)",
+        "description": "[MacroModel] GetPostItText()"
+    },
+    "MacroModel - SetPostItText": {
+        "prefix": "SetPostItText",
+        "body": "SetPostItText($1)",
+        "description": "[MacroModel] SetPostItText()"
+    },
+    "MacroModel - LockModel": {
+        "prefix": "LockModel",
+        "body": "LockModel($1)",
+        "description": "[MacroModel] LockModel()"
+    },
+    "MacroModel - UnlockModel": {
+        "prefix": "UnlockModel",
+        "body": "UnlockModel($1)",
+        "description": "[MacroModel] UnlockModel()"
+    },
+    "MacroModel - GetState": {
+        "prefix": "GetState",
+        "body": "GetState($1)",
+        "description": "[MacroModel] GetState()"
+    },
+    "MacroModel - Open": {
+        "prefix": "Open",
+        "body": "Open($1)",
+        "description": "[MacroModel] Open()"
+    },
+    "MacroModel - Close": {
+        "prefix": "Close",
+        "body": "Close($1)",
+        "description": "[MacroModel] Close()"
+    },
+    "MacroModel - Next": {
+        "prefix": "Next",
+        "body": "Next($1)",
+        "description": "[MacroModel] Next()"
+    },
+    "MacroModel - Prior": {
+        "prefix": "Prior",
+        "body": "Prior($1)",
+        "description": "[MacroModel] Prior()"
+    },
+    "MacroModel - First": {
+        "prefix": "First",
+        "body": "First($1)",
+        "description": "[MacroModel] First()"
+    },
+    "MacroModel - Eof": {
+        "prefix": "Eof",
+        "body": "Eof($1)",
+        "description": "[MacroModel] Eof()"
+    },
+    "MacroModel - New": {
+        "prefix": "New",
+        "body": "New($1)",
+        "description": "[MacroModel] New()"
+    },
+    "MacroModel - Edit": {
+        "prefix": "Edit",
+        "body": "Edit($1)",
+        "description": "[MacroModel] Edit()"
+    },
+    "MacroModel - Save": {
+        "prefix": "Save",
+        "body": "Save($1)",
+        "description": "[MacroModel] Save()"
+    },
+    "MacroModel - Delete": {
+        "prefix": "Delete",
+        "body": "Delete($1)",
+        "description": "[MacroModel] Delete()"
+    },
+    "MacroModel - RefreshRow": {
+        "prefix": "RefreshRow",
+        "body": "RefreshRow($1)",
+        "description": "[MacroModel] RefreshRow()"
+    },
+    "MacroModel - GetOldDataValue": {
+        "prefix": "GetOldDataValue",
+        "body": "GetOldDataValue($1)",
+        "description": "[MacroModel] GetOldDataValue()"
+    },
+    "MacroModel - GetUserValue": {
+        "prefix": "GetUserValue",
+        "body": "GetUserValue($1)",
+        "description": "[MacroModel] GetUserValue()"
+    },
+    "MacroModel - GetModelQuery": {
+        "prefix": "GetModelQuery",
+        "body": "GetModelQuery($1)",
+        "description": "[MacroModel] GetModelQuery()"
+    },
+    "MacroModel - GetSelectedCount": {
+        "prefix": "GetSelectedCount",
+        "body": "GetSelectedCount($1)",
+        "description": "[MacroModel] GetSelectedCount()"
+    },
+    "MacroModel - GetSelectedValue": {
+        "prefix": "GetSelectedValue",
+        "body": "GetSelectedValue($1)",
+        "description": "[MacroModel] GetSelectedValue()"
+    },
+    "MacroQuery - CreateMacroQuery": {
+        "prefix": "CreateMacroQuery",
+        "body": "CreateMacroQuery()",
+        "description": "[MacroQuery] CreateMacroQuery()"
+    },
+    "MacroQuery - MacroObject.CreateMacroQuery": {
+        "prefix": "MacroObject.CreateMacroQuery",
+        "body": "MacroObject.CreateMacroQuery()",
+        "description": "[MacroQuery] MacroObject.CreateMacroQuery()"
+    },
+    "MacroQuery - FindMacroQuery": {
+        "prefix": "FindMacroQuery",
+        "body": "FindMacroQuery()",
+        "description": "[MacroQuery] FindMacroQuery()"
+    },
+    "MacroQuery - GetSQLText": {
+        "prefix": "GetSQLText",
+        "body": "GetSQLText($1)",
+        "description": "[MacroQuery] GetSQLText()"
+    },
+    "MacroQuery - SetSQLText": {
+        "prefix": "SetSQLText",
+        "body": "SetSQLText($1)",
+        "description": "[MacroQuery] SetSQLText()"
+    },
+    "MacroQuery - Open": {
+        "prefix": "Open",
+        "body": "Open($1)",
+        "description": "[MacroQuery] Open()"
+    },
+    "MacroQuery - Close": {
+        "prefix": "Close",
+        "body": "Close($1)",
+        "description": "[MacroQuery] Close()"
+    },
+    "MacroQuery - First": {
+        "prefix": "First",
+        "body": "First($1)",
+        "description": "[MacroQuery] First()"
+    },
+    "MacroQuery - Next": {
+        "prefix": "Next",
+        "body": "Next($1)",
+        "description": "[MacroQuery] Next()"
+    },
+    "MacroQuery - Prior": {
+        "prefix": "Prior",
+        "body": "Prior($1)",
+        "description": "[MacroQuery] Prior()"
+    },
+    "MacroQuery - Eof": {
+        "prefix": "Eof",
+        "body": "Eof($1)",
+        "description": "[MacroQuery] Eof()"
+    },
+    "MacroQuery - GetDisplayText": {
+        "prefix": "GetDisplayText",
+        "body": "GetDisplayText($1)",
+        "description": "[MacroQuery] GetDisplayText()"
+    },
+    "MacroQuery - IsActive": {
+        "prefix": "IsActive",
+        "body": "IsActive($1)",
+        "description": "[MacroQuery] IsActive()"
+    },
+    "MacroQuery - RecordCount": {
+        "prefix": "RecordCount",
+        "body": "RecordCount($1)",
+        "description": "[MacroQuery] RecordCount()"
+    },
+    "MacroQuery - GetAsString": {
+        "prefix": "GetAsString",
+        "body": "GetAsString($1)",
+        "description": "[MacroQuery] GetAsString()"
+    },
+    "MacroQuery - SQLAddCondition": {
+        "prefix": "SQLAddCondition",
+        "body": "SQLAddCondition($1)",
+        "description": "[MacroQuery] SQLAddCondition()"
+    },
+    "MacroQuery - SQLAddOrder": {
+        "prefix": "SQLAddOrder",
+        "body": "SQLAddOrder($1)",
+        "description": "[MacroQuery] SQLAddOrder()"
+    },
+    "MacroQuery - SetParamAsString": {
+        "prefix": "SetParamAsString",
+        "body": "SetParamAsString($1)",
+        "description": "[MacroQuery] SetParamAsString()"
+    },
+    "MacroQuery - ExecSQL": {
+        "prefix": "ExecSQL",
+        "body": "ExecSQL($1)",
+        "description": "[MacroQuery] ExecSQL()"
+    },
+    "MacroQuery - Free": {
+        "prefix": "Free",
+        "body": "Free($1)",
+        "description": "[MacroQuery] Free()"
+    },
+    "MacroCSVFile - CreateMacroCSVFile": {
+        "prefix": "CreateMacroCSVFile",
+        "body": "CreateMacroCSVFile()",
+        "description": "[MacroCSVFile] CreateMacroCSVFile()"
+    },
+    "MacroCSVFile - MacroObject.CreateMacroCSVFile": {
+        "prefix": "MacroObject.CreateMacroCSVFile",
+        "body": "MacroObject.CreateMacroCSVFile()",
+        "description": "[MacroCSVFile] MacroObject.CreateMacroCSVFile()"
+    },
+    "MacroCSVFile - Open": {
+        "prefix": "Open",
+        "body": "Open($1)",
+        "description": "[MacroCSVFile] Open()"
+    },
+    "MacroCSVFile - Close": {
+        "prefix": "Close",
+        "body": "Close($1)",
+        "description": "[MacroCSVFile] Close()"
+    },
+    "MacroCSVFile - Exists": {
+        "prefix": "Exists",
+        "body": "Exists($1)",
+        "description": "[MacroCSVFile] Exists()"
+    },
+    "MacroCSVFile - GetNoOfLines": {
+        "prefix": "GetNoOfLines",
+        "body": "GetNoOfLines($1)",
+        "description": "[MacroCSVFile] GetNoOfLines()"
+    },
+    "MacroCSVFile - GetNoOfCols": {
+        "prefix": "GetNoOfCols",
+        "body": "GetNoOfCols($1)",
+        "description": "[MacroCSVFile] GetNoOfCols()"
+    },
+    "MacroCSVFile - GetValue": {
+        "prefix": "GetValue",
+        "body": "GetValue($1)",
+        "description": "[MacroCSVFile] GetValue()"
+    },
+    "MacroCSVFile - SetSeparator": {
+        "prefix": "SetSeparator",
+        "body": "SetSeparator($1)",
+        "description": "[MacroCSVFile] SetSeparator()"
+    },
+    "MacroCSVFile - SetQuoteChar": {
+        "prefix": "SetQuoteChar",
+        "body": "SetQuoteChar($1)",
+        "description": "[MacroCSVFile] SetQuoteChar()"
+    },
+    "MacroCSVFile - SetCodepage": {
+        "prefix": "SetCodepage",
+        "body": "SetCodepage($1)",
+        "description": "[MacroCSVFile] SetCodepage()"
+    },
+    "MacroFileMgr - CreateMacroFileMgr": {
+        "prefix": "CreateMacroFileMgr",
+        "body": "CreateMacroFileMgr()",
+        "description": "[MacroFileMgr] CreateMacroFileMgr()"
+    },
+    "MacroFileMgr - MacroObject.CreateMacroFileMgr": {
+        "prefix": "MacroObject.CreateMacroFileMgr",
+        "body": "MacroObject.CreateMacroFileMgr()",
+        "description": "[MacroFileMgr] MacroObject.CreateMacroFileMgr()"
+    },
+    "MacroFileMgr - FindFirstFile": {
+        "prefix": "FindFirstFile",
+        "body": "FindFirstFile($1)",
+        "description": "[MacroFileMgr] FindFirstFile()"
+    },
+    "MacroFileMgr - FindNextFile": {
+        "prefix": "FindNextFile",
+        "body": "FindNextFile($1)",
+        "description": "[MacroFileMgr] FindNextFile()"
+    },
+    "MacroFileMgr - FileName": {
+        "prefix": "FileName",
+        "body": "FileName($1)",
+        "description": "[MacroFileMgr] FileName()"
+    },
+    "MacroFileMgr - FileAttributes": {
+        "prefix": "FileAttributes",
+        "body": "FileAttributes($1)",
+        "description": "[MacroFileMgr] FileAttributes()"
+    },
+    "MacroFileMgr - CreationTime": {
+        "prefix": "CreationTime",
+        "body": "CreationTime($1)",
+        "description": "[MacroFileMgr] CreationTime()"
+    },
+    "MacroFileMgr - LastAccessTime": {
+        "prefix": "LastAccessTime",
+        "body": "LastAccessTime($1)",
+        "description": "[MacroFileMgr] LastAccessTime()"
+    },
+    "MacroFileMgr - LastWriteTime": {
+        "prefix": "LastWriteTime",
+        "body": "LastWriteTime($1)",
+        "description": "[MacroFileMgr] LastWriteTime()"
+    },
+    "MacroFileMgr - FileSize": {
+        "prefix": "FileSize",
+        "body": "FileSize($1)",
+        "description": "[MacroFileMgr] FileSize()"
+    },
+    "MacroFileMgr - CloseFile": {
+        "prefix": "CloseFile",
+        "body": "CloseFile($1)",
+        "description": "[MacroFileMgr] CloseFile()"
+    },
+    "MacroList - CreateMacroList": {
+        "prefix": "CreateMacroList",
+        "body": "CreateMacroList()",
+        "description": "[MacroList] CreateMacroList()"
+    },
+    "MacroList - MacroObject.CreateMacroList": {
+        "prefix": "MacroObject.CreateMacroList",
+        "body": "MacroObject.CreateMacroList()",
+        "description": "[MacroList] MacroObject.CreateMacroList()"
+    },
+    "MacroList - GetMacroList": {
+        "prefix": "GetMacroList",
+        "body": "GetMacroList($1)",
+        "description": "[MacroList] GetMacroList()"
+    },
+    "MacroList - Add": {
+        "prefix": "Add",
+        "body": "Add($1)",
+        "description": "[MacroList] Add()"
+    },
+    "MacroList - GetItem": {
+        "prefix": "GetItem",
+        "body": "GetItem($1)",
+        "description": "[MacroList] GetItem()"
+    },
+    "MacroList - Delete": {
+        "prefix": "Delete",
+        "body": "Delete($1)",
+        "description": "[MacroList] Delete()"
+    },
+    "MacroList - Count": {
+        "prefix": "Count",
+        "body": "Count($1)",
+        "description": "[MacroList] Count()"
+    },
+    "MacroList - Clear": {
+        "prefix": "Clear",
+        "body": "Clear($1)",
+        "description": "[MacroList] Clear()"
+    },
+    "MacroList - IndexOf": {
+        "prefix": "IndexOf",
+        "body": "IndexOf($1)",
+        "description": "[MacroList] IndexOf()"
+    },
+    "MacroStringList - CreateMacroStringList": {
+        "prefix": "CreateMacroStringList",
+        "body": "CreateMacroStringList()",
+        "description": "[MacroStringList] CreateMacroStringList()"
+    },
+    "MacroStringList - MacroObject.CreateMacroStringList": {
+        "prefix": "MacroObject.CreateMacroStringList",
+        "body": "MacroObject.CreateMacroStringList()",
+        "description": "[MacroStringList] MacroObject.CreateMacroStringList()"
+    },
+    "MacroStringList - Add": {
+        "prefix": "Add",
+        "body": "Add($1)",
+        "description": "[MacroStringList] Add()"
+    },
+    "MacroStringList - GetItem": {
+        "prefix": "GetItem",
+        "body": "GetItem($1)",
+        "description": "[MacroStringList] GetItem()"
+    },
+    "MacroStringList - GetName": {
+        "prefix": "GetName",
+        "body": "GetName($1)",
+        "description": "[MacroStringList] GetName()"
+    },
+    "MacroStringList - GetValue": {
+        "prefix": "GetValue",
+        "body": "GetValue($1)",
+        "description": "[MacroStringList] GetValue()"
+    },
+    "MacroStringList - Delete": {
+        "prefix": "Delete",
+        "body": "Delete($1)",
+        "description": "[MacroStringList] Delete()"
+    },
+    "MacroStringList - Count": {
+        "prefix": "Count",
+        "body": "Count($1)",
+        "description": "[MacroStringList] Count()"
+    },
+    "MacroStringList - Clear": {
+        "prefix": "Clear",
+        "body": "Clear($1)",
+        "description": "[MacroStringList] Clear()"
+    },
+    "MacroStringList - Sort": {
+        "prefix": "Sort",
+        "body": "Sort($1)",
+        "description": "[MacroStringList] Sort()"
+    },
+    "MacroStringList - IndexOf": {
+        "prefix": "IndexOf",
+        "body": "IndexOf($1)",
+        "description": "[MacroStringList] IndexOf()"
+    },
+    "MacroStringList - IndexOfName": {
+        "prefix": "IndexOfName",
+        "body": "IndexOfName($1)",
+        "description": "[MacroStringList] IndexOfName()"
+    },
+    "MacroStringList - IndexOfValue": {
+        "prefix": "IndexOfValue",
+        "body": "IndexOfValue($1)",
+        "description": "[MacroStringList] IndexOfValue()"
+    },
+    "MacroStringList - SetKeyValue": {
+        "prefix": "SetKeyValue",
+        "body": "SetKeyValue($1)",
+        "description": "[MacroStringList] SetKeyValue()"
+    },
+    "MacroStringList - GetKeyValue": {
+        "prefix": "GetKeyValue",
+        "body": "GetKeyValue($1)",
+        "description": "[MacroStringList] GetKeyValue()"
+    },
+    "MacroStringList - SetSeparatedText": {
+        "prefix": "SetSeparatedText",
+        "body": "SetSeparatedText($1)",
+        "description": "[MacroStringList] SetSeparatedText()"
+    },
+    "MacroStringList - GetSeparatedText": {
+        "prefix": "GetSeparatedText",
+        "body": "GetSeparatedText($1)",
+        "description": "[MacroStringList] GetSeparatedText()"
+    },
+    "MacroXMLDocument - CreateMacroXMLDocument": {
+        "prefix": "CreateMacroXMLDocument",
+        "body": "CreateMacroXMLDocument()",
+        "description": "[MacroXMLDocument] CreateMacroXMLDocument()"
+    },
+    "MacroXMLDocument - MacroObject.CreateMacroXMLDocument": {
+        "prefix": "MacroObject.CreateMacroXMLDocument",
+        "body": "MacroObject.CreateMacroXMLDocument()",
+        "description": "[MacroXMLDocument] MacroObject.CreateMacroXMLDocument()"
+    },
+    "MacroXMLDocument - GetMacroXMLDocument": {
+        "prefix": "GetMacroXMLDocument",
+        "body": "GetMacroXMLDocument($1)",
+        "description": "[MacroXMLDocument] GetMacroXMLDocument()"
+    },
+    "MacroXMLDocument - LoadXMLFile": {
+        "prefix": "LoadXMLFile",
+        "body": "LoadXMLFile($1)",
+        "description": "[MacroXMLDocument] LoadXMLFile()"
+    },
+    "MacroXMLDocument - LoadXMLText": {
+        "prefix": "LoadXMLText",
+        "body": "LoadXMLText($1)",
+        "description": "[MacroXMLDocument] LoadXMLText()"
+    },
+    "MacroXMLDocument - SaveXMLFile": {
+        "prefix": "SaveXMLFile",
+        "body": "SaveXMLFile($1)",
+        "description": "[MacroXMLDocument] SaveXMLFile()"
+    },
+    "MacroXMLDocument - ValidateXMLFile": {
+        "prefix": "ValidateXMLFile",
+        "body": "ValidateXMLFile($1)",
+        "description": "[MacroXMLDocument] ValidateXMLFile()"
+    },
+    "MacroXMLDocument - ValidateXMLText": {
+        "prefix": "ValidateXMLText",
+        "body": "ValidateXMLText($1)",
+        "description": "[MacroXMLDocument] ValidateXMLText()"
+    },
+    "MacroXMLDocument - GetXMLText": {
+        "prefix": "GetXMLText",
+        "body": "GetXMLText($1)",
+        "description": "[MacroXMLDocument] GetXMLText()"
+    },
+    "MacroXMLDocument - LoadXMLBuffer": {
+        "prefix": "LoadXMLBuffer",
+        "body": "LoadXMLBuffer($1)",
+        "description": "[MacroXMLDocument] LoadXMLBuffer()"
+    },
+    "MacroXMLDocument - SaveXMLBuffer": {
+        "prefix": "SaveXMLBuffer",
+        "body": "SaveXMLBuffer($1)",
+        "description": "[MacroXMLDocument] SaveXMLBuffer()"
+    },
+    "MacroXMLDocument - ClearXMLBuffer": {
+        "prefix": "ClearXMLBuffer",
+        "body": "ClearXMLBuffer($1)",
+        "description": "[MacroXMLDocument] ClearXMLBuffer()"
+    },
+    "MacroXMLDocument - DeleteXMLBuffer": {
+        "prefix": "DeleteXMLBuffer",
+        "body": "DeleteXMLBuffer($1)",
+        "description": "[MacroXMLDocument] DeleteXMLBuffer()"
+    }
+}

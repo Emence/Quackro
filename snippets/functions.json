@@ -1,0 +1,3427 @@
+{
+  "Datum & Zeit - Time": {
+    "prefix": "BMD_TIME",
+    "body": "BMD_TIME()",
+    "description": "[Datum & Zeit] BMD_TIME()"
+  },
+  "Datum & Zeit - Date": {
+    "prefix": "BMD_DATE",
+    "body": "BMD_DATE()",
+    "description": "[Datum & Zeit] BMD_DATE()"
+  },
+  "Datum & Zeit - DayOfWeek": {
+    "prefix": "BMD_DAYOFWEEK",
+    "body": "BMD_DAYOFWEEK(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_DAYOFWEEK('Datum')"
+  },
+  "Datum & Zeit - DayOfWeekAsText": {
+    "prefix": "BMD_DAYOFWEEKASTEXT",
+    "body": "BMD_DAYOFWEEKASTEXT(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_DAYOFWEEKASTEXT('Datum')"
+  },
+  "Datum & Zeit - WeekOfYear": {
+    "prefix": "BMD_WEEKOFYEAR",
+    "body": "BMD_WEEKOFYEAR(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_WEEKOFYEAR('Datum')"
+  },
+  "Datum & Zeit - Day": {
+    "prefix": "BMD_DAY",
+    "body": "BMD_DAY(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_DAY('Datum')"
+  },
+  "Datum & Zeit - Month": {
+    "prefix": "BMD_MONTH",
+    "body": "BMD_MONTH(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_MONTH('Datum')"
+  },
+  "Datum & Zeit - Year": {
+    "prefix": "BMD_YEAR",
+    "body": "BMD_YEAR(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_YEAR('Datum')"
+  },
+  "Datum & Zeit - Hour": {
+    "prefix": "BMD_HOUR",
+    "body": "BMD_HOUR(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_HOUR('Datum')"
+  },
+  "Datum & Zeit - Minute": {
+    "prefix": "BMD_MINUTE",
+    "body": "BMD_MINUTE(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_MINUTE('Datum')"
+  },
+  "Datum & Zeit - Second": {
+    "prefix": "BMD_SECOND",
+    "body": "BMD_SECOND(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_SECOND('Datum')"
+  },
+  "Datum & Zeit - DateDiff": {
+    "prefix": "BMD_DATEDIFF",
+    "body": "BMD_DATEDIFF(${1:Datum1}, ${2:Datum2})",
+    "description": "[Datum & Zeit] BMD_DATEDIFF('Datum1','Datum2')"
+  },
+  "Datum & Zeit - DateSum": {
+    "prefix": "BMD_DATESUM",
+    "body": "BMD_DATESUM(${1:Datum}, ${2:Zahl})",
+    "description": "[Datum & Zeit] BMD_DATESUM('Datum',<Zahl>)"
+  },
+  "Datum & Zeit - MonthDiff": {
+    "prefix": "BMD_MONTHDIFF",
+    "body": "BMD_MONTHDIFF(${1:Datum1}, ${2:Datum2})",
+    "description": "[Datum & Zeit] BMD_MONTHDIFF('Datum1','Datum2')"
+  },
+  "Datum & Zeit - LastDayOfMonth": {
+    "prefix": "BMD_LASTDAY",
+    "body": "BMD_LASTDAY(${1:Monat}, ${2:Jahr})",
+    "description": "[Datum & Zeit] BMD_LASTDAY(<Monat>,<Jahr>)"
+  },
+  "Datum & Zeit - IsLeapYear": {
+    "prefix": "BMD_ISLEAPYEAR",
+    "body": "BMD_ISLEAPYEAR(${1:Jahr})",
+    "description": "[Datum & Zeit] BMD_ISLEAPYEAR(<Jahr>)"
+  },
+  "Datum & Zeit - DateToISOFormat": {
+    "prefix": "BMD_DATETOISOFORMAT",
+    "body": "BMD_DATETOISOFORMAT(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_DATETOISOFORMAT('Datum')"
+  },
+  "Datum & Zeit - FormatDate": {
+    "prefix": "BMD_FORMATDATE",
+    "body": "BMD_FORMATDATE(${1:Datum}, ${2:Eingabeformat}, ${3:Ausgabeformat})",
+    "description": "[Datum & Zeit] BMD_FORMATDATE('Datum','Eingabeformat','Ausgabeformat')"
+  },
+  "Datum & Zeit - UTCDateTimeToLocal": {
+    "prefix": "BMD_UTCDATETIMETOLOCAL",
+    "body": "BMD_UTCDATETIMETOLOCAL(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_UTCDATETIMETOLOCAL('Datum')"
+  },
+  "Datum & Zeit - LocalDateTimeToUTC": {
+    "prefix": "BMD_LOCALDATETIMETOUTC",
+    "body": "BMD_LOCALDATETIMETOUTC(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_LOCALDATETIMETOUTC('Datum')"
+  },
+  "Datum & Zeit - FormatDateByLanguage": {
+    "prefix": "BMD_FORMATDATEBYLANGUAGE",
+    "body": "BMD_FORMATDATEBYLANGUAGE(${1:Datum}, ${2:Sprachnr})",
+    "description": "[Datum & Zeit] BMD_FORMATDATEBYLANGUAGE('Datum',<Sprachnr>)"
+  },
+  "Datum & Zeit - StrToDate": {
+    "prefix": "BMD_STRTODATE",
+    "body": "BMD_STRTODATE(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_STRTODATE('Datum')"
+  },
+  "Datum & Zeit - AmazonDateToDateTime": {
+    "prefix": "BMD_AMAZONDATETODATETIME",
+    "body": "BMD_AMAZONDATETODATETIME(${1:Datum}, ${2:LocaleID})",
+    "description": "[Datum & Zeit] BMD_AMAZONDATETODATETIME('Datum',<LocaleID>)"
+  },
+  "Datum & Zeit - DateToStr": {
+    "prefix": "BMD_DATETOSTR",
+    "body": "BMD_DATETOSTR(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_DATETOSTR(<Datum>)"
+  },
+  "Datum & Zeit - IsValidDateStr": {
+    "prefix": "BMD_ISVALIDDATESTR",
+    "body": "BMD_ISVALIDDATESTR(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_ISVALIDDATESTR('Datum')"
+  },
+  "Datum & Zeit - DecMonth": {
+    "prefix": "BMD_DECMONTH",
+    "body": "BMD_DECMONTH(${1:Datum}, ${2:Count})",
+    "description": "[Datum & Zeit] BMD_DECMONTH('Datum','Count')"
+  },
+  "Datum & Zeit - IncMonth": {
+    "prefix": "BMD_INCMONTH",
+    "body": "BMD_INCMONTH(${1:Datum}, ${2:Count})",
+    "description": "[Datum & Zeit] BMD_INCMONTH('Datum','Count')"
+  },
+  "Datum & Zeit - IncDay": {
+    "prefix": "BMD_INCDAY",
+    "body": "BMD_INCDAY(${1:Datum}, ${2:Count})",
+    "description": "[Datum & Zeit] BMD_INCDAY('Datum','Count')"
+  },
+  "Datum & Zeit - IncHour": {
+    "prefix": "BMD_INCHOUR",
+    "body": "BMD_INCHOUR(${1:Datum}, ${2:Count})",
+    "description": "[Datum & Zeit] BMD_INCHOUR('Datum','Count')"
+  },
+  "Datum & Zeit - IncMin": {
+    "prefix": "BMD_INCMIN",
+    "body": "BMD_INCMIN(${1:Datum}, ${2:Count})",
+    "description": "[Datum & Zeit] BMD_INCMIN('Datum','Count')"
+  },
+  "Datum & Zeit - IncSec": {
+    "prefix": "BMD_INCSEC",
+    "body": "BMD_INCSEC(${1:Datum}, ${2:Count})",
+    "description": "[Datum & Zeit] BMD_INCSEC('Datum','Count')"
+  },
+  "Datum & Zeit - RoundPeriod": {
+    "prefix": "BMD_ROUNDPERIOD",
+    "body": "BMD_ROUNDPERIOD(${1:Dauer}, ${2:Einheit}, ${3:Modus})",
+    "description": "[Datum & Zeit] BMD_ROUNDPERIOD('Dauer','Einheit','Modus')"
+  },
+  "Datum & Zeit - RecodeYear": {
+    "prefix": "BMD_RECODEYEAR",
+    "body": "BMD_RECODEYEAR(${1:Datum}, ${2:Year})",
+    "description": "[Datum & Zeit] BMD_RECODEYEAR('Datum','Year')"
+  },
+  "Datum & Zeit - RecodeMonth": {
+    "prefix": "BMD_RECODEMONTH",
+    "body": "BMD_RECODEMONTH(${1:Datum}, ${2:Month})",
+    "description": "[Datum & Zeit] BMD_RECODEMONTH('Datum','Month')"
+  },
+  "Datum & Zeit - RecodeDay": {
+    "prefix": "BMD_RECODEDAY",
+    "body": "BMD_RECODEDAY(${1:Datum}, ${2:Day})",
+    "description": "[Datum & Zeit] BMD_RECODEDAY('Datum','Day')"
+  },
+  "Datum & Zeit - RecodeHour": {
+    "prefix": "BMD_RECODEHOUR",
+    "body": "BMD_RECODEHOUR(${1:Datum}, ${2:Hour})",
+    "description": "[Datum & Zeit] BMD_RECODEHOUR('Datum','Hour')"
+  },
+  "Datum & Zeit - RecodeMinute": {
+    "prefix": "BMD_RECODEMINUTE",
+    "body": "BMD_RECODEMINUTE(${1:Datum}, ${2:Minute})",
+    "description": "[Datum & Zeit] BMD_RECODEMINUTE('Datum','Minute')"
+  },
+  "Datum & Zeit - RecodeSecond": {
+    "prefix": "BMD_RECODESECOND",
+    "body": "BMD_RECODESECOND(${1:Datum}, ${2:Second})",
+    "description": "[Datum & Zeit] BMD_RECODESECOND('Datum','Second')"
+  },
+  "Datum & Zeit - DateOf": {
+    "prefix": "BMD_DATEOF",
+    "body": "BMD_DATEOF(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_DATEOF('Datum')"
+  },
+  "Datum & Zeit - TimeOf": {
+    "prefix": "BMD_TIMEOF",
+    "body": "BMD_TIMEOF(${1:Datum})",
+    "description": "[Datum & Zeit] BMD_TIMEOF('Datum')"
+  },
+  "Mathematische Funktionen - TextToNumDef": {
+    "prefix": "BMD_TEXTTONUMDEF",
+    "body": "BMD_TEXTTONUMDEF(${1:Text})",
+    "description": "[Mathematische Funktionen] BMD_TEXTTONUMDEF('Text')"
+  },
+  "Mathematische Funktionen - FloatToStrF": {
+    "prefix": "BMD_FLOATTOSTRF",
+    "body": "BMD_FLOATTOSTRF(${1:Text}, ${2:Kind}, ${3:Precision}, ${4:Digits})",
+    "description": "[Mathematische Funktionen] BMD_FLOATTOSTRF('Text',<Kind>,<Precision>,<Digits>)"
+  },
+  "Mathematische Funktionen - Min": {
+    "prefix": "BMD_MIN",
+    "body": "BMD_MIN(${1:Zahl}, ${2:Zahl})",
+    "description": "[Mathematische Funktionen] BMD_MIN(<Zahl>,<Zahl>)"
+  },
+  "Mathematische Funktionen - Max": {
+    "prefix": "BMD_MAX",
+    "body": "BMD_MAX(${1:Zahl}, ${2:Zahl})",
+    "description": "[Mathematische Funktionen] BMD_MAX(<Zahl>,<Zahl>)"
+  },
+  "Mathematische Funktionen - Round": {
+    "prefix": "BMD_ROUND",
+    "body": "BMD_ROUND(${1:Zahl}, ${2:Stellen})",
+    "description": "[Mathematische Funktionen] BMD_ROUND(<Zahl>,<Stellen>)"
+  },
+  "Mathematische Funktionen - RoundX": {
+    "prefix": "BMD_ROUNDX",
+    "body": "BMD_ROUNDX(${1:Zahl}, ${2:Basis}, ${3:Rundungsart})",
+    "description": "[Mathematische Funktionen] BMD_ROUNDX(<Zahl>,<Basis>,<Rundungsart (opt)>)"
+  },
+  "Mathematische Funktionen - Abs": {
+    "prefix": "BMD_ABS",
+    "body": "BMD_ABS(${1:Zahl})",
+    "description": "[Mathematische Funktionen] BMD_ABS(<Zahl>)"
+  },
+  "Mathematische Funktionen - Trunc": {
+    "prefix": "BMD_TRUNC",
+    "body": "BMD_TRUNC(${1:Zahl})",
+    "description": "[Mathematische Funktionen] BMD_TRUNC(<Zahl>)"
+  },
+  "Mathematische Funktionen - Power": {
+    "prefix": "BMD_POWER",
+    "body": "BMD_POWER(${1:Base}, ${2:Exp})",
+    "description": "[Mathematische Funktionen] BMD_POWER(<Base>,<Exp>)"
+  },
+  "Mathematische Funktionen - Sqrt": {
+    "prefix": "BMD_SQRT",
+    "body": "BMD_SQRT(${1:Zahl})",
+    "description": "[Mathematische Funktionen] BMD_SQRT(<Zahl>)"
+  },
+  "Mathematische Funktionen - Modulo": {
+    "prefix": "BMD_MODULO",
+    "body": "BMD_MODULO(${1:Zahl}, ${2:Zahl})",
+    "description": "[Mathematische Funktionen] BMD_MODULO(<Zahl>,<Zahl>)"
+  },
+  "Mathematische Funktionen - Div0": {
+    "prefix": "BMD_DIV0",
+    "body": "BMD_DIV0(${1:Dividend}, ${2:Divisor})",
+    "description": "[Mathematische Funktionen] BMD_DIV0(<Dividend>,<Divisor>)"
+  },
+  "Mathematische Funktionen - GetGUID": {
+    "prefix": "BMD_GETGUID",
+    "body": "BMD_GETGUID()",
+    "description": "[Mathematische Funktionen] BMD_GETGUID()"
+  },
+  "Mathematische Funktionen - GetSEQID": {
+    "prefix": "BMD_GETSEQID",
+    "body": "BMD_GETSEQID()",
+    "description": "[Mathematische Funktionen] BMD_GETSEQID()"
+  },
+  "Mathematische Funktionen - ConvertNumber": {
+    "prefix": "BMD_CONVERTNUMBER",
+    "body": "BMD_CONVERTNUMBER(${1:Value}, ${2:Length}, ${3:Language}, ${4:InThousand}, ${5:StarBeforeNumber}, ${6:LineAfterNumber}, ${7:ShowSeperator})",
+    "description": "[Mathematische Funktionen] BMD_CONVERTNUMBER(<Value>,<Length (opt)>,<Language (opt)>,<InThousand (opt)>,<StarBeforeNumber (opt)>,<LineAfterNumber (opt)>,<ShowSeperator (opt)>)"
+  },
+  "Mathematische Funktionen - ConvertAmount": {
+    "prefix": "BMD_CONVERTAMOUNT",
+    "body": "BMD_CONVERTAMOUNT(${1:Kurstabelle}, ${2:Kursdatum}, ${3:Betrag}, ${4:BasiswÃ¤hrung}, ${5:ZielwÃ¤hrung}, ${6:Nachkommastellen})",
+    "description": "[Mathematische Funktionen] BMD_CONVERTAMOUNT(<Kurstabelle>,<Kursdatum>,<Betrag>,'BasiswÃ¤hrung','ZielwÃ¤hrung',<Nachkommastellen (opt)>)"
+  },
+  "Textfunktionen - FormatNum": {
+    "prefix": "BMD_FORMATNUM",
+    "body": "BMD_FORMATNUM(${1:Format}, ${2:Wert}, ${3:Language})",
+    "description": "[Textfunktionen] BMD_FORMATNUM('Format',<Wert>,<Language (opt)>)"
+  },
+  "Textfunktionen - MD5": {
+    "prefix": "BMD_MD5",
+    "body": "BMD_MD5(${1:Text})",
+    "description": "[Textfunktionen] BMD_MD5('Text')"
+  },
+  "Textfunktionen - Upper": {
+    "prefix": "BMD_UPPER",
+    "body": "BMD_UPPER(${1:Text}, ${2:ChangeSharpS}, ${3:SharpS})",
+    "description": "[Textfunktionen] BMD_UPPER('Text',<ChangeSharpS (opt)>,'SharpS (opt)')"
+  },
+  "Textfunktionen - Lower": {
+    "prefix": "BMD_LOWER",
+    "body": "BMD_LOWER(${1:Text})",
+    "description": "[Textfunktionen] BMD_LOWER('Text')"
+  },
+  "Textfunktionen - Copy": {
+    "prefix": "BMD_COPY",
+    "body": "BMD_COPY(${1:Text}, ${2:Ab Position}, ${3:LÃ¤nge})",
+    "description": "[Textfunktionen] BMD_COPY('Text',<Ab Position>,<LÃ¤nge>)"
+  },
+  "Textfunktionen - Trim": {
+    "prefix": "BMD_TRIM",
+    "body": "BMD_TRIM(${1:Text})",
+    "description": "[Textfunktionen] BMD_TRIM('Text')"
+  },
+  "Textfunktionen - RTrim": {
+    "prefix": "BMD_RTRIM",
+    "body": "BMD_RTRIM(${1:Text})",
+    "description": "[Textfunktionen] BMD_RTRIM('Text')"
+  },
+  "Textfunktionen - LTrim": {
+    "prefix": "BMD_LTRIM",
+    "body": "BMD_LTRIM(${1:Text})",
+    "description": "[Textfunktionen] BMD_LTRIM('Text')"
+  },
+  "Textfunktionen - TrimSpace": {
+    "prefix": "BMD_TRIMSPACE",
+    "body": "BMD_TRIMSPACE(${1:Text})",
+    "description": "[Textfunktionen] BMD_TRIMSPACE('Text')"
+  },
+  "Textfunktionen - RTrimSpace": {
+    "prefix": "BMD_RTRIMSPACE",
+    "body": "BMD_RTRIMSPACE(${1:Text})",
+    "description": "[Textfunktionen] BMD_RTRIMSPACE('Text')"
+  },
+  "Textfunktionen - LTrimSpace": {
+    "prefix": "BMD_LTRIMSPACE",
+    "body": "BMD_LTRIMSPACE(${1:Text})",
+    "description": "[Textfunktionen] BMD_LTRIMSPACE('Text')"
+  },
+  "Textfunktionen - Concat": {
+    "prefix": "BMD_CONCAT",
+    "body": "BMD_CONCAT(${1:Text1}, ${2:Text2})",
+    "description": "[Textfunktionen] BMD_CONCAT('Text1','Text2')"
+  },
+  "Textfunktionen - Pos": {
+    "prefix": "BMD_POS",
+    "body": "BMD_POS(${1:Text}, ${2:Teilstring})",
+    "description": "[Textfunktionen] BMD_POS('Text','Teilstring')"
+  },
+  "Textfunktionen - Len": {
+    "prefix": "BMD_LEN",
+    "body": "BMD_LEN(${1:Text})",
+    "description": "[Textfunktionen] BMD_LEN('Text')"
+  },
+  "Textfunktionen - EAN": {
+    "prefix": "BMD_EAN",
+    "body": "BMD_EAN(${1:LÃ¤nge}, ${2:Text})",
+    "description": "[Textfunktionen] BMD_EAN(<LÃ¤nge>,'Text')"
+  },
+  "Textfunktionen - UTF8Encode": {
+    "prefix": "BMD_UTF8Encode",
+    "body": "BMD_UTF8Encode(${1:Text})",
+    "description": "[Textfunktionen] BMD_UTF8Encode('Text')"
+  },
+  "Textfunktionen - UTF8Decode": {
+    "prefix": "BMD_UTF8Decode",
+    "body": "BMD_UTF8Decode(${1:Text})",
+    "description": "[Textfunktionen] BMD_UTF8Decode('Text')"
+  },
+  "Textfunktionen - URLEncode": {
+    "prefix": "BMD_URLEncode",
+    "body": "BMD_URLEncode(${1:Text})",
+    "description": "[Textfunktionen] BMD_URLEncode('Text')"
+  },
+  "Textfunktionen - Base64Encode": {
+    "prefix": "BMD_Base64Encode",
+    "body": "BMD_Base64Encode(${1:Text})",
+    "description": "[Textfunktionen] BMD_Base64Encode('Text')"
+  },
+  "Textfunktionen - Base64Decode": {
+    "prefix": "BMD_Base64Decode",
+    "body": "BMD_Base64Decode(${1:Text})",
+    "description": "[Textfunktionen] BMD_Base64Decode('Text')"
+  },
+  "Textfunktionen - Encode": {
+    "prefix": "BMD_Encode",
+    "body": "BMD_Encode(${1:Text}, ${2:Codepage})",
+    "description": "[Textfunktionen] BMD_Encode('Text',<Codepage>)"
+  },
+  "Textfunktionen - Decode": {
+    "prefix": "BMD_Decode",
+    "body": "BMD_Decode(${1:Text}, ${2:Codepage})",
+    "description": "[Textfunktionen] BMD_Decode('Text',<Codepage>)"
+  },
+  "Textfunktionen - LineBreak": {
+    "prefix": "BMD_LineBreak",
+    "body": "BMD_LineBreak()",
+    "description": "[Textfunktionen] BMD_LineBreak()"
+  },
+  "Textfunktionen - LineFeed": {
+    "prefix": "BMD_LineFeed",
+    "body": "BMD_LineFeed()",
+    "description": "[Textfunktionen] BMD_LineFeed()"
+  },
+  "Textfunktionen - Tabulator": {
+    "prefix": "BMD_Tabulator",
+    "body": "BMD_Tabulator()",
+    "description": "[Textfunktionen] BMD_Tabulator()"
+  },
+  "Textfunktionen - Ext_Field": {
+    "prefix": "BMD_EXT_FIELD",
+    "body": "BMD_EXT_FIELD(${1:Datenquelle}, ${2:Externes Feld}, ${3:Bedingung1}, ${4:Wert1}, ${5:Bedingung2}, ${6:Wert2}, ${7:Bedingung3}, ${8:Wert3})",
+    "description": "[Textfunktionen] BMD_EXT_FIELD('Datenquelle','Externes Feld','Bedingung1','Wert1','Bedingung2','Wert2','Bedingung3','Wert3')"
+  },
+  "Textfunktionen - StringReplace": {
+    "prefix": "BMD_STRINGREPLACE",
+    "body": "BMD_STRINGREPLACE(${1:Wert}, ${2:OldPattern}, ${3:NewPattern}, ${4:AllOccurrences}, ${5:CaseSensitive})",
+    "description": "[Textfunktionen] BMD_STRINGREPLACE('Wert','OldPattern','NewPattern',<AllOccurrences (opt)>,<CaseSensitive (opt)>)"
+  },
+  "Textfunktionen - ReplaceSeparator": {
+    "prefix": "BMD_REPLACESEPARATOR",
+    "body": "BMD_REPLACESEPARATOR(${1:Wert})",
+    "description": "[Textfunktionen] BMD_REPLACESEPARATOR('Wert')"
+  },
+  "Textfunktionen - GetAnsiChr": {
+    "prefix": "BMD_GETANSICHR",
+    "body": "BMD_GETANSICHR(${1:Zahl})",
+    "description": "[Textfunktionen] BMD_GETANSICHR(<Zahl>)"
+  },
+  "Textfunktionen - Korrektur Dezimaltrennzeichen": {
+    "prefix": "BMD_CORRECT_COMMA",
+    "body": "BMD_CORRECT_COMMA(${1:Wert / Funktion})",
+    "description": "[Textfunktionen] BMD_CORRECT_COMMA('Wert / Funktion')"
+  },
+  "Textfunktionen - HIBCCheckDigit": {
+    "prefix": "BMD_HIBCCHECKDIGIT",
+    "body": "BMD_HIBCCHECKDIGIT(${1:Text})",
+    "description": "[Textfunktionen] BMD_HIBCCHECKDIGIT('')"
+  },
+  "Textfunktionen - HIBCTrim": {
+    "prefix": "BMD_HIBCTRIM",
+    "body": "BMD_HIBCTRIM(${1:Text})",
+    "description": "[Textfunktionen] BMD_HIBCTRIM('')"
+  },
+  "Textfunktionen - HIBCTrimAlphaNum": {
+    "prefix": "BMD_HIBCTRIMALPHANUM",
+    "body": "BMD_HIBCTRIMALPHANUM(${1:Text})",
+    "description": "[Textfunktionen] BMD_HIBCTRIMALPHANUM('')"
+  },
+  "Textfunktionen - GetNote": {
+    "prefix": "BMD_GETNOTE",
+    "body": "BMD_GETNOTE(${1:Text})",
+    "description": "[Textfunktionen] BMD_GETNOTE('')"
+  },
+  "Externe Werte - ExtWertBez": {
+    "prefix": "BMD_EXTWERT_NAME",
+    "body": "BMD_EXTWERT_NAME(${1:Paket}, ${2:Kategorie}, ${3:Wert})",
+    "description": "[Externe Werte] BMD_EXTWERT_NAME('Paket','Kategorie','Wert')"
+  },
+  "Externe Werte - ExtWertLJ": {
+    "prefix": "BMD_EXTWERT_LJ",
+    "body": "BMD_EXTWERT_LJ(${1:Paket}, ${2:Kategorie}, ${3:Wert})",
+    "description": "[Externe Werte] BMD_EXTWERT_LJ('Paket','Kategorie','Wert')"
+  },
+  "Externe Werte - ExtWertVJ1": {
+    "prefix": "BMD_EXTWERT_VJ1",
+    "body": "BMD_EXTWERT_VJ1(${1:Paket}, ${2:Kategorie}, ${3:Wert})",
+    "description": "[Externe Werte] BMD_EXTWERT_VJ1('Paket','Kategorie','Wert')"
+  },
+  "Externe Werte - ExtWertVJ2": {
+    "prefix": "BMD_EXTWERT_VJ2",
+    "body": "BMD_EXTWERT_VJ2(${1:Paket}, ${2:Kategorie}, ${3:Wert})",
+    "description": "[Externe Werte] BMD_EXTWERT_VJ2('Paket','Kategorie','Wert')"
+  },
+  "Externe Werte - ExtWertVJ3": {
+    "prefix": "BMD_EXTWERT_VJ3",
+    "body": "BMD_EXTWERT_VJ3(${1:Paket}, ${2:Kategorie}, ${3:Wert})",
+    "description": "[Externe Werte] BMD_EXTWERT_VJ3('Paket','Kategorie','Wert')"
+  },
+  "Externe Werte - ExtWertVJ4": {
+    "prefix": "BMD_EXTWERT_VJ4",
+    "body": "BMD_EXTWERT_VJ4(${1:Paket}, ${2:Kategorie}, ${3:Wert})",
+    "description": "[Externe Werte] BMD_EXTWERT_VJ4('Paket','Kategorie','Wert')"
+  },
+  "Externe Werte - ExtWertNJ": {
+    "prefix": "BMD_EXTWERT_NJ",
+    "body": "BMD_EXTWERT_NJ(${1:Paket}, ${2:Kategorie}, ${3:Wert})",
+    "description": "[Externe Werte] BMD_EXTWERT_NJ('Paket','Kategorie','Wert')"
+  },
+  "Tools Funktionen - UserName": {
+    "prefix": "BMD_USERNAME",
+    "body": "BMD_USERNAME()",
+    "description": "[Tools Funktionen] BMD_USERNAME()"
+  },
+  "Tools Funktionen - UserNameFull": {
+    "prefix": "BMD_USERNAMEFULL",
+    "body": "BMD_USERNAMEFULL()",
+    "description": "[Tools Funktionen] BMD_USERNAMEFULL()"
+  },
+  "Tools Funktionen - SystemUserName": {
+    "prefix": "BMD_SYSTEMUSERNAME",
+    "body": "BMD_SYSTEMUSERNAME()",
+    "description": "[Tools Funktionen] BMD_SYSTEMUSERNAME()"
+  },
+  "Tools Funktionen - ComputerName": {
+    "prefix": "BMD_COMPUTERNAME",
+    "body": "BMD_COMPUTERNAME()",
+    "description": "[Tools Funktionen] BMD_COMPUTERNAME()"
+  },
+  "Tools Funktionen - DatabaseName": {
+    "prefix": "BMD_DATABASENAME",
+    "body": "BMD_DATABASENAME()",
+    "description": "[Tools Funktionen] BMD_DATABASENAME()"
+  },
+  "Tools Funktionen - DateTimeFromSeqID": {
+    "prefix": "BMD_DATETIMEFROMSEQID",
+    "body": "BMD_DATETIMEFROMSEQID(${1:Seq-ID})",
+    "description": "[Tools Funktionen] BMD_DATETIMEFROMSEQID(<Seq-ID>)"
+  },
+  "Tools Funktionen - PgmVersion": {
+    "prefix": "BMD_PGMVERSION",
+    "body": "BMD_PGMVERSION()",
+    "description": "[Tools Funktionen] BMD_PGMVERSION()"
+  },
+  "Tools Funktionen - DbVersion": {
+    "prefix": "BMD_DBVERSION",
+    "body": "BMD_DBVERSION()",
+    "description": "[Tools Funktionen] BMD_DBVERSION()"
+  },
+  "Tools Funktionen - ExecuteMacro": {
+    "prefix": "BMD_EXECUTEMACRO",
+    "body": "BMD_EXECUTEMACRO(${1:Macro-No}, ${2:Parameter})",
+    "description": "[Tools Funktionen] BMD_EXECUTEMACRO('Macro-No','Parameter')"
+  },
+  "Tools Funktionen - GetNav_CompanyNo": {
+    "prefix": "BMD_GETNAV_COMPANYNO",
+    "body": "BMD_GETNAV_COMPANYNO()",
+    "description": "[Tools Funktionen] BMD_GETNAV_COMPANYNO()"
+  },
+  "Tools Funktionen - GetNav_CustomerNo": {
+    "prefix": "BMD_GETNAV_CUSTOMERNO",
+    "body": "BMD_GETNAV_CUSTOMERNO()",
+    "description": "[Tools Funktionen] BMD_GETNAV_CUSTOMERNO()"
+  },
+  "Tools Funktionen - GetNav_ArtCompanyNo": {
+    "prefix": "BMD_GETNAV_ARTCOMPANYNO",
+    "body": "BMD_GETNAV_ARTCOMPANYNO()",
+    "description": "[Tools Funktionen] BMD_GETNAV_ARTCOMPANYNO()"
+  },
+  "Tools Funktionen - GetNav_ArticleNo": {
+    "prefix": "BMD_GETNAV_ARTICLENO",
+    "body": "BMD_GETNAV_ARTICLENO()",
+    "description": "[Tools Funktionen] BMD_GETNAV_ARTICLENO()"
+  },
+  "Tools Funktionen - GetNav_ProjectCompanyNo": {
+    "prefix": "BMD_GETNAV_PROJCOMPANYNO",
+    "body": "BMD_GETNAV_PROJCOMPANYNO()",
+    "description": "[Tools Funktionen] BMD_GETNAV_PROJCOMPANYNO()"
+  },
+  "Tools Funktionen - GetNav_ProjectNo": {
+    "prefix": "BMD_GETNAV_PROJECTNO",
+    "body": "BMD_GETNAV_PROJECTNO()",
+    "description": "[Tools Funktionen] BMD_GETNAV_PROJECTNO()"
+  },
+  "Tools Funktionen - GetNav_EmployeeCompanyNo": {
+    "prefix": "BMD_GETNAV_EMPCOMPANYNO",
+    "body": "BMD_GETNAV_EMPCOMPANYNO()",
+    "description": "[Tools Funktionen] BMD_GETNAV_EMPCOMPANYNO()"
+  },
+  "Tools Funktionen - GetNav_EmployeeNo": {
+    "prefix": "BMD_GETNAV_EMPLOYEENO",
+    "body": "BMD_GETNAV_EMPLOYEENO()",
+    "description": "[Tools Funktionen] BMD_GETNAV_EMPLOYEENO()"
+  },
+  "Tools Funktionen - GetNav_ClientCompanyNo": {
+    "prefix": "BMD_GETNAV_CLIENTCOMPANYNO",
+    "body": "BMD_GETNAV_CLIENTCOMPANYNO()",
+    "description": "[Tools Funktionen] BMD_GETNAV_CLIENTCOMPANYNO()"
+  },
+  "Tools Funktionen - GetNav_ClientNo": {
+    "prefix": "BMD_GETNAV_CLIENTNO",
+    "body": "BMD_GETNAV_CLIENTNO()",
+    "description": "[Tools Funktionen] BMD_GETNAV_CLIENTNO()"
+  },
+  "Tools Funktionen - GetIntDBValue": {
+    "prefix": "BMD_GETINTDBVALUE",
+    "body": "BMD_GETINTDBVALUE(${1:Feldname})",
+    "description": "[Tools Funktionen] BMD_GETINTDBVALUE('Feldname')"
+  },
+  "Tools Funktionen - GetPhraseForWeOrI": {
+    "prefix": "BMD_GETPHRASEFORWEORI",
+    "body": "BMD_GETPHRASEFORWEORI(${1:Ich-Form}, ${2:Wir-Form})",
+    "description": "[Tools Funktionen] BMD_GETPHRASEFORWEORI('Ich-Form','Wir-Form')"
+  },
+  "Zins- und Sparfunktionen - Rate": {
+    "prefix": "BMD_SAVEINTEREST_BEST_SPARZIEL",
+    "body": "BMD_SAVEINTEREST_BEST_SPARZIEL(${1:Endwert}, ${2:Anfangskapital}, ${3:Gesamtanzahl Raten}, ${4:Jahreszinssatz [%]}, ${5:Kapitalertragsteuer [%]}, ${6:Zahlungen erfolgen}, ${7:Zahlungsweise})",
+    "description": "[Zins- und Sparfunktionen] BMD_SAVEINTEREST_BEST_SPARZIEL(<Endwert>,<Anfangskapital>,<Gesamtanzahl Raten>,<Jahreszinssatz [%]>,<Kapitalertragsteuer [%]>,<Zahlungen erfolgen>,<Zahlungsweise>)"
+  },
+  "Zins- und Sparfunktionen - Endwert bei Raten": {
+    "prefix": "BMD_SAVEINTEREST_EW_REGEL_ZAHLUNGEN",
+    "body": "BMD_SAVEINTEREST_EW_REGEL_ZAHLUNGEN(${1:Anfangskapital}, ${2:Rate}, ${3:Gesamtanzahl Raten}, ${4:Jahreszinssatz [%]}, ${5:Kapitalertragsteuer [%]}, ${6:Zahlungen erfolgen}, ${7:Zahlungsweise}, ${8:Anzeige von})",
+    "description": "[Zins- und Sparfunktionen] BMD_SAVEINTEREST_EW_REGEL_ZAHLUNGEN(<Anfangskapital>,<Rate>,<Gesamtanzahl Raten>,<Jahreszinssatz [%]>,<Kapitalertragsteuer [%]>,<Zahlungen erfolgen>,<Zahlungsweise>,<Anzeige von>)"
+  },
+  "Zins- und Sparfunktionen - Barwert bei Raten": {
+    "prefix": "BMD_SAVEINTEREST_BW_REGEL_ZAHLUNGEN",
+    "body": "BMD_SAVEINTEREST_BW_REGEL_ZAHLUNGEN(${1:Rate}, ${2:Gesamtanzahl Raten}, ${3:Jahreszinssatz [%]}, ${4:Kapitalertragsteuer [%]}, ${5:Zahlungen erfolgen}, ${6:Zahlungsweise})",
+    "description": "[Zins- und Sparfunktionen] BMD_SAVEINTEREST_BW_REGEL_ZAHLUNGEN(<Rate>,<Gesamtanzahl Raten>,<Jahreszinssatz [%]>,<Kapitalertragsteuer [%]>,<Zahlungen erfolgen>,<Zahlungsweise>)"
+  },
+  "Zins- und Sparfunktionen - Anfangskapital (Zinseszinsrechnung)": {
+    "prefix": "BMD_SAVEINTEREST_ANGANGSWERT",
+    "body": "BMD_SAVEINTEREST_ANGANGSWERT(${1:Endwert}, ${2:Anzahl der Zinsperioden}, ${3:Jahreszinssatz [%]}, ${4:Kapitalertragsteuer [%]}, ${5:Verzinsung}, ${6:Anzeige von})",
+    "description": "[Zins- und Sparfunktionen] BMD_SAVEINTEREST_ANGANGSWERT(<Endwert>,<Anzahl der Zinsperioden>,<Jahreszinssatz [%]>,<Kapitalertragsteuer [%]>,<Verzinsung>,<Anzeige von>)"
+  },
+  "Zins- und Sparfunktionen - Endwert": {
+    "prefix": "BMD_SAVEINTEREST_ENDWERT",
+    "body": "BMD_SAVEINTEREST_ENDWERT(${1:Anfangskapital}, ${2:Anzahl der Zinsperioden}, ${3:Jahreszinssatz [%]}, ${4:Kapitalertragsteuer [%]}, ${5:Verzinsung}, ${6:Anzeige von})",
+    "description": "[Zins- und Sparfunktionen] BMD_SAVEINTEREST_ENDWERT(<Anfangskapital>,<Anzahl der Zinsperioden>,<Jahreszinssatz [%]>,<Kapitalertragsteuer [%]>,<Verzinsung>,<Anzeige von>)"
+  },
+  "Zins- und Sparfunktionen - Verdoppelung des Anfangskapitals": {
+    "prefix": "BMD_SAVEINTEREST_JAHRE_VERDOPPLUNG",
+    "body": "BMD_SAVEINTEREST_JAHRE_VERDOPPLUNG(${1:Jahreszinssatz [%]}, ${2:Kapitalertragsteuer [%]}, ${3:Verzinsung})",
+    "description": "[Zins- und Sparfunktionen] BMD_SAVEINTEREST_JAHRE_VERDOPPLUNG(<Jahreszinssatz [%]>,<Kapitalertragsteuer [%]>,<Verzinsung>)"
+  },
+  "Zins- und Sparfunktionen - Zinsen": {
+    "prefix": "BMD_SAVEINTEREST_ZINSEN_NACH_TAGEN",
+    "body": "BMD_SAVEINTEREST_ZINSEN_NACH_TAGEN(${1:Anfangskapital}, ${2:Jahreszinssatz [%]}, ${3:Anfangsdatum}, ${4:Enddatum}, ${5:Oder Tage}, ${6:Tage}, ${7:Jahr}, ${8:Monat})",
+    "description": "[Zins- und Sparfunktionen] BMD_SAVEINTEREST_ZINSEN_NACH_TAGEN(<Anfangskapital>,<Jahreszinssatz [%]>,<Anfangsdatum>,<Enddatum>,<Oder Tage>,<Tage>,<Jahr>,<Monat>)"
+  },
+  "Zins- und Sparfunktionen - Laufzeit": {
+    "prefix": "BMD_SAVEINTEREST_ZEITRAUM",
+    "body": "BMD_SAVEINTEREST_ZEITRAUM(${1:Anfangskapital}, ${2:Jahreszinssatz [%]}, ${3:Zinsen}, ${4:Jahr})",
+    "description": "[Zins- und Sparfunktionen] BMD_SAVEINTEREST_ZEITRAUM(<Anfangskapital>,<Jahreszinssatz [%]>,<Zinsen>,<Jahr>)"
+  },
+  "Zins- und Sparfunktionen - Jahreszinssatz (einfache Zinsrechnung)": {
+    "prefix": "BMD_SAVEINTEREST_ZINSFUSS",
+    "body": "BMD_SAVEINTEREST_ZINSFUSS(${1:Anfangskapital}, ${2:Zinsen}, ${3:Anfangsdatum}, ${4:Enddatum}, ${5:Oder Tage}, ${6:Tage}, ${7:Jahr}, ${8:Monat})",
+    "description": "[Zins- und Sparfunktionen] BMD_SAVEINTEREST_ZINSFUSS(<Anfangskapital>,<Zinsen>,<Anfangsdatum>,<Enddatum>,<Oder Tage>,<Tage>,<Jahr>,<Monat>)"
+  },
+  "Zins- und Sparfunktionen - Anfangskapital (einfache Zinsrechnung)": {
+    "prefix": "BMD_SAVEINTEREST_KAPITAL",
+    "body": "BMD_SAVEINTEREST_KAPITAL(${1:Jahreszinssatz [%]}, ${2:Zinsen}, ${3:Anfangsdatum}, ${4:Enddatum}, ${5:Oder Tage}, ${6:Tage}, ${7:Jahr}, ${8:Monat})",
+    "description": "[Zins- und Sparfunktionen] BMD_SAVEINTEREST_KAPITAL(<Jahreszinssatz [%]>,<Zinsen>,<Anfangsdatum>,<Enddatum>,<Oder Tage>,<Tage>,<Jahr>,<Monat>)"
+  },
+  "Zins- und Sparfunktionen - Jahreszinssatz (Zinseszinsrechnung)": {
+    "prefix": "BMD_SAVEINTEREST_PROZ_GEWINN",
+    "body": "BMD_SAVEINTEREST_PROZ_GEWINN(${1:Anfangskapital}, ${2:Endwert}, ${3:Laufzeit [Monate]}, ${4:Verzinsung})",
+    "description": "[Zins- und Sparfunktionen] BMD_SAVEINTEREST_PROZ_GEWINN(<Anfangskapital>,<Endwert>,<Laufzeit [Monate]>,<Verzinsung>)"
+  },
+  "Zins- und Sparfunktionen - ProzentannuitÃ¤t": {
+    "prefix": "BMD_SAVEINTEREST_RATE_EFFZINS_ANNUI",
+    "body": "BMD_SAVEINTEREST_RATE_EFFZINS_ANNUI(${1:Darlehen}, ${2:Jahreszinssatz [%]}, ${3:Tilgungssatz in der ersten Periode [%]}, ${4:Zahlungen erfolgen})",
+    "description": "[Zins- und Sparfunktionen] BMD_SAVEINTEREST_RATE_EFFZINS_ANNUI(<Darlehen>,<Jahreszinssatz [%]>,<Tilgungssatz in der ersten Periode [%]>,<Zahlungen erfolgen>)"
+  },
+  "Zins- und Sparfunktionen - Effektivzinssatz": {
+    "prefix": "BMD_SAVEINTEREST_EFFZINS_AUS_NOMZINS",
+    "body": "BMD_SAVEINTEREST_EFFZINS_AUS_NOMZINS(${1:Nominalzinssatz [%]}, ${2:Verzinsung})",
+    "description": "[Zins- und Sparfunktionen] BMD_SAVEINTEREST_EFFZINS_AUS_NOMZINS(<Nominalzinssatz [%]>,<Verzinsung>)"
+  },
+  "Formel - Wenn": {
+    "prefix": "BMD_IF",
+    "body": "BMD_IF(${1:Ausdruck}, ${2:Wenn wahr}, ${3:Wenn falsch})",
+    "description": "[Formel] BMD_IF(<Ausdruck>,'Wenn wahr','Wenn falsch')"
+  },
+  "Abfragen - AskValueStr": {
+    "prefix": "BMD_ASKVALUESTR",
+    "body": "BMD_ASKVALUESTR(${1:Fenstertitel}, ${2:Anzeigetext}, ${3:Defaultwert})",
+    "description": "[Abfragen] BMD_ASKVALUESTR('Fenstertitel','Anzeigetext','Defaultwert')"
+  },
+  "Abfragen - AskValueDate": {
+    "prefix": "BMD_ASKVALUEDATE",
+    "body": "BMD_ASKVALUEDATE(${1:Startdatum})",
+    "description": "[Abfragen] BMD_ASKVALUEDATE(<Startdatum>)"
+  },
+  "Abfragen - AskValueBool": {
+    "prefix": "BMD_ASKVALUEBOOL",
+    "body": "BMD_ASKVALUEBOOL(${1:Anzeigetext}, ${2:Fenstertitel})",
+    "description": "[Abfragen] BMD_ASKVALUEBOOL('Anzeigetext','Fenstertitel')"
+  },
+  "Abfragen - AskValueList": {
+    "prefix": "BMD_ASKVALUELIST",
+    "body": "BMD_ASKVALUELIST(${1:Werteliste}, ${2:Texteliste})",
+    "description": "[Abfragen] BMD_ASKVALUELIST('Wert1,Wert2,...','Text1,Text2,...')"
+  },
+  "Abfragen - AskMultipleValues": {
+    "prefix": "BMD_ASKMULTIPLEVALUES",
+    "body": "BMD_ASKMULTIPLEVALUES(${1:Fenstertitel}, ${2:Werte}, ${3:Defaultwert}, ${4:Separator})",
+    "description": "[Abfragen] BMD_ASKMULTIPLEVALUES('Fenstertitel','One,Two,Three','Three',',')"
+  },
+  "Abfragen - AskValueFile": {
+    "prefix": "BMD_ASKVALUEFILE",
+    "body": "BMD_ASKVALUEFILE(${1:Anzeigetext}, ${2:Filter}, ${3:Filename}, ${4:StartPath})",
+    "description": "[Abfragen] BMD_ASKVALUEFILE('Anzeigetext','Filter','Filename','StartPath')"
+  },
+  "Abfragen - AskValueDir": {
+    "prefix": "BMD_ASKVALUEDIR",
+    "body": "BMD_ASKVALUEDIR(${1:Anzeigetext}, ${2:StartPath})",
+    "description": "[Abfragen] BMD_ASKVALUEDIR('Anzeigetext','StartPath')"
+  },
+  "Abfragen - InputQuery": {
+    "prefix": "BMD_INPUTQUERY",
+    "body": "BMD_INPUTQUERY(${1:Fenstertitel}, ${2:Anzeigetext}, ${3:Text})",
+    "description": "[Abfragen] BMD_INPUTQUERY('Fenstertitel','Anzeigetext','Text')"
+  },
+  "Dateizugriff - WriteToLogFile": {
+    "prefix": "BMD_WRITETOLOGFILE",
+    "body": "BMD_WRITETOLOGFILE(${1:FileName}, ${2:Text})",
+    "description": "[Dateizugriff] BMD_WRITETOLOGFILE('FileName','Text')"
+  },
+  "Dateizugriff - AssignFile": {
+    "prefix": "BMD_ASSIGNFILE",
+    "body": "BMD_ASSIGNFILE(${1:FileNo}, ${2:FileName}, ${3:StreamAccess}, ${4:OpenFlag}, ${5:CreateFlag}, ${6:CodePage})",
+    "description": "[Dateizugriff] BMD_ASSIGNFILE(<FileNo>,'FileName',<StreamAccess (opt)>,<OpenFlag (opt)>,<CreateFlag (opt)>,<CodePage (opt)>)"
+  },
+  "Dateizugriff - OpenFile_Reset": {
+    "prefix": "BMD_OPENFILE_RESET",
+    "body": "BMD_OPENFILE_RESET(${1:FileNo})",
+    "description": "[Dateizugriff] BMD_OPENFILE_RESET(<FileNo>)"
+  },
+  "Dateizugriff - OpenFile_Append": {
+    "prefix": "BMD_OPENFILE_APPEND",
+    "body": "BMD_OPENFILE_APPEND(${1:FileNo})",
+    "description": "[Dateizugriff] BMD_OPENFILE_APPEND(<FileNo>)"
+  },
+  "Dateizugriff - CreateFile": {
+    "prefix": "BMD_CREATEFILE",
+    "body": "BMD_CREATEFILE(${1:FileName})",
+    "description": "[Dateizugriff] BMD_CREATEFILE('FileName')"
+  },
+  "Dateizugriff - DeleteFile": {
+    "prefix": "BMD_DELETEFILE",
+    "body": "BMD_DELETEFILE(${1:FileName})",
+    "description": "[Dateizugriff] BMD_DELETEFILE('FileName')"
+  },
+  "Dateizugriff - DeleteFiles": {
+    "prefix": "BMD_DELETEFILES",
+    "body": "BMD_DELETEFILES(${1:FileName}, ${2:WildCard})",
+    "description": "[Dateizugriff] BMD_DELETEFILES('FileName','WildCard')"
+  },
+  "Dateizugriff - RemoveDir": {
+    "prefix": "BMD_REMOVEDIR",
+    "body": "BMD_REMOVEDIR(${1:FileName})",
+    "description": "[Dateizugriff] BMD_REMOVEDIR('FileName')"
+  },
+  "Dateizugriff - CloseFile": {
+    "prefix": "BMD_CLOSEFILE",
+    "body": "BMD_CLOSEFILE(${1:FileNo})",
+    "description": "[Dateizugriff] BMD_CLOSEFILE(<FileNo>)"
+  },
+  "Dateizugriff - ReadLn": {
+    "prefix": "BMD_READLN",
+    "body": "BMD_READLN(${1:FileNo})",
+    "description": "[Dateizugriff] BMD_READLN(<FileNo>)"
+  },
+  "Dateizugriff - WriteLn": {
+    "prefix": "BMD_WRITELN",
+    "body": "BMD_WRITELN(${1:FileNo}, ${2:Text}, ${3:Base64Decode}, ${4:DoLineFeed})",
+    "description": "[Dateizugriff] BMD_WRITELN(<FileNo>,'Text',<Base64Decode (opt)>,<DoLineFeed (opt)>)"
+  },
+  "Dateizugriff - Eof": {
+    "prefix": "BMD_EOF",
+    "body": "BMD_EOF(${1:FileNo})",
+    "description": "[Dateizugriff] BMD_EOF(<FileNo>)"
+  },
+  "Dateizugriff - FileExists": {
+    "prefix": "BMD_FILEEXISTS",
+    "body": "BMD_FILEEXISTS(${1:FileName})",
+    "description": "[Dateizugriff] BMD_FILEEXISTS('FileName')"
+  },
+  "Dateizugriff - CopyFile": {
+    "prefix": "BMD_COPYFILE",
+    "body": "BMD_COPYFILE(${1:Source FileName}, ${2:Destination FileName})",
+    "description": "[Dateizugriff] BMD_COPYFILE('Source FileName','Destination FileName')"
+  },
+  "Dateizugriff - RenameFile": {
+    "prefix": "BMD_RENAMEFILE",
+    "body": "BMD_RENAMEFILE(${1:FileName}, ${2:New FileName})",
+    "description": "[Dateizugriff] BMD_RENAMEFILE('FileName','New FileName')"
+  },
+  "Dateizugriff - DirectoryExists": {
+    "prefix": "BMD_DIRECTORYEXISTS",
+    "body": "BMD_DIRECTORYEXISTS(${1:DirectoryName})",
+    "description": "[Dateizugriff] BMD_DIRECTORYEXISTS('DirectoryName')"
+  },
+  "Dateizugriff - ForceDirectories": {
+    "prefix": "BMD_FORCEDIRECTORIES",
+    "body": "BMD_FORCEDIRECTORIES(${1:DirectoryName})",
+    "description": "[Dateizugriff] BMD_FORCEDIRECTORIES('DirectoryName')"
+  },
+  "Dateizugriff - DownloadFile": {
+    "prefix": "BMD_DOWNLOADFILE",
+    "body": "BMD_DOWNLOADFILE(${1:URL}, ${2:Username}, ${3:Password}, ${4:Destination FileName})",
+    "description": "[Dateizugriff] BMD_DOWNLOADFILE('URL','Username','Password','Destination FileName')"
+  },
+  "Nummernkreise - CurrentSequenceID": {
+    "prefix": "BMD_CURRSEQID",
+    "body": "BMD_CURRSEQID(${1:CompanyNo}, ${2:Sequence}, ${3:Category1}, ${4:Category2})",
+    "description": "[Nummernkreise] BMD_CURRSEQID(<CompanyNo>,'Sequence','Category1','Category2')"
+  },
+  "Nummernkreise - NextSequenceID": {
+    "prefix": "BMD_NEXTSEQID",
+    "body": "BMD_NEXTSEQID(${1:CompanyNo}, ${2:Sequence}, ${3:Category1}, ${4:Category2})",
+    "description": "[Nummernkreise] BMD_NEXTSEQID(<CompanyNo>,'Sequence','Category1','Category2')"
+  },
+  "Start Funktionen - StartFunction": {
+    "prefix": "BMD_STARTFUNCTION",
+    "body": "BMD_STARTFUNCTION(${1:Funktionskonstante}, ${2:Parameter})",
+    "description": "[Start Funktionen] BMD_STARTFUNCTION('Funktionskonstante','Parameter')"
+  },
+  "Start Funktionen - StartPrintFunction": {
+    "prefix": "BMD_STARTPRINTFUNCTION",
+    "body": "BMD_STARTPRINTFUNCTION(${1:Funktionskonstante}, ${2:Parameter})",
+    "description": "[Start Funktionen] BMD_STARTPRINTFUNCTION('Funktionskonstante','Parameter')"
+  },
+  "Start Funktionen - StartSpecialFunction": {
+    "prefix": "BMD_STARTSPECIALFUNCTION",
+    "body": "BMD_STARTSPECIALFUNCTION(${1:Funktionskonstante}, ${2:Parameter})",
+    "description": "[Start Funktionen] BMD_STARTSPECIALFUNCTION('Funktionskonstante','Parameter')"
+  },
+  "Start Funktionen - StartExtFunction": {
+    "prefix": "BMD_STARTEXTFUNCTION",
+    "body": "BMD_STARTEXTFUNCTION(${1:FileName}, ${2:Parameter})",
+    "description": "[Start Funktionen] BMD_STARTEXTFUNCTION('FileName','Parameter')"
+  },
+  "Start Funktionen - StartHelpFunction": {
+    "prefix": "BMD_STARTHELPFUNCTION",
+    "body": "BMD_STARTHELPFUNCTION(${1:FileName}, ${2:Anchor}, ${3:Language}, ${4:ID})",
+    "description": "[Start Funktionen] BMD_STARTHELPFUNCTION('FileName','Anchor','Language','ID')"
+  },
+  "Start Funktionen - StartExportDocument": {
+    "prefix": "BMD_STARTEXPORTDOCUMENT",
+    "body": "BMD_STARTEXPORTDOCUMENT(${1:ID}, ${2:FileName}, ${3:Silent})",
+    "description": "[Start Funktionen] BMD_STARTEXPORTDOCUMENT('ID','FileName',<Silent>)"
+  },
+  "Start Funktionen - StartExportDocumentList": {
+    "prefix": "BMD_STARTEXPORTDOCUMENTLIST",
+    "body": "BMD_STARTEXPORTDOCUMENTLIST(${1:ID}, ${2:FileDir}, ${3:Silent})",
+    "description": "[Start Funktionen] BMD_STARTEXPORTDOCUMENTLIST('ID','FileDir',<Silent>)"
+  },
+  "Start Funktionen - StartProgressBar": {
+    "prefix": "BMD_STARTPROGRESSBAR",
+    "body": "BMD_STARTPROGRESSBAR()",
+    "description": "[Start Funktionen] BMD_STARTPROGRESSBAR()"
+  },
+  "Start Funktionen - ShowProgressBar": {
+    "prefix": "BMD_SHOWPROGRESSBAR",
+    "body": "BMD_SHOWPROGRESSBAR(${1:Percent}, ${2:Text})",
+    "description": "[Start Funktionen] BMD_SHOWPROGRESSBAR(<Percent>,'Text')"
+  },
+  "Tools-Funktionen - ThousandSeparator": {
+    "prefix": "ThousandSeparator",
+    "body": "ThousandSeparator()",
+    "description": "[Tools-Funktionen] BMD_MacroSettings.ThousandSeparator()"
+  },
+  "Tools-Funktionen - DecimalSeparator": {
+    "prefix": "DecimalSeparator",
+    "body": "DecimalSeparator()",
+    "description": "[Tools-Funktionen] BMD_MacroSettings.DecimalSeparator()"
+  },
+  "Tools-Funktionen - DateSeparator": {
+    "prefix": "DateSeparator",
+    "body": "DateSeparator()",
+    "description": "[Tools-Funktionen] BMD_MacroSettings.DateSeparator()"
+  },
+  "Tools-Funktionen - TimeSeparator": {
+    "prefix": "TimeSeparator",
+    "body": "TimeSeparator()",
+    "description": "[Tools-Funktionen] BMD_MacroSettings.TimeSeparator()"
+  },
+  "Tools-Funktionen - ShortDateFormat": {
+    "prefix": "ShortDateFormat",
+    "body": "ShortDateFormat()",
+    "description": "[Tools-Funktionen] BMD_MacroSettings.ShortDateFormat()"
+  },
+  "Tools-Funktionen - LongDateFormat": {
+    "prefix": "LongDateFormat",
+    "body": "LongDateFormat()",
+    "description": "[Tools-Funktionen] BMD_MacroSettings.LongDateFormat()"
+  },
+  "Tools-Funktionen - ShortTimeFormat": {
+    "prefix": "ShortTimeFormat",
+    "body": "ShortTimeFormat()",
+    "description": "[Tools-Funktionen] BMD_MacroSettings.ShortTimeFormat()"
+  },
+  "Tools-Funktionen - LongTimeFormat": {
+    "prefix": "LongTimeFormat",
+    "body": "LongTimeFormat()",
+    "description": "[Tools-Funktionen] BMD_MacroSettings.LongTimeFormat()"
+  },
+  "Tools-Funktionen - GetEnvironmentVar": {
+    "prefix": "BMD_GETENVIRONMENTVAR",
+    "body": "BMD_GETENVIRONMENTVAR(${1:Name})",
+    "description": "[Tools-Funktionen] BMD_GETENVIRONMENTVAR('Name')"
+  },
+  "Tools-Funktionen - SetIntParamValue": {
+    "prefix": "BMD_SETINTPARAMVALUE",
+    "body": "BMD_SETINTPARAMVALUE(${1:ParameterName}, ${2:Key}, ${3:Value})",
+    "description": "[Tools-Funktionen] BMD_SETINTPARAMVALUE('ParameterName','Key','Value')"
+  },
+  "Tools-Funktionen - GetIntParamValue": {
+    "prefix": "BMD_GETINTPARAMVALUE",
+    "body": "BMD_GETINTPARAMVALUE(${1:ParameterName}, ${2:Key}, ${3:DefaultValue})",
+    "description": "[Tools-Funktionen] BMD_GETINTPARAMVALUE('ParameterName','Key','DefaultValue')"
+  },
+  "Tools-Funktionen - DelIntParamValue": {
+    "prefix": "BMD_DELINTPARAMVALUE",
+    "body": "BMD_DELINTPARAMVALUE(${1:ParameterName}, ${2:Key})",
+    "description": "[Tools-Funktionen] BMD_DELINTPARAMVALUE('ParameterName','Key')"
+  },
+  "Tools-Funktionen - ClearIntParamCache": {
+    "prefix": "BMD_CLEARINTPARAMCache",
+    "body": "BMD_CLEARINTPARAMCache()",
+    "description": "[Tools-Funktionen] BMD_CLEARINTPARAMCache()"
+  },
+  "Tools-Funktionen - GetBlobValue": {
+    "prefix": "BMD_GETBLOBVALUE",
+    "body": "BMD_GETBLOBVALUE(${1:BlobNo}, ${2:LanguageNo}, ${3:ShowPlainText})",
+    "description": "[Tools-Funktionen] BMD_GETBLOBVALUE(<BlobNo>,<LanguageNo>,<ShowPlainText>)"
+  },
+  "Tools-Funktionen - GetApplicationType": {
+    "prefix": "BMD_GETAPPLICATIONTYPE",
+    "body": "BMD_GETAPPLICATIONTYPE()",
+    "description": "[Tools-Funktionen] BMD_GETAPPLICATIONTYPE()"
+  },
+  "Tools-Funktionen - GetCurrLanguage": {
+    "prefix": "BMD_GETCURRLANGUAGE",
+    "body": "BMD_GETCURRLANGUAGE()",
+    "description": "[Tools-Funktionen] BMD_GETCURRLANGUAGE()"
+  },
+  "Tools-Funktionen - LoadNlsString": {
+    "prefix": "BMD_LOADNLSSTRING",
+    "body": "BMD_LOADNLSSTRING(${1:Language}, ${2:GroupNo}, ${3:TextNo})",
+    "description": "[Tools-Funktionen] BMD_LOADNLSSTRING('Language',<GroupNo>,<TextNo>)"
+  },
+  "Tools-Funktionen - IsLicenced": {
+    "prefix": "BMD_ISLICENCED",
+    "body": "BMD_ISLICENCED(${1:PackageNo})",
+    "description": "[Tools-Funktionen] BMD_ISLICENCED(<PackageNo>)"
+  },
+  "Tools-Funktionen - GetLicencePackageText": {
+    "prefix": "BMD_GETLICENCEPACKAGETEXT",
+    "body": "BMD_GETLICENCEPACKAGETEXT(${1:PackageNo})",
+    "description": "[Tools-Funktionen] BMD_GETLICENCEPACKAGETEXT(<PackageNo>)"
+  },
+  "Tools-Funktionen - GetLicenceCount": {
+    "prefix": "BMD_GETLICENCECOUNT",
+    "body": "BMD_GETLICENCECOUNT(${1:PackageNo})",
+    "description": "[Tools-Funktionen] BMD_GETLICENCECOUNT(<PackageNo>)"
+  },
+  "Tools-Funktionen - GetLicenceClientCount": {
+    "prefix": "BMD_GETLICENCECLIENTCOUNT",
+    "body": "BMD_GETLICENCECLIENTCOUNT(${1:PackageNo})",
+    "description": "[Tools-Funktionen] BMD_GETLICENCECLIENTCOUNT(<PackageNo>)"
+  },
+  "Tools-Funktionen - GetLicenceConsumed": {
+    "prefix": "BMD_GETLICENCECONSUMED",
+    "body": "BMD_GETLICENCECONSUMED(${1:PackageNo})",
+    "description": "[Tools-Funktionen] BMD_GETLICENCECONSUMED(<PackageNo>)"
+  },
+  "Tools-Funktionen - IsAllowed": {
+    "prefix": "BMD_ISALLOWED",
+    "body": "BMD_ISALLOWED(${1:FunctionNo}, ${2:CompanyNo}, ${3:FieldDescNo}, ${4:UserID})",
+    "description": "[Tools-Funktionen] BMD_ISALLOWED(<FunctionNo>,<CompanyNo (opt)>,<FieldDescNo (opt)>,'UserID (opt)')"
+  },
+  "Tools-Funktionen - IsZero": {
+    "prefix": "BMD_ISZERO",
+    "body": "BMD_ISZERO(${1:Zahl}, ${2:Epsilon})",
+    "description": "[Tools-Funktionen] BMD_ISZERO(<Zahl>,<Epsilon>)"
+  },
+  "Tools-Funktionen - SameValue": {
+    "prefix": "BMD_SAMEVALUE",
+    "body": "BMD_SAMEVALUE(${1:Zahl1}, ${2:Zahl2}, ${3:Epsilon})",
+    "description": "[Tools-Funktionen] BMD_SAMEVALUE(<Zahl1>,<Zahl2>,<Epsilon>)"
+  },
+  "Tools-Funktionen - GetAutoLoginParamStr": {
+    "prefix": "BMD_GETAUTOLOGINPARAMSTR",
+    "body": "BMD_GETAUTOLOGINPARAMSTR(${1:Alias}, ${2:UserID}, ${3:Password}, ${4:FunctionName})",
+    "description": "[Tools-Funktionen] BMD_GETAUTOLOGINPARAMSTR('Alias','UserID','Password','FunctionName')"
+  },
+  "Tools-Funktionen - ConsiderAttrDataType": {
+    "prefix": "BMD_CONSIDERATTRDATATYPE",
+    "body": "BMD_CONSIDERATTRDATATYPE(${1:MustConsider})",
+    "description": "[Tools-Funktionen] BMD_CONSIDERATTRDATATYPE(<MustConsider>)"
+  },
+  "Tools-Funktionen - MergeImageFiles": {
+    "prefix": "BMD_MERGEIMAGEFILES",
+    "body": "BMD_MERGEIMAGEFILES(${1:Source FileName 1}, ${2:Source FileName 2}, ${3:Destination FileName})",
+    "description": "[Tools-Funktionen] BMD_MERGEIMAGEFILES('Source FileName 1','Source FileName 2','Destination FileName')"
+  },
+  "Tools-Funktionen - MergePDFFiles": {
+    "prefix": "BMD_MERGEPDFFILES",
+    "body": "BMD_MERGEPDFFILES(${1:Source FileName 1}, ${2:Source FileName 2}, ${3:Destination FileName})",
+    "description": "[Tools-Funktionen] BMD_MERGEPDFFILES('Source FileName 1','Source FileName 2','Destination FileName')"
+  },
+  "Tools-Funktionen - TextFileToPDF": {
+    "prefix": "BMD_TEXTFILETOPDF",
+    "body": "BMD_TEXTFILETOPDF(${1:Source FileName 1}, ${2:Destination FileName})",
+    "description": "[Tools-Funktionen] BMD_TEXTFILETOPDF('Source FileName 1','Destination FileName')"
+  },
+  "Tools-Funktionen - UnZipFile": {
+    "prefix": "BMD_UNZIPFILE",
+    "body": "BMD_UNZIPFILE(${1:Source FileName}, ${2:Destination DirectoryName}, ${3:Pwd})",
+    "description": "[Tools-Funktionen] BMD_UNZIPFILE('Source FileName','Destination DirectoryName','Pwd (opt)')"
+  },
+  "Tools-Funktionen - ZipFile": {
+    "prefix": "BMD_ZIPFILE",
+    "body": "BMD_ZIPFILE(${1:Source DirectoryName}, ${2:Destination FileName}, ${3:Pwd})",
+    "description": "[Tools-Funktionen] BMD_ZIPFILE('Source DirectoryName','Destination FileName','Pwd (opt)')"
+  },
+  "Tools-Funktionen - ModelAssigned": {
+    "prefix": "BMD_MODELASSIGNED",
+    "body": "BMD_MODELASSIGNED(${1:Classname})",
+    "description": "[Tools-Funktionen] BMD_MODELASSIGNED('Classname')"
+  },
+  "MacroQuery - CreateMacroQuery": {
+    "prefix": ["MacroObject.CreateMacroQuery", "query"],
+    "body": "MacroObject.CreateMacroQuery('get_'+bmd_getGUID())",
+    "description": "[MacroQuery] BMD_VarMyQuery := MacroObject.CreateMacroQuery('get_'+bmd_getGUID())"
+  },
+  "MacroModel - CreateMacroModel": {
+    "prefix": ["MacroObject.CreateMacroModel", "model"],
+    "body": "MacroObject.CreateMacroModel('${1:1}')",
+    "description": "[MacroModel] BMD_VarMyMacroModel := MacroObject.CreateMacroModel('1')"
+  },
+  "MacroCSVFile - CreateMacroCSVFile": {
+    "prefix": "MacroObject.CreateMacroCSVFile",
+    "body": "MacroObject.CreateMacroCSVFile(${1:Name})",
+    "description": "[MacroCSVFile] BMD_VarMyCSVFile := MacroObject.CreateMacroCSVFile('Name')"
+  },
+  "MacroFileMgr - CreateMacroFileMgr": {
+    "prefix": "MacroObject.CreateMacroFileMgr",
+    "body": "MacroObject.CreateMacroFileMgr(${1:Name})",
+    "description": "[MacroFileMgr] BMD_VarMyFile := MacroObject.CreateMacroFileMgr('Name')"
+  },
+  "MacroList - CreateMacroList": {
+    "prefix": "MacroObject.CreateMacroList",
+    "body": "MacroObject.CreateMacroList(${1:Name})",
+    "description": "[MacroList] BMD_VarMacroList := MacroObject.CreateMacroList('Name')"
+  },
+  "MacroStringList - CreateMacroStringList": {
+    "prefix": "MacroObject.CreateMacroStringList",
+    "body": "MacroObject.CreateMacroStringList(${1:Name})",
+    "description": "[MacroStringList] BMD_VarMacroStringList := MacroObject.CreateMacroStringList('Name')"
+  },
+  "MacroStringList - CreateGlobalMacroStringList": {
+    "prefix": "CreateGlobalMacroStringList",
+    "body": "CreateGlobalMacroStringList(${1:Name})",
+    "description": "[MacroStringList] BMD_VarMyQuery := MacroObject.CreateGlobalMacroStringList('Name')"
+  },
+  "MacroStringList - FindGlobalMacroStringList": {
+    "prefix": "FindGlobalMacroStringList",
+    "body": "FindGlobalMacroStringList(${1:Name})",
+    "description": "[MacroStringList] BMD_VarMyQuery := MacroObject.FindGlobalMacroStringList('Name')"
+  },
+  "MacroXML - CreateMacroXMLDocument": {
+    "prefix": "MacroObject.CreateMacroXMLDocument",
+    "body": "MacroObject.CreateMacroXMLDocument(${1:Name})",
+    "description": "[MacroXML] BMD_VarMyXMLDoc := MacroObject.CreateMacroXMLDocument('Name')"
+  },
+  "MacroXML - GetMacroXMLDocument": {
+    "prefix": "GetMacroXMLDocument",
+    "body": "GetMacroXMLDocument(${1:Name})",
+    "description": "[MacroXML] BMD_VarMyXMLDoc := MacroObject.GetMacroXMLDocument('Name')"
+  },
+  "MacroXMLNode - NodeName": {
+    "prefix": "NodeName",
+    "body": "NodeName()",
+    "description": "[MacroXMLNode] BMD_VarMyNode.NodeName()"
+  },
+  "MacroXMLNode - NodeText": {
+    "prefix": "NodeText",
+    "body": "NodeText()",
+    "description": "[MacroXMLNode] BMD_VarMyNode.NodeText()"
+  },
+  "MacroXMLNode - NodeType": {
+    "prefix": "NodeType",
+    "body": "NodeType()",
+    "description": "[MacroXMLNode] BMD_VarMyNode.NodeType()"
+  },
+  "MacroXMLNode - NodeXml": {
+    "prefix": "NodeXml",
+    "body": "NodeXml()",
+    "description": "[MacroXMLNode] BMD_VarMyNode.NodeXml()"
+  },
+  "MacroXMLNode - NodeParsed": {
+    "prefix": "NodeParsed",
+    "body": "NodeParsed()",
+    "description": "[MacroXMLNode] BMD_VarMyNode.NodeParsed()"
+  },
+  "MacroXMLNode - NodeNamespaceURI": {
+    "prefix": "NodeNamespaceURI",
+    "body": "NodeNamespaceURI()",
+    "description": "[MacroXMLNode] BMD_VarMyNode.NodeNamespaceURI()"
+  },
+  "MacroXMLNode - NodePrefix": {
+    "prefix": "NodePrefix",
+    "body": "NodePrefix()",
+    "description": "[MacroXMLNode] BMD_VarMyNode.NodePrefix()"
+  },
+  "MacroXMLNode - NodeAttributesCount": {
+    "prefix": "NodeAttributesCount",
+    "body": "NodeAttributesCount()",
+    "description": "[MacroXMLNode] BMD_VarMyNode.NodeAttributesCount()"
+  },
+  "MacroXMLNode - NodeAttributeName": {
+    "prefix": "NodeAttributeName",
+    "body": "NodeAttributeName(${1:Index})",
+    "description": "[MacroXMLNode] BMD_VarMyNode.NodeAttributeName(<Index>)"
+  },
+  "MacroXMLNode - NodeAttributeValue": {
+    "prefix": "NodeAttributeValue",
+    "body": "NodeAttributeValue(${1:Index})",
+    "description": "[MacroXMLNode] BMD_VarMyNode.NodeAttributeValue(<Index>)"
+  },
+  "MacroXMLNode - NodeAttributeValueByName": {
+    "prefix": "NodeAttributeValueByName",
+    "body": "NodeAttributeValueByName(${1:Attribute})",
+    "description": "[MacroXMLNode] BMD_VarMyNode.NodeAttributeValueByName('Attribute')"
+  },
+  "MacroBarCodeReader - CreateMacroBarCodeReader": {
+    "prefix": "MacroObject.CreateMacroBarCodeReader",
+    "body": "MacroObject.CreateMacroBarCodeReader(${1:Name})",
+    "description": "[MacroBarCodeReader] BMD_VarMacroBarCodeReader := MacroObject.CreateMacroBarCodeReader('Name')"
+  },
+  "MacroExcelReader - CreateMacroExcelReader": {
+    "prefix": "MacroObject.CreateMacroExcelReader",
+    "body": "MacroObject.CreateMacroExcelReader()",
+    "description": "[MacroExcelReader] BMD_VarMacroExcelReader := MacroObject.CreateMacroExcelReader()"
+  },
+  "MacroApiCall - CreateMacroApiCall": {
+    "prefix": "MacroObject.CreateMacroApiCall",
+    "body": "MacroObject.CreateMacroApiCall()",
+    "description": "[MacroApiCall] BMD_VarMacroApiCall := MacroObject.CreateMacroApiCall()"
+  },
+  "MacroJsonVal - CreateMacroJsonVal": {
+    "prefix": "MacroObject.CreateMacroJsonVal",
+    "body": "MacroObject.CreateMacroJsonVal()",
+    "description": "[MacroJsonVal] BMD_VarMacroJsonVal := MacroObject.CreateMacroJsonVal()"
+  },
+  "RegulÃ¤re AusdrÃ¼cke - ExecRegExpr": {
+    "prefix": "BMD_EXECREGEXPR",
+    "body": "BMD_EXECREGEXPR(${1:RegExpr}, ${2:InputString})",
+    "description": "[RegulÃ¤re AusdrÃ¼cke] BMD_EXECREGEXPR('RegExpr','InputString')"
+  },
+  "RegulÃ¤re AusdrÃ¼cke - RegExprGetAllResultsWithSubs": {
+    "prefix": "BMD_REGEXPRGETALLRESULTSWITHSUBS",
+    "body": "BMD_REGEXPRGETALLRESULTSWITHSUBS(${1:RegExpr}, ${2:InputString}, ${3:NotFound})",
+    "description": "[RegulÃ¤re AusdrÃ¼cke] BMD_REGEXPRGETALLRESULTSWITHSUBS('RegExpr','InputString','NotFound')"
+  },
+  "RegulÃ¤re AusdrÃ¼cke - RegExprGetAllResults": {
+    "prefix": "BMD_REGEXPRGETALLRESULTS",
+    "body": "BMD_REGEXPRGETALLRESULTS(${1:RegExpr}, ${2:InputString}, ${3:ResultNo})",
+    "description": "[RegulÃ¤re AusdrÃ¼cke] BMD_REGEXPRGETALLRESULTS('RegExpr','InputString',<ResultNo>)"
+  },
+  "RegulÃ¤re AusdrÃ¼cke - ReplaceRegExpr": {
+    "prefix": "BMD_REPLACEREGEXPR",
+    "body": "BMD_REPLACEREGEXPR(${1:RegExpr}, ${2:InputString}, ${3:ReplaceString}, ${4:UseSubstituion})",
+    "description": "[RegulÃ¤re AusdrÃ¼cke] BMD_REPLACEREGEXPR('RegExpr','InputString','ReplaceString',<UseSubstituion>)"
+  },
+  "RegulÃ¤re AusdrÃ¼cke - SplitRegExpr": {
+    "prefix": "BMD_SPLITREGEXPR",
+    "body": "BMD_SPLITREGEXPR(${1:RegExpr}, ${2:InputString}, ${3:Pieces})",
+    "description": "[RegulÃ¤re AusdrÃ¼cke] BMD_SPLITREGEXPR('RegExpr','InputString','Pieces')"
+  },
+  "Funktionen - SendMail": {
+    "prefix": "BMD_SENDMAIL",
+    "body": "BMD_SENDMAIL(${1:An}, ${2:CC}, ${3:Betreff}, ${4:E-Mail-Text}, ${5:Absender-Account})",
+    "description": "[Funktionen] BMD_SENDMAIL('An','CC','Betreff','E-Mail-Text',<Absender-Account (opt)>)"
+  },
+  "Funktionen - SendMail_Ext": {
+    "prefix": "BMD_SENDMAIL_EXT",
+    "body": "BMD_SENDMAIL_EXT(${1:An}, ${2:CC}, ${3:Betreff}, ${4:E-Mail-Text}, ${5:Attachment_Filename}, ${6:Silent}, ${7:Absender-Account})",
+    "description": "[Funktionen] BMD_SENDMAIL_EXT('An','CC','Betreff','E-Mail-Text','Attachment_Filename','Silent',<Absender-Account (opt)>)"
+  },
+  "Funktionen - SendSMS": {
+    "prefix": "BMD_SENDSMS",
+    "body": "BMD_SENDSMS(${1:TelNo}, ${2:SMSText})",
+    "description": "[Funktionen] BMD_SENDSMS('TelNo','SMSText')"
+  },
+  "Funktionen - ShowMessage": {
+    "prefix": "BMD_SHOWMESSAGE",
+    "body": "BMD_SHOWMESSAGE(${1:Text})",
+    "description": "[Funktionen] BMD_SHOWMESSAGE('Text')"
+  },
+  "Funktionen - SendToClipboard": {
+    "prefix": "BMD_SENDTOCLIPBOARD",
+    "body": "BMD_SENDTOCLIPBOARD(${1:Text})",
+    "description": "[Funktionen] BMD_SENDTOCLIPBOARD('Text')"
+  },
+  "Funktionen - SendToClipboardFormatted": {
+    "prefix": "BMD_SENDTOCLIPBOARDFORMATTED",
+    "body": "BMD_SENDTOCLIPBOARDFORMATTED(${1:Text}, ${2:Format})",
+    "description": "[Funktionen] BMD_SENDTOCLIPBOARDFORMATTED('Text',<Format>)"
+  },
+  "Funktionen - IsCurrUserInGroup": {
+    "prefix": "BMD_ISCURRUSERINGROUP",
+    "body": "BMD_ISCURRUSERINGROUP(${1:Gruppe})",
+    "description": "[Funktionen] BMD_ISCURRUSERINGROUP('Gruppe')"
+  },
+  "Funktionen - IsCurrUserInDOG": {
+    "prefix": "BMD_ISCURRUSERINDOG",
+    "body": "BMD_ISCURRUSERINDOG(${1:Gruppe})",
+    "description": "[Funktionen] BMD_ISCURRUSERINDOG('Gruppe')"
+  },
+  "Abwesenheit - CreateAbsenceMgr": {
+    "prefix": "CreateAbsenceMgr",
+    "body": "CreateAbsenceMgr(${1:Eindeutige AbwesenheitObj-ID})",
+    "description": "[Abwesenheit] BMD_Absence := CRMMacroObject.CreateAbsenceMgr('Eindeutige AbwesenheitObj-ID')"
+  },
+  "Aufgabe - CreateTaskMgr": {
+    "prefix": "CreateTaskMgr",
+    "body": "CreateTaskMgr(${1:Name})",
+    "description": "[Aufgabe] BMD_Task := CRMMacroObject.CreateTaskMgr('Name')"
+  },
+  "CRM Workflow - CreateWorkflowToolMgr": {
+    "prefix": "CreateWorkflowToolMgr",
+    "body": "CreateWorkflowToolMgr(${1:Eindeutige CRMWorkflowToolObj-ID})",
+    "description": "[CRM Workflow] BMD_Workflow := CRMMacroObject.CreateWorkflowToolMgr('Eindeutige CRMWorkflowToolObj-ID')"
+  },
+  "ZustÃ¤ndigkeit - CreateZustaendigkeitMgr": {
+    "prefix": "CreateZustaendigkeitMgr",
+    "body": "CreateZustaendigkeitMgr(${1:Name})",
+    "description": "[ZustÃ¤ndigkeit] BMD_Zustaendigkeit := CRMMacroObject.CreateZustaendigkeitMgr('Name')"
+  },
+  "DMS - CreateDokumentMgr": {
+    "prefix": "CreateDokumentMgr",
+    "body": "CreateDokumentMgr(${1:Eindeutige Dokumenttool-Object-ID})",
+    "description": "[DMS] BMD_DMS := CRMMacroObject.CreateDokumentMgr('Eindeutige Dokumenttool-Object-ID')"
+  },
+  "Frist - CreateFristMgr": {
+    "prefix": "CreateFristMgr",
+    "body": "CreateFristMgr(${1:Name})",
+    "description": "[Frist] BMD_Frist := CRMMacroObject.CreateFristMgr('Name')"
+  },
+  "Termin - CreateTerminMgr": {
+    "prefix": "CreateTerminMgr",
+    "body": "CreateTerminMgr(${1:Name})",
+    "description": "[Termin] BMD_Termin := CRMMacroObject.CreateTerminMgr('Name')"
+  },
+  "Lead - CreateLeadMgr": {
+    "prefix": "CreateLeadMgr",
+    "body": "CreateLeadMgr(${1:Name})",
+    "description": "[Lead] BMD_Lead := CRMMacroObject.CreateLeadMgr('Name')"
+  },
+  "Sonderfunktionen - GenerateElsterTaxNumber": {
+    "prefix": "BMD_GenerateElsterTaxNumber",
+    "body": "BMD_GenerateElsterTaxNumber(${1:Finanzamt-Nr}, ${2:Steuernummer})",
+    "description": "[Sonderfunktionen] BMD_GenerateElsterTaxNumber('Finanzamt-Nr','Steuernummer')"
+  },
+  "WwsPpsModel - SetValueByName": {
+    "prefix": "SetValueByName",
+    "body": "SetValueByName(${1:Name}, ${2:Wert})",
+    "description": "[WwsPpsModel] BMD_Obj.SetValueByName('Name','Wert')"
+  },
+  "WwsPpsModel - SetValueById": {
+    "prefix": "SetValueById",
+    "body": "SetValueById(${1:ID}, ${2:Wert})",
+    "description": "[WwsPpsModel] BMD_Obj.SetValueById('ID','Wert')"
+  },
+  "WwsPpsModel - GetValueByName": {
+    "prefix": "GetValueByName",
+    "body": "GetValueByName(${1:ID})",
+    "description": "[WwsPpsModel] BMD_Obj.GetValueByName('ID')"
+  },
+  "WwsPpsModel - GetValueById": {
+    "prefix": "GetValueById",
+    "body": "GetValueById(${1:ID})",
+    "description": "[WwsPpsModel] BMD_Obj.GetValueById('ID')"
+  },
+  "WwsPpsModel - DsLoadEmpty": {
+    "prefix": "DsLoadEmpty",
+    "body": "DsLoadEmpty()",
+    "description": "[WwsPpsModel] BMD_Obj.DsLoadEmpty()"
+  },
+  "WwsPpsModel - GetModelQuery": {
+    "prefix": "GetModelQuery",
+    "body": "GetModelQuery()",
+    "description": "[WwsPpsModel] BMD_Obj.GetModelQuery()"
+  },
+  "PepModel - IncludeOptMdUsage": {
+    "prefix": "IncludeOptMdUsage",
+    "body": "IncludeOptMdUsage(${1:Wert})",
+    "description": "[PepModel] BMD_Obj.IncludeOptMdUsage('Wert')"
+  },
+  "PepModel - GetModelQuery": {
+    "prefix": "GetModelQuery",
+    "body": "GetModelQuery()",
+    "description": "[PepModel] BMD_Obj.GetModelQuery()"
+  },
+  "Vorgang - DsDispatch": {
+    "prefix": "DsDispatch",
+    "body": "DsDispatch(${1:Params})",
+    "description": "[Vorgang] BMD_Obj.DsDispatch('Params')"
+  },
+  "WwsPpsMacroClasses - CreateWwsPpsSpecialMacroModel": {
+    "prefix": "CreateWwsPpsSpecialMacroModel",
+    "body": "CreateWwsPpsSpecialMacroModel(${1:ID})",
+    "description": "[WwsPpsMacroClasses] BMD_Obj := WwsPpsMacroClasses.CreateWwsPpsSpecialMacroModel('ID')"
+  },
+  "WwsPpsMacroClasses - CreateWwsPpsMacroModel": {
+    "prefix": "CreateWwsPpsMacroModel",
+    "body": "CreateWwsPpsMacroModel(${1:ID})",
+    "description": "[WwsPpsMacroClasses] BMD_Obj := WwsPpsMacroClasses.CreateWwsPpsMacroModel('ID')"
+  },
+  "WwsPpsMacroClasses - CreateWwsPpsMacroModel2": {
+    "prefix": "CreateWwsPpsMacroModel2",
+    "body": "CreateWwsPpsMacroModel2(${1:Model})",
+    "description": "[WwsPpsMacroClasses] BMD_Obj := WwsPpsMacroClasses.CreateWwsPpsMacroModel2(Model)"
+  },
+  "WwsPpsMacroClasses - CreatePepMacroModel": {
+    "prefix": "CreatePepMacroModel",
+    "body": "CreatePepMacroModel(${1:ID})",
+    "description": "[WwsPpsMacroClasses] BMD_Obj := WwsPpsMacroClasses.CreatePepMacroModel('ID')"
+  },
+  "WwsPpsMacroClasses - CreatePepMacroModel2": {
+    "prefix": "CreatePepMacroModel2",
+    "body": "CreatePepMacroModel2(${1:Model})",
+    "description": "[WwsPpsMacroClasses] BMD_Obj := WwsPpsMacroClasses.CreatePepMacroModel2(Model)"
+  },
+  "WwsPpsMacroClasses - CreateVorgang": {
+    "prefix": "CreateVorgang",
+    "body": "CreateVorgang(${1:ID})",
+    "description": "[WwsPpsMacroClasses] BMD_Obj := WwsPpsMacroClasses.CreateVorgang('ID')"
+  },
+  "WwsPpsMacroClasses - CreateVorgang2": {
+    "prefix": "CreateVorgang2",
+    "body": "CreateVorgang2(${1:Model})",
+    "description": "[WwsPpsMacroClasses] BMD_Obj := WwsPpsMacroClasses.CreateVorgang2(Model)"
+  },
+  "WwsPpsMacroClasses - CreateJsonVal": {
+    "prefix": "CreateJsonVal",
+    "body": "CreateJsonVal()",
+    "description": "[WwsPpsMacroClasses] BMD_Obj := WwsPpsMacroClasses.CreateJsonVal()"
+  },
+  "WwsPpsMacroClasses - CreateApiCall": {
+    "prefix": "CreateApiCall",
+    "body": "CreateApiCall()",
+    "description": "[WwsPpsMacroClasses] BMD_Obj := WwsPpsMacroClasses.CreateApiCall()"
+  },
+  "MaterialConsumption - ClearKeys": {
+    "prefix": "ClearKeys",
+    "body": "ClearKeys()",
+    "description": "[MaterialConsumption] BMD_Obj.ClearKeys()"
+  },
+  "MaterialConsumption - SetStockKey": {
+    "prefix": "SetStockKey",
+    "body": "SetStockKey(${1:Firma (Lager)}, ${2:Lager-Nr.}, ${3:Lagerplatz})",
+    "description": "[MaterialConsumption] BMD_Obj.SetStockKey(<Firma (Lager)>,<Lager-Nr.>,'Lagerplatz')"
+  },
+  "MaterialConsumption - SetAccountingText": {
+    "prefix": "SetAccountingText",
+    "body": "SetAccountingText(${1:Buchungstext})",
+    "description": "[MaterialConsumption] BMD_Obj.SetAccountingText('Buchungstext')"
+  },
+  "MaterialConsumption - SetArticleColorKey": {
+    "prefix": "SetArticleColorKey",
+    "body": "SetArticleColorKey(${1:Firma (Farbe)}, ${2:Farbe})",
+    "description": "[MaterialConsumption] BMD_Obj.SetArticleColorKey(<Firma (Farbe)>,<Farbe>)"
+  },
+  "MaterialConsumption - SetArticleSizeKey": {
+    "prefix": "SetArticleSizeKey",
+    "body": "SetArticleSizeKey(${1:Firma (GrÃ¶ÃŸe)}, ${2:GrÃ¶ÃŸe})",
+    "description": "[MaterialConsumption] BMD_Obj.SetArticleSizeKey(<Firma (GrÃ¶ÃŸe)>,'GrÃ¶ÃŸe')"
+  },
+  "MaterialConsumption - SetArticleProcessKey": {
+    "prefix": "SetArticleProcessKey",
+    "body": "SetArticleProcessKey(${1:Firma (Prozess)}, ${2:ProzessID})",
+    "description": "[MaterialConsumption] BMD_Obj.SetArticleProcessKey(<Firma (Prozess)>,'ProzessID')"
+  },
+  "MaterialConsumption - SetArticleQStatus": {
+    "prefix": "SetArticleQStatus",
+    "body": "SetArticleQStatus(${1:Firma (Q.Status)}, ${2:Q.Status})",
+    "description": "[MaterialConsumption] BMD_Obj.SetArticleQStatus(<Firma (Q.Status)>,<Q.Status>)"
+  },
+  "MaterialConsumption - SetArticleAttributes": {
+    "prefix": "SetArticleAttributes",
+    "body": "SetArticleAttributes(${1:Merkmal 1}, ${2:Merkmal 2})",
+    "description": "[MaterialConsumption] BMD_Obj.SetArticleAttributes('Merkmal 1','Merkmal 2')"
+  },
+  "MaterialConsumption - SetArticleIdentification": {
+    "prefix": "SetArticleIdentification",
+    "body": "SetArticleIdentification(${1:Firma (Farbe)}, ${2:Farbe}, ${3:Firma (GrÃ¶ÃŸe)}, ${4:GrÃ¶ÃŸe}, ${5:Firma (Prozess)}, ${6:ProzessID}, ${7:Firma (Q.Status)}, ${8:Q.Status}, ${9:Merkmal 1}, ${10:Merkmal 2})",
+    "description": "[MaterialConsumption] BMD_Obj.SetArticleIdentification(<Firma (Farbe)>,<Farbe>,<Firma (GrÃ¶ÃŸe)>,'GrÃ¶ÃŸe',<Firma (Prozess)>,'ProzessID',<Firma (Q.Status)>,<Q.Status>,'Merkmal 1','Merkmal 2')"
+  },
+  "MaterialConsumption - SetLotKey": {
+    "prefix": "SetLotKey",
+    "body": "SetLotKey(${1:Firma (CHG)}, ${2:Chargen-Nr.})",
+    "description": "[MaterialConsumption] BMD_Obj.SetLotKey(<Firma (CHG)>,'Chargen-Nr.')"
+  },
+  "MaterialConsumption - SetSerialKey": {
+    "prefix": "SetSerialKey",
+    "body": "SetSerialKey(${1:Firma (SNR)}, ${2:Serien-Nr.})",
+    "description": "[MaterialConsumption] BMD_Obj.SetSerialKey(<Firma (SNR)>,'Serien-Nr.')"
+  },
+  "MaterialConsumption - SetSSCC": {
+    "prefix": "SetSSCC",
+    "body": "SetSSCC(${1:SSCC})",
+    "description": "[MaterialConsumption] BMD_Obj.SetSSCC('SSCC')"
+  },
+  "MaterialConsumption - SetAssembleUser": {
+    "prefix": "SetAssembleUser",
+    "body": "SetAssembleUser(${1:Vorbereiter})",
+    "description": "[MaterialConsumption] BMD_Obj.SetAssembleUser('Vorbereiter')"
+  },
+  "MaterialConsumption - SetAssembleDate": {
+    "prefix": "SetAssembleDate",
+    "body": "SetAssembleDate(${1:Vorbereitungszeitpunkt})",
+    "description": "[MaterialConsumption] BMD_Obj.SetAssembleDate(<Vorbereitungszeitpunkt>)"
+  },
+  "MaterialConsumption - SetPreparationUser": {
+    "prefix": "SetPreparationUser",
+    "body": "SetPreparationUser(${1:Verarbeiter})",
+    "description": "[MaterialConsumption] BMD_Obj.SetPreparationUser('Verarbeiter')"
+  },
+  "MaterialConsumption - SetPreparationDate": {
+    "prefix": "SetPreparationDate",
+    "body": "SetPreparationDate(${1:Verarbeitungsdatum})",
+    "description": "[MaterialConsumption] BMD_Obj.SetPreparationDate(<Verarbeitungsdatum>)"
+  },
+  "MaterialConsumption - RecordMaterialConsumption": {
+    "prefix": "RecordMaterialConsumption",
+    "body": "RecordMaterialConsumption(${1:Firma}, ${2:Firma (Artikel)}, ${3:Artikel}, ${4:P.-Los-ID}, ${5:Menge}, ${6:Mengeneinheit})",
+    "description": "[MaterialConsumption] BMD_Obj.RecordMaterialConsumption(<Firma>,<Firma (Artikel)>,'Artikel',<P.-Los-ID>,<Menge>,'Mengeneinheit')"
+  },
+  "MaterialConsumption - GetLastRecordedPieceListId": {
+    "prefix": "GetLastRecordedPieceListId",
+    "body": "GetLastRecordedPieceListId()",
+    "description": "[MaterialConsumption] BMD_Obj.GetLastRecordedPieceListId()"
+  },
+  "MaterialConsumption - CreateMaterialConsumption": {
+    "prefix": "CreateMaterialConsumption",
+    "body": "CreateMaterialConsumption()",
+    "description": "[MaterialConsumption] BMD_Obj := WwsPpsMacroClasses.CreateMaterialConsumption()"
+  },
+  "WWSParamMD - SetCompanyNo": {
+    "prefix": "SetCompanyNo",
+    "body": "SetCompanyNo(${1:FirmenNr})",
+    "description": "[WWSParamMD] BMD_Obj.SetCompanyNo(<FirmenNr>)"
+  },
+  "WWSParamMD - Invoice_OnlineInvoiceHU_AccToBranch": {
+    "prefix": "Invoice_OnlineInvoiceHU_AccToBranch",
+    "body": "Invoice_OnlineInvoiceHU_AccToBranch()",
+    "description": "[WWSParamMD] BMD_Obj.Invoice_OnlineInvoiceHU_AccToBranch()"
+  },
+  "WWSParamMD - CreateWWSParamMD": {
+    "prefix": "CreateWWSParamMD",
+    "body": "CreateWWSParamMD()",
+    "description": "[WWSParamMD] BMD_Obj := WwsPpsMacroClasses.CreateWWSParamMD()"
+  },
+  "WWSIncomingInvoiceMD - SetKeyValues": {
+    "prefix": "SetKeyValues",
+    "body": "SetKeyValues(${1:FirmenNr}, ${2:FIBU-Nr}, ${3:Erfass-Nr})",
+    "description": "[WWSIncomingInvoiceMD] BMD_Obj.SetKeyValues(<FirmenNr>,<FIBU-Nr>,'Erfass-Nr')"
+  },
+  "WWSIncomingInvoiceMD - GetValue": {
+    "prefix": "GetValue",
+    "body": "GetValue(${1:Feldname})",
+    "description": "[WWSIncomingInvoiceMD] BMD_Obj.GetValue('Feldname')"
+  },
+  "WWSIncomingInvoiceMD - CreateWWSIncomingInvoiceMD": {
+    "prefix": "CreateWWSIncomingInvoiceMD",
+    "body": "CreateWWSIncomingInvoiceMD()",
+    "description": "[WWSIncomingInvoiceMD] BMD_Obj := WwsPpsMacroClasses.CreateWWSIncomingInvoiceMD()"
+  },
+  "Sonderfunktionen - Starte Ausdruck-Bindung": {
+    "prefix": "BMD_START_REPORT_MERGE",
+    "body": "BMD_START_REPORT_MERGE()",
+    "description": "[Sonderfunktionen] BMD_START_REPORT_MERGE()"
+  },
+  "Sonderfunktionen - Beende Ausdrucksbindung": {
+    "prefix": "BMD_FINISH_REPORT_MERGE",
+    "body": "BMD_FINISH_REPORT_MERGE()",
+    "description": "[Sonderfunktionen] BMD_FINISH_REPORT_MERGE()"
+  },
+  "Sonderfunktionen - OS-Druck": {
+    "prefix": "BMD_OS_PRINT",
+    "body": "BMD_OS_PRINT(${1:zu druckende Datei}, ${2:Drucker-Name})",
+    "description": "[Sonderfunktionen] BMD_OS_PRINT('zu druckende Datei','Drucker-Name')"
+  },
+  "Sonderfunktionen - Fenster drucken": {
+    "prefix": "BMD_FORM_PRINT",
+    "body": "BMD_FORM_PRINT()",
+    "description": "[Sonderfunktionen] BMD_FORM_PRINT()"
+  },
+  "Sonderfunktionen - Fenster-Bildschirmkopie erstellen": {
+    "prefix": "BMD_FORM_SNAP",
+    "body": "BMD_FORM_SNAP()",
+    "description": "[Sonderfunktionen] BMD_FORM_SNAP()"
+  },
+  "Sonderfunktionen - Exec-Process": {
+    "prefix": "BMD_EXEC_PROCESS",
+    "body": "BMD_EXEC_PROCESS(${1:Prozess}, ${2:Parameter}, ${3:Sichtbar})",
+    "description": "[Sonderfunktionen] BMD_EXEC_PROCESS('Prozess','Parameter',<Sichtbar>)"
+  },
+  "Merker - Dyn.Parameterwert anhÃ¤ngen": {
+    "prefix": "BMD_PARAMLIST_APPEND",
+    "body": "BMD_PARAMLIST_APPEND(${1:Parameter-Liste}, ${2:Wert-Name}, ${3:Wert})",
+    "description": "[Merker] BMD_PARAMLIST_APPEND('Parameter-Liste','Wert-Name','Wert')"
+  },
+  "Merker - Dyn.Parameterwert auslesen": {
+    "prefix": "BMD_PARAMLIST_GET",
+    "body": "BMD_PARAMLIST_GET(${1:Parameter-Liste}, ${2:Wert-Name}, ${3:Standard-Wert})",
+    "description": "[Merker] BMD_PARAMLIST_GET('Parameter-Liste','Wert-Name','Standard-Wert')"
+  },
+  "Abfragen/Dialoge - Entscheidungsbox": {
+    "prefix": "BMD_DECIDING_BOX",
+    "body": "BMD_DECIDING_BOX(${1:Frage}, ${2:Fenstertitel}, ${3:Alternativen}, ${4:Aktive SchaltflÃ¤che})",
+    "description": "[Abfragen/Dialoge] BMD_DECIDING_BOX('Frage','Fenstertitel','Alternative1,Alternative2,...',<Aktive SchaltflÃ¤che>)"
+  },
+  "Abfragen/Dialoge - Fortschrittsanzeige-Init": {
+    "prefix": "BMD_PROGRESSDISPLAY_INIT",
+    "body": "BMD_PROGRESSDISPLAY_INIT(${1:Startwert}, ${2:Endwert})",
+    "description": "[Abfragen/Dialoge] BMD_PROGRESSDISPLAY_INIT(<Startwert>,<Endwert>)"
+  },
+  "Abfragen/Dialoge - Fortschrittsanzeige": {
+    "prefix": "BMD_PROGRESSDISPLAY_UP_DATE",
+    "body": "BMD_PROGRESSDISPLAY_UP_DATE(${1:Text}, ${2:ZÃ¤hler})",
+    "description": "[Abfragen/Dialoge] BMD_PROGRESSDISPLAY_UP_DATE('Text',<ZÃ¤hler>)"
+  },
+  "Abfragen/Dialoge - Fortschrittsanzeige-Ende": {
+    "prefix": "BMD_PROGRESSDISPLAY_END",
+    "body": "BMD_PROGRESSDISPLAY_END()",
+    "description": "[Abfragen/Dialoge] BMD_PROGRESSDISPLAY_END()"
+  },
+  "Abfragen/Dialoge - Fortschrittsanzeige-AbbruchprÃ¼fung": {
+    "prefix": "BMD_PROGRESSDISPLAY_CHECKABORTED",
+    "body": "BMD_PROGRESSDISPLAY_CHECKABORTED()",
+    "description": "[Abfragen/Dialoge] BMD_PROGRESSDISPLAY_CHECKABORTED()"
+  },
+  "P.-Lose - P.-Los erzeugen": {
+    "prefix": "BMD_PLC_INSERT",
+    "body": "BMD_PLC_INSERT(${1:Firma}, ${2:Artikel}, ${3:Menge}, ${4:Mengeneinheit}, ${5:Lager-Nr.}, ${6:Lagerplatz}, ${7:Erf.-Kennz.}, ${8:Erf.-Nr.}, ${9:ErfPos(WWS)}, ${10:Erf.Det.(WWS)}, ${11:Zusatzdaten (;-getrennt)})",
+    "description": "[P.-Lose] \"BMD_PLC_INSERT(<Firma>,'Artikel',<Menge>,'Mengeneinheit',<Lager-Nr.>,'Lagerplatz','Erf.-Kennz.',<Erf.-Nr.>,<ErfPos(WWS)>,<Erf.Det.(WWS)>,'Zusatzdaten (;-getrennt)')\""
+  },
+  "P.-Lose - P.-Los(e) planen": {
+    "prefix": "BMD_PLC_PLAN",
+    "body": "BMD_PLC_PLAN(${1:Firma}, ${2:P.-Los-IDs}, ${3:Planungs-Referenzdatum}, ${4:KapazitÃ¤t planen}, ${5:Splittung durchfÃ¼hren})",
+    "description": "[P.-Lose] BMD_PLC_PLAN(<Firma>,'P.-Los-IDs',<Planungs-Referenzdatum>,<KapazitÃ¤t planen>,<Splittung durchfÃ¼hren>)"
+  },
+  "P.-Lose - Chargen-Mischfunktion": {
+    "prefix": "BMD_PLC_MIX",
+    "body": "BMD_PLC_MIX(${1:Firma}, ${2:Lager-Nr.}, ${3:Lagerplatz}, ${4:Artikel}, ${5:Mengeneinheit})",
+    "description": "[P.-Lose] BMD_PLC_MIX(<Firma>,<Lager-Nr.>,'Lagerplatz','Artikel','Mengeneinheit')"
+  },
+  "P.-Lose - Chargen-Mischfunktion (erweitert)": {
+    "prefix": "BMD_PLC_MIX_EXT",
+    "body": "BMD_PLC_MIX_EXT(${1:Firma}, ${2:Lager-Nr.}, ${3:Lagerplatz}, ${4:Artikel}, ${5:Mengeneinheit}, ${6:Q.Status})",
+    "description": "[P.-Lose] BMD_PLC_MIX_EXT(<Firma>,<Lager-Nr.>,'Lagerplatz','Artikel','Mengeneinheit',<Q.Status>)"
+  },
+  "P.-Lose - P.-Los(e) StatusÃ¤nderung": {
+    "prefix": "BMD_PLC_STATUSCHANGE",
+    "body": "BMD_PLC_STATUSCHANGE(${1:Firma}, ${2:Erf.-Kennz.}, ${3:Erf.-Nr.}, ${4:ErfPos(WWS)}, ${5:Erf.Det.(WWS)}, ${6:Status})",
+    "description": "[P.-Lose] BMD_PLC_STATUSCHANGE(<Firma>,'Erf.-Kennz.',<Erf.-Nr.>,<ErfPos(WWS)>,<Erf.Det.(WWS)>,<Status>)"
+  },
+  "P.-Lose - RÃ¼ckmelden": {
+    "prefix": "BMD_EPS_MATRM_WITH_ASK_DETAIL",
+    "body": "BMD_EPS_MATRM_WITH_ASK_DETAIL(${1:Eps-Id}, ${2:Menge}, ${3:Mengeneinheit})",
+    "description": "[P.-Lose] BMD_EPS_MATRM_WITH_ASK_DETAIL('Eps-Id',<Menge>,'Mengeneinheit')"
+  },
+  "P.-Lose - Materialeinsatz f. P.-Los hinzufÃ¼gen": {
+    "prefix": "BMD_EPS_INSERT",
+    "body": "BMD_EPS_INSERT(${1:Firma}, ${2:Artikel}, ${3:P.-Los-ID}, ${4:Menge}, ${5:Mengeneinheit}, ${6:Lager-Nr.}, ${7:Lagerplatz}, ${8:Chargen-Nr.}, ${9:SerienNr.})",
+    "description": "[P.-Lose] BMD_EPS_INSERT(<Firma>,'Artikel','P.-Los-ID',<Menge>,'Mengeneinheit',<Lager-Nr.>,'Lagerplatz','Chargen-Nr.','SerienNr.')"
+  },
+  "P.-Lose - Materialeinsatz f. P.-Los hinzufÃ¼gen (erweitert)": {
+    "prefix": "BMD_EPS_INSERT_EXT",
+    "body": "BMD_EPS_INSERT_EXT(${1:Firma}, ${2:Firma (Artikel)}, ${3:Artikel}, ${4:P.-Los-ID}, ${5:Menge}, ${6:Mengeneinheit}, ${7:Firma (Lager)}, ${8:Lager-Nr.}, ${9:Lagerplatz}, ${10:Firma (CHG)}, ${11:Chargen-Nr.}, ${12:Firma (Farbe)}, ${13:Farbe}, ${14:Firma (GrÃ¶ÃŸe)}, ${15:GrÃ¶ÃŸe})",
+    "description": "[P.-Lose] BMD_EPS_INSERT_EXT(<Firma>,<Firma (Artikel)>,'Artikel',<P.-Los-ID>,<Menge>,'Mengeneinheit',<Firma (Lager)>,<Lager-Nr.>,'Lagerplatz',<Firma (CHG)>,'Chargen-Nr.',<Firma (Farbe)>,<Farbe>,<Firma (GrÃ¶ÃŸe)>,'GrÃ¶ÃŸe')"
+  },
+  "P.-Lose - Produkt f. P.-Los hinzufÃ¼gen": {
+    "prefix": "BMD_PCP_INSERT",
+    "body": "BMD_PCP_INSERT(${1:Firma}, ${2:Artikel}, ${3:P.-Los-ID}, ${4:Menge}, ${5:Mengeneinheit}, ${6:Lager-Nr.}, ${7:Lagerplatz}, ${8:Chargen-Nr.}, ${9:Zusatzdaten (;-getrennt)})",
+    "description": "[P.-Lose] \"BMD_PCP_INSERT(<Firma>,'Artikel','P.-Los-ID',<Menge>,'Mengeneinheit',<Lager-Nr.>,'Lagerplatz','Chargen-Nr.','Zusatzdaten (;-getrennt)')\""
+  },
+  "Planung - Aktualisieren-MAZ-Auto-Termine-Aufgaben": {
+    "prefix": "BMD_AKT_MAZ_AUTO_TERMINE_AUFGABEN",
+    "body": "BMD_AKT_MAZ_AUTO_TERMINE_AUFGABEN(${1:VG-ID})",
+    "description": "[Planung] BMD_AKT_MAZ_AUTO_TERMINE_AUFGABEN(<VG-ID>)"
+  },
+  "Planung - Generiere-WE": {
+    "prefix": "BMD_GENERIERE_WE",
+    "body": "BMD_GENERIERE_WE(${1:TBMDGenerateEeFromWeRecord})",
+    "description": "[Planung] BMD_GENERIERE_WE(<TBMDGenerateEeFromWeRecord>)"
+  },
+  "Planung - Vg-Lea-Aufrollung": {
+    "prefix": "BMD_PEP_VG_LEA_AUFROLLEN",
+    "body": "BMD_PEP_VG_LEA_AUFROLLEN(${1:MacroStringList})",
+    "description": "[Planung] BMD_PEP_VG_LEA_AUFROLLEN(MacroStringList)"
+  },
+  "Planung - Benachrichtigung": {
+    "prefix": "BMD_PEP_FIRE_VOB",
+    "body": "BMD_PEP_FIRE_VOB(${1:VG-ID}, ${2:Ben-ID}, ${3:Information}, ${4:E-Mail-Adresse}, ${5:Sofort versenden})",
+    "description": "[Planung] BMD_PEP_FIRE_VOB(<VG-ID>,'Ben-ID','Information','E-Mail-Adresse',<Sofort versenden>)"
+  },
+  "Planung - StartIdleFunction": {
+    "prefix": "BMD_PEP_START_IDLE_FUNCTION",
+    "body": "BMD_PEP_START_IDLE_FUNCTION(${1:Funktionskonstante}, ${2:Parameter})",
+    "description": "[Planung] BMD_PEP_START_IDLE_FUNCTION('Funktionskonstante','Parameter')"
+  },
+  "Planung - StartAsyncFunction": {
+    "prefix": "BMD_PEP_START_ASYNC_FUNCTION",
+    "body": "BMD_PEP_START_ASYNC_FUNCTION(${1:Funktionskonstante}, ${2:Parameter})",
+    "description": "[Planung] BMD_PEP_START_ASYNC_FUNCTION('Funktionskonstante','Parameter')"
+  },
+  "Planung - Rtf-Text-Erzeugen": {
+    "prefix": "BMD_PEP_CREATE_RFT_BLOB",
+    "body": "BMD_PEP_CREATE_RFT_BLOB(${1:Text})",
+    "description": "[Planung] BMD_PEP_CREATE_RFT_BLOB('Text')"
+  },
+  "Planung - Rtf-Text-Erweitern": {
+    "prefix": "BMD_PEP_APPEND_RFT_BLOB",
+    "body": "BMD_PEP_APPEND_RFT_BLOB(${1:Rtf-Text-Id}, ${2:Text})",
+    "description": "[Planung] BMD_PEP_APPEND_RFT_BLOB(<Rtf-Text-Id>,'Text')"
+  },
+  "Planung - Rtf-Text-Erweitern-Html": {
+    "prefix": "BMD_PEP_APPEND_RFT_BLOB_HTML",
+    "body": "BMD_PEP_APPEND_RFT_BLOB_HTML(${1:Rtf-Text-Id}, ${2:HTML})",
+    "description": "[Planung] BMD_PEP_APPEND_RFT_BLOB_HTML(<Rtf-Text-Id>,'HTML')"
+  },
+  "Planung - Rtf-Text-Importieren": {
+    "prefix": "BMD_PEP_IMPORT_RFT_BLOB",
+    "body": "BMD_PEP_IMPORT_RFT_BLOB(${1:RTF-Datei})",
+    "description": "[Planung] BMD_PEP_IMPORT_RFT_BLOB('RTF-Datei')"
+  },
+  "Planung - Blob-Als-HTML-Auslesen": {
+    "prefix": "BMD_PEP_GET_HTML_FROM_BLOB",
+    "body": "BMD_PEP_GET_HTML_FROM_BLOB(${1:Blob-Id}, ${2:Modus})",
+    "description": "[Planung] BMD_PEP_GET_HTML_FROM_BLOB(<Blob-Id>,<Modus>)"
+  },
+  "Planung - Rtf-Blob-LÃ¶schen": {
+    "prefix": "BMD_PEP_DELETE_BLOB",
+    "body": "BMD_PEP_DELETE_BLOB(${1:Blob-Id})",
+    "description": "[Planung] BMD_PEP_DELETE_BLOB(<Blob-Id>)"
+  },
+  "Planung - Checkliste synchronisieren": {
+    "prefix": "BMD_PEP_SYNC_CHECKLIST",
+    "body": "BMD_PEP_SYNC_CHECKLIST(${1:Checklisten-ID}, ${2:Vorlage-Id})",
+    "description": "[Planung] BMD_PEP_SYNC_CHECKLIST(<Checklisten-ID>,<Vorlage-Id>)"
+  },
+  "Planung - PepLockModelExt": {
+    "prefix": "BMD_PEP_LOCK_MODEL_EXT",
+    "body": "BMD_PEP_LOCK_MODEL_EXT(${1:MacroModel})",
+    "description": "[Planung] BMD_PEP_LOCK_MODEL_EXT(<MacroModel>)"
+  },
+  "Planung - PepUnlockModelExt": {
+    "prefix": "BMD_PEP_UNLOCK_MODEL_EXT",
+    "body": "BMD_PEP_UNLOCK_MODEL_EXT(${1:MacroModel})",
+    "description": "[Planung] BMD_PEP_UNLOCK_MODEL_EXT(<MacroModel>)"
+  },
+  "Planung - PepAddUserMessage": {
+    "prefix": "BMD_PEP_ADDUSERMESSAGE",
+    "body": "BMD_PEP_ADDUSERMESSAGE(${1:Nachricht})",
+    "description": "[Planung] BMD_PEP_ADDUSERMESSAGE('Nachricht')"
+  },
+  "Lager - Lagerdaten laden": {
+    "prefix": "BMD_LOAD_STOCKDATA",
+    "body": "BMD_LOAD_STOCKDATA(${1:Mengenart}, ${2:Hauptfirma}, ${3:Lager-Nr.}, ${4:Lagerplatz}, ${5:Artikel}, ${6:Chargen-Nr.}, ${7:AID-Parameter}, ${8:mit Artikel}, ${9:mit Chargen}, ${10:mit Artikelmerkmalen})",
+    "description": "[Lager] BMD_LOAD_STOCKDATA('Mengenart',<Hauptfirma>,<Lager-Nr.>,'Lagerplatz','Artikel','Chargen-Nr.','AID-Parameter',<mit Artikel>,<mit Chargen>,<mit Artikelmerkmalen>)"
+  },
+  "Lager - Anzahl geladener Daten": {
+    "prefix": "BMD_GET_STOCKDATA_COUNT",
+    "body": "BMD_GET_STOCKDATA_COUNT()",
+    "description": "[Lager] BMD_GET_STOCKDATA_COUNT()"
+  },
+  "Lager - geladene Lagerdaten holen": {
+    "prefix": "BMD_GET_STOCKDATA",
+    "body": "BMD_GET_STOCKDATA(${1:Index})",
+    "description": "[Lager] BMD_GET_STOCKDATA(<Index>)"
+  },
+  "Lager - Geplantes Service ermitteln": {
+    "prefix": "BMD_HAS_SERVICEDATA",
+    "body": "BMD_HAS_SERVICEDATA(${1:Hauptfirma}, ${2:Artikel}, ${3:Serien-Nr.-ID}, ${4:Bis-Servicedatum})",
+    "description": "[Lager] BMD_HAS_SERVICEDATA(<Hauptfirma>,'Artikel',<Serien-Nr.-ID>,<Bis-Servicedatum>)"
+  },
+  "Lager - NÃ¤chstes geplantes Servicedatum ermitteln": {
+    "prefix": "BMD_NEXT_SERVICEDATUM",
+    "body": "BMD_NEXT_SERVICEDATUM(${1:Hauptfirma}, ${2:Artikel}, ${3:Serien-Nr.-ID}, ${4:MaÃŸnahmen-ID}, ${5:Bis-Servicedatum})",
+    "description": "[Lager] BMD_NEXT_SERVICEDATUM(<Hauptfirma>,'Artikel',<Serien-Nr.-ID>,<MaÃŸnahmen-ID>,<Bis-Servicedatum>)"
+  },
+  "ERP-Sonderfunktionen - GetValueByName": {
+    "prefix": "BMD_GET_VAL_BY_NAME",
+    "body": "BMD_GET_VAL_BY_NAME(${1:Feld-ConstName})",
+    "description": "[ERP-Sonderfunktionen] BMD_GET_VAL_BY_NAME('Feld-ConstName')"
+  },
+  "ERP-Sonderfunktionen - Pausieren": {
+    "prefix": "BMD_SLEEP",
+    "body": "BMD_SLEEP(${1:Dauer in Millisekunden})",
+    "description": "[ERP-Sonderfunktionen] BMD_SLEEP(<Dauer in Millisekunden>)"
+  },
+  "ERP-Sonderfunktionen - Build-NTCS-URL": {
+    "prefix": "BMD_BUILD_NTCS_URL",
+    "body": "BMD_BUILD_NTCS_URL(${1:MCS}, ${2:Parameter}, ${3:Typ})",
+    "description": "[ERP-Sonderfunktionen] BMD_BUILD_NTCS_URL('MCS','Parameter',<Typ>)"
+  },
+  "ERP-Merker - Merker1 setzen": {
+    "prefix": "BMD_MERKER1_SET",
+    "body": "BMD_MERKER1_SET(${1:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER1_SET('Wert / Funktion')"
+  },
+  "ERP-Merker - Merker1 lesen": {
+    "prefix": "BMD_MERKER1_GET",
+    "body": "BMD_MERKER1_GET()",
+    "description": "[ERP-Merker] BMD_MERKER1_GET()"
+  },
+  "ERP-Merker - Merker2 setzen": {
+    "prefix": "BMD_MERKER2_SET",
+    "body": "BMD_MERKER2_SET(${1:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER2_SET('Wert / Funktion')"
+  },
+  "ERP-Merker - Merker2 lesen": {
+    "prefix": "BMD_MERKER2_GET",
+    "body": "BMD_MERKER2_GET()",
+    "description": "[ERP-Merker] BMD_MERKER2_GET()"
+  },
+  "ERP-Merker - Merker3 setzen": {
+    "prefix": "BMD_MERKER3_SET",
+    "body": "BMD_MERKER3_SET(${1:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER3_SET('Wert / Funktion')"
+  },
+  "ERP-Merker - Merker3 lesen": {
+    "prefix": "BMD_MERKER3_GET",
+    "body": "BMD_MERKER3_GET()",
+    "description": "[ERP-Merker] BMD_MERKER3_GET()"
+  },
+  "ERP-Merker - Merker4 setzen": {
+    "prefix": "BMD_MERKER4_SET",
+    "body": "BMD_MERKER4_SET(${1:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER4_SET('Wert / Funktion')"
+  },
+  "ERP-Merker - Merker4 lesen": {
+    "prefix": "BMD_MERKER4_GET",
+    "body": "BMD_MERKER4_GET()",
+    "description": "[ERP-Merker] BMD_MERKER4_GET()"
+  },
+  "ERP-Merker - Merker5 setzen": {
+    "prefix": "BMD_MERKER5_SET",
+    "body": "BMD_MERKER5_SET(${1:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER5_SET('Wert / Funktion')"
+  },
+  "ERP-Merker - Merker5 lesen": {
+    "prefix": "BMD_MERKER5_GET",
+    "body": "BMD_MERKER5_GET()",
+    "description": "[ERP-Merker] BMD_MERKER5_GET()"
+  },
+  "ERP-Merker - Merker6 setzen": {
+    "prefix": "BMD_MERKER6_SET",
+    "body": "BMD_MERKER6_SET(${1:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER6_SET('Wert / Funktion')"
+  },
+  "ERP-Merker - Merker6 lesen": {
+    "prefix": "BMD_MERKER6_GET",
+    "body": "BMD_MERKER6_GET()",
+    "description": "[ERP-Merker] BMD_MERKER6_GET()"
+  },
+  "ERP-Merker - Merker7 setzen": {
+    "prefix": "BMD_MERKER7_SET",
+    "body": "BMD_MERKER7_SET(${1:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER7_SET('Wert / Funktion')"
+  },
+  "ERP-Merker - Merker7 lesen": {
+    "prefix": "BMD_MERKER7_GET",
+    "body": "BMD_MERKER7_GET()",
+    "description": "[ERP-Merker] BMD_MERKER7_GET()"
+  },
+  "ERP-Merker - Merker8 setzen": {
+    "prefix": "BMD_MERKER8_SET",
+    "body": "BMD_MERKER8_SET(${1:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER8_SET('Wert / Funktion')"
+  },
+  "ERP-Merker - Merker8 lesen": {
+    "prefix": "BMD_MERKER8_GET",
+    "body": "BMD_MERKER8_GET()",
+    "description": "[ERP-Merker] BMD_MERKER8_GET()"
+  },
+  "ERP-Merker - Merker9 setzen": {
+    "prefix": "BMD_MERKER9_SET",
+    "body": "BMD_MERKER9_SET(${1:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER9_SET('Wert / Funktion')"
+  },
+  "ERP-Merker - Merker9 lesen": {
+    "prefix": "BMD_MERKER9_GET",
+    "body": "BMD_MERKER9_GET()",
+    "description": "[ERP-Merker] BMD_MERKER9_GET()"
+  },
+  "ERP-Merker - Merker10 setzen": {
+    "prefix": "BMD_MERKER10_SET",
+    "body": "BMD_MERKER10_SET(${1:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER10_SET('Wert / Funktion')"
+  },
+  "ERP-Merker - Merker10 lesen": {
+    "prefix": "BMD_MERKER10_GET",
+    "body": "BMD_MERKER10_GET()",
+    "description": "[ERP-Merker] BMD_MERKER10_GET()"
+  },
+  "ERP-Merker - Merker11 setzen": {
+    "prefix": "BMD_MERKER11_SET",
+    "body": "BMD_MERKER11_SET(${1:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER11_SET('Wert / Funktion')"
+  },
+  "ERP-Merker - Merker11 lesen": {
+    "prefix": "BMD_MERKER11_GET",
+    "body": "BMD_MERKER11_GET()",
+    "description": "[ERP-Merker] BMD_MERKER11_GET()"
+  },
+  "ERP-Merker - Merker12 setzen": {
+    "prefix": "BMD_MERKER12_SET",
+    "body": "BMD_MERKER12_SET(${1:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER12_SET('Wert / Funktion')"
+  },
+  "ERP-Merker - Merker12 lesen": {
+    "prefix": "BMD_MERKER12_GET",
+    "body": "BMD_MERKER12_GET()",
+    "description": "[ERP-Merker] BMD_MERKER12_GET()"
+  },
+  "ERP-Merker - Merker13 setzen": {
+    "prefix": "BMD_MERKER13_SET",
+    "body": "BMD_MERKER13_SET(${1:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER13_SET('Wert / Funktion')"
+  },
+  "ERP-Merker - Merker13 lesen": {
+    "prefix": "BMD_MERKER13_GET",
+    "body": "BMD_MERKER13_GET()",
+    "description": "[ERP-Merker] BMD_MERKER13_GET()"
+  },
+  "ERP-Merker - Merker14 setzen": {
+    "prefix": "BMD_MERKER14_SET",
+    "body": "BMD_MERKER14_SET(${1:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER14_SET('Wert / Funktion')"
+  },
+  "ERP-Merker - Merker14 lesen": {
+    "prefix": "BMD_MERKER14_GET",
+    "body": "BMD_MERKER14_GET()",
+    "description": "[ERP-Merker] BMD_MERKER14_GET()"
+  },
+  "ERP-Merker - Merker15 setzen": {
+    "prefix": "BMD_MERKER15_SET",
+    "body": "BMD_MERKER15_SET(${1:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER15_SET('Wert / Funktion')"
+  },
+  "ERP-Merker - Merker15 lesen": {
+    "prefix": "BMD_MERKER15_GET",
+    "body": "BMD_MERKER15_GET()",
+    "description": "[ERP-Merker] BMD_MERKER15_GET()"
+  },
+  "ERP-Merker - Merker setzen": {
+    "prefix": "BMD_MERKER_SET",
+    "body": "BMD_MERKER_SET(${1:AusprÃ¤gung}, ${2:Wert / Funktion})",
+    "description": "[ERP-Merker] BMD_MERKER_SET('AusprÃ¤gung','Wert / Funktion')"
+  },
+  "ERP-Merker - Merker lesen": {
+    "prefix": "BMD_MERKER_GET",
+    "body": "BMD_MERKER_GET(${1:AusprÃ¤gung})",
+    "description": "[ERP-Merker] BMD_MERKER_GET('AusprÃ¤gung')"
+  },
+  "Steuerzeichen - Tabulator (TAB)": {
+    "prefix": "BMD_TAB",
+    "body": "BMD_TAB()",
+    "description": "[Steuerzeichen] BMD_TAB()"
+  },
+  "Steuerzeichen - Zeilenvorschub (LF)": {
+    "prefix": "BMD_LF",
+    "body": "BMD_LF()",
+    "description": "[Steuerzeichen] BMD_LF()"
+  },
+  "Steuerzeichen - Zeilenumbruch (CRLF)": {
+    "prefix": "BMD_CRLF",
+    "body": "BMD_CRLF()",
+    "description": "[Steuerzeichen] BMD_CRLF()"
+  },
+  "Steuerzeichen - FNC1": {
+    "prefix": "BMD_FNC1",
+    "body": "BMD_FNC1()",
+    "description": "[Steuerzeichen] BMD_FNC1()"
+  },
+  "ZÃ¤hler - ZÃ¤hler1": {
+    "prefix": "BMD_COUNTER1",
+    "body": "BMD_COUNTER1()",
+    "description": "[ZÃ¤hler] BMD_COUNTER1()"
+  },
+  "ZÃ¤hler - ZÃ¤hler1=+1": {
+    "prefix": "BMD_COUNTER1_INC",
+    "body": "BMD_COUNTER1_INC()",
+    "description": "[ZÃ¤hler] BMD_COUNTER1_INC()"
+  },
+  "ZÃ¤hler - ZÃ¤hler1=0": {
+    "prefix": "BMD_COUNTER1_CLR",
+    "body": "BMD_COUNTER1_CLR()",
+    "description": "[ZÃ¤hler] BMD_COUNTER1_CLR()"
+  },
+  "ZÃ¤hler - ZÃ¤hler2": {
+    "prefix": "BMD_COUNTER2",
+    "body": "BMD_COUNTER2()",
+    "description": "[ZÃ¤hler] BMD_COUNTER2()"
+  },
+  "ZÃ¤hler - ZÃ¤hler2=+1": {
+    "prefix": "BMD_COUNTER2_INC",
+    "body": "BMD_COUNTER2_INC()",
+    "description": "[ZÃ¤hler] BMD_COUNTER2_INC()"
+  },
+  "ZÃ¤hler - ZÃ¤hler2=0": {
+    "prefix": "BMD_COUNTER2_CLR",
+    "body": "BMD_COUNTER2_CLR()",
+    "description": "[ZÃ¤hler] BMD_COUNTER2_CLR()"
+  },
+  "ZÃ¤hler - ZÃ¤hler3": {
+    "prefix": "BMD_COUNTER3",
+    "body": "BMD_COUNTER3()",
+    "description": "[ZÃ¤hler] BMD_COUNTER3()"
+  },
+  "ZÃ¤hler - ZÃ¤hler3=+1": {
+    "prefix": "BMD_COUNTER3_INC",
+    "body": "BMD_COUNTER3_INC()",
+    "description": "[ZÃ¤hler] BMD_COUNTER3_INC()"
+  },
+  "ZÃ¤hler - ZÃ¤hler3=0": {
+    "prefix": "BMD_COUNTER3_CLR",
+    "body": "BMD_COUNTER3_CLR()",
+    "description": "[ZÃ¤hler] BMD_COUNTER3_CLR()"
+  },
+  "ZÃ¤hler - CxR": {
+    "prefix": "BMD_C_X_R",
+    "body": "BMD_C_X_R(${1:Register}, ${2:AusprÃ¤gung})",
+    "description": "[ZÃ¤hler] BMD_C_X_R('Register','AusprÃ¤gung')"
+  },
+  "ZÃ¤hler - Cx+": {
+    "prefix": "BMD_C_X_ADD",
+    "body": "BMD_C_X_ADD(${1:Register}, ${2:AusprÃ¤gung})",
+    "description": "[ZÃ¤hler] BMD_C_X_ADD('Register','AusprÃ¤gung')"
+  },
+  "ZÃ¤hler - CxC": {
+    "prefix": "BMD_C_X_C",
+    "body": "BMD_C_X_C(${1:Register})",
+    "description": "[ZÃ¤hler] BMD_C_X_C('Register')"
+  },
+  "ZÃ¤hler - MxR": {
+    "prefix": "BMD_M_X_R",
+    "body": "BMD_M_X_R(${1:AusprÃ¤gung})",
+    "description": "[ZÃ¤hler] BMD_M_X_R('AusprÃ¤gung')"
+  },
+  "ZÃ¤hler - Mx+": {
+    "prefix": "BMD_M_X_ADD",
+    "body": "BMD_M_X_ADD(${1:AusprÃ¤gung}, ${2:Wert})",
+    "description": "[ZÃ¤hler] BMD_M_X_ADD('AusprÃ¤gung',<Wert>)"
+  },
+  "ZÃ¤hler - MxC": {
+    "prefix": "BMD_M_X_C",
+    "body": "BMD_M_X_C(${1:AusprÃ¤gung})",
+    "description": "[ZÃ¤hler] BMD_M_X_C('AusprÃ¤gung')"
+  },
+  "ERP-Abfragen/Dialoge - Benutzerfehler-Anzeige": {
+    "prefix": "BMD_SHOW_USER_ERROR_MESSAGE",
+    "body": "BMD_SHOW_USER_ERROR_MESSAGE()",
+    "description": "[ERP-Abfragen/Dialoge] BMD_SHOW_USER_ERROR_MESSAGE()"
+  },
+  "ERP-P.-Lose - Bestell-/Auftragsdaten": {
+    "prefix": "BMD_PLC_GETERFDATA",
+    "body": "BMD_PLC_GETERFDATA(${1:P.-Los-ID}, ${2:Bestellungsfeld (MCA)}, ${3:Auftragsfeld (MCA)})",
+    "description": "[ERP-P.-Lose] BMD_PLC_GETERFDATA(<P.-Los-ID>,'Bestellungsfeld (MCA)','Auftragsfeld (MCA)')"
+  },
+  "Planungsgruppe - Planungsgruppe von": {
+    "prefix": "BMD_PLO_LAST_VON",
+    "body": "BMD_PLO_LAST_VON()",
+    "description": "[Planungsgruppe] BMD_PLO_LAST_VON()"
+  },
+  "Planungsgruppe - Planungsgruppe bis": {
+    "prefix": "BMD_PLO_LAST_BIS",
+    "body": "BMD_PLO_LAST_BIS()",
+    "description": "[Planungsgruppe] BMD_PLO_LAST_BIS()"
+  },
+  "PPS MGA - Waagenstatus-Beschreibung": {
+    "prefix": "BMD_TOOL_STATUS_DESCRIPTION",
+    "body": "BMD_TOOL_STATUS_DESCRIPTION(${1:Waagenstatus})",
+    "description": "[PPS MGA] BMD_TOOL_STATUS_DESCRIPTION(<Waagenstatus>)"
+  },
+  "ERP-Planung - Wert-Alliquot-Plp": {
+    "prefix": "BMD_WERT_ALLIQUOT_PLP",
+    "body": "BMD_WERT_ALLIQUOT_PLP(${1:Menge}, ${2:Startdatum}, ${3:Endedatum}, ${4:Hauptfirma}, ${5:Planungsperiode}, ${6:Referenzdatum}, ${7:Planungseinheit})",
+    "description": "[ERP-Planung] BMD_WERT_ALLIQUOT_PLP(<Menge>,<Startdatum>,<Endedatum>,<Hauptfirma>,'Planungsperiode',<Referenzdatum>,<Planungseinheit>)"
+  },
+  "ERP-Planung - Get-Plp": {
+    "prefix": "BMD_GET_PLP",
+    "body": "BMD_GET_PLP(${1:Hauptfirma}, ${2:Planungsperiode}, ${3:Referenzdatum}, ${4:Planungseinheit}, ${5:Feld-ConstName})",
+    "description": "[ERP-Planung] BMD_GET_PLP(<Hauptfirma>,'Planungsperiode',<Referenzdatum>,<Planungseinheit>,'Feld-ConstName')"
+  },
+  "ERP-Planung - Get-Ma-Kapa": {
+    "prefix": "BMD_GET_MA_KAPA",
+    "body": "BMD_GET_MA_KAPA(${1:Art}, ${2:MA-Firma}, ${3:MA-ID}, ${4:Firma}, ${5:Prozess-Nr.}, ${6:Von Zeit}, ${7:Bis Zeit})",
+    "description": "[ERP-Planung] BMD_GET_MA_KAPA(<Art>,<MA-Firma>,'MA-ID',<Firma>,'Prozess-Nr.',<Von Zeit>,<Bis Zeit>)"
+  },
+  "ERP-Planung - Get-Ma-Kapa-Async": {
+    "prefix": "BMD_GET_MA_KAPA_ASYNC",
+    "body": "BMD_GET_MA_KAPA_ASYNC(${1:Art}, ${2:MA-Firma}, ${3:MA-ID}, ${4:Firma}, ${5:Prozess-Nr.}, ${6:Von Zeit}, ${7:Bis Zeit})",
+    "description": "[ERP-Planung] BMD_GET_MA_KAPA_ASYNC(<Art>,<MA-Firma>,'MA-ID',<Firma>,'Prozess-Nr.',<Von Zeit>,<Bis Zeit>)"
+  },
+  "ERP-Planung - Baselinebetrag": {
+    "prefix": "BMD_GET_BASELINE_VALUE",
+    "body": "BMD_GET_BASELINE_VALUE(${1:Referenz}, ${2:Feld})",
+    "description": "[ERP-Planung] BMD_GET_BASELINE_VALUE('Referenz','Feld')"
+  },
+  "ERP-Planung - Baselinenummer": {
+    "prefix": "BMD_GET_BASELINE_INT",
+    "body": "BMD_GET_BASELINE_INT(${1:Referenz}, ${2:Feld})",
+    "description": "[ERP-Planung] BMD_GET_BASELINE_INT('Referenz','Feld')"
+  },
+  "ERP-Planung - Baselinetext": {
+    "prefix": "BMD_GET_BASELINE_TEXT",
+    "body": "BMD_GET_BASELINE_TEXT(${1:Referenz}, ${2:Feld})",
+    "description": "[ERP-Planung] BMD_GET_BASELINE_TEXT('Referenz','Feld')"
+  },
+  "ERP-Planung - Baselinedatum": {
+    "prefix": "BMD_GET_BASELINE_DATE",
+    "body": "BMD_GET_BASELINE_DATE(${1:Referenz}, ${2:Feld})",
+    "description": "[ERP-Planung] BMD_GET_BASELINE_DATE('Referenz','Feld')"
+  },
+  "ERP-Planung - Baselinedauer": {
+    "prefix": "BMD_GET_BASELINE_PERIOD",
+    "body": "BMD_GET_BASELINE_PERIOD(${1:Referenz}, ${2:Feld})",
+    "description": "[ERP-Planung] BMD_GET_BASELINE_PERIOD('Referenz','Feld')"
+  },
+  "ERP-Planung - Baseline-Sparkline": {
+    "prefix": "BMD_GET_BASELINE_SPARKLINE",
+    "body": "BMD_GET_BASELINE_SPARKLINE(${1:Referenz}, ${2:Feld})",
+    "description": "[ERP-Planung] BMD_GET_BASELINE_SPARKLINE('Referenz','Feld')"
+  },
+  "ERP-Planung - Get-Po-Data": {
+    "prefix": "BMD_GET_PO_DATA",
+    "body": "BMD_GET_PO_DATA(${1:VG-ID}, ${2:Feld-ID (MC)})",
+    "description": "[ERP-Planung] BMD_GET_PO_DATA(<VG-ID>,'Feld-ID (MC)')"
+  },
+  "ERP-Planung - Get-Vg-Data": {
+    "prefix": "BMD_PEP_GET_VG_DATA",
+    "body": "BMD_PEP_GET_VG_DATA(${1:VG-ID}, ${2:Feld-ID (MC)}, ${3:Modus})",
+    "description": "[ERP-Planung] BMD_PEP_GET_VG_DATA(<VG-ID>,'Feld-ID (MC)',<Modus>)"
+  },
+  "ERP-Planung - Get-PP-Data": {
+    "prefix": "BMD_PEP_GET_PP_DATA",
+    "body": "BMD_PEP_GET_PP_DATA(${1:Projektfirma}, ${2:Projektnummer}, ${3:PSP}, ${4:Feld-ID (MC)}, ${5:Modus})",
+    "description": "[ERP-Planung] BMD_PEP_GET_PP_DATA(<Projektfirma>,<Projektnummer>,<PSP>,'Feld-ID (MC)',<Modus>)"
+  },
+  "ERP-Planung - Get-Stake-Data": {
+    "prefix": "BMD_PEP_GET_STAKE_DATA",
+    "body": "BMD_PEP_GET_STAKE_DATA(${1:Projekt-Typ}, ${2:Projekt-Firmen-Nr.}, ${3:Projekt-Nr.}, ${4:Stakeholdertyp}, ${5:Pos}, ${6:Feld-ID (MC)}, ${7:Modus})",
+    "description": "[ERP-Planung] BMD_PEP_GET_STAKE_DATA(<Projekt-Typ>,<Projekt-Firmen-Nr.>,<Projekt-Nr.>,<Stakeholdertyp>,<Pos>,'Feld-ID (MC)',<Modus>)"
+  },
+  "ERP-Planung - Rtf-Text-unformatiert-Auslesen": {
+    "prefix": "BMD_PEP_GET_PLAIN_RFT_BLOB",
+    "body": "BMD_PEP_GET_PLAIN_RFT_BLOB(${1:Rtf-Text-Id})",
+    "description": "[ERP-Planung] BMD_PEP_GET_PLAIN_RFT_BLOB(<Rtf-Text-Id>)"
+  },
+  "ERP-Planung - Get-Blob-Converted": {
+    "prefix": "BMD_GET_BLOB_CONVERTED",
+    "body": "BMD_GET_BLOB_CONVERTED(${1:Rtf-Text-Id}, ${2:Sprache}, ${3:Format})",
+    "description": "[ERP-Planung] BMD_GET_BLOB_CONVERTED(<Rtf-Text-Id>,<Sprache>,'Format')"
+  },
+  "ERP-Planung - Jahr-Woche-als-Datum": {
+    "prefix": "BMD_PEP_ENCODE_DATE_WEEK",
+    "body": "BMD_PEP_ENCODE_DATE_WEEK(${1:Jahr}, ${2:Woche})",
+    "description": "[ERP-Planung] BMD_PEP_ENCODE_DATE_WEEK(<Jahr>,<Woche>)"
+  },
+  "ERP-Planung - Firmengruppe-der-Firma": {
+    "prefix": "BMD_FG_VON_FIRMENNR",
+    "body": "BMD_FG_VON_FIRMENNR(${1:Firmen-Nr.}, ${2:Std-Wert wenn keine Firma vorhanden})",
+    "description": "[ERP-Planung] BMD_FG_VON_FIRMENNR(<Firmen-Nr.>,<Std-Wert wenn keine Firma vorhanden>)"
+  },
+  "ERP-Planung - SHA256": {
+    "prefix": "BMD_CALC_SHA256",
+    "body": "BMD_CALC_SHA256(${1:Daten})",
+    "description": "[ERP-Planung] BMD_CALC_SHA256('Daten')"
+  },
+  "Artikel - Artikel vorhanden": {
+    "prefix": "BMD_ARTIKEL_EXISTS",
+    "body": "BMD_ARTIKEL_EXISTS(${1:Hauptfirma}, ${2:Artikel})",
+    "description": "[Artikel] BMD_ARTIKEL_EXISTS(<Hauptfirma>,'Artikel')"
+  },
+  "Artikel - Ermittlung Artikelwert": {
+    "prefix": "BMD_GET_ARTIKELDATA",
+    "body": "BMD_GET_ARTIKELDATA(${1:Hauptfirma}, ${2:Artikel}, ${3:Feld-ConstName})",
+    "description": "[Artikel] BMD_GET_ARTIKELDATA(<Hauptfirma>,'Artikel','Feld-ConstName')"
+  },
+  "Artikel - Ermittlung externer Artikelwert": {
+    "prefix": "BMD_GET_EXTARTIKELDATA",
+    "body": "BMD_GET_EXTARTIKELDATA(${1:Hauptfirma}, ${2:Artikel}, ${3:Ext. Artikelwertname (Nr.)})",
+    "description": "[Artikel] BMD_GET_EXTARTIKELDATA(<Hauptfirma>,'Artikel',<Ext. Artikelwertname (Nr.)>)"
+  },
+  "Artikel - Ermittlung EAN": {
+    "prefix": "BMD_GET_EANNUMMER",
+    "body": "BMD_GET_EANNUMMER(${1:Hauptfirma}, ${2:Artikel}, ${3:Einheit}, ${4:RÃ¼ckfall auf Haupt-EAN})",
+    "description": "[Artikel] BMD_GET_EANNUMMER(<Hauptfirma>,'Artikel','Einheit',<RÃ¼ckfall auf Haupt-EAN>)"
+  },
+  "Artikel - Aufruf Artikeletikettendruck": {
+    "prefix": "BMD_ARTIKEL_PRINT_ETIKETT",
+    "body": "BMD_ARTIKEL_PRINT_ETIKETT(${1:Hauptfirma}, ${2:Artikel})",
+    "description": "[Artikel] BMD_ARTIKEL_PRINT_ETIKETT(<Hauptfirma>,'Artikel')"
+  },
+  "Einheiten - Einheitenaufstellung": {
+    "prefix": "BMD_GET_UNITASSEMBLY",
+    "body": "BMD_GET_UNITASSEMBLY(${1:Hauptfirma}, ${2:Einheitentabellen-Nummer}, ${3:Menge}, ${4:Mengeneinheit})",
+    "description": "[Einheiten] BMD_GET_UNITASSEMBLY(<Hauptfirma>,<Einheitentabellen-Nummer>,<Menge>,'Mengeneinheit')"
+  },
+  "Einheiten - Einheitenaufstellung [via Artikel-Einheitentabelle]": {
+    "prefix": "BMD_GET_ARTICLE_UNITASSEMBLY",
+    "body": "BMD_GET_ARTICLE_UNITASSEMBLY(${1:Artikel-Firma}, ${2:Artikel}, ${3:Menge}, ${4:Mengeneinheit})",
+    "description": "[Einheiten] BMD_GET_ARTICLE_UNITASSEMBLY(<Artikel-Firma>,'Artikel',<Menge>,'Mengeneinheit')"
+  },
+  "Einheiten - Einheitenaufstellung mit Alternativen": {
+    "prefix": "BMD_GET_UNITASSEMBLY_WITH_ALTERNATIVES",
+    "body": "BMD_GET_UNITASSEMBLY_WITH_ALTERNATIVES(${1:Hauptfirma}, ${2:Einheitentabellen-Nummer}, ${3:Menge}, ${4:Mengeneinheit})",
+    "description": "[Einheiten] BMD_GET_UNITASSEMBLY_WITH_ALTERNATIVES(<Hauptfirma>,<Einheitentabellen-Nummer>,<Menge>,'Mengeneinheit')"
+  },
+  "Einheiten - Einheitenaufstellung mit Alternativen [via Artikel-Einheitentabelle]": {
+    "prefix": "BMD_GET_ARTICLE_UNITASSEMBLY_WITH_ALTERNATIVES",
+    "body": "BMD_GET_ARTICLE_UNITASSEMBLY_WITH_ALTERNATIVES(${1:Artikel-Firma}, ${2:Artikel}, ${3:Menge}, ${4:Mengeneinheit})",
+    "description": "[Einheiten] BMD_GET_ARTICLE_UNITASSEMBLY_WITH_ALTERNATIVES(<Artikel-Firma>,'Artikel',<Menge>,'Mengeneinheit')"
+  },
+  "Einheiten - Artikelmenge-Einheitenumwandlung": {
+    "prefix": "BMD_GET_QUANTITY_IN_UNIT",
+    "body": "BMD_GET_QUANTITY_IN_UNIT(${1:Artikel-Firma}, ${2:Artikel}, ${3:Menge}, ${4:Mengeneinheit}, ${5:Ziel-Einheit})",
+    "description": "[Einheiten] BMD_GET_QUANTITY_IN_UNIT(<Artikel-Firma>,'Artikel',<Menge>,'Mengeneinheit','Ziel-Einheit')"
+  },
+  "Einheiten - Artikelmenge-Einheitenrundung": {
+    "prefix": "BMD_ROUND_QUANTITY_IN_UNIT",
+    "body": "BMD_ROUND_QUANTITY_IN_UNIT(${1:Menge}, ${2:Mengeneinheit})",
+    "description": "[Einheiten] BMD_ROUND_QUANTITY_IN_UNIT(<Menge>,'Mengeneinheit')"
+  },
+  "Einheiten - Mengen-Einheitenumwandlung lt. Einheitentabelle": {
+    "prefix": "BMD_GET_QUANTITY_IN_UNIT_BY_TABLE",
+    "body": "BMD_GET_QUANTITY_IN_UNIT_BY_TABLE(${1:Hauptfirma}, ${2:Einheitentabellen-Nummer}, ${3:Menge}, ${4:Mengeneinheit}, ${5:Ziel-Einheit})",
+    "description": "[Einheiten] BMD_GET_QUANTITY_IN_UNIT_BY_TABLE(<Hauptfirma>,<Einheitentabellen-Nummer>,<Menge>,'Mengeneinheit','Ziel-Einheit')"
+  },
+  "Einheiten - Mengen-Umrechnungsfaktor lt. Einheitentabelle": {
+    "prefix": "BMD_GET_QUANTITY_FACTOR_IN_UNIT_BY_TABLE",
+    "body": "BMD_GET_QUANTITY_FACTOR_IN_UNIT_BY_TABLE(${1:Hauptfirma}, ${2:Einheitentabellen-Nummer}, ${3:Mengeneinheit}, ${4:Ziel-Einheit})",
+    "description": "[Einheiten] BMD_GET_QUANTITY_FACTOR_IN_UNIT_BY_TABLE(<Hauptfirma>,<Einheitentabellen-Nummer>,'Mengeneinheit','Ziel-Einheit')"
+  },
+  "Einheiten - Mengen-Einheitenumwandlung lt. Einheitentabelle und Reihenfolge": {
+    "prefix": "BMD_GET_QUANTITY_IN_UNIT_BY_TABLE_IDX",
+    "body": "BMD_GET_QUANTITY_IN_UNIT_BY_TABLE_IDX(${1:Hauptfirma}, ${2:Einheitentabellen-Nummer}, ${3:Menge}, ${4:Mengeneinheit}, ${5:Reihenfolge in Einheitentabelle})",
+    "description": "[Einheiten] BMD_GET_QUANTITY_IN_UNIT_BY_TABLE_IDX(<Hauptfirma>,<Einheitentabellen-Nummer>,<Menge>,'Mengeneinheit',<Reihenfolge in Einheitentabelle>)"
+  },
+  "Einheiten - Mengen-Umrechnungsfaktor lt. Einheitentabelle und Reihenfolge": {
+    "prefix": "BMD_GET_QUANTITY_FACTOR_IN_UNIT_BY_TABLE_IDX",
+    "body": "BMD_GET_QUANTITY_FACTOR_IN_UNIT_BY_TABLE_IDX(${1:Hauptfirma}, ${2:Einheitentabellen-Nummer}, ${3:Mengeneinheit}, ${4:Reihenfolge in Einheitentabelle})",
+    "description": "[Einheiten] BMD_GET_QUANTITY_FACTOR_IN_UNIT_BY_TABLE_IDX(<Hauptfirma>,<Einheitentabellen-Nummer>,'Mengeneinheit',<Reihenfolge in Einheitentabelle>)"
+  },
+  "Einheiten - Wandelt eine Laenge in Grundeinheit um": {
+    "prefix": "BMD_GET_QUANTITY_IN_LGE",
+    "body": "BMD_GET_QUANTITY_IN_LGE(${1:Artikel-Firma}, ${2:Artikel}, ${3:Einheitentabellen-Nummer}, ${4:Menge}, ${5:Mengeneinheit})",
+    "description": "[Einheiten] BMD_GET_QUANTITY_IN_LGE(<Artikel-Firma>,'Artikel',<Einheitentabellen-Nummer>,<Menge>,'Mengeneinheit')"
+  },
+  "Einheiten - Wert-Einheitenumwandlung lt. Einheitentabelle": {
+    "prefix": "BMD_GET_VALUE_IN_UNIT_BY_TABLE",
+    "body": "BMD_GET_VALUE_IN_UNIT_BY_TABLE(${1:Hauptfirma}, ${2:Einheitentabellen-Nummer}, ${3:Wert}, ${4:Werteinheit}, ${5:Ziel-Einheit})",
+    "description": "[Einheiten] BMD_GET_VALUE_IN_UNIT_BY_TABLE(<Hauptfirma>,<Einheitentabellen-Nummer>,<Wert>,'Werteinheit','Ziel-Einheit')"
+  },
+  "Einheiten - Einheit vorhanden": {
+    "prefix": "BMD_GET_UNIT_EXISTS",
+    "body": "BMD_GET_UNIT_EXISTS(${1:Einheit})",
+    "description": "[Einheiten] BMD_GET_UNIT_EXISTS('Einheit')"
+  },
+  "Verkauf - VK Wert Netto": {
+    "prefix": "BMD_GET_VKWERT_NETTO",
+    "body": "BMD_GET_VKWERT_NETTO(${1:Firma}, ${2:Erfassungs-Kennz.}, ${3:Erfassungs-Nr.})",
+    "description": "[Verkauf] BMD_GET_VKWERT_NETTO(<Firma>,'Erfassungs-Kennz.',<Erfassungs-Nr.>)"
+  },
+  "Verkauf - Rechnungswert Netto (StammwÃ¤hrung)": {
+    "prefix": "BMD_GET_RNGWERT_NETTO_STAMMW",
+    "body": "BMD_GET_RNGWERT_NETTO_STAMMW(${1:Firma}, ${2:Rechnung Lfd-Nr})",
+    "description": "[Verkauf] BMD_GET_RNGWERT_NETTO_STAMMW(<Firma>,<Rechnung Lfd-Nr>)"
+  },
+  "Einkauf - EK-Wert netto": {
+    "prefix": "BMD_GET_EKWERT_NETTO",
+    "body": "BMD_GET_EKWERT_NETTO(${1:Firma}, ${2:Erfassungs-Kennz.}, ${3:Erfassungs-Nr.})",
+    "description": "[Einkauf] BMD_GET_EKWERT_NETTO(<Firma>,'Erfassungs-Kennz.',<Erfassungs-Nr.>)"
+  },
+  "Kontofindung - MwSt-Satz": {
+    "prefix": "BMD_GET_MWST_SATZ",
+    "body": "BMD_GET_MWST_SATZ(${1:Kontenart}, ${2:Firma (Artikel)}, ${3:Artikel-Nr.})",
+    "description": "[Kontofindung] BMD_GET_MWST_SATZ(<Kontenart>,<Firma (Artikel)>,'Artikel-Nr.')"
+  },
+  "Kontofindung - Wws-Runden": {
+    "prefix": "BMD_ROUNDING",
+    "body": "BMD_ROUNDING(${1:Wert}, ${2:PrÃ¤zision}, ${3:Rundungsmodus})",
+    "description": "[Kontofindung] BMD_ROUNDING(<Wert>,<PrÃ¤zision>,'Rundungsmodus')"
+  },
+  "Kontofindung - Format-Dauer": {
+    "prefix": "BMD_FORMAT_DAUER",
+    "body": "BMD_FORMAT_DAUER(${1:Dauer}, ${2:Format})",
+    "description": "[Kontofindung] BMD_FORMAT_DAUER(<Dauer>,'Format')"
+  },
+  "Kontofindung - IstFeiertag": {
+    "prefix": "BMD_IST_FEIERTAG",
+    "body": "BMD_IST_FEIERTAG(${1:Datum}, ${2:MA-Firma}, ${3:MA-ID})",
+    "description": "[Kontofindung] BMD_IST_FEIERTAG(<Datum>,<MA-Firma>,'MA-ID')"
+  },
+  "Kontofindung - Ãœbersetzung auslesen": {
+    "prefix": "BMD_GET_WWSUEBERSETZUNG",
+    "body": "BMD_GET_WWSUEBERSETZUNG(${1:Feldname}, ${2:Sprache}, ${3:Key1}, ${4:Key2}, ${5:Key3})",
+    "description": "[Kontofindung] BMD_GET_WWSUEBERSETZUNG('Feldname',<Sprache>,'Key1','Key2','Key3')"
+  },
+  "Kontofindung - Ermittlung Transporttyp-Eigenschaft": {
+    "prefix": "BMD_GET_TRANSPORTTYPDATA",
+    "body": "BMD_GET_TRANSPORTTYPDATA(${1:Hauptfirma}, ${2:Transporttyp}, ${3:Feld-ConstName})",
+    "description": "[Kontofindung] BMD_GET_TRANSPORTTYPDATA(<Hauptfirma>,'Transporttyp','Feld-ConstName')"
+  },
+  "KI-Funktionen - Ãœbersetzen": {
+    "prefix": "BMD_KI_TRANSLATION",
+    "body": "BMD_KI_TRANSLATION(${1:Fox text function}, ${2:source}, ${3:Language})",
+    "description": "[KI-Funktionen] BMD_KI_TRANSLATION(<Fox text function>,'source','Language')"
+  },
+  "KI-Funktionen - Klassifizieren": {
+    "prefix": "BMD_KI_CLASSIFICATION",
+    "body": "BMD_KI_CLASSIFICATION(${1:Fox text function}, ${2:source}, ${3:Entscheidungsklassen})",
+    "description": "[KI-Funktionen] BMD_KI_CLASSIFICATION(<Fox text function>,'source','Entscheidungsklassen (opt)')"
+  },
+  "KI-Funktionen - Lektorieren": {
+    "prefix": "BMD_KI_PROOFREAD",
+    "body": "BMD_KI_PROOFREAD(${1:Fox text function}, ${2:source})",
+    "description": "[KI-Funktionen] BMD_KI_PROOFREAD(<Fox text function>,'source')"
+  },
+  "KI-Funktionen - Dok-Chat": {
+    "prefix": "BMD_KI_DOCCHAT",
+    "body": "BMD_KI_DOCCHAT(${1:Fox text function}, ${2:source}, ${3:Frage})",
+    "description": "[KI-Funktionen] BMD_KI_DOCCHAT(<Fox text function>,'source','Frage')"
+  },
+  "KI-Funktionen - Ãœberschrift erstellen": {
+    "prefix": "BMD_KI_CREATEHEADING",
+    "body": "BMD_KI_CREATEHEADING(${1:Fox text function}, ${2:source})",
+    "description": "[KI-Funktionen] BMD_KI_CREATEHEADING(<Fox text function>,'source')"
+  },
+  "KI-Funktionen - Text erstellen": {
+    "prefix": "BMD_KI_CREATETEXT",
+    "body": "BMD_KI_CREATETEXT(${1:Fox text function}, ${2:source})",
+    "description": "[KI-Funktionen] BMD_KI_CREATETEXT(<Fox text function>,'source')"
+  },
+  "KI-Funktionen - Zusammenfassen": {
+    "prefix": "BMD_KI_SUMMARISE",
+    "body": "BMD_KI_SUMMARISE(${1:Fox text function}, ${2:source})",
+    "description": "[KI-Funktionen] BMD_KI_SUMMARISE(<Fox text function>,'source')"
+  },
+  "PPS MGA - Auswahl von Waage und Transporttyp": {
+    "prefix": "BMD_SCREEN_WEIGH",
+    "body": "BMD_SCREEN_WEIGH(${1:Firma})",
+    "description": "[PPS MGA] BMD_SCREEN_WEIGH(<Firma>)"
+  },
+  "PPS MGA - Waagenbefehl-AusfÃ¼hrung": {
+    "prefix": "BMD_TOOL_COMMAND_EXECUTE",
+    "body": "BMD_TOOL_COMMAND_EXECUTE(${1:Firma}, ${2:Werkzeug-ID}, ${3:Befehl}, ${4:Befehlsparameter})",
+    "description": "[PPS MGA] BMD_TOOL_COMMAND_EXECUTE(<Firma>,'Werkzeug-ID','Befehl','Befehlsparameter')"
+  },
+  "PPS MGA - Wiegeergebnisverarbeitung": {
+    "prefix": "BMD_GET_WEIGHT_RESULT",
+    "body": "BMD_GET_WEIGHT_RESULT(${1:Wert-ID})",
+    "description": "[PPS MGA] BMD_GET_WEIGHT_RESULT('Wert-ID')"
+  },
+  "ERP-Merker - Funktionsergebnisse/Parameter lÃ¶schen": {
+    "prefix": "BMD_FUNCTIONVALUES_CLR",
+    "body": "BMD_FUNCTIONVALUES_CLR()",
+    "description": "[ERP-Merker] BMD_FUNCTIONVALUES_CLR()"
+  },
+  "ERP-Merker - Funktionsergebnisse auslesen": {
+    "prefix": "BMD_FUNCTIONVALUES_GET",
+    "body": "BMD_FUNCTIONVALUES_GET(${1:AusprÃ¤gung}, ${2:Standard-Wert})",
+    "description": "[ERP-Merker] BMD_FUNCTIONVALUES_GET('AusprÃ¤gung','Standard-Wert')"
+  },
+  "ERP-Merker - Funktionsparameter schreiben": {
+    "prefix": "BMD_FUNCTIONVALUES_SET",
+    "body": "BMD_FUNCTIONVALUES_SET(${1:AusprÃ¤gung}, ${2:Wert})",
+    "description": "[ERP-Merker] BMD_FUNCTIONVALUES_SET('AusprÃ¤gung','Wert')"
+  },
+  "MaterialConsumption - \"Dialog \"\"Retourware erfassen\"\" starten\"": {
+    "prefix": "BMD_BOM_START_RETURNMATERIAL_DIALOG",
+    "body": "BMD_BOM_START_RETURNMATERIAL_DIALOG(${1:Eps-Id}, ${2:MA-Firma}, ${3:MA-ID})",
+    "description": "[MaterialConsumption] BMD_BOM_START_RETURNMATERIAL_DIALOG(<Eps-Id>,<MA-Firma>,'MA-ID')"
+  },
+  "CRMWF - Instanzparameter abfragen": {
+    "prefix": "BMD_1751587",
+    "body": "BMD_1751587(${1:Type})",
+    "description": "[CRMWF] BMD_1751587('Type')"
+  },
+  "CRMWF - Mitarbeiter hinzufÃ¼gen": {
+    "prefix": "BMD_1751728",
+    "body": "BMD_1751728(${1:FirmenNr}, ${2:Personen-ID})",
+    "description": "[CRMWF] BMD_1751728(<FirmenNr>,'Personen-ID')"
+  },
+  "CRMWF - Instanzvariable speichern": {
+    "prefix": "BMD_1751776",
+    "body": "BMD_1751776(${1:Name}, ${2:Wert})",
+    "description": "[CRMWF] BMD_1751776('Name','Wert')"
+  },
+  "CRMWF - Instanzvariable laden": {
+    "prefix": "BMD_1751777",
+    "body": "BMD_1751777(${1:Name})",
+    "description": "[CRMWF] BMD_1751777('Name')"
+  },
+  "CRMWF - AskValueStr -> Instanzvariable": {
+    "prefix": "BMD_1751780",
+    "body": "BMD_1751780(${1:Fenstertitel}, ${2:Anzeigetext}, ${3:Defaultwert}, ${4:Instanzvariable})",
+    "description": "[CRMWF] BMD_1751780('Fenstertitel','Anzeigetext','Defaultwert','Instanzvariable')"
+  },
+  "CRMWF - AskValueList -> Instanzvariable": {
+    "prefix": "BMD_1751779",
+    "body": "BMD_1751779(${1:Werteliste}, ${2:Texteliste}, ${3:Instanzvariable})",
+    "description": "[CRMWF] BMD_1751779('Wert1,Wert2,...','Text1,Text2,...','Instanzvariable')"
+  },
+  "CRMWF - AskMultipleValues -> Instanzvariable": {
+    "prefix": "BMD_1751781",
+    "body": "BMD_1751781(${1:Fenstertitel}, ${2:Werte}, ${3:Defaultwert}, ${4:Separator}, ${5:Instanzvariable})",
+    "description": "[CRMWF] BMD_1751781('Fenstertitel','One,Two,Three','Three',',','Instanzvariable')"
+  },
+  "ERWF - ER-Kontrolle - Restbetrag": {
+    "prefix": "Restbetrag;BMD_KONTIERUNG_RESTBETRAG",
+    "body": "Restbetrag;BMD_KONTIERUNG_RESTBETRAG()",
+    "description": "[ERWF] Restbetrag;BMD_KONTIERUNG_RESTBETRAG()"
+  },
+  "ERWF - ER-Kontrolle - Kontierung": {
+    "prefix": "Kontierung;BMD_KONTIERUNG_IST_OK",
+    "body": "Kontierung;BMD_KONTIERUNG_IST_OK()",
+    "description": "[ERWF] Kontierung;BMD_KONTIERUNG_IST_OK()"
+  },
+  "FIBU - GetKontengruppe": {
+    "prefix": "BMD_GetKontengruppe",
+    "body": "BMD_GetKontengruppe(${1:Firmen-Nr}, ${2:KontoNr})",
+    "description": "[FIBU] BMD_GetKontengruppe(<Firmen-Nr>,<KontoNr>)"
+  },
+  "Buchungsliste - CreateFMacroBuchungList": {
+    "prefix": "CreateFMacroBuchungList",
+    "body": "CreateFMacroBuchungList(${1:Firmen-Nr}, ${2:FIBUNr})",
+    "description": "[Buchungsliste] BMD_BuchungList := FibuMacroObject.CreateFMacroBuchungList(<Firmen-Nr>,<FIBUNr>)"
+  },
+  "Buchungsliste - GetExternalFMacroBuchungList": {
+    "prefix": "GetExternalFMacroBuchungList",
+    "body": "GetExternalFMacroBuchungList(${1:Firmen-Nr}, ${2:FIBUNr})",
+    "description": "[Buchungsliste] BMD_BuchungList := FibuMacroObject.GetExternalFMacroBuchungList(<Firmen-Nr>,<FIBUNr>)"
+  },
+  "Buchungsliste - NewBuchung": {
+    "prefix": "NewBuchung",
+    "body": "NewBuchung()",
+    "description": "[Buchungsliste] BMD_BuchungList.NewBuchung()"
+  },
+  "Buchungsliste - GetData": {
+    "prefix": "GetData",
+    "body": "GetData(${1:Feldbezeichnung})",
+    "description": "[Buchungsliste] BMD_BuchungList.GetData('Feldbezeichnung')"
+  },
+  "Buchungsliste - SetData": {
+    "prefix": "SetData",
+    "body": "SetData(${1:Feldbezeichnung}, ${2:Daten})",
+    "description": "[Buchungsliste] BMD_BuchungList.SetData('Feldbezeichnung','Daten')"
+  },
+  "Buchungsliste - ReadBuchungFromList": {
+    "prefix": "ReadBuchungFromList",
+    "body": "ReadBuchungFromList(${1:Index})",
+    "description": "[Buchungsliste] BMD_BuchungList.ReadBuchungFromList(<Index>)"
+  },
+  "Buchungsliste - WriteDataToBuchung": {
+    "prefix": "WriteDataToBuchung",
+    "body": "WriteDataToBuchung()",
+    "description": "[Buchungsliste] BMD_BuchungList.WriteDataToBuchung()"
+  },
+  "Buchungsliste - AddBuchungToList": {
+    "prefix": "AddBuchungToList",
+    "body": "AddBuchungToList()",
+    "description": "[Buchungsliste] BMD_BuchungList.AddBuchungToList()"
+  },
+  "Buchungsliste - CopyBuchungToList": {
+    "prefix": "CopyBuchungToList",
+    "body": "CopyBuchungToList(${1:Buchungsliste}, ${2:Index})",
+    "description": "[Buchungsliste] BMD_BuchungList.CopyBuchungToList(Buchungsliste,<Index (opt.)>)"
+  },
+  "Buchungsliste - MergePersonenBuchungen": {
+    "prefix": "MergePersonenBuchungen",
+    "body": "MergePersonenBuchungen()",
+    "description": "[Buchungsliste] BMD_BuchungList.MergePersonenBuchungen()"
+  },
+  "Buchungsliste - CountList": {
+    "prefix": "CountList",
+    "body": "CountList()",
+    "description": "[Buchungsliste] BMD_BuchungList.CountList()"
+  },
+  "Buchungsliste - DeleteBuchung": {
+    "prefix": "DeleteBuchung",
+    "body": "DeleteBuchung(${1:Index})",
+    "description": "[Buchungsliste] BMD_BuchungList.DeleteBuchung(<Index>)"
+  },
+  "Buchungsliste - InsertBuchung": {
+    "prefix": "InsertBuchung",
+    "body": "InsertBuchung(${1:Index})",
+    "description": "[Buchungsliste] BMD_BuchungList.InsertBuchung(<Index>)"
+  },
+  "Buchungsliste - ClearList": {
+    "prefix": "ClearList",
+    "body": "ClearList()",
+    "description": "[Buchungsliste] BMD_BuchungList.ClearList()"
+  },
+  "Buchungsliste - AddDocumentToBuchung": {
+    "prefix": "AddDocumentToBuchung",
+    "body": "AddDocumentToBuchung(${1:Dateiname (absoluter Pfad)}, ${2:Kategorie})",
+    "description": "[Buchungsliste] BMD_BuchungList.AddDocumentToBuchung('Dateiname (absoluter Pfad)','Kategorie (opt.)')"
+  },
+  "Buchungsliste - ReadDocumentFromBuchung": {
+    "prefix": "ReadDocumentFromBuchung",
+    "body": "ReadDocumentFromBuchung(${1:Index})",
+    "description": "[Buchungsliste] BMD_BuchungList.ReadDocumentFromBuchung(<Index>)"
+  },
+  "Buchungsliste - CountDocument": {
+    "prefix": "CountDocument",
+    "body": "CountDocument()",
+    "description": "[Buchungsliste] BMD_BuchungList.CountDocument()"
+  },
+  "Buchungsliste - DeleteDocument": {
+    "prefix": "DeleteDocument",
+    "body": "DeleteDocument(${1:Index})",
+    "description": "[Buchungsliste] BMD_BuchungList.DeleteDocument(<Index>)"
+  },
+  "Buchungsliste - GetErrorText": {
+    "prefix": "GetErrorText",
+    "body": "GetErrorText()",
+    "description": "[Buchungsliste] BMD_BuchungList.GetErrorText()"
+  },
+  "Buchungsliste - NewKoreErfassung": {
+    "prefix": "NewKoreErfassung",
+    "body": "NewKoreErfassung()",
+    "description": "[Buchungsliste] BMD_BuchungList.NewKoreErfassung()"
+  },
+  "Buchungsliste - ReadKoreErfassungFromBuchung": {
+    "prefix": "ReadKoreErfassungFromBuchung",
+    "body": "ReadKoreErfassungFromBuchung(${1:Index})",
+    "description": "[Buchungsliste] BMD_BuchungList.ReadKoreErfassungFromBuchung(<Index>)"
+  },
+  "Buchungsliste - WriteDataToKoreErfassung": {
+    "prefix": "WriteDataToKoreErfassung",
+    "body": "WriteDataToKoreErfassung()",
+    "description": "[Buchungsliste] BMD_BuchungList.WriteDataToKoreErfassung()"
+  },
+  "Buchungsliste - AddKoreErfassungToBuchung": {
+    "prefix": "AddKoreErfassungToBuchung",
+    "body": "AddKoreErfassungToBuchung()",
+    "description": "[Buchungsliste] BMD_BuchungList.AddKoreErfassungToBuchung()"
+  },
+  "Buchungsliste - CountKoreErfassung": {
+    "prefix": "CountKoreErfassung",
+    "body": "CountKoreErfassung()",
+    "description": "[Buchungsliste] BMD_BuchungList.CountKoreErfassung()"
+  },
+  "Buchungsliste - DeleteKoreErfassung": {
+    "prefix": "DeleteKoreErfassung",
+    "body": "DeleteKoreErfassung(${1:Index})",
+    "description": "[Buchungsliste] BMD_BuchungList.DeleteKoreErfassung(<Index>)"
+  },
+  "Buchungsliste - NewAuszifferung": {
+    "prefix": "NewAuszifferung",
+    "body": "NewAuszifferung()",
+    "description": "[Buchungsliste] BMD_BuchungList.NewAuszifferung()"
+  },
+  "Buchungsliste - ReadAuszifferungFromBuchung": {
+    "prefix": "ReadAuszifferungFromBuchung",
+    "body": "ReadAuszifferungFromBuchung(${1:Index})",
+    "description": "[Buchungsliste] BMD_BuchungList.ReadAuszifferungFromBuchung(<Index>)"
+  },
+  "Buchungsliste - WriteDataToAuszifferung": {
+    "prefix": "WriteDataToAuszifferung",
+    "body": "WriteDataToAuszifferung()",
+    "description": "[Buchungsliste] BMD_BuchungList.WriteDataToAuszifferung()"
+  },
+  "Buchungsliste - AddAuszifferungToBuchung": {
+    "prefix": "AddAuszifferungToBuchung",
+    "body": "AddAuszifferungToBuchung()",
+    "description": "[Buchungsliste] BMD_BuchungList.AddAuszifferungToBuchung()"
+  },
+  "Buchungsliste - CountAuszifferung": {
+    "prefix": "CountAuszifferung",
+    "body": "CountAuszifferung()",
+    "description": "[Buchungsliste] BMD_BuchungList.CountAuszifferung()"
+  },
+  "Buchungsliste - DeleteAuszifferung": {
+    "prefix": "DeleteAuszifferung",
+    "body": "DeleteAuszifferung(${1:Index})",
+    "description": "[Buchungsliste] BMD_BuchungList.DeleteAuszifferung(<Index>)"
+  },
+  "Buchungsliste - CountOPZuordnungList": {
+    "prefix": "CountOPZuordnungList",
+    "body": "CountOPZuordnungList()",
+    "description": "[Buchungsliste] BMD_BuchungList.CountOPZuordnungList()"
+  },
+  "Buchungsliste - ReadOPZuordnungFromBuchung": {
+    "prefix": "ReadOPZuordnungFromBuchung",
+    "body": "ReadOPZuordnungFromBuchung(${1:Index})",
+    "description": "[Buchungsliste] BMD_BuchungList..ReadOPZuordnungFromBuchung(<Index>)"
+  },
+  "Buchungsliste - NewSrStorno": {
+    "prefix": "NewSrStorno",
+    "body": "NewSrStorno()",
+    "description": "[Buchungsliste] BMD_BuchungList.NewSrStorno()"
+  },
+  "Buchungsliste - ReadSrStornoFromBuchung": {
+    "prefix": "ReadSrStornoFromBuchung",
+    "body": "ReadSrStornoFromBuchung(${1:Index})",
+    "description": "[Buchungsliste] BMD_BuchungList.ReadSrStornoFromBuchung(<Index>)"
+  },
+  "Buchungsliste - WriteDataToSrStorno": {
+    "prefix": "WriteDataToSrStorno",
+    "body": "WriteDataToSrStorno()",
+    "description": "[Buchungsliste] BMD_BuchungList.WriteDataToSrStorno()"
+  },
+  "Buchungsliste - AddSrStornoToBuchung": {
+    "prefix": "AddSrStornoToBuchung",
+    "body": "AddSrStornoToBuchung()",
+    "description": "[Buchungsliste] BMD_BuchungList.AddSrStornoToBuchung()"
+  },
+  "Buchungsliste - CountSrStorno": {
+    "prefix": "CountSrStorno",
+    "body": "CountSrStorno()",
+    "description": "[Buchungsliste] BMD_BuchungList.CountSrStorno()"
+  },
+  "Buchungsliste - NewProzAuft": {
+    "prefix": "NewProzAuft",
+    "body": "NewProzAuft()",
+    "description": "[Buchungsliste] BMD_BuchungList.NewProzAuft()"
+  },
+  "Buchungsliste - ReadProzAuftFromBuchung": {
+    "prefix": "ReadProzAuftFromBuchung",
+    "body": "ReadProzAuftFromBuchung(${1:Index})",
+    "description": "[Buchungsliste] BMD_BuchungList.ReadProzAuftFromBuchung(<Index>)"
+  },
+  "Buchungsliste - WriteDataToProzAuft": {
+    "prefix": "WriteDataToProzAuft",
+    "body": "WriteDataToProzAuft()",
+    "description": "[Buchungsliste] BMD_BuchungList.WriteDataToProzAuft()"
+  },
+  "Buchungsliste - AddProzAuftToBuchung": {
+    "prefix": "AddProzAuftToBuchung",
+    "body": "AddProzAuftToBuchung()",
+    "description": "[Buchungsliste] BMD_BuchungList.AddProzAuftToBuchung()"
+  },
+  "Buchungsliste - CountProzAuft": {
+    "prefix": "CountProzAuft",
+    "body": "CountProzAuft()",
+    "description": "[Buchungsliste] BMD_BuchungList.CountProzAuft()"
+  },
+  "Buchungsliste - NewLandwProd": {
+    "prefix": "NewLandwProd",
+    "body": "NewLandwProd()",
+    "description": "[Buchungsliste] BMD_BuchungList.NewLandwProd()"
+  },
+  "Buchungsliste - ReadLandwProdFromBuchung": {
+    "prefix": "ReadLandwProdFromBuchung",
+    "body": "ReadLandwProdFromBuchung(${1:Index})",
+    "description": "[Buchungsliste] BMD_BuchungList.ReadLandwProdFromBuchung(<Index>)"
+  },
+  "Buchungsliste - WriteDataToLandwProd": {
+    "prefix": "WriteDataToLandwProd",
+    "body": "WriteDataToLandwProd()",
+    "description": "[Buchungsliste] BMD_BuchungList.WriteDataToLandwProd()"
+  },
+  "Buchungsliste - AddLandwProdToBuchung": {
+    "prefix": "AddLandwProdToBuchung",
+    "body": "AddLandwProdToBuchung()",
+    "description": "[Buchungsliste] BMD_BuchungList.AddLandwProdToBuchung()"
+  },
+  "Buchungsliste - CountLandwProd": {
+    "prefix": "CountLandwProd",
+    "body": "CountLandwProd()",
+    "description": "[Buchungsliste] BMD_BuchungList.CountLandwProd()"
+  },
+  "Buchungsliste - WriteBuErf": {
+    "prefix": "WriteBuErf",
+    "body": "WriteBuErf(${1:Dateiname}, ${2:5.5-BuErf}, ${3:Datei ergÃ¤nzen})",
+    "description": "[Buchungsliste] BMD_BuchungList.WriteBuErf('Dateiname',<5.5-BuErf (opt.)>,<Datei ergÃ¤nzen (opt.)>)"
+  },
+  "Buchungsliste - AddBuchungByBuchungIdToList": {
+    "prefix": "AddBuchungByBuchungIdToList",
+    "body": "AddBuchungByBuchungIdToList(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Buchung-ID}, ${4:Mit OP-Auszifferung}, ${5:Mit KORE-Erfassung})",
+    "description": "[Buchungsliste] BMD_BuchungList.AddBuchungByBuchungIdToList(<Firmen-Nr>,<FIBU-Nr>,<Buchung-ID>,<Mit OP-Auszifferung>,<Mit KORE-Erfassung>)"
+  },
+  "Buchungsliste - AddBuchungByBelegIdToList": {
+    "prefix": "AddBuchungByBelegIdToList",
+    "body": "AddBuchungByBelegIdToList(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Beleg-ID}, ${4:Mit OP-Auszifferung}, ${5:Mit KORE-Erfassung})",
+    "description": "[Buchungsliste] BMD_BuchungList.AddBuchungByBelegIdToList(<Firmen-Nr>,<FIBU-Nr>,<Beleg-ID>,<Mit OP-Auszifferung>,<Mit KORE-Erfassung>)"
+  },
+  "Buchungsliste - AddBuchungBySqlToList": {
+    "prefix": "AddBuchungBySqlToList",
+    "body": "AddBuchungBySqlToList(${1:SQL-Text}, ${2:Mit OP-Auszifferung}, ${3:Mit KORE-Erfassung})",
+    "description": "[Buchungsliste] BMD_BuchungList.AddBuchungBySqlToList('SQL-Text',<Mit OP-Auszifferung>,<Mit KORE-Erfassung>)"
+  },
+  "Buchungsliste - AddBuErfToList": {
+    "prefix": "AddBuErfToList",
+    "body": "AddBuErfToList(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:BuErf Dateiname}, ${4:Logdatei (z. B. FIBUIMPORT.LOG)})",
+    "description": "[Buchungsliste] BMD_BuchungList.AddBuErfToList(<Firmen-Nr>,<FIBU-Nr>,'BuErf Dateiname','Logdatei (z. B. FIBUIMPORT.LOG)')"
+  },
+  "Buchungsliste - WriteExportdate": {
+    "prefix": "WriteExportdate",
+    "body": "WriteExportdate(${1:Export-Datum})",
+    "description": "[Buchungsliste] BMD_BuchungList.WriteExportdate(<Export-Datum>)"
+  },
+  "Buchungsliste - SetLogFilename": {
+    "prefix": "SetLogFilename",
+    "body": "SetLogFilename(${1:Dateiname})",
+    "description": "[Buchungsliste] BMD_BuchungList.SetLogFilename('Dateiname')"
+  },
+  "Buchungsliste - ImportBuchungenMI": {
+    "prefix": "ImportBuchungenMI",
+    "body": "ImportBuchungenMI(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Logdatei (z. B. FIBUIMPORT.LOG)}, ${4:Import OP-BetrÃ¤ge?})",
+    "description": "[Buchungsliste] BMD_BuchungList.ImportBuchungenMI(<Firmen-Nr>,<FIBU-Nr>,'Logdatei (z. B. FIBUIMPORT.LOG)',<Import OP-BetrÃ¤ge?>)"
+  },
+  "ER-Kontrolle - CreateFMacroERKontrolle": {
+    "prefix": "CreateFMacroERKontrolle",
+    "body": "CreateFMacroERKontrolle()",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle := FibuMacroObject.CreateFMacroERKontrolle()"
+  },
+  "ER-Kontrolle - InsertERBuchung": {
+    "prefix": "InsertERBuchung",
+    "body": "InsertERBuchung(${1:Stringlist})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.InsertERBuchung(Stringlist)"
+  },
+  "ER-Kontrolle - InsertERKonto": {
+    "prefix": "InsertERKonto",
+    "body": "InsertERKonto(${1:Stringlist})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.InsertERKonto(Stringlist)"
+  },
+  "ER-Kontrolle - InsertERKost": {
+    "prefix": "InsertERKost",
+    "body": "InsertERKost(${1:Stringlist})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.InsertERKost(Stringlist)"
+  },
+  "ER-Kontrolle - InsertERMitarbeiterZu": {
+    "prefix": "InsertERMitarbeiterZu",
+    "body": "InsertERMitarbeiterZu(${1:Stringlist})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.InsertERMitarbeiterZu(Stringlist)"
+  },
+  "ER-Kontrolle - AddDocumentToER": {
+    "prefix": "AddDocumentToER",
+    "body": "AddDocumentToER(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Erfass-Nr}, ${4:Dateiname})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.AddDocumentToER(<Firmen-Nr>,<FIBU-Nr>,'Erfass-Nr','Dateiname')"
+  },
+  "ER-Kontrolle - AddDocumentToERByArchivNr": {
+    "prefix": "AddDocumentToERByArchivNr",
+    "body": "AddDocumentToERByArchivNr(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Erfass-Nr}, ${4:Archiv-Nr.}, ${5:Dokumenten-Nr.})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.AddDocumentToERByArchivNr(<Firmen-Nr>,<FIBU-Nr>,'Erfass-Nr',<Archiv-Nr.>,<Dokumenten-Nr.>)"
+  },
+  "ER-Kontrolle - DeleteERBuchung": {
+    "prefix": "DeleteERBuchung",
+    "body": "DeleteERBuchung(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Erfass-Nr})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.DeleteERBuchung(<Firmen-Nr>,<FIBU-Nr>,'Erfass-Nr')"
+  },
+  "ER-Kontrolle - DeleteERKonto": {
+    "prefix": "DeleteERKonto",
+    "body": "DeleteERKonto(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Erfass-Nr}, ${4:Erfass-Unternr})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.DeleteERKonto(<Firmen-Nr>,<FIBU-Nr>,'Erfass-Nr',<Erfass-Unternr (opt.)>)"
+  },
+  "ER-Kontrolle - DeleteERKost": {
+    "prefix": "DeleteERKost",
+    "body": "DeleteERKost(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Erfass-Nr}, ${4:Erfass-Unternr}, ${5:Kost-Unternr})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.DeleteERKost(<Firmen-Nr>,<FIBU-Nr>,'Erfass-Nr',<Erfass-Unternr>,<Kost-Unternr (opt.)>)"
+  },
+  "ER-Kontrolle - SetLogFilename": {
+    "prefix": "SetLogFilename",
+    "body": "SetLogFilename(${1:Dateiname})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.SetLogFilename('Dateiname')"
+  },
+  "ER-Kontrolle - CreateLeistungByParamList": {
+    "prefix": "CreateLeistungByParamList",
+    "body": "CreateLeistungByParamList(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Erfass-Nr}, ${4:Stringlist}, ${5:UseExistingData (TRUE)})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.CreateLeistungByParamList(<Firmen-Nr>,<FIBU-Nr>,'Erfass-Nr',Stringlist,<UseExistingData (TRUE) (opt.)>)"
+  },
+  "ER-Kontrolle - ReadEInvoiceXMLDocument": {
+    "prefix": "ReadEInvoiceXMLDocument",
+    "body": "ReadEInvoiceXMLDocument(${1:XMLDocument-Objekt}, ${2:Dateiname})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.ReadEInvoiceXMLDocument(XMLDocument-Objekt,'Dateiname')"
+  },
+  "ER-Kontrolle - Refresh": {
+    "prefix": "Refresh",
+    "body": "Refresh()",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.Refresh()"
+  },
+  "ER-Kontrolle - SetERKontoGrossAmountEntry": {
+    "prefix": "SetERKontoGrossAmountEntry",
+    "body": "SetERKontoGrossAmountEntry(${1:Gross Entry})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.SetERKontoGrossAmountEntry(<Gross Entry>)"
+  },
+  "ER-Kontrolle - SetWorkFlowToER": {
+    "prefix": "SetWorkFlowToER",
+    "body": "SetWorkFlowToER(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Erfass-Nr}, ${4:Firma (ER-Workflow)}, ${5:Workflow-Nr.})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.SetWorkFlowToER(<Firmen-Nr>,<FIBU-Nr>,'Erfass-Nr',<Firma (ER-Workflow)>,'Workflow-Nr.')"
+  },
+  "ER-Kontrolle - UpdateBuchungStatus": {
+    "prefix": "UpdateBuchungStatus",
+    "body": "UpdateBuchungStatus(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Erfass-Nr})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.UpdateBuchungStatus(<Firmen-Nr>,<FIBU-Nr>,'Erfass-Nr')"
+  },
+  "ER-Kontrolle - UpdateDocument": {
+    "prefix": "UpdateDocument",
+    "body": "UpdateDocument(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Erfass-Nr})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.UpdateDocument(<Firmen-Nr>,<FIBU-Nr>,'Erfass-Nr')"
+  },
+  "ER-Kontrolle - VerbuchenER": {
+    "prefix": "VerbuchenER",
+    "body": "VerbuchenER(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Erfass-Nr}, ${4:Buchungssymbol}, ${5:Buchungsdatum})",
+    "description": "[ER-Kontrolle] BMD_ERKontrolle.VerbuchenER(<Firmen-Nr>,<FIBU-Nr>,'Erfass-Nr',<Buchungssymbol (opt.)>,<Buchungsdatum (opt.)>)"
+  },
+  "Sachkonto - CreateFMacroSachKonto": {
+    "prefix": "CreateFMacroSachKonto",
+    "body": "CreateFMacroSachKonto(${1:eindeutige SachKontoObj-ID})",
+    "description": "[Sachkonto] BMD_SachKto := FibuMacroObject.CreateFMacroSachKonto('eindeutige SachKontoObj-ID')"
+  },
+  "Sachkonto - SetLogFilename": {
+    "prefix": "SetLogFilename",
+    "body": "SetLogFilename(${1:Dateiname})",
+    "description": "[Sachkonto] BMD_SachKto.SetLogFilename('Dateiname')"
+  },
+  "Sachkonto - Load": {
+    "prefix": "Load",
+    "body": "Load(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:KontoNr})",
+    "description": "[Sachkonto] BMD_SachKto.Load(<Firmen-Nr>,<FIBU-Nr>,<KontoNr>)"
+  },
+  "Sachkonto - GetValue": {
+    "prefix": "GetValue",
+    "body": "GetValue(${1:Feldname})",
+    "description": "[Sachkonto] BMD_SachKto.GetValue('Feldname')"
+  },
+  "Sachkonto - SetValue": {
+    "prefix": "SetValue",
+    "body": "SetValue(${1:Feldname}, ${2:Wert})",
+    "description": "[Sachkonto] BMD_SachKto.SetValue('Feldname','Wert')"
+  },
+  "Sachkonto - CSVImportVariabel": {
+    "prefix": "CSVImportVariabel",
+    "body": "CSVImportVariabel(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Importdatei (z.b. Sachkonten.csv)}, ${4:CSV-Importparameter (MacroStringList)}, ${5:Feldauswahl}, ${6:Feldauswahl opt (fÃ¼r nicht existierende Sachkonten)})",
+    "description": "[Sachkonto] BMD_SachKto.CSVImportVariabel(<Firmen-Nr>,<FIBU-Nr>,'Importdatei (z.b. Sachkonten.csv)',CSV-Importparameter (MacroStringList),'Feldauswahl','Feldauswahl <opt> (fÃ¼r nicht existierende Sachkonten)')"
+  },
+  "Sachkonto - DeleteUmstellungsKonten": {
+    "prefix": "DeleteUmstellungsKonten",
+    "body": "DeleteUmstellungsKonten(${1:Firmen-Nr}, ${2:FIBU-Nr})",
+    "description": "[Sachkonto] BMD_SachKto.DeleteUmstellungsKonten(<Firmen-Nr>,<FIBU-Nr>)"
+  },
+  "Sachkonto - SetNotiz": {
+    "prefix": "SetNotiz",
+    "body": "SetNotiz(${1:Kontonotiz}, ${2:AnhÃ¤ngen (1/TRUE) oder Ãœberschreiben (0/FALSE)})",
+    "description": "[Sachkonto] BMD_SachKto.SetNotiz('Kontonotiz',<AnhÃ¤ngen (1/TRUE) oder Ãœberschreiben (0/FALSE)>)"
+  },
+  "Personenkonto - CreateFMacroPersKonto": {
+    "prefix": "CreateFMacroPersKonto",
+    "body": "CreateFMacroPersKonto(${1:eindeutige PersKontoObj-ID})",
+    "description": "[Personenkonto] BMD_PersKto := FibuMacroObject.CreateFMacroPersKonto('eindeutige PersKontoObj-ID')"
+  },
+  "Personenkonto - SetLogFilename": {
+    "prefix": "SetLogFilename",
+    "body": "SetLogFilename(${1:Dateiname})",
+    "description": "[Personenkonto] BMD_PersKto.SetLogFilename('Dateiname')"
+  },
+  "Personenkonto - Load": {
+    "prefix": "Load",
+    "body": "Load(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:KontoNr})",
+    "description": "[Personenkonto] BMD_PersKto.Load(<Firmen-Nr>,<FIBU-Nr>,<KontoNr>)"
+  },
+  "Personenkonto - GetValue": {
+    "prefix": "GetValue",
+    "body": "GetValue(${1:Feldname})",
+    "description": "[Personenkonto] BMD_PersKto.GetValue('Feldname')"
+  },
+  "Personenkonto - SetValue": {
+    "prefix": "SetValue",
+    "body": "SetValue(${1:Feldname}, ${2:Wert})",
+    "description": "[Personenkonto] BMD_PersKto.SetValue('Feldname','Wert')"
+  },
+  "Personenkonto - PersonExists": {
+    "prefix": "PersonExists",
+    "body": "PersonExists(${1:Firmen-Nr}, ${2:KontoNr})",
+    "description": "[Personenkonto] BMD_PersKto.PersonExists(<Firmen-Nr>,<KontoNr>)"
+  },
+  "Personenkonto - SetNotiz": {
+    "prefix": "SetNotiz",
+    "body": "SetNotiz(${1:Kontonotiz}, ${2:AnhÃ¤ngen (1/TRUE) oder Ãœberschreiben (0/FALSE)})",
+    "description": "[Personenkonto] BMD_PersKto.SetNotiz('Kontonotiz',<AnhÃ¤ngen (1/TRUE) oder Ãœberschreiben (0/FALSE)>)"
+  },
+  "TR/SR-Ablauf - CreateFMacroTrSrAblauf": {
+    "prefix": "CreateFMacroTrSrAblauf",
+    "body": "CreateFMacroTrSrAblauf()",
+    "description": "[TR/SR-Ablauf] BMD_TrSrAblauf := FibuMacroObject.CreateFMacroTrSrAblauf()"
+  },
+  "TR/SR-Ablauf - Exists": {
+    "prefix": "Exists",
+    "body": "Exists(${1:Firmen-Nr}, ${2:TR/SR-AblaufNr})",
+    "description": "[TR/SR-Ablauf] BMD_TrSrAblauf.Exists(<Firmen-Nr>,'TR/SR-AblaufNr')"
+  },
+  "TR/SR-Ablauf - ExistsWithMatchcode": {
+    "prefix": "ExistsWithMatchcode",
+    "body": "ExistsWithMatchcode(${1:Firmen-Nr}, ${2:TR/SR-AblaufNr})",
+    "description": "[TR/SR-Ablauf] BMD_TrSrAblauf.ExistsWithMatchcode(<Firmen-Nr>,'TR/SR-AblaufNr')"
+  },
+  "TR/SR-Ablauf - Insert": {
+    "prefix": "Insert",
+    "body": "Insert(${1:Stringlist})",
+    "description": "[TR/SR-Ablauf] BMD_TrSrAblauf.Insert(Stringlist)"
+  },
+  "TR/SR-Ablauf - Update": {
+    "prefix": "Update",
+    "body": "Update(${1:Stringlist})",
+    "description": "[TR/SR-Ablauf] BMD_TrSrAblauf.Update(Stringlist)"
+  },
+  "Firmenwerte Fibu - CreateFMacroFirmenwerteFibu": {
+    "prefix": "CreateFMacroFirmenwerteFibu",
+    "body": "CreateFMacroFirmenwerteFibu(${1:eindeutige Firmenwerte-Fibu-Obj.-ID})",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu := FibuMacroObject.CreateFMacroFirmenwerteFibu('eindeutige Firmenwerte-Fibu-Obj.-ID')"
+  },
+  "Firmenwerte Fibu - SetLogFilename": {
+    "prefix": "SetLogFilename",
+    "body": "SetLogFilename(${1:Dateiname})",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.SetLogFilename('Dateiname')"
+  },
+  "Firmenwerte Fibu - Load": {
+    "prefix": "Load",
+    "body": "Load(${1:Firmen-Nr}, ${2:FIBU-Nr})",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.Load(<Firmen-Nr>,<FIBU-Nr>)"
+  },
+  "Firmenwerte Fibu - GetValue": {
+    "prefix": "GetValue",
+    "body": "GetValue(${1:Feldname})",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.GetValue('Feldname')"
+  },
+  "Firmenwerte Fibu - SetValue": {
+    "prefix": "SetValue",
+    "body": "SetValue(${1:Feldname}, ${2:Wert})",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.SetValue('Feldname','Wert')"
+  },
+  "Firmenwerte Fibu - SetValueByParamList": {
+    "prefix": "SetValueByParamList",
+    "body": "SetValueByParamList(${1:MacroStringList})",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.SetValueByParamList(MacroStringList)"
+  },
+  "Firmenwerte Fibu - CreateNewFirmaByPerson": {
+    "prefix": "CreateNewFirmaByPerson",
+    "body": "CreateNewFirmaByPerson(${1:Firmen-Nr}, ${2:PersonenID})",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.CreateNewFirmaByPerson(<Firmen-Nr>,'PersonenID')"
+  },
+  "Firmenwerte Fibu - CreateNewFibu": {
+    "prefix": "CreateNewFibu",
+    "body": "CreateNewFibu(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:MacroStringList})",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.CreateNewFibu(<Firmen-Nr>,<FIBU-Nr>,MacroStringList (opt.))"
+  },
+  "Firmenwerte Fibu - CreateVJFibu": {
+    "prefix": "CreateVJFibu",
+    "body": "CreateVJFibu(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:MacroStringList})",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.CreateVJFibu(<Firmen-Nr>,<FIBU-Nr>,MacroStringList (opt.))"
+  },
+  "Firmenwerte Fibu - CreateFiliale": {
+    "prefix": "CreateFiliale",
+    "body": "CreateFiliale(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:FilialNr}, ${4:LandNr}, ${5:Filialbezeichnung}, ${6:WÃ¤hrung}, ${7:OSS-Schema})",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.CreateFiliale(<Firmen-Nr>,<FIBU-Nr>,<FilialNr>,<LandNr>,'Filialbezeichnung','WÃ¤hrung',<OSS-Schema>)"
+  },
+  "Firmenwerte Fibu - UebernahmeNumUndKtoKreise": {
+    "prefix": "UebernahmeNumUndKtoKreise",
+    "body": "UebernahmeNumUndKtoKreise()",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.UebernahmeNumUndKtoKreise()"
+  },
+  "Firmenwerte Fibu - UebernahmeFibuFiliale": {
+    "prefix": "UebernahmeFibuFiliale",
+    "body": "UebernahmeFibuFiliale()",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.UebernahmeFibuFiliale()"
+  },
+  "Firmenwerte Fibu - UebernahmeFixkonten": {
+    "prefix": "UebernahmeFixkonten",
+    "body": "UebernahmeFixkonten()",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.UebernahmeFixkonten()"
+  },
+  "Firmenwerte Fibu - UebernahmeSteuerkonten": {
+    "prefix": "UebernahmeSteuerkonten",
+    "body": "UebernahmeSteuerkonten()",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.UebernahmeSteuerkonten()"
+  },
+  "Firmenwerte Fibu - UebernahmeVJSaldenUndUmsaetze": {
+    "prefix": "UebernahmeVJSaldenUndUmsaetze",
+    "body": "UebernahmeVJSaldenUndUmsaetze(${1:Firmen-Nr}, ${2:FIBU-Nr})",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.UebernahmeVJSaldenUndUmsaetze(<Firmen-Nr>,<FIBU-Nr>)"
+  },
+  "Firmenwerte Fibu - UebernahmeBuartUndVariante": {
+    "prefix": "UebernahmeBuartUndVariante",
+    "body": "UebernahmeBuartUndVariante()",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.UebernahmeBuartUndVariante()"
+  },
+  "Firmenwerte Fibu - UebernahmeIndivBuSymbol": {
+    "prefix": "UebernahmeIndivBuSymbol",
+    "body": "UebernahmeIndivBuSymbol()",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.UebernahmeIndivBuSymbol()"
+  },
+  "Firmenwerte Fibu - NeuberechnenSalden": {
+    "prefix": "NeuberechnenSalden",
+    "body": "NeuberechnenSalden(${1:Firmen-Nr}, ${2:FIBU-Nr})",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.NeuberechnenSalden(<Firmen-Nr>,<FIBU-Nr>)"
+  },
+  "Firmenwerte Fibu - VerbuchungZumMonatsende": {
+    "prefix": "VerbuchungZumMonatsende",
+    "body": "VerbuchungZumMonatsende(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Jahr}, ${4:Von Periode}, ${5:Bis Periode})",
+    "description": "[Firmenwerte Fibu] BMD_FirmenwerteFibu.VerbuchungZumMonatsende(<Firmen-Nr>,<FIBU-Nr>,<Jahr>,<Von Periode>,<Bis Periode (opt.)>)"
+  },
+  "Steuerkonto - CreateFMacroSteuerkonto": {
+    "prefix": "CreateFMacroSteuerkonto",
+    "body": "CreateFMacroSteuerkonto(${1:eindeutige Steuerkonto-Obj.-ID})",
+    "description": "[Steuerkonto] BMD_Steuerkonto := FibuMacroObject.CreateFMacroSteuerkonto('eindeutige Steuerkonto-Obj.-ID')"
+  },
+  "Steuerkonto - Load": {
+    "prefix": "Load",
+    "body": "Load(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Steuercode}, ${4:FilialNr}, ${5:LandNr}, ${6:Prozentsatz}, ${7:SkontoverbuchKz})",
+    "description": "[Steuerkonto] BMD_Steuerkonto.Load(<Firmen-Nr>,<FIBU-Nr>,<Steuercode>,<FilialNr>,<LandNr>,<Prozentsatz>,<SkontoverbuchKz>)"
+  },
+  "Steuerkonto - GetValue": {
+    "prefix": "GetValue",
+    "body": "GetValue(${1:Feldname})",
+    "description": "[Steuerkonto] BMD_Steuerkonto.GetValue('Feldname')"
+  },
+  "Steuerkonto - IstSteuerkonto": {
+    "prefix": "IstSteuerkonto",
+    "body": "IstSteuerkonto(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:KontoNr})",
+    "description": "[Steuerkonto] BMD_Steuerkonto.IstSteuerkonto(<Firmen-Nr>,<FIBU-Nr>,<KontoNr>)"
+  },
+  "Steuerkonto - GetBuchKontoNr": {
+    "prefix": "GetBuchKontoNr",
+    "body": "GetBuchKontoNr(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Steuercode}, ${4:FilialNr}, ${5:LandNr}, ${6:Prozentsatz}, ${7:SkontoverbuchKz}, ${8:Feldname})",
+    "description": "[Steuerkonto] BMD_Steuerkonto.GetBuchKontoNr(<Firmen-Nr>,<FIBU-Nr>,<Steuercode>,<FilialNr>,<LandNr>,<Prozentsatz>,<SkontoverbuchKz>,'Feldname')"
+  },
+  "Fixkonto - CreateFMacroFixkonto": {
+    "prefix": "CreateFMacroFixkonto",
+    "body": "CreateFMacroFixkonto(${1:eindeutige Fixkonto-Obj.-ID})",
+    "description": "[Fixkonto] BMD_Fixkonto := FibuMacroObject.CreateFMacroFixkonto('eindeutige Fixkonto-Obj.-ID')"
+  },
+  "Fixkonto - Load": {
+    "prefix": "Load",
+    "body": "Load(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Kontotyp}, ${4:Kontogruppe}, ${5:KontenkreisNr}, ${6:KontoNr}, ${7:FilialNr})",
+    "description": "[Fixkonto] BMD_Fixkonto.Load(<Firmen-Nr>,<FIBU-Nr>,<Kontotyp>,<Kontogruppe>,<KontenkreisNr>,<KontoNr>,<FilialNr>)"
+  },
+  "Fixkonto - GetValue": {
+    "prefix": "GetValue",
+    "body": "GetValue(${1:Feldname})",
+    "description": "[Fixkonto] BMD_Fixkonto.GetValue('Feldname')"
+  },
+  "Fixkonto - IstFixkonto": {
+    "prefix": "IstFixkonto",
+    "body": "IstFixkonto(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:KontoNr}, ${4:Kontotyp})",
+    "description": "[Fixkonto] BMD_Fixkonto.IstFixkonto(<Firmen-Nr>,<FIBU-Nr>,<KontoNr>,<Kontotyp>)"
+  },
+  "Auswertungsmanager - CreateFMacroAuswertungMgr": {
+    "prefix": "CreateFMacroAuswertungMgr",
+    "body": "CreateFMacroAuswertungMgr(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:eindeutige Auswertungsmanager-Obj.-ID})",
+    "description": "[Auswertungsmanager] BMD_AuswertungMgr := FibuMacroObject.CreateFMacroAuswertungMgr(<Firmen-Nr>,<FIBU-Nr>,'eindeutige Auswertungsmanager-Obj.-ID')"
+  },
+  "Auswertungsmanager - SetParam": {
+    "prefix": "SetParam",
+    "body": "SetParam(${1:Parameterbezeichnung}, ${2:AusprÃ¤gung})",
+    "description": "[Auswertungsmanager] BMD_AuswertungMgr.SetParam('Parameterbezeichnung','AusprÃ¤gung')"
+  },
+  "Auswertungsmanager - LoadDaten": {
+    "prefix": "LoadDaten",
+    "body": "LoadDaten()",
+    "description": "[Auswertungsmanager] BMD_AuswertungMgr.LoadDaten()"
+  },
+  "Auswertungsmanager - Count": {
+    "prefix": "Count",
+    "body": "Count()",
+    "description": "[Auswertungsmanager] BMD_AuswertungMgr.Count()"
+  },
+  "Auswertungsmanager - GetKontoByIndex": {
+    "prefix": "GetKontoByIndex",
+    "body": "GetKontoByIndex(${1:Index})",
+    "description": "[Auswertungsmanager] BMD_AuswertungMgr.GetKontoByIndex(<Index>)"
+  },
+  "Auswertungsmanager - GetKontoByKontoNr": {
+    "prefix": "GetKontoByKontoNr",
+    "body": "GetKontoByKontoNr(${1:KontoNr})",
+    "description": "[Auswertungsmanager] BMD_AuswertungMgr.GetKontoByKontoNr(<KontoNr>)"
+  },
+  "Auswertungskonto - CreateFMacroAuswertungKonto": {
+    "prefix": "CreateFMacroAuswertungKonto",
+    "body": "CreateFMacroAuswertungKonto(${1:eindeutige Auswertungskonto-Obj.-ID})",
+    "description": "[Auswertungskonto] BMD_AuswertungKonto := FibuMacroObject.CreateFMacroAuswertungKonto('eindeutige Auswertungskonto-Obj.-ID')"
+  },
+  "Auswertungskonto - GetKontoNr": {
+    "prefix": "GetKontoNr",
+    "body": "GetKontoNr()",
+    "description": "[Auswertungskonto] BMD_AuswertungKonto.GetKontoNr()"
+  },
+  "Auswertungskonto - GetMonSaldo": {
+    "prefix": "GetMonSaldo",
+    "body": "GetMonSaldo(${1:Monat})",
+    "description": "[Auswertungskonto] BMD_AuswertungKonto.GetMonSaldo(<Monat>)"
+  },
+  "Auswertungskonto - GetEBSaldo": {
+    "prefix": "GetEBSaldo",
+    "body": "GetEBSaldo()",
+    "description": "[Auswertungskonto] BMD_AuswertungKonto.GetEBSaldo()"
+  },
+  "Auswertungskonto - GetBilanzsaldo": {
+    "prefix": "GetBilanzsaldo",
+    "body": "GetBilanzsaldo()",
+    "description": "[Auswertungskonto] BMD_AuswertungKonto.GetBilanzsaldo()"
+  },
+  "Offene Posten - CreateFMacroOPZuordnung": {
+    "prefix": "CreateFMacroOPZuordnung",
+    "body": "CreateFMacroOPZuordnung(${1:eindeutige OP-Zuordnungs-Obj.-ID})",
+    "description": "[Offene Posten] BMD_OPZuordnung := FibuMacroObject.CreateFMacroOPZuordnung('eindeutige OP-Zuordnungs-Obj.-ID')"
+  },
+  "Offene Posten - GetData": {
+    "prefix": "GetData",
+    "body": "GetData(${1:Feldbezeichnung})",
+    "description": "[Offene Posten] BMD_OPZuordnung.GetData('Feldbezeichnung')"
+  },
+  "Offene Posten - CreateFMacroOPAbstattung": {
+    "prefix": "CreateFMacroOPAbstattung",
+    "body": "CreateFMacroOPAbstattung(${1:eindeutige OP-Abstattungs-Obj.-ID})",
+    "description": "[Offene Posten] BMD_OPAbstattung := FibuMacroObject.CreateFMacroOPAbstattung('eindeutige OP-Abstattungs-Obj.-ID')"
+  },
+  "Offene Posten - AutomAuszifferungRngZlg": {
+    "prefix": "AutomAuszifferungRngZlg",
+    "body": "AutomAuszifferungRngZlg(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Von Konto-Nr}, ${4:Bis Konto-Nr}, ${5:Auszifferungsfeld}, ${6:Mit Meldung}, ${7:Betragsgleichheit})",
+    "description": "[Offene Posten] BMD_OPAbstattung.AutomAuszifferungRngZlg(<Firmen-Nr>,<FIBU-Nr>,<Von Konto-Nr>,<Bis Konto-Nr>,<Auszifferungsfeld>,<Mit Meldung>,<Betragsgleichheit>)"
+  },
+  "Offene Posten - AutomAuszifferungWennSaldo0": {
+    "prefix": "AutomAuszifferungWennSaldo0",
+    "body": "AutomAuszifferungWennSaldo0(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Von Konto-Nr}, ${4:Bis Konto-Nr}, ${5:Mit Meldung})",
+    "description": "[Offene Posten] BMD_OPAbstattung.AutomAuszifferungWennSaldo0(<Firmen-Nr>,<FIBU-Nr>,<Von Konto-Nr>,<Bis Konto-Nr>,<Mit Meldung (opt.)>)"
+  },
+  "Offene Posten - AddOPToBuchung": {
+    "prefix": "AddOPToBuchung",
+    "body": "AddOPToBuchung(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Liste der OP-Buchungen (MacroBuchungList)}, ${4:Liste der OP-Suchkriterien (MacroList)}, ${5:Logdatei (z. B. FIBUIMPORT.LOG)}, ${6:Liste der OP-Zahlungskonditionen (MacroStringList) opt})",
+    "description": "[Offene Posten] BMD_OPAbstattung.AddOPToBuchung(<Firmen-Nr>,<FIBU-Nr>,Liste der OP-Buchungen (MacroBuchungList),Liste der OP-Suchkriterien (MacroList),'Logdatei (z. B. FIBUIMPORT.LOG)',Liste der OP-Zahlungskonditionen (MacroStringList) <opt>)"
+  },
+  "Dokumentenzuordnung - CreateFMacroDokumentZu": {
+    "prefix": "CreateFMacroDokumentZu",
+    "body": "CreateFMacroDokumentZu(${1:eindeutige Dokumenten-Zuord.-Obj.-ID})",
+    "description": "[Dokumentenzuordnung] BMD_DokumentZuordnung := FibuMacroObject.CreateFMacroDokumentZu('eindeutige Dokumenten-Zuord.-Obj.-ID')"
+  },
+  "Dokumentenzuordnung - AddDocumentToBuchungId": {
+    "prefix": "AddDocumentToBuchungId",
+    "body": "AddDocumentToBuchungId(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Buchung-ID}, ${4:Dateiname}, ${5:DocStempeln})",
+    "description": "[Dokumentenzuordnung] BMD_DokumentZuordnung.AddDocumentToBuchungId(<Firmen-Nr>,<FIBU-Nr>,<Buchung-ID>,'Dateiname',<DocStempeln (opt.)>)"
+  },
+  "Dokumentenzuordnung - AddDocumentToArchiv": {
+    "prefix": "AddDocumentToArchiv",
+    "body": "AddDocumentToArchiv(${1:Parameter}, ${2:Dokument})",
+    "description": "[Dokumentenzuordnung] BMD_DokumentZuordnung.AddDocumentToArchiv('Parameter',<Dokument>)"
+  },
+  "Dokumentenzuordnung - AddDocumentToExternArchiv": {
+    "prefix": "AddDocumentToExternArchiv",
+    "body": "AddDocumentToExternArchiv(${1:Parameter})",
+    "description": "[Dokumentenzuordnung] BMD_DokumentZuordnung.AddDocumentToExternArchiv('Parameter')"
+  },
+  "Dokumentenzuordnung - ExportDocumentByDKZID": {
+    "prefix": "ExportDocumentByDKZID",
+    "body": "ExportDocumentByDKZID(${1:Dokumentenzuordnungs-ID (DKZ-ID)}, ${2:Export-Pfad}, ${3:MacroStringList})",
+    "description": "[Dokumentenzuordnung] BMD_DokumentZuordnung.ExportDocumentByDKZID(<Dokumentenzuordnungs-ID (DKZ-ID)>,'Export-Pfad',MacroStringList (opt.))"
+  },
+  "Dokumentenzuordnung - DokumentUpdateByBelegId": {
+    "prefix": "DokumentUpdateByBelegId",
+    "body": "DokumentUpdateByBelegId(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:BelegID}, ${4:Typ der Dokumente})",
+    "description": "[Dokumentenzuordnung] BMD_DokumentZuordnung.DokumentUpdateByBelegId(<Firmen-Nr>,<FIBU-Nr>,<BelegID>,<Typ der Dokumente>)"
+  },
+  "UVA Werte - CreateFMacroUVAWerte": {
+    "prefix": "CreateFMacroUVAWerte",
+    "body": "CreateFMacroUVAWerte(${1:eindeutige UVAWerteObj-ID})",
+    "description": "[UVA Werte] BMD_UVAWerte := FibuMacroObject.CreateFMacroUVAWerte('eindeutige UVAWerteObj-ID')"
+  },
+  "UVA Werte - ClearList": {
+    "prefix": "ClearList",
+    "body": "ClearList()",
+    "description": "[UVA Werte] BMD_UVAWerte.ClearList()"
+  },
+  "UVA Werte - Count": {
+    "prefix": "Count",
+    "body": "Count()",
+    "description": "[UVA Werte] BMD_UVAWerte.Count()"
+  },
+  "UVA Werte - AddValueToList": {
+    "prefix": "AddValueToList",
+    "body": "AddValueToList(${1:LandNr}, ${2:Periode}, ${3:UVA-Feld-Nr.}, ${4:Bemessung}, ${5:Steuer})",
+    "description": "[UVA Werte] BMD_UVAWerte.AddValueToList(<LandNr>,<Periode>,<UVA-Feld-Nr.>,<Bemessung>,<Steuer>)"
+  },
+  "UVA Werte - ImportList": {
+    "prefix": "ImportList",
+    "body": "ImportList(${1:Firmen-Nr}, ${2:FIBUNr}, ${3:Logfile})",
+    "description": "[UVA Werte] BMD_UVAWerte.ImportList(<Firmen-Nr>,<FIBUNr>,'Logfile')"
+  },
+  "Filiale - CreateFMacroFiliale": {
+    "prefix": "CreateFMacroFiliale",
+    "body": "CreateFMacroFiliale(${1:eindeutige Filiale-Obj.-ID})",
+    "description": "[Filiale] BMD_Filiale := FibuMacroObject.CreateFMacroFiliale('eindeutige Filiale-Obj.-ID')"
+  },
+  "Filiale - Load": {
+    "prefix": "Load",
+    "body": "Load(${1:Firmen-Nr}, ${2:FIBUNr}, ${3:FilialNr})",
+    "description": "[Filiale] BMD_Filiale.Load(<Firmen-Nr>,<FIBUNr>,<FilialNr>)"
+  },
+  "Filiale - GetValue": {
+    "prefix": "GetValue",
+    "body": "GetValue(${1:Feldname})",
+    "description": "[Filiale] BMD_Filiale.GetValue('Feldname')"
+  },
+  "Filiale - ExistsFiliale": {
+    "prefix": "ExistsFiliale",
+    "body": "ExistsFiliale(${1:Firmen-Nr}, ${2:FIBUNr}, ${3:LandNr})",
+    "description": "[Filiale] BMD_Filiale.ExistsFiliale(<Firmen-Nr>,<FIBUNr>,<LandNr>)"
+  },
+  "Buchung - CreateFMacroBuchung": {
+    "prefix": "CreateFMacroBuchung",
+    "body": "CreateFMacroBuchung(${1:eindeutige Buchungs-Obj.-ID})",
+    "description": "[Buchung] BMD_Buchung := FibuMacroObject.CreateFMacroBuchung('eindeutige Buchungs-Obj.-ID')"
+  },
+  "Buchung - SetValue": {
+    "prefix": "SetValue",
+    "body": "SetValue(${1:Firmen-Nr}, ${2:FIBUNr}, ${3:Buchungs-ID}, ${4:Liste mit Feldnamen/Feldwerten (MacroStringList)})",
+    "description": "[Buchung] BMD_Buchung.SetValue(<Firmen-Nr>,<FIBUNr>,<Buchungs-ID>,Liste mit Feldnamen/Feldwerten (MacroStringList))"
+  },
+  "Firmenwerte KORE - CreateFMacroFirmenwerteKore": {
+    "prefix": "CreateFMacroFirmenwerteKore",
+    "body": "CreateFMacroFirmenwerteKore(${1:eindeutige Firmenwerte-Kore-Obj.-ID})",
+    "description": "[Firmenwerte KORE] BMD_FirmenwerteKore := KoreMacroObject.CreateFMacroFirmenwerteKore('eindeutige Firmenwerte-Kore-Obj.-ID')"
+  },
+  "Firmenwerte KORE - Load": {
+    "prefix": "Load",
+    "body": "Load(${1:Firmen-Nr}, ${2:KORE-Nr})",
+    "description": "[Firmenwerte KORE] BMD_FirmenwerteKore.Load(<Firmen-Nr>,<KORE-Nr>)"
+  },
+  "Firmenwerte KORE - GetValue": {
+    "prefix": "GetValue",
+    "body": "GetValue(${1:Feldname})",
+    "description": "[Firmenwerte KORE] BMD_FirmenwerteKore.GetValue('Feldname')"
+  },
+  "Firmenwerte KORE - Exists": {
+    "prefix": "Exists",
+    "body": "Exists(${1:Firmen-Nr}, ${2:KORE-Nr})",
+    "description": "[Firmenwerte KORE] BMD_FirmenwerteKore.Exists(<Firmen-Nr>,<KORE-Nr>)"
+  },
+  "Firmenwerte KORE - SetValue": {
+    "prefix": "SetValue",
+    "body": "SetValue(${1:Feldname}, ${2:Wert})",
+    "description": "[Firmenwerte KORE] BMD_FirmenwerteKore.SetValue('Feldname','Wert')"
+  },
+  "Firmenwerte KORE - SetValueByParamList": {
+    "prefix": "SetValueByParamList",
+    "body": "SetValueByParamList(${1:MacroStringList})",
+    "description": "[Firmenwerte KORE] BMD_FirmenwerteKore.SetValueByParamList(MacroStringList)"
+  },
+  "Firmenwerte KORE - CreateNewKore": {
+    "prefix": "CreateNewKore",
+    "body": "CreateNewKore(${1:Firmen-Nr}, ${2:KORE-Nr}, ${3:MacroStringList})",
+    "description": "[Firmenwerte KORE] BMD_FirmenwerteKore.CreateNewKore(<Firmen-Nr>,<KORE-Nr>,MacroStringList (opt.))"
+  },
+  "Firmenwerte KORE - CreateVJKore": {
+    "prefix": "CreateVJKore",
+    "body": "CreateVJKore(${1:Firmen-Nr}, ${2:KORE-Nr}, ${3:MacroStringList})",
+    "description": "[Firmenwerte KORE] BMD_FirmenwerteKore.CreateVJKore(<Firmen-Nr>,<KORE-Nr>,MacroStringList (opt.))"
+  },
+  "Firmenwerte KORE - KoreFibuZuordnung": {
+    "prefix": "KoreFibuZuordnung",
+    "body": "KoreFibuZuordnung(${1:KoreFirmenNr}, ${2:KORE-Nr}, ${3:FibuFirmenNr}, ${4:FIBU-Nr})",
+    "description": "[Firmenwerte KORE] BMD_FirmenwerteKore.KoreFibuZuordnung(<KoreFirmenNr>,<KORE-Nr>,<FibuFirmenNr>,<FIBU-Nr>)"
+  },
+  "Kostenstammdaten - CreateFMacroKostenstammdaten": {
+    "prefix": "CreateFMacroKostenstammdaten",
+    "body": "CreateFMacroKostenstammdaten(${1:eindeutige Kostenstammdaten-Obj.-ID})",
+    "description": "[Kostenstammdaten] BMD_Kostenstammdaten := KoreMacroObject.CreateFMacroKostenstammdaten('eindeutige Kostenstammdaten-Obj.-ID')"
+  },
+  "Kostenstammdaten - Load": {
+    "prefix": "Load",
+    "body": "Load(${1:Firmen-Nr}, ${2:KORE-Nr}, ${3:Kostentyp}, ${4:Kosten-Nr.})",
+    "description": "[Kostenstammdaten] BMD_Kostenstammdaten.Load(<Firmen-Nr>,<KORE-Nr>,<Kostentyp>,'Kosten-Nr.')"
+  },
+  "Kostenstammdaten - GetValue": {
+    "prefix": "GetValue",
+    "body": "GetValue(${1:Feldname})",
+    "description": "[Kostenstammdaten] BMD_Kostenstammdaten.GetValue('Feldname')"
+  },
+  "Kostenstammdaten - SetValue": {
+    "prefix": "SetValue",
+    "body": "SetValue(${1:Feldname}, ${2:Wert})",
+    "description": "[Kostenstammdaten] BMD_Kostenstammdaten.SetValue('Feldname','Wert')"
+  },
+  "Kostenstammdaten - SetValueByParamList": {
+    "prefix": "SetValueByParamList",
+    "body": "SetValueByParamList(${1:MacroStringList})",
+    "description": "[Kostenstammdaten] BMD_Kostenstammdaten.SetValueByParamList(MacroStringList)"
+  },
+  "Kostenstammdaten - CreateNewKostentyp": {
+    "prefix": "CreateNewKostentyp",
+    "body": "CreateNewKostentyp(${1:Firmen-Nr}, ${2:KORE-Nr}, ${3:Kostentyp}, ${4:Kosten-Nr.}, ${5:Bezeichnung}, ${6:MacroStringList})",
+    "description": "[Kostenstammdaten] BMD_Kostenstammdaten.CreateNewKostentyp(<Firmen-Nr>,<KORE-Nr>,<Kostentyp>,'Kosten-Nr.','Bezeichnung (opt.)',MacroStringList (opt.))"
+  },
+  "Umlagereihenfolge - UmlRf_GetNextNo": {
+    "prefix": "BMD_UMLRF_GETNEXTNO",
+    "body": "BMD_UMLRF_GETNEXTNO(${1:Firmen-Nr}, ${2:KORE-Nr}, ${3:Umlagevarianten-Nr.})",
+    "description": "[Umlagereihenfolge] BMD_UMLRF_GETNEXTNO(<Firmen-Nr>,<KORE-Nr>,<Umlagevarianten-Nr.>)"
+  },
+  "Umlagereihenfolge - UmlRf_GetReihenfolgeByKostenNr": {
+    "prefix": "BMD_UMLRF_GET_REIHENFOLGE_BY_KOSTENNR",
+    "body": "BMD_UMLRF_GET_REIHENFOLGE_BY_KOSTENNR(${1:Firmen-Nr}, ${2:KORE-Nr}, ${3:Umlagevarianten-Nr.}, ${4:Kostentyp}, ${5:Kosten-Nr.})",
+    "description": "[Umlagereihenfolge] BMD_UMLRF_GET_REIHENFOLGE_BY_KOSTENNR(<Firmen-Nr>,<KORE-Nr>,<Umlagevarianten-Nr.>,<Kostentyp>,'Kosten-Nr.')"
+  },
+  "Umlagereihenfolge - UmlRf_GetReihenfolgeByKostenNrSchluessel": {
+    "prefix": "BMD_UMLRF_GET_REIHENFOLGE_BY_KOSTENNR_SCHL",
+    "body": "BMD_UMLRF_GET_REIHENFOLGE_BY_KOSTENNR_SCHL(${1:Firmen-Nr}, ${2:KORE-Nr}, ${3:Umlagevarianten-Nr.}, ${4:Kostentyp}, ${5:Kosten-Nr.}, ${6:KostenschlÃ¼ssel})",
+    "description": "[Umlagereihenfolge] BMD_UMLRF_GET_REIHENFOLGE_BY_KOSTENNR_SCHL(<Firmen-Nr>,<KORE-Nr>,<Umlagevarianten-Nr.>,<Kostentyp>,'Kosten-Nr.','KostenschlÃ¼ssel')"
+  },
+  "Umlagereihenfolge - UmlRf_Insert": {
+    "prefix": "BMD_UMLRF_INSERT",
+    "body": "BMD_UMLRF_INSERT(${1:Firmen-Nr}, ${2:KORE-Nr}, ${3:Umlagevarianten-Nr.}, ${4:Reihenfolge}, ${5:Kostentyp}, ${6:Kosten-Nr.}, ${7:KostenschlÃ¼ssel})",
+    "description": "[Umlagereihenfolge] BMD_UMLRF_INSERT(<Firmen-Nr>,<KORE-Nr>,<Umlagevarianten-Nr.>,<Reihenfolge>,<Kostentyp>,'Kosten-Nr.','KostenschlÃ¼ssel')"
+  },
+  "Umlagereihenfolge - UmlRf_Update": {
+    "prefix": "BMD_UMLRF_UPDATE",
+    "body": "BMD_UMLRF_UPDATE(${1:Firmen-Nr}, ${2:KORE-Nr}, ${3:Umlagevarianten-Nr.}, ${4:Reihenfolge}, ${5:Kostentyp}, ${6:Kosten-Nr.}, ${7:KostenschlÃ¼ssel})",
+    "description": "[Umlagereihenfolge] BMD_UMLRF_UPDATE(<Firmen-Nr>,<KORE-Nr>,<Umlagevarianten-Nr.>,<Reihenfolge>,<Kostentyp>,'Kosten-Nr.','KostenschlÃ¼ssel')"
+  },
+  "Buchungsdatei - CopyFileAfterExecute": {
+    "prefix": "BMD_CopyFileAfterExecute",
+    "body": "BMD_CopyFileAfterExecute(${1:Dateiname}, ${2:neuer Dateiname}, ${3:Datei lÃ¶schen}, ${4:Option})",
+    "description": "[Buchungsdatei] BMD_CopyFileAfterExecute('Dateiname','neuer Dateiname',<Datei lÃ¶schen>,<Option>)"
+  },
+  "Buchungsdatei - ExecuteAuszifferungAfterImport": {
+    "prefix": "BMD_ExecuteAuszifferungAfterImport",
+    "body": "BMD_ExecuteAuszifferungAfterImport(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Von Konto-Nr}, ${4:Bis Konto-Nr}, ${5:Auszifferungsfeld}, ${6:Mit Meldung})",
+    "description": "[Buchungsdatei] BMD_ExecuteAuszifferungAfterImport(<Firmen-Nr>,<FIBU-Nr>,<Von Konto-Nr>,<Bis Konto-Nr>,<Auszifferungsfeld>,<Mit Meldung>)"
+  },
+  "Buchungsdatei - WriteBuerfAfterExecute": {
+    "prefix": "BMD_WriteBuerfAfterExecute",
+    "body": "BMD_WriteBuerfAfterExecute(${1:Dateiname})",
+    "description": "[Buchungsdatei] BMD_WriteBuerfAfterExecute('Dateiname')"
+  },
+  "Buchungsdatei - READ_BUERF_PARAMETER": {
+    "prefix": "BMD_READ_BUERF_PARAMETER",
+    "body": "BMD_READ_BUERF_PARAMETER(${1:Parameter-Typ}, ${2:Key}, ${3:Feld-Nr.}, ${4:FirmenNr}, ${5:FIBUNr})",
+    "description": "[Buchungsdatei] BMD_READ_BUERF_PARAMETER('Parameter-Typ','Key',<Feld-Nr. (opt.)>,<FirmenNr (opt.)>,<FIBUNr (opt.)>)"
+  },
+  "Buchungsdatei - READ_BUERF_PARAMETER_TO_MACROSTRINGLIST": {
+    "prefix": "BMD_READ_BUERF_PARAMETER_TO_MACROSTRINGLIST",
+    "body": "BMD_READ_BUERF_PARAMETER_TO_MACROSTRINGLIST(${1:Parameter-Typ}, ${2:MacroStringList}, ${3:FirmenNr}, ${4:FIBUNr})",
+    "description": "[Buchungsdatei] BMD_READ_BUERF_PARAMETER_TO_MACROSTRINGLIST('Parameter-Typ',MacroStringList,<FirmenNr (opt.)>,<FIBUNr (opt.)>)"
+  },
+  "Buchungsdatei - WRITE_BUERF_PARAMETER": {
+    "prefix": "BMD_WRITE_BUERF_PARAMETER",
+    "body": "BMD_WRITE_BUERF_PARAMETER(${1:Parameter-Typ}, ${2:Key}, ${3:Wert}, ${4:Feld-Nr.}, ${5:FirmenNr}, ${6:FIBUNr})",
+    "description": "[Buchungsdatei] BMD_WRITE_BUERF_PARAMETER('Parameter-Typ','Key','Wert',<Feld-Nr. (opt.)>,<FirmenNr (opt.)>,<FIBUNr (opt.)>)"
+  },
+  "Buchungsdatei - WriteExportdateToBUC": {
+    "prefix": "BMD_WriteExportdateToBUC",
+    "body": "BMD_WriteExportdateToBUC(${1:FirmenNr}, ${2:FIBUNr}, ${3:Buchungs-ID}, ${4:Export-Datum})",
+    "description": "[Buchungsdatei] BMD_WriteExportdateToBUC(<FirmenNr>,<FIBUNr>,<Buchungs-ID>,<Export-Datum>)"
+  },
+  "Buchungsdatei - WriteExportdateToKTO": {
+    "prefix": "BMD_WriteExportdateToKTO",
+    "body": "BMD_WriteExportdateToKTO(${1:FirmenNr}, ${2:FIBUNr}, ${3:Kto-Nr}, ${4:Export-Datum})",
+    "description": "[Buchungsdatei] BMD_WriteExportdateToKTO(<FirmenNr>,<FIBUNr>,<Kto-Nr>,<Export-Datum>)"
+  },
+  "Buchungsdatei - WriteExportdateToBeleg": {
+    "prefix": "BMD_WriteExportdateToBeleg",
+    "body": "BMD_WriteExportdateToBeleg(${1:FirmenNr}, ${2:FIBUNr}, ${3:Beleg-ID}, ${4:Export-Datum})",
+    "description": "[Buchungsdatei] BMD_WriteExportdateToBeleg(<FirmenNr>,<FIBUNr>,<Beleg-ID>,<Export-Datum>)"
+  },
+  "Abfragen - AddInputField": {
+    "prefix": "BMD_HRS_ADDINPUTFIELD",
+    "body": "BMD_HRS_ADDINPUTFIELD(${1:Konstantenname}, ${2:Feldbezeichnung}, ${3:Feldart}, ${4:Vorschlagswert})",
+    "description": "[Abfragen] BMD_HRS_ADDINPUTFIELD('Konstantenname','Feldbezeichnung',<Feldart>,'Vorschlagswert')"
+  },
+  "Abfragen - AddInputField Combobox": {
+    "prefix": "BMD_HRS_ADDINPUTFIELD_COMBOBOX",
+    "body": "BMD_HRS_ADDINPUTFIELD_COMBOBOX(${1:Konstantenname}, ${2:Feldbezeichnung}, ${3:Werteliste}, ${4:Texteliste})",
+    "description": "[Abfragen] BMD_HRS_ADDINPUTFIELD_COMBOBOX('Konstantenname','Feldbezeichnung','Wert1,Wert2,...','Text1,Text2,...')"
+  },
+  "Abfragen - Abfragedialog starten": {
+    "prefix": "BMD_HRS_ABFRAGE_START",
+    "body": "BMD_HRS_ABFRAGE_START(${1:Fenstertitel})",
+    "description": "[Abfragen] BMD_HRS_ABFRAGE_START('Fenstertitel')"
+  },
+  "Abfragen - GetInputValue": {
+    "prefix": "BMD_HRS_GETINPUTVALUE",
+    "body": "BMD_HRS_GETINPUTVALUE(${1:Konstantenname})",
+    "description": "[Abfragen] BMD_HRS_GETINPUTVALUE('Konstantenname')"
+  },
+  "KORE - Firma": {
+    "prefix": "BMD_HRS_KORE_FIRMA",
+    "body": "BMD_HRS_KORE_FIRMA(${1:Firma})",
+    "description": "[KORE] BMD_HRS_KORE_FIRMA('Firma')"
+  },
+  "KORE - Aktuelle KORE": {
+    "prefix": "BMD_HRS_KORE_ACTUAL_KORE",
+    "body": "BMD_HRS_KORE_ACTUAL_KORE(${1:Firma})",
+    "description": "[KORE] BMD_HRS_KORE_ACTUAL_KORE('Firma')"
+  },
+  "KORE - Kostenstammdaten anlegen": {
+    "prefix": "BMD_HRS_INSERT_COSTTYPE",
+    "body": "BMD_HRS_INSERT_COSTTYPE(${1:Firma}, ${2:KORE-Nr}, ${3:Kostentyp}, ${4:Kosten-Nummer}, ${5:Kosten-Bezeichnung})",
+    "description": "[KORE] BMD_HRS_INSERT_COSTTYPE('Firma','KORE-Nr','Kostentyp','Kosten-Nummer','Kosten-Bezeichnung')"
+  },
+  "Dienstreise / Funktionen (nach Speichern einer Reise) - SetDBValueDoNotValidate": {
+    "prefix": "BMD_DIENSTREISE_SETDBVALUE_NOVALIDATION",
+    "body": "BMD_DIENSTREISE_SETDBVALUE_NOVALIDATION(${1:Feldname}, ${2:Wert})",
+    "description": "[Dienstreise / Funktionen (nach Speichern einer Reise)] BMD_DIENSTREISE_SETDBVALUE_NOVALIDATION('Feldname','Wert')"
+  },
+  "LGV - Fixwert": {
+    "prefix": "BMD_LGV_FIXWERT",
+    "body": "BMD_LGV_FIXWERT(${1:Lohnart}, ${2:Lohnartengruppe}, ${3:Prueflohnart}, ${4:Betrag/Satz})",
+    "description": "[LGV] BMD_LGV_FIXWERT('Lohnart','Lohnartengruppe','Prueflohnart',<Betrag/Satz>)"
+  },
+  "LGV - Fixwert KV": {
+    "prefix": "BMD_LGV_FIXWERTKV",
+    "body": "BMD_LGV_FIXWERTKV(${1:Lohnart}, ${2:Lohnartengruppe}, ${3:Prueflohnart}, ${4:Betrag/Satz})",
+    "description": "[LGV] BMD_LGV_FIXWERTKV('Lohnart','Lohnartengruppe','Prueflohnart',<Betrag/Satz>)"
+  },
+  "LGV - Lohnart": {
+    "prefix": "BMD_LGV_LOHNART",
+    "body": "BMD_LGV_LOHNART(${1:Lohnartengruppe}, ${2:Prueflohnart ist irrelevant}, ${3:Pflichtigkeit}, ${4:Wertigkeit}, ${5:Anzahl Monate}, ${6:Summe/Durchschnitt}, ${7:Ausgangsjahr}, ${8:Ausgangsmonat}, ${9:Grenze}, ${10:Hochrechnen}, ${11:Ueberwiegend}, ${12:Ist/Org}, ${13:DienstverhÃ¤ltnis})",
+    "description": "[LGV] BMD_LGV_LOHNART('Lohnartengruppe','Prueflohnart ist irrelevant',<Pflichtigkeit>,<Wertigkeit>,<Anzahl Monate>,<Summe/Durchschnitt>,<Ausgangsjahr>,<Ausgangsmonat>,<Grenze>,<Hochrechnen>,<Ueberwiegend>,<Ist/Org>,<DienstverhÃ¤ltnis>)"
+  },
+  "LGV - Lohnart-Pflichtigkeit": {
+    "prefix": "BMD_LGV_LOHNART_PFLICHTIGKEIT",
+    "body": "BMD_LGV_LOHNART_PFLICHTIGKEIT(${1:Vergleich}, ${2:Auslandstaetigkeit (beguenstigt)}, ${3:Lohnsteuer (gem. EStG)}, ${4:Sonstige Werbungskosten}, ${5:Jahressechstel}, ${6:Sonstige WK (L16-Zuordnung)}, ${7:Nicht zu erfassende Bezuege 25}, ${8:Pflegegeld}, ${9:SV}, ${10:SV-Zahlen})",
+    "description": "[LGV] BMD_LGV_LOHNART_PFLICHTIGKEIT(<Vergleich>,<Auslandstaetigkeit (beguenstigt)>,<Lohnsteuer (gem. EStG)>,<Sonstige Werbungskosten>,<Jahressechstel>,<Sonstige WK (L16-Zuordnung)>,<Nicht zu erfassende Bezuege 25>,<Pflegegeld>,<SV>,<SV-Zahlen>)"
+  },
+  "LGV - Lohnart hat Pflichtigkeit": {
+    "prefix": "BMD_LGV_LOHNART_HAT_PFLICHTIGKEIT",
+    "body": "BMD_LGV_LOHNART_HAT_PFLICHTIGKEIT(${1:Wert}, ${2:Vergleich}, ${3:Auslandstaetigkeit (beguenstigt)}, ${4:Lohnsteuer (gem. EStG)}, ${5:Sonstige Werbungskosten}, ${6:Jahressechstel}, ${7:Sonstige WK (L16-Zuordnung)}, ${8:Nicht zu erfassende Bezuege 25}, ${9:Pflegegeld}, ${10:SV}, ${11:SV-Zah})",
+    "description": "[LGV] BMD_LGV_LOHNART_HAT_PFLICHTIGKEIT(<Wert>,<Vergleich>,<Auslandstaetigkeit (beguenstigt)>,<Lohnsteuer (gem. EStG)>,<Sonstige Werbungskosten>,<Jahressechstel>,<Sonstige WK (L16-Zuordnung)>,<Nicht zu erfassende Bezuege 25>,<Pflegegeld>,<SV>,<SV-Zah>)"
+  },
+  "LGV - Lohnart ist in Lohnartengruppe": {
+    "prefix": "BMD_LGV_LOHNART_IN_LOHNARTENGRUPPE",
+    "body": "BMD_LGV_LOHNART_IN_LOHNARTENGRUPPE(${1:Wert}, ${2:Lohnartengruppe})",
+    "description": "[LGV] BMD_LGV_LOHNART_IN_LOHNARTENGRUPPE(<Wert>,'Lohnartengruppe')"
+  },
+  "LGV - Dauer": {
+    "prefix": "BMD_LGV_DAUER",
+    "body": "BMD_LGV_DAUER(${1:Art}, ${2:Genauigkeit}, ${3:Anzahl Monate}, ${4:Summe/Durchschnitt}, ${5:Ausgangsjahr}, ${6:Ausgangsmonat}, ${7:Grenze}, ${8:DienstverhÃ¤ltnis}, ${9:Ist/Org}, ${10:LA-Gruppe Beobachtungszeitraum (+)}, ${11:LA-Gruppe Beobachtungszeitraum (-)}, ${12:DV-Beginn beruecksichtigen}, ${13:DV-Ende beruecksichtigen})",
+    "description": "[LGV] BMD_LGV_DAUER(<Art>,<Genauigkeit>,<Anzahl Monate>,<Summe/Durchschnitt>,<Ausgangsjahr>,<Ausgangsmonat>,<Grenze>,<DienstverhÃ¤ltnis>,<Ist/Org>,'LA-Gruppe Beobachtungszeitraum (+)','LA-Gruppe Beobachtungszeitraum (-)','DV-Beginn beruecksichtigen','DV-Ende beruecksichtigen')"
+  },
+  "LGV - Aliquotierung": {
+    "prefix": "BMD_LGV_ALIQUOTIERUNG",
+    "body": "BMD_LGV_ALIQUOTIERUNG(${1:Wert}, ${2:Art}, ${3:Genauigkeit}, ${4:Grenze}, ${5:Grenz-Lohnartengruppe}, ${6:Abzueglich Krankzeitraum}, ${7:DV-Beginn beruecksichtigen}, ${8:DV-Ende beruecksichtigen}, ${9:LA-Gruppe Beobachtungszeitraum (+)}, ${10:LA-Gruppe Beobachtungszeitraum (-)}, ${11:Ausgangsmonat})",
+    "description": "[LGV] BMD_LGV_ALIQUOTIERUNG(<Wert>,<Art>,<Genauigkeit>,<Grenze>,'Grenz-Lohnartengruppe',<Abzueglich Krankzeitraum>,<DV-Beginn beruecksichtigen>,<DV-Ende beruecksichtigen>,'LA-Gruppe Beobachtungszeitraum (+)','LA-Gruppe Beobachtungszeitraum (-)',<Ausgangsmonat>)"
+  },
+  "LGV - L/G-Tabelle": {
+    "prefix": "BMD_LGV_LGTABELLE",
+    "body": "BMD_LGV_LGTABELLE(${1:KV-Nummer}, ${2:Unternummer}, ${3:Verwendungsgruppe}, ${4:Beschaeftigungsjahr})",
+    "description": "[LGV] BMD_LGV_LGTABELLE(<KV-Nummer>,<Unternummer>,<Verwendungsgruppe>,<Beschaeftigungsjahr>)"
+  },
+  "LGV - Berechnungen ausfÃ¼hren": {
+    "prefix": "BMD_LGV_EXECMACRO",
+    "body": "BMD_LGV_EXECMACRO(${1:Berechnung}, ${2:Aliquotierung(en) anwenden}, ${3:Ausgangsmonat})",
+    "description": "[LGV] BMD_LGV_EXECMACRO(<Berechnung>,<Aliquotierung(en) anwenden>,<Ausgangsmonat>)"
+  },
+  "LGV - Nichtleistungszeiten": {
+    "prefix": "BMD_LGV_NLZ",
+    "body": "BMD_LGV_NLZ(${1:Art}, ${2:Gutstunden/Diverse NLZ}, ${3:Verbrauch/Anspruch/Rest}, ${4:Verwaltung/Bezahlt}, ${5:Anspruchsumfang}, ${6:Anzahl Monate}, ${7:Summe/Durchschnitt}, ${8:Ausgangsjahr}, ${9:Ausgangsmonat}, ${10:Grenze}, ${11:DienstverhÃ¤ltnis})",
+    "description": "[LGV] BMD_LGV_NLZ(<Art>,'Gutstunden/Diverse NLZ',<Verbrauch/Anspruch/Rest>,<Verwaltung/Bezahlt>,<Anspruchsumfang>,<Anzahl Monate>,<Summe/Durchschnitt>,<Ausgangsjahr>,<Ausgangsmonat>,<Grenze>,<DienstverhÃ¤ltnis>)"
+  },
+  "LGV - Faktorentabelle": {
+    "prefix": "BMD_LGV_FAKTORENTABELLE",
+    "body": "BMD_LGV_FAKTORENTABELLE(${1:Faktorentabelle}, ${2:Eingabewert})",
+    "description": "[LGV] BMD_LGV_FAKTORENTABELLE('Faktorentabelle',<Eingabewert>)"
+  },
+  "LGV - Dienstzeit": {
+    "prefix": "BMD_LGV_DIENSTZEIT",
+    "body": "BMD_LGV_DIENSTZEIT(${1:Vordienstzeit beruecksichtigen}, ${2:Ruhenszeit beruecksichtigen}, ${3:Ergebnis in})",
+    "description": "[LGV] BMD_LGV_DIENSTZEIT(<Vordienstzeit beruecksichtigen>,'Ruhenszeit beruecksichtigen',<Ergebnis in>)"
+  },
+  "LGV - Alter": {
+    "prefix": "BMD_LGV_ALTER",
+    "body": "BMD_LGV_ALTER(${1:Ergebnis in})",
+    "description": "[LGV] BMD_LGV_ALTER(<Ergebnis in>)"
+  },
+  "LGV - Schnitt": {
+    "prefix": "BMD_LGV_SCHNITT",
+    "body": "BMD_LGV_SCHNITT(${1:Schnitt-Nr.})",
+    "description": "[LGV] BMD_LGV_SCHNITT(<Schnitt-Nr.>)"
+  },
+  "LGV - Fixwert speichern": {
+    "prefix": "BMD_LGV_FIXWERT_SPEICHERN",
+    "body": "BMD_LGV_FIXWERT_SPEICHERN(${1:Wert}, ${2:Fixwert-Lohnart}, ${3:Betrag/Satz})",
+    "description": "[LGV] BMD_LGV_FIXWERT_SPEICHERN(<Wert>,'Fixwert-Lohnart',<Betrag/Satz>)"
+  },
+  "LGV - zeitlich letztes aktives DV des Berechnungsmonats": {
+    "prefix": "BMD_LGV_ZEITLICH_MAX_DV",
+    "body": "BMD_LGV_ZEITLICH_MAX_DV()",
+    "description": "[LGV] BMD_LGV_ZEITLICH_MAX_DV()"
+  },
+  "LGV - Arbeitsrechtlicher Beginn": {
+    "prefix": "BMD_LGV_ARBEITSRECHT_BEGINN",
+    "body": "BMD_LGV_ARBEITSRECHT_BEGINN()",
+    "description": "[LGV] BMD_LGV_ARBEITSRECHT_BEGINN()"
+  },
+  "LGV - durchschnittliche Wochenarbeitszeit": {
+    "prefix": "BMD_LGV_DURCHSCHNITT_WAZ",
+    "body": "BMD_LGV_DURCHSCHNITT_WAZ(${1:Ausgangsjahr}, ${2:Ausgangsmonat}, ${3:Anzahl Monate}, ${4:Grenze}, ${5:DienstverhÃ¤ltnis})",
+    "description": "[LGV] BMD_LGV_DURCHSCHNITT_WAZ(<Ausgangsjahr>,<Ausgangsmonat>,<Anzahl Monate>,<Grenze>,<DienstverhÃ¤ltnis>)"
+  },
+  "LGV - Feldwert-Ã„nderung": {
+    "prefix": "BMD_LGV_FIELDVALUECHANGE",
+    "body": "BMD_LGV_FIELDVALUECHANGE(${1:Feld}, ${2:Ausgangsjahr}, ${3:Ausgangsmonat}, ${4:Anzahl Monate}, ${5:Grenze}, ${6:DienstverhÃ¤ltnis})",
+    "description": "[LGV] BMD_LGV_FIELDVALUECHANGE(<Feld>,<Ausgangsjahr>,<Ausgangsmonat>,<Anzahl Monate>,<Grenze>,<DienstverhÃ¤ltnis>)"
+  },
+  "LGV - Feldwert-VerhÃ¤ltnis": {
+    "prefix": "BMD_LGV_FIELDVALUERATIO",
+    "body": "BMD_LGV_FIELDVALUERATIO(${1:Feld}, ${2:Ausgangsjahr}, ${3:Ausgangsmonat}, ${4:Anzahl Monate}, ${5:Grenze}, ${6:DienstverhÃ¤ltnis})",
+    "description": "[LGV] BMD_LGV_FIELDVALUERATIO(<Feld>,<Ausgangsjahr>,<Ausgangsmonat>,<Anzahl Monate>,<Grenze>,<DienstverhÃ¤ltnis>)"
+  },
+  "LGV - durchschn. Monatsteiler": {
+    "prefix": "BMD_LGV_TEILER_MONAT",
+    "body": "BMD_LGV_TEILER_MONAT(${1:Ausgangsjahr}, ${2:Ausgangsmonat}, ${3:Anzahl Monate}, ${4:Grenze}, ${5:DienstverhÃ¤ltnis})",
+    "description": "[LGV] BMD_LGV_TEILER_MONAT(<Ausgangsjahr>,<Ausgangsmonat>,<Anzahl Monate>,<Grenze>,<DienstverhÃ¤ltnis>)"
+  },
+  "LGV - durchschn. Tagesteiler": {
+    "prefix": "BMD_LGV_TEILER_TAG",
+    "body": "BMD_LGV_TEILER_TAG(${1:Ausgangsjahr}, ${2:Ausgangsmonat}, ${3:Anzahl Monate}, ${4:Grenze}, ${5:DienstverhÃ¤ltnis})",
+    "description": "[LGV] BMD_LGV_TEILER_TAG(<Ausgangsjahr>,<Ausgangsmonat>,<Anzahl Monate>,<Grenze>,<DienstverhÃ¤ltnis>)"
+  },
+  "LGV - durchschn. Ãœberstundenteiler": {
+    "prefix": "BMD_LGV_TEILER_UEST",
+    "body": "BMD_LGV_TEILER_UEST(${1:Ausgangsjahr}, ${2:Ausgangsmonat}, ${3:Anzahl Monate}, ${4:Grenze}, ${5:DienstverhÃ¤ltnis})",
+    "description": "[LGV] BMD_LGV_TEILER_UEST(<Ausgangsjahr>,<Ausgangsmonat>,<Anzahl Monate>,<Grenze>,<DienstverhÃ¤ltnis>)"
+  },
+  "LGV - Ã–GK-Meldestatus": {
+    "prefix": "BMD_LGV_GKK_MELDESTATUS",
+    "body": "BMD_LGV_GKK_MELDESTATUS()",
+    "description": "[LGV] BMD_LGV_GKK_MELDESTATUS()"
+  },
+  "LGV - Letzte LehrlingsentschÃ¤digung": {
+    "prefix": "BMD_LGV_LEHRLINGSENTSCH",
+    "body": "BMD_LGV_LEHRLINGSENTSCH(${1:Betrag/Satz}, ${2:Ausgangsjahr}, ${3:Ausgangsmonat}, ${4:Anzahl Monate}, ${5:Grenze}, ${6:DienstverhÃ¤ltnis})",
+    "description": "[LGV] BMD_LGV_LEHRLINGSENTSCH(<Betrag/Satz>,<Ausgangsjahr>,<Ausgangsmonat>,<Anzahl Monate>,<Grenze>,<DienstverhÃ¤ltnis>)"
+  },
+  "LGV - Abrechnungsstatus": {
+    "prefix": "BMD_LGV_ABRECHSTATUS",
+    "body": "BMD_LGV_ABRECHSTATUS(${1:Monat})",
+    "description": "[LGV] BMD_LGV_ABRECHSTATUS(<Monat>)"
+  }
+}

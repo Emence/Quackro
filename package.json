@@ -1,0 +1,139 @@
+{
+  "name": "quackro",
+  "displayName": "Quackro",
+  "description": "Syntax highlighting, autocomplete, snippets, and tooling for BMD macros",
+  "version": "1.0.0",
+  "publisher": "your-publisher-name",
+  "main": "./extension.js",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "bmdmacro.openSettingsUi",
+        "title": "Quackro: Open Config UI",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "bmdmacro.uploadMacroToFormula",
+        "title": "Upload Macro To FOX_FORMELTEXT",
+        "icon": "$(cloud-upload)"
+      },
+      {
+        "command": "bmdmacro.insertLogForSelection",
+        "title": "Insert Logs For Selected Assignments",
+        "icon": "$(list-selection)"
+      },
+      {
+        "command": "bmdmacro.debugMacro",
+        "title": "Debug / Simulate Macro",
+        "icon": "$(debug-alt)"
+      }
+    ],
+    "languages": [
+      {
+        "id": "bmdmacro",
+        "aliases": [
+          "BMD Macro",
+          "bmdmacro"
+        ],
+        "extensions": [
+          ".mac",
+          ".macro",
+          ".bmd"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "bmdmacro",
+        "scopeName": "source.bmdmacro",
+        "path": "./syntaxes/macro.tmLanguage.json"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "bmdmacro.openSettingsUi",
+          "when": "editorLangId == bmdmacro",
+          "group": "navigation"
+        },
+        {
+          "command": "bmdmacro.uploadMacroToFormula",
+          "when": "editorLangId == bmdmacro",
+          "group": "navigation"
+        },
+        {
+          "command": "bmdmacro.debugMacro",
+          "when": "editorLangId == bmdmacro",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "bmdmacro.insertLogForSelection",
+          "when": "editorLangId == bmdmacro",
+          "group": "navigation@2"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "bmdmacro.insertLogForSelection",
+        "key": "f4",
+        "when": "editorTextFocus && editorLangId == bmdmacro"
+      },
+      {
+        "command": "bmdmacro.debugMacro",
+        "key": "f5",
+        "when": "editorTextFocus && editorLangId == bmdmacro"
+      }
+    ],
+    "configuration": {
+      "title": "Quackro",
+      "properties": {
+        "bmdmacro.macroUserShort": {
+          "type": "string",
+          "default": "VSC",
+          "description": "Value used in generated macro header as MACRO_USER_SHORT."
+        },
+        "bmdmacro.macroUseLogProc": {
+          "type": "boolean",
+          "default": true,
+          "description": "When enabled, generated macro header includes procedure log(...) and uses it in MAIN."
+        },
+        "bmdmacro.validateOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, syntax diagnostics run only on save. If false, diagnostics also run while typing."
+        },
+        "bmdmacro.sqlServer": {
+          "type": "string",
+          "default": "NB-wer979\\BMD",
+          "description": "SQL server used for macro upload and debug SQL connection."
+        },
+        "bmdmacro.sqlDatabase": {
+          "type": "string",
+          "default": "BMD",
+          "description": "SQL database used for macro upload and debug SQL connection."
+        },
+        "bmdmacro.sqlFormulaId": {
+          "type": "string",
+          "default": "115251133561722",
+          "description": "FOX_FORMELNR used when uploading and executing a macro."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1004 @@
+{
+    "TBMDAnbuKontenTreeController":  {
+                                         "prefix":  "TBMDAnbuKontenTreeController",
+                                         "body":  "TBMDAnbuKontenTreeController",
+                                         "description":  "[FIBU] TBMDAnbuKontenTreeController",
+                                         "category":  "FIBU"
+                                     },
+    "TBMDAttrInputFormController":  {
+                                        "prefix":  "TBMDAttrInputFormController",
+                                        "body":  "TBMDAttrInputFormController",
+                                        "description":  "[Tools] TBMDAttrInputFormController",
+                                        "category":  "Tools"
+                                    },
+    "TBMDAttrInputMasterModel":  {
+                                     "prefix":  "TBMDAttrInputMasterModel",
+                                     "body":  "TBMDAttrInputMasterModel",
+                                     "description":  "[Tools] TBMDAttrInputMasterModel",
+                                     "category":  "Tools"
+                                 },
+    "TBMDAusdrModellManagementTreeController":  {
+                                                    "prefix":  "TBMDAusdrModellManagementTreeController",
+                                                    "body":  "TBMDAusdrModellManagementTreeController",
+                                                    "description":  "[Tools] TBMDAusdrModellManagementTreeController",
+                                                    "category":  "Tools"
+                                                },
+    "TBMDColumnAttribute":  {
+                                "prefix":  "TBMDColumnAttribute",
+                                "body":  "TBMDColumnAttribute",
+                                "description":  "[Tools] TBMDColumnAttribute",
+                                "category":  "Tools"
+                            },
+    "TBMDcrmWfAufgabeErledigenFormController":  {
+                                                    "prefix":  "TBMDcrmWfAufgabeErledigenFormController",
+                                                    "body":  "TBMDcrmWfAufgabeErledigenFormController",
+                                                    "description":  "[CRM] TBMDcrmWfAufgabeErledigenFormController",
+                                                    "category":  "CRM"
+                                                },
+    "TBMDDlgBdeParam":  {
+                            "prefix":  "TBMDDlgBdeParam",
+                            "body":  "TBMDDlgBdeParam",
+                            "description":  "[PPS] TBMDDlgBdeParam",
+                            "category":  "PPS"
+                        },
+    "TBMDDlgPepParam":  {
+                            "prefix":  "TBMDDlgPepParam",
+                            "body":  "TBMDDlgPepParam",
+                            "description":  "[PEP] TBMDDlgPepParam",
+                            "category":  "PEP"
+                        },
+    "TBMDDlgPpsGlobParam":  {
+                                "prefix":  "TBMDDlgPpsGlobParam",
+                                "body":  "TBMDDlgPpsGlobParam",
+                                "description":  "[PPS] TBMDDlgPpsGlobParam",
+                                "category":  "PPS"
+                            },
+    "TBMDEinheitListFormController":  {
+                                          "prefix":  "TBMDEinheitListFormController",
+                                          "body":  "TBMDEinheitListFormController",
+                                          "description":  "[Tools] TBMDEinheitListFormController",
+                                          "category":  "Tools"
+                                      },
+    "TBMDFibuErBuchungDocViewerController":  {
+                                                 "prefix":  "TBMDFibuErBuchungDocViewerController",
+                                                 "body":  "TBMDFibuErBuchungDocViewerController",
+                                                 "description":  "[FIBU] TBMDFibuErBuchungDocViewerController",
+                                                 "category":  "FIBU"
+                                             },
+    "TBMDFibuErBuchungListFormController":  {
+                                                "prefix":  "TBMDFibuErBuchungListFormController",
+                                                "body":  "TBMDFibuErBuchungListFormController",
+                                                "description":  "[FIBU] TBMDFibuErBuchungListFormController",
+                                                "category":  "FIBU"
+                                            },
+    "TBMDFristTextController":  {
+                                    "prefix":  "TBMDFristTextController",
+                                    "body":  "TBMDFristTextController",
+                                    "description":  "[CRM] TBMDFristTextController",
+                                    "category":  "CRM"
+                                },
+    "TBMDFrmPrintPepPersonEinsatz":  {
+                                         "prefix":  "TBMDFrmPrintPepPersonEinsatz",
+                                         "body":  "TBMDFrmPrintPepPersonEinsatz",
+                                         "description":  "[PEP] TBMDFrmPrintPepPersonEinsatz",
+                                         "category":  "PEP"
+                                     },
+    "TBMDFrmShortcutBarElemEdit":  {
+                                       "prefix":  "TBMDFrmShortcutBarElemEdit",
+                                       "body":  "TBMDFrmShortcutBarElemEdit",
+                                       "description":  "[Tools] TBMDFrmShortcutBarElemEdit",
+                                       "category":  "Tools"
+                                   },
+    "TBMDFrmUserProgramStartEdit":  {
+                                        "prefix":  "TBMDFrmUserProgramStartEdit",
+                                        "body":  "TBMDFrmUserProgramStartEdit",
+                                        "description":  "[Tools] TBMDFrmUserProgramStartEdit",
+                                        "category":  "Tools"
+                                    },
+    "TBMDHrsCsvImportListFormController":  {
+                                               "prefix":  "TBMDHrsCsvImportListFormController",
+                                               "body":  "TBMDHrsCsvImportListFormController",
+                                               "description":  "[Tools] TBMDHrsCsvImportListFormController",
+                                               "category":  "Tools"
+                                           },
+    "TBMDMd2StklSlkMgr":  {
+                              "prefix":  "TBMDMd2StklSlkMgr",
+                              "body":  "TBMDMd2StklSlkMgr",
+                              "description":  "[PPS] TBMDMd2StklSlkMgr",
+                              "category":  "PPS"
+                          },
+    "TBMDMDAnfragenKopfMgr":  {
+                                  "prefix":  "TBMDMDAnfragenKopfMgr",
+                                  "body":  "TBMDMDAnfragenKopfMgr",
+                                  "description":  "[Model] TBMDMDAnfragenKopfMgr",
+                                  "category":  ""
+                              },
+    "TBMDMDAngebotsKopfWwsMgr":  {
+                                     "prefix":  "TBMDMDAngebotsKopfWwsMgr",
+                                     "body":  "TBMDMDAngebotsKopfWwsMgr",
+                                     "description":  "[WWS] TBMDMDAngebotsKopfWwsMgr",
+                                     "category":  "WWS"
+                                 },
+    "TBMDMDAngebotsPosMgr":  {
+                                 "prefix":  "TBMDMDAngebotsPosMgr",
+                                 "body":  "TBMDMDAngebotsPosMgr",
+                                 "description":  "[WWS] TBMDMDAngebotsPosMgr",
+                                 "category":  "WWS"
+                             },
+    "TBMDMDArtikelMgr":  {
+                             "prefix":  "TBMDMDArtikelMgr",
+                             "body":  "TBMDMDArtikelMgr",
+                             "description":  "[WWS] TBMDMDArtikelMgr",
+                             "category":  "WWS"
+                         },
+    "TBMDMDAufgabeMgr":  {
+                             "prefix":  "TBMDMDAufgabeMgr",
+                             "body":  "TBMDMDAufgabeMgr",
+                             "description":  "[CRM] TBMDMDAufgabeMgr",
+                             "category":  "CRM"
+                         },
+    "TBMDMDAuftragsKopfWwsMgr":  {
+                                     "prefix":  "TBMDMDAuftragsKopfWwsMgr",
+                                     "body":  "TBMDMDAuftragsKopfWwsMgr",
+                                     "description":  "[WWS] TBMDMDAuftragsKopfWwsMgr",
+                                     "category":  "WWS"
+                                 },
+    "TBMDMDAuftragsPosMgr":  {
+                                 "prefix":  "TBMDMDAuftragsPosMgr",
+                                 "body":  "TBMDMDAuftragsPosMgr",
+                                 "description":  "[WWS] TBMDMDAuftragsPosMgr",
+                                 "category":  "WWS"
+                             },
+    "TBMDMDAuftragsVorErfassungMgr":  {
+                                          "prefix":  "TBMDMDAuftragsVorErfassungMgr",
+                                          "body":  "TBMDMDAuftragsVorErfassungMgr",
+                                          "description":  "[WWS] TBMDMDAuftragsVorErfassungMgr",
+                                          "category":  "WWS"
+                                      },
+    "TBMDMDAwShowMgr":  {
+                            "prefix":  "TBMDMDAwShowMgr",
+                            "body":  "TBMDMDAwShowMgr",
+                            "description":  "[Model] TBMDMDAwShowMgr",
+                            "category":  ""
+                        },
+    "TBMDMDAwtymMgr":  {
+                           "prefix":  "TBMDMDAwtymMgr",
+                           "body":  "TBMDMDAwtymMgr",
+                           "description":  "[Model] TBMDMDAwtymMgr",
+                           "category":  ""
+                       },
+    "TBMDMDBdeApmgr":  {
+                           "prefix":  "TBMDMDBdeApmgr",
+                           "body":  "TBMDMDBdeApmgr",
+                           "description":  "[PPS] TBMDMDBdeApmgr",
+                           "category":  "PPS"
+                       },
+    "TBMDMDBesprechungsprotokollTerminCrmMgr":  {
+                                                    "prefix":  "TBMDMDBesprechungsprotokollTerminCrmMgr",
+                                                    "body":  "TBMDMDBesprechungsprotokollTerminCrmMgr",
+                                                    "description":  "[CRM] TBMDMDBesprechungsprotokollTerminCrmMgr",
+                                                    "category":  "CRM"
+                                                },
+    "TBMDMDBestellPosMgr":  {
+                                "prefix":  "TBMDMDBestellPosMgr",
+                                "body":  "TBMDMDBestellPosMgr",
+                                "description":  "[WWS] TBMDMDBestellPosMgr",
+                                "category":  "WWS"
+                            },
+    "TBMDMDBestellungsKopfMgr":  {
+                                     "prefix":  "TBMDMDBestellungsKopfMgr",
+                                     "body":  "TBMDMDBestellungsKopfMgr",
+                                     "description":  "[WWS] TBMDMDBestellungsKopfMgr",
+                                     "category":  "WWS"
+                                 },
+    "TBMDMDBueroMakrosMgr":  {
+                                 "prefix":  "TBMDMDBueroMakrosMgr",
+                                 "body":  "TBMDMDBueroMakrosMgr",
+                                 "description":  "[Tools] TBMDMDBueroMakrosMgr",
+                                 "category":  "Tools"
+                             },
+    "TBMDMDCrmAbwesenheitMgr":  {
+                                    "prefix":  "TBMDMDCrmAbwesenheitMgr",
+                                    "body":  "TBMDMDCrmAbwesenheitMgr",
+                                    "description":  "[CRM] TBMDMDCrmAbwesenheitMgr",
+                                    "category":  "CRM"
+                                },
+    "TBMDMDCrmChecklistMgr":  {
+                                  "prefix":  "TBMDMDCrmChecklistMgr",
+                                  "body":  "TBMDMDCrmChecklistMgr",
+                                  "description":  "[CRM] TBMDMDCrmChecklistMgr",
+                                  "category":  "CRM"
+                              },
+    "TBMDMDCrmGarantieFristMgr":  {
+                                      "prefix":  "TBMDMDCrmGarantieFristMgr",
+                                      "body":  "TBMDMDCrmGarantieFristMgr",
+                                      "description":  "[CRM] TBMDMDCrmGarantieFristMgr",
+                                      "category":  "CRM"
+                                  },
+    "TBMDMDCrmWorkflowMgr":  {
+                                 "prefix":  "TBMDMDCrmWorkflowMgr",
+                                 "body":  "TBMDMDCrmWorkflowMgr",
+                                 "description":  "[CRM] TBMDMDCrmWorkflowMgr",
+                                 "category":  "CRM"
+                             },
+    "TBMDMDDispoListeKommMgr":  {
+                                    "prefix":  "TBMDMDDispoListeKommMgr",
+                                    "body":  "TBMDMDDispoListeKommMgr",
+                                    "description":  "[Model] TBMDMDDispoListeKommMgr",
+                                    "category":  ""
+                                },
+    "TBMDMDDispolisteMgr":  {
+                                "prefix":  "TBMDMDDispolisteMgr",
+                                "body":  "TBMDMDDispolisteMgr",
+                                "description":  "[Model] TBMDMDDispolisteMgr",
+                                "category":  ""
+                            },
+    "TBMDMDDiversePersonMgr":  {
+                                   "prefix":  "TBMDMDDiversePersonMgr",
+                                   "body":  "TBMDMDDiversePersonMgr",
+                                   "description":  "[CRM] TBMDMDDiversePersonMgr",
+                                   "category":  "CRM"
+                               },
+    "TBMDMDDocsKategorieMgr":  {
+                                   "prefix":  "TBMDMDDocsKategorieMgr",
+                                   "body":  "TBMDMDDocsKategorieMgr",
+                                   "description":  "[Model] TBMDMDDocsKategorieMgr",
+                                   "category":  ""
+                               },
+    "TBMDMDDokumentCreatorMgr":  {
+                                     "prefix":  "TBMDMDDokumentCreatorMgr",
+                                     "body":  "TBMDMDDokumentCreatorMgr",
+                                     "description":  "[Model] TBMDMDDokumentCreatorMgr",
+                                     "category":  ""
+                                 },
+    "TBMDMDDokumentMgr":  {
+                              "prefix":  "TBMDMDDokumentMgr",
+                              "body":  "TBMDMDDokumentMgr",
+                              "description":  "[Model] TBMDMDDokumentMgr",
+                              "category":  ""
+                          },
+    "TBMDMDEdiNachrichtMgr":  {
+                                  "prefix":  "TBMDMDEdiNachrichtMgr",
+                                  "body":  "TBMDMDEdiNachrichtMgr",
+                                  "description":  "[Model] TBMDMDEdiNachrichtMgr",
+                                  "category":  ""
+                              },
+    "TBMDMDEMailMgr":  {
+                           "prefix":  "TBMDMDEMailMgr",
+                           "body":  "TBMDMDEMailMgr",
+                           "description":  "[Model] TBMDMDEMailMgr",
+                           "category":  ""
+                       },
+    "TBMDMDErfassRabattMgr":  {
+                                  "prefix":  "TBMDMDErfassRabattMgr",
+                                  "body":  "TBMDMDErfassRabattMgr",
+                                  "description":  "[WWS] TBMDMDErfassRabattMgr",
+                                  "category":  "WWS"
+                              },
+    "TBMDMDEvmEventMgr":  {
+                              "prefix":  "TBMDMDEvmEventMgr",
+                              "body":  "TBMDMDEvmEventMgr",
+                              "description":  "[Model] TBMDMDEvmEventMgr",
+                              "category":  ""
+                          },
+    "TBMDMDFarbeMgr":  {
+                           "prefix":  "TBMDMDFarbeMgr",
+                           "body":  "TBMDMDFarbeMgr",
+                           "description":  "[Model] TBMDMDFarbeMgr",
+                           "category":  ""
+                       },
+    "TBMDMDFibuBuchenAendernMgr":  {
+                                       "prefix":  "TBMDMDFibuBuchenAendernMgr",
+                                       "body":  "TBMDMDFibuBuchenAendernMgr",
+                                       "description":  "[FIBU] TBMDMDFibuBuchenAendernMgr",
+                                       "category":  "FIBU"
+                                   },
+    "TBMDMDFibuBuerefImportModellMgr_Bim_AfterImport_Mak":  {
+                                                                "prefix":  "TBMDMDFibuBuerefImportModellMgr_Bim_AfterImport_Mak",
+                                                                "body":  "TBMDMDFibuBuerefImportModellMgr_Bim_AfterImport_Mak",
+                                                                "description":  "[FIBU] TBMDMDFibuBuerefImportModellMgr_Bim_AfterImport_Mak",
+                                                                "category":  "FIBU"
+                                                            },
+    "TBMDMDFibuBuerefImportModellMgr_Bim_Edit_Makroid":  {
+                                                             "prefix":  "TBMDMDFibuBuerefImportModellMgr_Bim_Edit_Makroid",
+                                                             "body":  "TBMDMDFibuBuerefImportModellMgr_Bim_Edit_Makroid",
+                                                             "description":  "[FIBU] TBMDMDFibuBuerefImportModellMgr_Bim_Edit_Makroid",
+                                                             "category":  "FIBU"
+                                                         },
+    "TBMDMDFibuBuerefImportModellMgr_Bim_Exp_Makroid":  {
+                                                            "prefix":  "TBMDMDFibuBuerefImportModellMgr_Bim_Exp_Makroid",
+                                                            "body":  "TBMDMDFibuBuerefImportModellMgr_Bim_Exp_Makroid",
+                                                            "description":  "[FIBU] TBMDMDFibuBuerefImportModellMgr_Bim_Exp_Makroid",
+                                                            "category":  "FIBU"
+                                                        },
+    "TBMDMDFibuBuerefImportModellMgr_Bim_Makroid":  {
+                                                        "prefix":  "TBMDMDFibuBuerefImportModellMgr_Bim_Makroid",
+                                                        "body":  "TBMDMDFibuBuerefImportModellMgr_Bim_Makroid",
+                                                        "description":  "[FIBU] TBMDMDFibuBuerefImportModellMgr_Bim_Makroid",
+                                                        "category":  "FIBU"
+                                                    },
+    "TBMDMDFibuERBuchungMgr":  {
+                                   "prefix":  "TBMDMDFibuERBuchungMgr",
+                                   "body":  "TBMDMDFibuERBuchungMgr",
+                                   "description":  "[FIBU] TBMDMDFibuERBuchungMgr",
+                                   "category":  "FIBU"
+                               },
+    "TBMDMDFibuERKontoMgr":  {
+                                 "prefix":  "TBMDMDFibuERKontoMgr",
+                                 "body":  "TBMDMDFibuERKontoMgr",
+                                 "description":  "[FIBU] TBMDMDFibuERKontoMgr",
+                                 "category":  "FIBU"
+                             },
+    "TBMDMDFibuERKostMgr":  {
+                                "prefix":  "TBMDMDFibuERKostMgr",
+                                "body":  "TBMDMDFibuERKostMgr",
+                                "description":  "[FIBU] TBMDMDFibuERKostMgr",
+                                "category":  "FIBU"
+                            },
+    "TBMDMDFirmaMgr":  {
+                           "prefix":  "TBMDMDFirmaMgr",
+                           "body":  "TBMDMDFirmaMgr",
+                           "description":  "[CRM] TBMDMDFirmaMgr",
+                           "category":  "CRM"
+                       },
+    "TBMDMDFristMgr":  {
+                           "prefix":  "TBMDMDFristMgr",
+                           "body":  "TBMDMDFristMgr",
+                           "description":  "[CRM] TBMDMDFristMgr",
+                           "category":  "CRM"
+                       },
+    "TBMDMDIntrastatMgr":  {
+                               "prefix":  "TBMDMDIntrastatMgr",
+                               "body":  "TBMDMDIntrastatMgr",
+                               "description":  "[Model] TBMDMDIntrastatMgr",
+                               "category":  ""
+                           },
+    "TBMDMDIParamMgr":  {
+                            "prefix":  "TBMDMDIParamMgr",
+                            "body":  "TBMDMDIParamMgr",
+                            "description":  "[Tools] TBMDMDIParamMgr",
+                            "category":  "Tools"
+                        },
+    "TBMDMDJanNummernMgr":  {
+                                "prefix":  "TBMDMDJanNummernMgr",
+                                "body":  "TBMDMDJanNummernMgr",
+                                "description":  "[Model] TBMDMDJanNummernMgr",
+                                "category":  ""
+                            },
+    "TBMDMDKassenPosClientDsMgr":  {
+                                       "prefix":  "TBMDMDKassenPosClientDsMgr",
+                                       "body":  "TBMDMDKassenPosClientDsMgr",
+                                       "description":  "[FIBU] TBMDMDKassenPosClientDsMgr",
+                                       "category":  "FIBU"
+                                   },
+    "TBMDMDKontaktjournalMgr":  {
+                                    "prefix":  "TBMDMDKontaktjournalMgr",
+                                    "body":  "TBMDMDKontaktjournalMgr",
+                                    "description":  "[CRM] TBMDMDKontaktjournalMgr",
+                                    "category":  "CRM"
+                                },
+    "TBMDMDKoreTypenFindungMgr":  {
+                                      "prefix":  "TBMDMDKoreTypenFindungMgr",
+                                      "body":  "TBMDMDKoreTypenFindungMgr",
+                                      "description":  "[FIBU] TBMDMDKoreTypenFindungMgr",
+                                      "category":  "FIBU"
+                                  },
+    "TBMDMDKOStammMgr":  {
+                             "prefix":  "TBMDMDKOStammMgr",
+                             "body":  "TBMDMDKOStammMgr",
+                             "description":  "[FIBU] TBMDMDKOStammMgr",
+                             "category":  "FIBU"
+                         },
+    "TBMDMDKostenVorerfassMgr":  {
+                                     "prefix":  "TBMDMDKostenVorerfassMgr",
+                                     "body":  "TBMDMDKostenVorerfassMgr",
+                                     "description":  "[FIBU] TBMDMDKostenVorerfassMgr",
+                                     "category":  "FIBU"
+                                 },
+    "TBMDMDKudMgr":  {
+                         "prefix":  "TBMDMDKudMgr",
+                         "body":  "TBMDMDKudMgr",
+                         "description":  "[CRM] TBMDMDKudMgr",
+                         "category":  "CRM"
+                     },
+    "TBMDMDKundeLieferantMgr":  {
+                                    "prefix":  "TBMDMDKundeLieferantMgr",
+                                    "body":  "TBMDMDKundeLieferantMgr",
+                                    "description":  "[CRM] TBMDMDKundeLieferantMgr",
+                                    "category":  "CRM"
+                                },
+    "TBMDMDKundeMgr":  {
+                           "prefix":  "TBMDMDKundeMgr",
+                           "body":  "TBMDMDKundeMgr",
+                           "description":  "[CRM] TBMDMDKundeMgr",
+                           "category":  "CRM"
+                       },
+    "TBMDMDLagerMgr":  {
+                           "prefix":  "TBMDMDLagerMgr",
+                           "body":  "TBMDMDLagerMgr",
+                           "description":  "[WWS] TBMDMDLagerMgr",
+                           "category":  "WWS"
+                       },
+    "TBMDMDLeadMgr":  {
+                          "prefix":  "TBMDMDLeadMgr",
+                          "body":  "TBMDMDLeadMgr",
+                          "description":  "[CRM] TBMDMDLeadMgr",
+                          "category":  "CRM"
+                      },
+    "TBMDMDLeistungMgr":  {
+                              "prefix":  "TBMDMDLeistungMgr",
+                              "body":  "TBMDMDLeistungMgr",
+                              "description":  "[Model] TBMDMDLeistungMgr",
+                              "category":  ""
+                          },
+    "TBMDMDLeistungPaMgr":  {
+                                "prefix":  "TBMDMDLeistungPaMgr",
+                                "body":  "TBMDMDLeistungPaMgr",
+                                "description":  "[Model] TBMDMDLeistungPaMgr",
+                                "category":  ""
+                            },
+    "TBMDMDLeistungStopuhreBdeMgr":  {
+                                         "prefix":  "TBMDMDLeistungStopuhreBdeMgr",
+                                         "body":  "TBMDMDLeistungStopuhreBdeMgr",
+                                         "description":  "[PPS] TBMDMDLeistungStopuhreBdeMgr",
+                                         "category":  "PPS"
+                                     },
+    "TBMDMDLeistungZLEMgr":  {
+                                 "prefix":  "TBMDMDLeistungZLEMgr",
+                                 "body":  "TBMDMDLeistungZLEMgr",
+                                 "description":  "[Model] TBMDMDLeistungZLEMgr",
+                                 "category":  ""
+                             },
+    "TBMDMDLgvMakroMgr":  {
+                              "prefix":  "TBMDMDLgvMakroMgr",
+                              "body":  "TBMDMDLgvMakroMgr",
+                              "description":  "[Tools] TBMDMDLgvMakroMgr",
+                              "category":  "Tools"
+                          },
+    "TBMDMDLieferantenArtikelMgr":  {
+                                        "prefix":  "TBMDMDLieferantenArtikelMgr",
+                                        "body":  "TBMDMDLieferantenArtikelMgr",
+                                        "description":  "[WWS] TBMDMDLieferantenArtikelMgr",
+                                        "category":  "WWS"
+                                    },
+    "TBMDMDLieferscheinMgr":  {
+                                  "prefix":  "TBMDMDLieferscheinMgr",
+                                  "body":  "TBMDMDLieferscheinMgr",
+                                  "description":  "[WWS] TBMDMDLieferscheinMgr",
+                                  "category":  "WWS"
+                              },
+    "TBMDMDLieferscheinPosMgr":  {
+                                     "prefix":  "TBMDMDLieferscheinPosMgr",
+                                     "body":  "TBMDMDLieferscheinPosMgr",
+                                     "description":  "[WWS] TBMDMDLieferscheinPosMgr",
+                                     "category":  "WWS"
+                                 },
+    "TBMDMDLogMgr":  {
+                         "prefix":  "TBMDMDLogMgr",
+                         "body":  "TBMDMDLogMgr",
+                         "description":  "[Tools] TBMDMDLogMgr",
+                         "category":  "Tools"
+                     },
+    "TBMDMDMedienMgr":  {
+                            "prefix":  "TBMDMDMedienMgr",
+                            "body":  "TBMDMDMedienMgr",
+                            "description":  "[CRM] TBMDMDMedienMgr",
+                            "category":  "CRM"
+                        },
+    "TBMDMDMitarbeiterMgr":  {
+                                 "prefix":  "TBMDMDMitarbeiterMgr",
+                                 "body":  "TBMDMDMitarbeiterMgr",
+                                 "description":  "[CRM] TBMDMDMitarbeiterMgr",
+                                 "category":  "CRM"
+                             },
+    "TBMDMDMitarbVerwaltungMgr":  {
+                                      "prefix":  "TBMDMDMitarbVerwaltungMgr",
+                                      "body":  "TBMDMDMitarbVerwaltungMgr",
+                                      "description":  "[CRM] TBMDMDMitarbVerwaltungMgr",
+                                      "category":  "CRM"
+                                  },
+    "TBMDMDPepDmsMainMgr":  {
+                                "prefix":  "TBMDMDPepDmsMainMgr",
+                                "body":  "TBMDMDPepDmsMainMgr",
+                                "description":  "[PEP] TBMDMDPepDmsMainMgr",
+                                "category":  "PEP"
+                            },
+    "TBMDMDPepEagMgr":  {
+                            "prefix":  "TBMDMDPepEagMgr",
+                            "body":  "TBMDMDPepEagMgr",
+                            "description":  "[PEP] TBMDMDPepEagMgr",
+                            "category":  "PEP"
+                        },
+    "TBMDMDPepEeAgMgr":  {
+                             "prefix":  "TBMDMDPepEeAgMgr",
+                             "body":  "TBMDMDPepEeAgMgr",
+                             "description":  "[PEP] TBMDMDPepEeAgMgr",
+                             "category":  "PEP"
+                         },
+    "TBMDMDPepPraJapMgr":  {
+                               "prefix":  "TBMDMDPepPraJapMgr",
+                               "body":  "TBMDMDPepPraJapMgr",
+                               "description":  "[PEP] TBMDMDPepPraJapMgr",
+                               "category":  "PEP"
+                           },
+    "TBMDMDPepPrjAgMgr":  {
+                              "prefix":  "TBMDMDPepPrjAgMgr",
+                              "body":  "TBMDMDPepPrjAgMgr",
+                              "description":  "[PEP] TBMDMDPepPrjAgMgr",
+                              "category":  "PEP"
+                          },
+    "TBMDMDPepVgBenachMgr":  {
+                                 "prefix":  "TBMDMDPepVgBenachMgr",
+                                 "body":  "TBMDMDPepVgBenachMgr",
+                                 "description":  "[PEP] TBMDMDPepVgBenachMgr",
+                                 "category":  "PEP"
+                             },
+    "TBMDMDPersonenkontoMgr":  {
+                                   "prefix":  "TBMDMDPersonenkontoMgr",
+                                   "body":  "TBMDMDPersonenkontoMgr",
+                                   "description":  "[FIBU] TBMDMDPersonenkontoMgr",
+                                   "category":  "FIBU"
+                               },
+    "TBMDMDPersonKontaktZuMgr":  {
+                                     "prefix":  "TBMDMDPersonKontaktZuMgr",
+                                     "body":  "TBMDMDPersonKontaktZuMgr",
+                                     "description":  "[CRM] TBMDMDPersonKontaktZuMgr",
+                                     "category":  "CRM"
+                                 },
+    "TBMDMDPersonNummernKreisMgr":  {
+                                        "prefix":  "TBMDMDPersonNummernKreisMgr",
+                                        "body":  "TBMDMDPersonNummernKreisMgr",
+                                        "description":  "[CRM] TBMDMDPersonNummernKreisMgr",
+                                        "category":  "CRM"
+                                    },
+    "TBMDMDPersonPasswortMgr":  {
+                                    "prefix":  "TBMDMDPersonPasswortMgr",
+                                    "body":  "TBMDMDPersonPasswortMgr",
+                                    "description":  "[CRM] TBMDMDPersonPasswortMgr",
+                                    "category":  "CRM"
+                                },
+    "TBMDMDPersStammdatenMgr":  {
+                                    "prefix":  "TBMDMDPersStammdatenMgr",
+                                    "body":  "TBMDMDPersStammdatenMgr",
+                                    "description":  "[Model] TBMDMDPersStammdatenMgr",
+                                    "category":  ""
+                                },
+    "TBMDMDPostMgr":  {
+                          "prefix":  "TBMDMDPostMgr",
+                          "body":  "TBMDMDPostMgr",
+                          "description":  "[CRM] TBMDMDPostMgr",
+                          "category":  "CRM"
+                      },
+    "TBMDMDPpsArbeitsplanMgr":  {
+                                    "prefix":  "TBMDMDPpsArbeitsplanMgr",
+                                    "body":  "TBMDMDPpsArbeitsplanMgr",
+                                    "description":  "[PPS] TBMDMDPpsArbeitsplanMgr",
+                                    "category":  "PPS"
+                                },
+    "TBMDMDPpsBazMgr":  {
+                            "prefix":  "TBMDMDPpsBazMgr",
+                            "body":  "TBMDMDPpsBazMgr",
+                            "description":  "[PPS] TBMDMDPpsBazMgr",
+                            "category":  "PPS"
+                        },
+    "TBMDMDPpsBefehlMgrImpl":  {
+                                   "prefix":  "TBMDMDPpsBefehlMgrImpl",
+                                   "body":  "TBMDMDPpsBefehlMgrImpl",
+                                   "description":  "[PPS] TBMDMDPpsBefehlMgrImpl",
+                                   "category":  "PPS"
+                               },
+    "TBMDMDPpsPlanGroupMgr":  {
+                                  "prefix":  "TBMDMDPpsPlanGroupMgr",
+                                  "body":  "TBMDMDPpsPlanGroupMgr",
+                                  "description":  "[PPS] TBMDMDPpsPlanGroupMgr",
+                                  "category":  "PPS"
+                              },
+    "TBMDMDPpsProdChargeMgr":  {
+                                   "prefix":  "TBMDMDPpsProdChargeMgr",
+                                   "body":  "TBMDMDPpsProdChargeMgr",
+                                   "description":  "[PPS] TBMDMDPpsProdChargeMgr",
+                                   "category":  "PPS"
+                               },
+    "TBMDMDPpsProduktMgr":  {
+                                "prefix":  "TBMDMDPpsProduktMgr",
+                                "body":  "TBMDMDPpsProduktMgr",
+                                "description":  "[PPS] TBMDMDPpsProduktMgr",
+                                "category":  "PPS"
+                            },
+    "TBMDMDPpsQmArtikelMgr":  {
+                                  "prefix":  "TBMDMDPpsQmArtikelMgr",
+                                  "body":  "TBMDMDPpsQmArtikelMgr",
+                                  "description":  "[PPS] TBMDMDPpsQmArtikelMgr",
+                                  "category":  "PPS"
+                              },
+    "TBMDMDPpsTransLogPositionMgr":  {
+                                         "prefix":  "TBMDMDPpsTransLogPositionMgr",
+                                         "body":  "TBMDMDPpsTransLogPositionMgr",
+                                         "description":  "[PPS] TBMDMDPpsTransLogPositionMgr",
+                                         "category":  "PPS"
+                                     },
+    "TBMDMDPreisTabPosMgr":  {
+                                 "prefix":  "TBMDMDPreisTabPosMgr",
+                                 "body":  "TBMDMDPreisTabPosMgr",
+                                 "description":  "[WWS] TBMDMDPreisTabPosMgr",
+                                 "category":  "WWS"
+                             },
+    "TBMDMDProduktionsKopfMgr":  {
+                                     "prefix":  "TBMDMDProduktionsKopfMgr",
+                                     "body":  "TBMDMDProduktionsKopfMgr",
+                                     "description":  "[PPS] TBMDMDProduktionsKopfMgr",
+                                     "category":  "PPS"
+                                 },
+    "TBMDMDProduktionsPosMgr":  {
+                                    "prefix":  "TBMDMDProduktionsPosMgr",
+                                    "body":  "TBMDMDProduktionsPosMgr",
+                                    "description":  "[PPS] TBMDMDProduktionsPosMgr",
+                                    "category":  "PPS"
+                                },
+    "TBMDMDProjektMgr":  {
+                             "prefix":  "TBMDMDProjektMgr",
+                             "body":  "TBMDMDProjektMgr",
+                             "description":  "[CRM] TBMDMDProjektMgr",
+                             "category":  "CRM"
+                         },
+    "TBMDMDProjektPersZuMgr":  {
+                                   "prefix":  "TBMDMDProjektPersZuMgr",
+                                   "body":  "TBMDMDProjektPersZuMgr",
+                                   "description":  "[CRM] TBMDMDProjektPersZuMgr",
+                                   "category":  "CRM"
+                               },
+    "TBMDMDRahmenAbrufAbfrageMgr":  {
+                                        "prefix":  "TBMDMDRahmenAbrufAbfrageMgr",
+                                        "body":  "TBMDMDRahmenAbrufAbfrageMgr",
+                                        "description":  "[Model] TBMDMDRahmenAbrufAbfrageMgr",
+                                        "category":  ""
+                                    },
+    "TBMDMDRechnungMgr":  {
+                              "prefix":  "TBMDMDRechnungMgr",
+                              "body":  "TBMDMDRechnungMgr",
+                              "description":  "[Model] TBMDMDRechnungMgr",
+                              "category":  ""
+                          },
+    "TBMDMDRechtsformMgr":  {
+                                "prefix":  "TBMDMDRechtsformMgr",
+                                "body":  "TBMDMDRechtsformMgr",
+                                "description":  "[CRM] TBMDMDRechtsformMgr",
+                                "category":  "CRM"
+                            },
+    "TBMDMDReiseverwaltungMgr":  {
+                                     "prefix":  "TBMDMDReiseverwaltungMgr",
+                                     "body":  "TBMDMDReiseverwaltungMgr",
+                                     "description":  "[PEP] TBMDMDReiseverwaltungMgr",
+                                     "category":  "PEP"
+                                 },
+    "TBMDMDReportMgr":  {
+                            "prefix":  "TBMDMDReportMgr",
+                            "body":  "TBMDMDReportMgr",
+                            "description":  "[Tools] TBMDMDReportMgr",
+                            "category":  "Tools"
+                        },
+    "TBMDMDSptStapelSchrittMgr":  {
+                                      "prefix":  "TBMDMDSptStapelSchrittMgr",
+                                      "body":  "TBMDMDSptStapelSchrittMgr",
+                                      "description":  "[Tools] TBMDMDSptStapelSchrittMgr",
+                                      "category":  "Tools"
+                                  },
+    "TBMDMDStapelKopfMgr":  {
+                                "prefix":  "TBMDMDStapelKopfMgr",
+                                "body":  "TBMDMDStapelKopfMgr",
+                                "description":  "[Tools] TBMDMDStapelKopfMgr",
+                                "category":  "Tools"
+                            },
+    "TBMDMDStapelParameterMgr":  {
+                                     "prefix":  "TBMDMDStapelParameterMgr",
+                                     "body":  "TBMDMDStapelParameterMgr",
+                                     "description":  "[Tools] TBMDMDStapelParameterMgr",
+                                     "category":  "Tools"
+                                 },
+    "TBMDMDStapelVariableMgr":  {
+                                    "prefix":  "TBMDMDStapelVariableMgr",
+                                    "body":  "TBMDMDStapelVariableMgr",
+                                    "description":  "[Tools] TBMDMDStapelVariableMgr",
+                                    "category":  "Tools"
+                                },
+    "TBMDMDStelleMgr":  {
+                            "prefix":  "TBMDMDStelleMgr",
+                            "body":  "TBMDMDStelleMgr",
+                            "description":  "[Model] TBMDMDStelleMgr",
+                            "category":  ""
+                        },
+    "TBMDMDStuecklistenKopfMgr":  {
+                                      "prefix":  "TBMDMDStuecklistenKopfMgr",
+                                      "body":  "TBMDMDStuecklistenKopfMgr",
+                                      "description":  "[PPS] TBMDMDStuecklistenKopfMgr",
+                                      "category":  "PPS"
+                                  },
+    "TBMDMDTelefonProtokollMgr":  {
+                                      "prefix":  "TBMDMDTelefonProtokollMgr",
+                                      "body":  "TBMDMDTelefonProtokollMgr",
+                                      "description":  "[CRM] TBMDMDTelefonProtokollMgr",
+                                      "category":  "CRM"
+                                  },
+    "TBMDMDTerminCrmDataMgr":  {
+                                   "prefix":  "TBMDMDTerminCrmDataMgr",
+                                   "body":  "TBMDMDTerminCrmDataMgr",
+                                   "description":  "[CRM] TBMDMDTerminCrmDataMgr",
+                                   "category":  "CRM"
+                               },
+    "TBMDMDTrackerMgr":  {
+                             "prefix":  "TBMDMDTrackerMgr",
+                             "body":  "TBMDMDTrackerMgr",
+                             "description":  "[CRM] TBMDMDTrackerMgr",
+                             "category":  "CRM"
+                         },
+    "TBMDMDUserMgr":  {
+                          "prefix":  "TBMDMDUserMgr",
+                          "body":  "TBMDMDUserMgr",
+                          "description":  "[Tools] TBMDMDUserMgr",
+                          "category":  "Tools"
+                      },
+    "TBMDMDWqiMgr":  {
+                         "prefix":  "TBMDMDWqiMgr",
+                         "body":  "TBMDMDWqiMgr",
+                         "description":  "[Model] TBMDMDWqiMgr",
+                         "category":  ""
+                     },
+    "TBMDMDWwsAnkaufsKopfMgr":  {
+                                    "prefix":  "TBMDMDWwsAnkaufsKopfMgr",
+                                    "body":  "TBMDMDWwsAnkaufsKopfMgr",
+                                    "description":  "[WWS] TBMDMDWwsAnkaufsKopfMgr",
+                                    "category":  "WWS"
+                                },
+    "TBMDMDWwsBaInput":  {
+                             "prefix":  "TBMDMDWwsBaInput",
+                             "body":  "TBMDMDWwsBaInput",
+                             "description":  "[WWS] TBMDMDWwsBaInput",
+                             "category":  "WWS"
+                         },
+    "TBMDMDWWSBestellVorschlagMgr":  {
+                                         "prefix":  "TBMDMDWWSBestellVorschlagMgr",
+                                         "body":  "TBMDMDWWSBestellVorschlagMgr",
+                                         "description":  "[WWS] TBMDMDWWSBestellVorschlagMgr",
+                                         "category":  "WWS"
+                                     },
+    "TBMDMDWwsEpsMgr":  {
+                            "prefix":  "TBMDMDWwsEpsMgr",
+                            "body":  "TBMDMDWwsEpsMgr",
+                            "description":  "[WWS] TBMDMDWwsEpsMgr",
+                            "category":  "WWS"
+                        },
+    "TBMDMDWwsImportDatenMgr":  {
+                                    "prefix":  "TBMDMDWwsImportDatenMgr",
+                                    "body":  "TBMDMDWwsImportDatenMgr",
+                                    "description":  "[WWS] TBMDMDWwsImportDatenMgr",
+                                    "category":  "WWS"
+                                },
+    "TBMDMDWwsInventurPositionMgr":  {
+                                         "prefix":  "TBMDMDWwsInventurPositionMgr",
+                                         "body":  "TBMDMDWwsInventurPositionMgr",
+                                         "description":  "[WWS] TBMDMDWwsInventurPositionMgr",
+                                         "category":  "WWS"
+                                     },
+    "TBMDMDWwsKostenPeriodeAufteilungMgr":  {
+                                                "prefix":  "TBMDMDWwsKostenPeriodeAufteilungMgr",
+                                                "body":  "TBMDMDWwsKostenPeriodeAufteilungMgr",
+                                                "description":  "[FIBU] TBMDMDWwsKostenPeriodeAufteilungMgr",
+                                                "category":  "FIBU"
+                                            },
+    "TBMDMDWWSKundeLieferantMgr":  {
+                                       "prefix":  "TBMDMDWWSKundeLieferantMgr",
+                                       "body":  "TBMDMDWWSKundeLieferantMgr",
+                                       "description":  "[WWS] TBMDMDWWSKundeLieferantMgr",
+                                       "category":  "WWS"
+                                   },
+    "TBMDMDWWSKundeMgr":  {
+                              "prefix":  "TBMDMDWWSKundeMgr",
+                              "body":  "TBMDMDWWSKundeMgr",
+                              "description":  "[WWS] TBMDMDWWSKundeMgr",
+                              "category":  "WWS"
+                          },
+    "TBMDMDWWSKundenMgr":  {
+                               "prefix":  "TBMDMDWWSKundenMgr",
+                               "body":  "TBMDMDWWSKundenMgr",
+                               "description":  "[WWS] TBMDMDWWSKundenMgr",
+                               "category":  "WWS"
+                           },
+    "TBMDMDWWSLieferantMgr":  {
+                                  "prefix":  "TBMDMDWWSLieferantMgr",
+                                  "body":  "TBMDMDWWSLieferantMgr",
+                                  "description":  "[WWS] TBMDMDWWSLieferantMgr",
+                                  "category":  "WWS"
+                              },
+    "TBMDMDWwsMakroZuordMgr_Mde":  {
+                                       "prefix":  "TBMDMDWwsMakroZuordMgr_Mde",
+                                       "body":  "TBMDMDWwsMakroZuordMgr_Mde",
+                                       "description":  "[WWS] TBMDMDWwsMakroZuordMgr_Mde",
+                                       "category":  "WWS"
+                                   },
+    "TBMDMDWwsPpsChgMgr":  {
+                               "prefix":  "TBMDMDWwsPpsChgMgr",
+                               "body":  "TBMDMDWwsPpsChgMgr",
+                               "description":  "[WWS] TBMDMDWwsPpsChgMgr",
+                               "category":  "WWS"
+                           },
+    "TBMDMDWwsProvArtBaumMgr":  {
+                                    "prefix":  "TBMDMDWwsProvArtBaumMgr",
+                                    "body":  "TBMDMDWwsProvArtBaumMgr",
+                                    "description":  "[WWS] TBMDMDWwsProvArtBaumMgr",
+                                    "category":  "WWS"
+                                },
+    "TBMDMDWwsTransportEinheitMgr":  {
+                                         "prefix":  "TBMDMDWwsTransportEinheitMgr",
+                                         "body":  "TBMDMDWwsTransportEinheitMgr",
+                                         "description":  "[WWS] TBMDMDWwsTransportEinheitMgr",
+                                         "category":  "WWS"
+                                     },
+    "TBMDMDWwsVertabrKopfMgr":  {
+                                    "prefix":  "TBMDMDWwsVertabrKopfMgr",
+                                    "body":  "TBMDMDWwsVertabrKopfMgr",
+                                    "description":  "[WWS] TBMDMDWwsVertabrKopfMgr",
+                                    "category":  "WWS"
+                                },
+    "TBMDMDWwsVertreterStufeMgr":  {
+                                       "prefix":  "TBMDMDWwsVertreterStufeMgr",
+                                       "body":  "TBMDMDWwsVertreterStufeMgr",
+                                       "description":  "[WWS] TBMDMDWwsVertreterStufeMgr",
+                                       "category":  "WWS"
+                                   },
+    "TBMDMDWwsWarenAnnahmeKopfVerwMgr":  {
+                                             "prefix":  "TBMDMDWwsWarenAnnahmeKopfVerwMgr",
+                                             "body":  "TBMDMDWwsWarenAnnahmeKopfVerwMgr",
+                                             "description":  "[WWS] TBMDMDWwsWarenAnnahmeKopfVerwMgr",
+                                             "category":  "WWS"
+                                         },
+    "TBMDMDWwsWarenEingangKopfKommMgr":  {
+                                             "prefix":  "TBMDMDWwsWarenEingangKopfKommMgr",
+                                             "body":  "TBMDMDWwsWarenEingangKopfKommMgr",
+                                             "description":  "[WWS] TBMDMDWwsWarenEingangKopfKommMgr",
+                                             "category":  "WWS"
+                                         },
+    "TBMDMDWwsWarenEingangKopfMgr":  {
+                                         "prefix":  "TBMDMDWwsWarenEingangKopfMgr",
+                                         "body":  "TBMDMDWwsWarenEingangKopfMgr",
+                                         "description":  "[WWS] TBMDMDWwsWarenEingangKopfMgr",
+                                         "category":  "WWS"
+                                     },
+    "TBMDMDWwsWarenEingangKopfVerwMgr":  {
+                                             "prefix":  "TBMDMDWwsWarenEingangKopfVerwMgr",
+                                             "body":  "TBMDMDWwsWarenEingangKopfVerwMgr",
+                                             "description":  "[WWS] TBMDMDWwsWarenEingangKopfVerwMgr",
+                                             "category":  "WWS"
+                                         },
+    "TBMDMDWwsWarenEingangPosKommMgr":  {
+                                            "prefix":  "TBMDMDWwsWarenEingangPosKommMgr",
+                                            "body":  "TBMDMDWwsWarenEingangPosKommMgr",
+                                            "description":  "[WWS] TBMDMDWwsWarenEingangPosKommMgr",
+                                            "category":  "WWS"
+                                        },
+    "TBMDMDWwsWarenEingangPosVerwListMgr":  {
+                                                "prefix":  "TBMDMDWwsWarenEingangPosVerwListMgr",
+                                                "body":  "TBMDMDWwsWarenEingangPosVerwListMgr",
+                                                "description":  "[WWS] TBMDMDWwsWarenEingangPosVerwListMgr",
+                                                "category":  "WWS"
+                                            },
+    "TBMDMDZeitbuchungBearbeitenMgr":  {
+                                           "prefix":  "TBMDMDZeitbuchungBearbeitenMgr",
+                                           "body":  "TBMDMDZeitbuchungBearbeitenMgr",
+                                           "description":  "[FIBU] TBMDMDZeitbuchungBearbeitenMgr",
+                                           "category":  "FIBU"
+                                       },
+    "TBMDMDZeitplanungBaAntragMgr":  {
+                                         "prefix":  "TBMDMDZeitplanungBaAntragMgr",
+                                         "body":  "TBMDMDZeitplanungBaAntragMgr",
+                                         "description":  "[PPS] TBMDMDZeitplanungBaAntragMgr",
+                                         "category":  "PPS"
+                                     },
+    "TBMDPepBaInputModuleakros":  {
+                                      "prefix":  "TBMDPepBaInputModuleakros",
+                                      "body":  "TBMDPepBaInputModuleakros",
+                                      "description":  "[PEP] TBMDPepBaInputModuleakros",
+                                      "category":  "PEP"
+                                  },
+    "TBMDPepVgBenachSearchInfo":  {
+                                      "prefix":  "TBMDPepVgBenachSearchInfo",
+                                      "body":  "TBMDPepVgBenachSearchInfo",
+                                      "description":  "[PEP] TBMDPepVgBenachSearchInfo",
+                                      "category":  "PEP"
+                                  },
+    "TBMDPpsProdCalenderMd":  {
+                                  "prefix":  "TBMDPpsProdCalenderMd",
+                                  "body":  "TBMDPpsProdCalenderMd",
+                                  "description":  "[PPS] TBMDPpsProdCalenderMd",
+                                  "category":  "PPS"
+                              },
+    "TBMDPpsProdChargeSetReadyMacroExecutor":  {
+                                                   "prefix":  "TBMDPpsProdChargeSetReadyMacroExecutor",
+                                                   "body":  "TBMDPpsProdChargeSetReadyMacroExecutor",
+                                                   "description":  "[PPS] TBMDPpsProdChargeSetReadyMacroExecutor",
+                                                   "category":  "PPS"
+                                               },
+    "TBMDPpsProdLosMgrMd":  {
+                                "prefix":  "TBMDPpsProdLosMgrMd",
+                                "body":  "TBMDPpsProdLosMgrMd",
+                                "description":  "[PPS] TBMDPpsProdLosMgrMd",
+                                "category":  "PPS"
+                            },
+    "TBMDProduktListFormController":  {
+                                          "prefix":  "TBMDProduktListFormController",
+                                          "body":  "TBMDProduktListFormController",
+                                          "description":  "[PPS] TBMDProduktListFormController",
+                                          "category":  "PPS"
+                                      },
+    "TBMDStklEpsTreeFormController":  {
+                                          "prefix":  "TBMDStklEpsTreeFormController",
+                                          "body":  "TBMDStklEpsTreeFormController",
+                                          "description":  "[PPS] TBMDStklEpsTreeFormController",
+                                          "category":  "PPS"
+                                      },
+    "TBMDStklMastertreeFormController":  {
+                                             "prefix":  "TBMDStklMastertreeFormController",
+                                             "body":  "TBMDStklMastertreeFormController",
+                                             "description":  "[PPS] TBMDStklMastertreeFormController",
+                                             "category":  "PPS"
+                                         },
+    "TBMDStklTreeMgrMdMasterData":  {
+                                        "prefix":  "TBMDStklTreeMgrMdMasterData",
+                                        "body":  "TBMDStklTreeMgrMdMasterData",
+                                        "description":  "[PPS] TBMDStklTreeMgrMdMasterData",
+                                        "category":  "PPS"
+                                    },
+    "TBMDTerminCrmGruppenUebersichtFormController":  {
+                                                         "prefix":  "TBMDTerminCrmGruppenUebersichtFormController",
+                                                         "body":  "TBMDTerminCrmGruppenUebersichtFormController",
+                                                         "description":  "[CRM] TBMDTerminCrmGruppenUebersichtFormController",
+                                                         "category":  "CRM"
+                                                     },
+    "TBMDUserFormController":  {
+                                   "prefix":  "TBMDUserFormController",
+                                   "body":  "TBMDUserFormController",
+                                   "description":  "[Tools] TBMDUserFormController",
+                                   "category":  "Tools"
+                               },
+    "TBMDWwsArtikelPreisRabInfoPreisVkmgrMd":  {
+                                                   "prefix":  "TBMDWwsArtikelPreisRabInfoPreisVkmgrMd",
+                                                   "body":  "TBMDWwsArtikelPreisRabInfoPreisVkmgrMd",
+                                                   "description":  "[WWS] TBMDWwsArtikelPreisRabInfoPreisVkmgrMd",
+                                                   "category":  "WWS"
+                                               },
+    "TBMDWwsAuftragsKopfFrameFormController":  {
+                                                   "prefix":  "TBMDWwsAuftragsKopfFrameFormController",
+                                                   "body":  "TBMDWwsAuftragsKopfFrameFormController",
+                                                   "description":  "[WWS] TBMDWwsAuftragsKopfFrameFormController",
+                                                   "category":  "WWS"
+                                               },
+    "TBMDWwsBonusKopfTreeController":  {
+                                           "prefix":  "TBMDWwsBonusKopfTreeController",
+                                           "body":  "TBMDWwsBonusKopfTreeController",
+                                           "description":  "[WWS] TBMDWwsBonusKopfTreeController",
+                                           "category":  "WWS"
+                                       },
+    "TBMDWwsErfassGruppeTreeController":  {
+                                              "prefix":  "TBMDWwsErfassGruppeTreeController",
+                                              "body":  "TBMDWwsErfassGruppeTreeController",
+                                              "description":  "[WWS] TBMDWwsErfassGruppeTreeController",
+                                              "category":  "WWS"
+                                          },
+    "TBMDWwsErfassKopieBaseInputFormController":  {
+                                                      "prefix":  "TBMDWwsErfassKopieBaseInputFormController",
+                                                      "body":  "TBMDWwsErfassKopieBaseInputFormController",
+                                                      "description":  "[WWS] TBMDWwsErfassKopieBaseInputFormController",
+                                                      "category":  "WWS"
+                                                  },
+    "TBMDWwsKundeListFormController":  {
+                                           "prefix":  "TBMDWwsKundeListFormController",
+                                           "body":  "TBMDWwsKundeListFormController",
+                                           "description":  "[WWS] TBMDWwsKundeListFormController",
+                                           "category":  "WWS"
+                                       },
+    "TBMDWwsPpsStuecklistenTools":  {
+                                        "prefix":  "TBMDWwsPpsStuecklistenTools",
+                                        "body":  "TBMDWwsPpsStuecklistenTools",
+                                        "description":  "[WWS] TBMDWwsPpsStuecklistenTools",
+                                        "category":  "WWS"
+                                    }
+}

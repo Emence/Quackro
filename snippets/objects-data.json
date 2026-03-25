@@ -1,0 +1,648 @@
+{
+  "MacroModel": {
+    "constructors": ["CreateMacroModel", "MacroObject.CreateMacroModel"],
+    "methods": [
+      "GetModelClassName",
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Feldname})",
+        "description": "[MacroModel] GetValue('Feldname')"
+      },
+      {
+        "name": "SetValue",
+        "body": "SetValue(${1:Feldname}, ${2:Wert})",
+        "description": "[MacroModel] SetValue('Feldname','Wert')"
+      },
+      "GetPostItText",
+      "SetPostItText",
+      "LockModel",
+      "UnlockModel",
+      "GetState",
+      "Open",
+      "Close",
+      "Next",
+      "Prior",
+      "First",
+      "Eof",
+      "New",
+      "Edit",
+      "Save",
+      "Delete",
+      "RefreshRow",
+      "GetOldDataValue",
+      "GetUserValue",
+      "GetModelQuery",
+      "GetSelectedCount",
+      "GetSelectedValue"
+    ]
+  },
+  "MacroQuery": {
+    "constructors": ["CreateMacroQuery", "MacroObject.CreateMacroQuery", "FindMacroQuery"],
+    "constructorBody": "CreateMacroQuery('get_'+bmd_getGUID())",
+    "methods": [
+      "GetSQLText",
+      {
+        "name": "SetSQLText",
+        "body": "SetSQLText(${1:' SELECT ...'})",
+        "description": "[MacroQuery] SetSQLText('SQL')"
+      },
+      "SetSqlText",
+      "Open",
+      "Close",
+      "First",
+      "Next",
+      "Prior",
+      "Eof",
+      "GetDisplayText",
+      "IsActive",
+      "RecordCount",
+      {
+        "name": "GetAsString",
+        "body": "GetAsString(${1:Feldname})",
+        "description": "[MacroQuery] GetAsString('Feldname')"
+      },
+      {
+        "name": "SQLAddCondition",
+        "body": "SQLAddCondition(${1:Bedingung})",
+        "description": "[MacroQuery] SQLAddCondition('Bedingung')"
+      },
+      {
+        "name": "SQLAddOrder",
+        "body": "SQLAddOrder(${1:Sortierung})",
+        "description": "[MacroQuery] SQLAddOrder('Sortierung')"
+      },
+      {
+        "name": "SetParamAsString",
+        "body": "SetParamAsString(${1:ParamName}, ${2:Wert})",
+        "description": "[MacroQuery] SetParamAsString('ParamName','Wert')"
+      },
+      "ExecSQL",
+      "Free"
+    ]
+  },
+  "MacroCSVFile": {
+    "constructors": ["CreateMacroCSVFile", "MacroObject.CreateMacroCSVFile"],
+    "alias": "CSVMgr",
+    "methods": [
+      "Open",
+      "Close",
+      "Exists",
+      "GetNoOfLines",
+      "GetNoOfCols",
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Row}, ${2:Col})",
+        "description": "[MacroCSVFile] GetValue(<Row>,<Col>)"
+      },
+      {
+        "name": "SetSeparator",
+        "body": "SetSeparator(${1:Separator})",
+        "description": "[MacroCSVFile] SetSeparator('Separator')"
+      },
+      {
+        "name": "SetQuoteChar",
+        "body": "SetQuoteChar(${1:QuoteChar})",
+        "description": "[MacroCSVFile] SetQuoteChar('QuoteChar')"
+      },
+      {
+        "name": "SetCodepage",
+        "body": "SetCodepage(${1:Codepage})",
+        "description": "[MacroCSVFile] SetCodepage('Codepage')"
+      }
+    ]
+  },
+  "MacroFileMgr": {
+    "constructors": ["CreateMacroFileMgr", "MacroObject.CreateMacroFileMgr"],
+    "methods": [
+      "FindFirstFile",
+      "FindNextFile",
+      "FileName",
+      "FileAttributes",
+      "CreationTime",
+      "LastAccessTime",
+      "LastWriteTime",
+      "FileSize",
+      "CloseFile"
+    ]
+  },
+  "MacroList": {
+    "constructors": ["CreateMacroList", "MacroObject.CreateMacroList"],
+    "methods": [
+      "GetMacroList",
+      "Add",
+      "GetItem",
+      "Delete",
+      "Count",
+      "Clear",
+      "IndexOf"
+    ]
+  },
+  "MacroStringList": {
+    "constructors": ["CreateMacroStringList", "MacroObject.CreateMacroStringList", "FindGlobalMacroStringList", "MacroObject.FindGlobalMacroStringList"],
+    "methods": [
+      {
+        "name": "Add",
+        "body": "Add(${1:Value})",
+        "description": "[MacroStringList] Add('Value')"
+      },
+      "GetItem",
+      "GetName",
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Index})",
+        "description": "[MacroStringList] GetValue(<Index>)"
+      },
+      "Delete",
+      "Count",
+      "Clear",
+      "Sort",
+      {
+        "name": "IndexOf",
+        "body": "IndexOf(${1:Value})",
+        "description": "[MacroStringList] IndexOf('Value')"
+      },
+      {
+        "name": "IndexOfName",
+        "body": "IndexOfName(${1:Name})",
+        "description": "[MacroStringList] IndexOfName('Name')"
+      },
+      {
+        "name": "IndexOfValue",
+        "body": "IndexOfValue(${1:Value})",
+        "description": "[MacroStringList] IndexOfValue('Value')"
+      },
+      {
+        "name": "SetKeyValue",
+        "body": "SetKeyValue(${1:Key}, ${2:Value})",
+        "description": "[MacroStringList] SetKeyValue('Key','Value')"
+      },
+      {
+        "name": "GetKeyValue",
+        "body": "GetKeyValue(${1:Key})",
+        "description": "[MacroStringList] GetKeyValue('Key')"
+      },
+      {
+        "name": "SetSeparatedText",
+        "body": "SetSeparatedText(${1:Text})",
+        "description": "[MacroStringList] SetSeparatedText('Text')"
+      },
+      {
+        "name": "GetSeparatedText",
+        "body": "GetSeparatedText(${1:Separator})",
+        "description": "[MacroStringList] GetSeparatedText('Separator')"
+      }
+    ]
+  },
+  "MacroXMLDocument": {
+    "constructors": ["CreateMacroXMLDocument", "MacroObject.CreateMacroXMLDocument"],
+    "methods": [
+      "GetMacroXMLDocument",
+      "LoadXMLFile",
+      "LoadXMLText",
+      "SaveXMLFile",
+      "ValidateXMLFile",
+      "ValidateXMLText",
+      "GetXMLText",
+      "LoadXMLBuffer",
+      "SaveXMLBuffer",
+      "ClearXMLBuffer",
+      "DeleteXMLBuffer"
+    ]
+  },
+  "Absence": {
+    "constructors": ["CreateAbsenceMgr", "CRMMacroObject.CreateAbsenceMgr"],
+    "methods": [
+      "New",
+      "GetDeputy"
+    ]
+  },
+  "Task": {
+    "constructors": ["CreateTaskMgr", "CRMMacroObject.CreateTaskMgr"],
+    "methods": [
+      "New",
+      "Load",
+      "Save",
+      "SaveNoMail",
+      "Finish",
+      "GetNr",
+      "GetCaption",
+      "SetCaption",
+      "GetText",
+      "SetText",
+      "AddTextHtml",
+      "GetTextHtml",
+      "SetTextHtml",
+      "GetEmployeeCompanyNo",
+      "GetEmployeeID",
+      "SetEmployee",
+      "GetUserID",
+      "SetUserID",
+      "GetResponsibleCompanyNo",
+      "GetResponsibleID",
+      "SetResponsible",
+      "GetPersonCompanyNo",
+      "GetPersonID",
+      "SetPerson",
+      "AddNotification",
+      "GetStartDate",
+      "SetStartDate",
+      "GetDueDate",
+      "SetDueDate",
+      "GetMainCategory",
+      "SetMainCategory",
+      "GetSubCategory",
+      "SetSubCategory",
+      "GetPriority",
+      "SetPriority",
+      "GetColorCode",
+      "SetColorCode",
+      "GetProjectComp",
+      "GetProjectNo",
+      "GetProjectType",
+      "SetProject",
+      "GetInstitutionNo",
+      "GetInstitutionCountry",
+      "GetInstitutionType",
+      "SetInstitution",
+      "AddDocument",
+      "GetShowDog",
+      "SetShowDog",
+      "GetFreeField",
+      "SetFreeField"
+    ]
+  },
+  "WorkflowTool": {
+    "constructors": ["CreateWorkflowToolMgr", "CRMMacroObject.CreateWorkflowToolMgr"],
+    "methods": [
+      "SearchWorkflow",
+      "NewInstance",
+      "LoadWorkflowInstance",
+      "SetFreifeld",
+      "UpdateInstanzInfo",
+      "GetValueInstanzinfo"
+    ]
+  },
+  "Zustaendigkeit": {
+    "constructors": ["CreateZustaendigkeitMgr", "CRMMacroObject.CreateZustaendigkeitMgr"],
+    "methods": [
+      "GetMitarbeiter"
+    ]
+  },
+  "DokumentMgr": {
+    "constructors": ["CreateDokumentMgr", "CRMMacroObject.CreateDokumentMgr"],
+    "methods": [
+      "AddDocRelation",
+      "GetCategoryByTableName",
+      "ExportDocument",
+      "AssignDocumentToPerson",
+      "AssignDocumentToArchive",
+      "MoveDocToArchive",
+      "GetTextFromDocument",
+      "SetSummaryToDoc"
+    ]
+  },
+  "Frist": {
+    "constructors": ["CreateFristMgr", "CRMMacroObject.CreateFristMgr"],
+    "methods": [
+      "New",
+      "Load",
+      "LoadWithoutDog",
+      "Save",
+      "SaveNoMail",
+      "ErledigenHintergrund",
+      "GetNr",
+      "GetCaption",
+      "SetCaption",
+      "GetText",
+      "SetText",
+      "GetEmployeeCompanyNo",
+      "GetEmployeeID",
+      "SetEmployee",
+      "GetResponsibleCompanyNo",
+      "GetResponsibleID",
+      "SetResponsible",
+      "GetPersonCompanyNo",
+      "GetPersonID",
+      "SetPerson",
+      "GetFristart",
+      "SetFristart",
+      "GetFristDatum",
+      "SetFristDatum",
+      "GetFristBeginn",
+      "SetFristBeginn",
+      "GetVorwarndatum",
+      "SetVorwarndatum",
+      "GetProjectComp",
+      "GetProjectNo",
+      "GetProjectType",
+      "SetProject",
+      "GetInstitutionNo",
+      "GetInstitutionCountry",
+      "GetInstitutionType",
+      "SetInstitution",
+      "GetKontaktpersonCompanyNo",
+      "GetKontaktpersonID",
+      "SetKontaktperson",
+      "GetFreifeld01",
+      "SetFreifeld01",
+      "GetFreifeld07",
+      "SetFreifeld07",
+      "GetJahr",
+      "SetJahr",
+      "GetShowDog",
+      "SetShowDog",
+      "AddDocument"
+    ]
+  },
+  "Lead": {
+    "constructors": ["CreateLeadMgr", "CRMMacroObject.CreateLeadMgr"],
+    "methods": [
+      "NewGui",
+      "New",
+      "Load",
+      "Save",
+      "GetNr",
+      "GetCompanyNo",
+      "GetCaption",
+      "SetCaption",
+      "GetEmployeeCompanyNo",
+      "GetEmployeeID",
+      "SetEmployee",
+      "GetPersonCompanyNo",
+      "GetPersonID",
+      "SetPerson",
+      "GetKontaktpersonCompanyNo",
+      "GetKontaktpersonID",
+      "SetKontaktperson",
+      "GetEntscheiderCompanyNo",
+      "GetEntscheiderID",
+      "SetEntscheiderPerson",
+      "GetProjectComp",
+      "GetProjectNo",
+      "GetProjectType",
+      "SetProject",
+      "GetPipelineId",
+      "SetPipelineId",
+      "GetPipelineNr",
+      "SetPipelineNr",
+      "GetStufe",
+      "SetStufe",
+      "GetStatus",
+      "SetStatus",
+      "GetLeadTypeCompanyNo",
+      "GetLeadTypeNo",
+      "SetLeadType",
+      "GetWaehrungscode",
+      "SetWaehrungscode",
+      "GetAngebotswert",
+      "SetAngebotswert",
+      "GetWahrscheinlichkeit",
+      "SetWahrscheinlichkeit",
+      "GetAbschlussTermin",
+      "SetAbschlussTermin"
+    ]
+  },
+  "MacroApiCall": {
+    "constructors": ["CreateMacroApiCall", "MacroObject.CreateMacroApiCall", "CreateApiCall", "WwsPpsMacroClasses.CreateApiCall"],
+    "methods": [
+      "SetRequestHeader",
+      "ClearRequestBody",
+      "AddRequestBody",
+      "GetResponseBody",
+      "SetResponseFile",
+      "GetResponseHeaders",
+      "SetCredentials",
+      "SetProxy",
+      "EnableLog",
+      "DoCall"
+    ]
+  },
+  "MacroBarCodeReader": {
+    "constructors": ["CreateMacroBarCodeReader", "MacroObject.CreateMacroBarCodeReader"],
+    "methods": [
+      "ReadFile",
+      "Count",
+      "GetBarCodeText"
+    ]
+  },
+  "MacroExcelReader": {
+    "constructors": ["CreateMacroExcelReader", "MacroObject.CreateMacroExcelReader"],
+    "methods": [
+      "Open",
+      "SheetCount",
+      "ActivateSheetByName",
+      "ActivateSheetByIndex",
+      "ActiveSheet",
+      "GetValueByName",
+      "GetValueByCoords"
+    ]
+  },
+  "MacroJsonVal": {
+    "constructors": ["CreateMacroJsonVal", "MacroObject.CreateMacroJsonVal", "CreateJsonVal", "WwsPpsMacroClasses.CreateJsonVal"],
+    "methods": [
+      "ParseJson",
+      "GetValueAsString",
+      "JsonEncode",
+      "KeyExists",
+      "GetCount"
+    ]
+  },
+  "Termin": {
+    "constructors": ["CreateTerminMgr", "CRMMacroObject.CreateTerminMgr"],
+    "methods": [
+      "New",
+      "Load",
+      "Save",
+      "SaveNoMail",
+      "GetNr",
+      "GetVon",
+      "SetVon",
+      "GetBis",
+      "SetBis",
+      "GetCaption",
+      "SetCaption",
+      "GetText",
+      "SetText",
+      "AddTextHtml",
+      "GetTextHtml",
+      "SetTextHtml",
+      "GetEmployeeCompanyNo",
+      "GetEmployeeID",
+      "SetEmployee",
+      "GetPersonCompanyNo",
+      "GetPersonID",
+      "SetPerson",
+      "GetTerminKz",
+      "SetTerminKz",
+      "GetProjectComp",
+      "GetProjectNo",
+      "GetProjectType",
+      "SetProject",
+      "GetTerminOrt",
+      "SetTerminOrt",
+      "GetFreifeld01",
+      "SetFreifeld01",
+      "GetFreifeld02",
+      "SetFreifeld02",
+      "GetFreifeld03",
+      "SetFreifeld03",
+      "GetFreifeld04",
+      "SetFreifeld04",
+      "GetFreifeld05",
+      "SetFreifeld05",
+      "GetFreifeld06",
+      "SetFreifeld06",
+      "GetFreifeld07",
+      "SetFreifeld07",
+      "GetFreifeld08",
+      "SetFreifeld08",
+      "GetFreifeld09",
+      "SetFreifeld09",
+      "GetFreifeld10",
+      "SetFreifeld10",
+      "GetFreifeld11",
+      "SetFreifeld11",
+      "GetFreifeld12",
+      "SetFreifeld12",
+      "GetFreifeld13",
+      "SetFreifeld13",
+      "GetFreifeld14",
+      "SetFreifeld14",
+      "GetFreifeld15",
+      "SetFreifeld15",
+      "GetFreifeld16",
+      "SetFreifeld16",
+      "GetFreifeld17",
+      "SetFreifeld17",
+      "GetFreifeld18",
+      "SetFreifeld18",
+      "GetShowDog",
+      "SetShowDog",
+      "GetEditDog",
+      "SetEditDog",
+      "AddEmployee",
+      "GetPpsKapaId",
+      "SetPpsKapaId",
+      "GetErzeugtVonPps",
+      "SetErzeugtVonPps",
+      "AddReminder",
+      "DeleteReminder",
+      "DeleteAllReminder"
+    ]
+  },
+  "WwsPpsMacroModel": {
+    "constructors": ["CreateWwsPpsMacroModel", "WwsPpsMacroClasses.CreateWwsPpsMacroModel", "CreateWwsPpsMacroModel2", "WwsPpsMacroClasses.CreateWwsPpsMacroModel2"],
+    "methods": [
+      "Open",
+      "Close",
+      "Eof",
+      "Next",
+      "Prior",
+      "First",
+      "New",
+      "Edit",
+      "Save",
+      "Delete",
+      "Free",
+      "GetModelQuery",
+      "DsLoadEmpty",
+      "SetValueByName",
+      "SetValueById",
+      "GetValueByName",
+      "GetValueById"
+    ]
+  },
+  "WwsPpsSpecialMacroModel": {
+    "constructors": ["CreateWwsPpsSpecialMacroModel", "WwsPpsMacroClasses.CreateWwsPpsSpecialMacroModel"],
+    "methods": [
+      "Open",
+      "Close",
+      "Eof",
+      "Next",
+      "Prior",
+      "First",
+      "New",
+      "Edit",
+      "Save",
+      "Delete",
+      "Free",
+      "GetModelQuery",
+      "DsLoadEmpty",
+      "SetValueByName",
+      "SetValueById",
+      "GetValueByName",
+      "GetValueById"
+    ]
+  },
+  "PepMacroModel": {
+    "constructors": ["CreatePepMacroModel", "WwsPpsMacroClasses.CreatePepMacroModel", "CreatePepMacroModel2", "WwsPpsMacroClasses.CreatePepMacroModel2"],
+    "methods": [
+      "Open",
+      "Close",
+      "Eof",
+      "Next",
+      "Prior",
+      "First",
+      "New",
+      "Edit",
+      "Save",
+      "Delete",
+      "Free",
+      "IncludeOptMdUsage",
+      "GetModelQuery",
+      {
+        "name": "SetValue",
+        "body": "SetValue(${1:Feldname}, ${2:Wert})",
+        "description": "[PepMacroModel] SetValue('MCA_Feldname','Wert')"
+      },
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Feldname})",
+        "description": "[PepMacroModel] GetValue('MCA_Feldname')"
+      }
+    ]
+  },
+  "Vorgang": {
+    "constructors": ["CreateVorgang", "WwsPpsMacroClasses.CreateVorgang", "CreateVorgang2", "WwsPpsMacroClasses.CreateVorgang2"],
+    "methods": [
+      "DsDispatch"
+    ]
+  },
+  "MaterialConsumption": {
+    "constructors": ["CreateMaterialConsumption", "WwsPpsMacroClasses.CreateMaterialConsumption"],
+    "methods": [
+      "ClearKeys",
+      "SetStockKey",
+      "SetAccountingText",
+      "SetArticleColorKey",
+      "SetArticleSizeKey",
+      "SetArticleProcessKey",
+      "SetArticleQStatus",
+      "SetArticleAttributes",
+      "SetArticleIdentification",
+      "SetLotKey",
+      "SetSerialKey",
+      "SetSSCC",
+      "SetAssembleUser",
+      "SetAssembleDate",
+      "SetPreparationUser",
+      "SetPreparationDate",
+      "RecordMaterialConsumption",
+      "GetLastRecordedPieceListId"
+    ]
+  },
+  "WWSParamMD": {
+    "constructors": ["CreateWWSParamMD", "WwsPpsMacroClasses.CreateWWSParamMD"],
+    "methods": [
+      "SetCompanyNo",
+      "Invoice_OnlineInvoiceHU_AccToBranch"
+    ]
+  },
+  "WWSIncomingInvoiceMD": {
+    "constructors": ["CreateWWSIncomingInvoiceMD", "WwsPpsMacroClasses.CreateWWSIncomingInvoiceMD"],
+    "methods": [
+      "SetKeyValues",
+      "GetValue"
+    ]
+  }
+}

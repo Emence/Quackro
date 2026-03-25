@@ -1,0 +1,76 @@
+{
+  "comments": {
+    "lineComment": {
+      "comment": "//",
+      "noIndent": false
+    },
+    "blockComment": [
+      "{",
+      "}"
+    ]
+  },
+  "brackets": [
+    [
+      "begin",
+      "end"
+    ],
+    [
+      "case",
+      "end"
+    ],
+    [
+      "(",
+      ")"
+    ],
+    [
+      "[",
+      "]"
+    ]
+  ],
+  "autoClosingPairs": [
+    {
+      "open": "(",
+      "close": ")"
+    },
+    {
+      "open": "[",
+      "close": "]"
+    },
+    {
+      "open": "'",
+      "close": "'",
+      "notIn": [
+        "string"
+      ]
+    },
+    {
+      "open": "{",
+      "close": "}"
+    }
+  ],
+  "surroundingPairs": [
+    [
+      "(",
+      ")"
+    ],
+    [
+      "[",
+      "]"
+    ],
+    [
+      "'",
+      "'"
+    ]
+  ],
+  "wordPattern": "(-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\%\\^\\&\\*\\(\\)\\-\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\:\\'\\\"\\,\\.\\<\\>\\/\\?\\s]+)",
+  "indentationRules": {
+    "increaseIndentPattern": "(?i)\\b(begin|case)\\b(?!.*\\bend\\b).*$|(?i)\\bof\\b",
+    "decreaseIndentPattern": "(?i)^\\s*\\b(end|until)\\b"
+  },
+  "folding": {
+    "markers": {
+      "start": "(?i)\\bbegin\\b",
+      "end": "(?i)\\bend\\b"
+    }
+  }
+}
