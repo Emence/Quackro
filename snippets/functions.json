@@ -2206,7 +2206,7 @@
   },
   "KI-Funktionen - Klassifizieren": {
     "prefix": "BMD_KI_CLASSIFICATION",
-    "body": "BMD_KI_CLASSIFICATION(${1:Fox text function}, ${2:source}, ${3:Entscheidungsklassen})",
+    "body": "BMD_KI_CLASSIFICATION(${1:Fox text function}, ${2:source}, ${3:Entscheidungsklassen (opt)})",
     "description": "[KI-Funktionen] BMD_KI_CLASSIFICATION(<Fox text function>,'source','Entscheidungsklassen (opt)')"
   },
   "KI-Funktionen - Lektorieren": {
@@ -3423,5 +3423,15 @@
     "prefix": "BMD_LGV_ABRECHSTATUS",
     "body": "BMD_LGV_ABRECHSTATUS(${1:Monat})",
     "description": "[LGV] BMD_LGV_ABRECHSTATUS(<Monat>)"
+  },
+  "System - Assigned": {
+    "prefix": "Assigned",
+    "body": "Assigned(${1:Variable})",
+    "description": "[System] Assigned(<Variable>) - Prüft ob eine Variable/Objekt zugewiesen (nicht nil) ist"
+  },
+  "System - VarIsNull": {
+    "prefix": "VarIsNull",
+    "body": "VarIsNull(${1:Variable})",
+    "description": "[System] VarIsNull(<Variable>) - Prüft ob eine Variable null/leer ist"
   }
 }

@@ -37,6 +37,11 @@
           "name": "comment.block.bmdmacro",
           "begin": "\\{",
           "end": "\\}"
+        },
+        {
+          "name": "comment.block.bmdmacro",
+          "begin": "\\(\\*",
+          "end": "\\*\\)"
         }
       ]
     },

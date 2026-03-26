@@ -2,9 +2,13 @@
   "name": "quackro",
   "displayName": "Quackro",
   "description": "Syntax highlighting, autocomplete, snippets, and tooling for BMD macros",
-  "version": "1.0.0",
-  "publisher": "your-publisher-name",
+  "version": "1.0.1",
+  "publisher": "Emence",
   "main": "./extension.js",
+  "scripts": {
+    "test:parser-fixtures": "node ./parser-fixtures.js",
+    "test:semantic-fixtures": "node ./semantic-fixtures.js"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -35,9 +39,19 @@
         "icon": "$(list-selection)"
       },
       {
+        "command": "bmdmacro.markContextParameter",
+        "title": "Mark Selected Assignments As Context Parameters",
+        "icon": "$(tag)"
+      },
+      {
         "command": "bmdmacro.debugMacro",
         "title": "Debug / Simulate Macro",
         "icon": "$(debug-alt)"
+      },
+      {
+        "command": "bmdmacro.buildVsix",
+        "title": "Build VSIX",
+        "icon": "$(package)"
       }
     ],
     "languages": [
@@ -49,8 +63,8 @@
         ],
         "extensions": [
           ".mac",
-          ".macro",
-          ".bmd"
+          ".mak",
+          ".quak"
         ],
         "configuration": "./language-configuration.json"
       }
@@ -78,6 +92,11 @@
           "command": "bmdmacro.debugMacro",
           "when": "editorLangId == bmdmacro",
           "group": "navigation"
+        },
+        {
+          "command": "bmdmacro.buildVsix",
+          "when": "editorLangId == bmdmacro",
+          "group": "navigation"
         }
       ],
       "editor/context": [
@@ -85,6 +104,11 @@
           "command": "bmdmacro.insertLogForSelection",
           "when": "editorLangId == bmdmacro",
           "group": "navigation@2"
+        },
+        {
+          "command": "bmdmacro.markContextParameter",
+          "when": "editorLangId == bmdmacro",
+          "group": "navigation@3"
         }
       ]
     },
@@ -100,6 +124,14 @@
         "when": "editorTextFocus && editorLangId == bmdmacro"
       }
     ],
+        
+    "configurationDefaults": {
+      "[bmdmacro]": {
+        "editor.wordBasedSuggestions": "off",
+        "editor.suggest.showWords": false
+      }
+    },
+   
     "configuration": {
       "title": "Quackro",
       "properties": {

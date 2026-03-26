@@ -12145,7 +12145,7 @@ export const MACRO_FUNCTIONS: MacroFunction[] = [
         "optional": false
       }
     ],
-    "isMethod": true
+    "isMethod": false
   },
   {
     "name": "GetExternalFMacroBuchungList",
@@ -12162,7 +12162,7 @@ export const MACRO_FUNCTIONS: MacroFunction[] = [
         "optional": false
       }
     ],
-    "isMethod": true
+    "isMethod": false
   },
   {
     "name": "NewBuchung",

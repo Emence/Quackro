@@ -114,7 +114,11 @@
   "MacroFileMgr": {
     "constructors": ["CreateMacroFileMgr", "MacroObject.CreateMacroFileMgr"],
     "methods": [
-      "FindFirstFile",
+      {
+        "name": "FindFirstFile",
+        "body": "FindFirstFile(${1:FileName})",
+        "description": "[MacroFileMgr] FindFirstFile('FileName')"
+      },
       "FindNextFile",
       "FileName",
       "FileAttributes",
@@ -128,13 +132,33 @@
   "MacroList": {
     "constructors": ["CreateMacroList", "MacroObject.CreateMacroList"],
     "methods": [
-      "GetMacroList",
-      "Add",
-      "GetItem",
-      "Delete",
+      {
+        "name": "GetMacroList",
+        "body": "GetMacroList(${1:Name})",
+        "description": "[MacroList] GetMacroList('Name')"
+      },
+      {
+        "name": "Add",
+        "body": "Add(${1:Item})",
+        "description": "[MacroList] Add(Item)"
+      },
+      {
+        "name": "GetItem",
+        "body": "GetItem(${1:Index})",
+        "description": "[MacroList] GetItem(<Index>)"
+      },
+      {
+        "name": "Delete",
+        "body": "Delete(${1:Index})",
+        "description": "[MacroList] Delete(<Index>)"
+      },
       "Count",
       "Clear",
-      "IndexOf"
+      {
+        "name": "IndexOf",
+        "body": "IndexOf(${1:Item})",
+        "description": "[MacroList] IndexOf(Item)"
+      }
     ]
   },
   "MacroStringList": {
@@ -145,14 +169,26 @@
         "body": "Add(${1:Value})",
         "description": "[MacroStringList] Add('Value')"
       },
-      "GetItem",
-      "GetName",
+      {
+        "name": "GetItem",
+        "body": "GetItem(${1:Index})",
+        "description": "[MacroStringList] GetItem(<Index>)"
+      },
+      {
+        "name": "GetName",
+        "body": "GetName(${1:Index})",
+        "description": "[MacroStringList] GetName(<Index>)"
+      },
       {
         "name": "GetValue",
         "body": "GetValue(${1:Index})",
         "description": "[MacroStringList] GetValue(<Index>)"
       },
-      "Delete",
+      {
+        "name": "Delete",
+        "body": "Delete(${1:Index})",
+        "description": "[MacroStringList] Delete(<Index>)"
+      },
       "Count",
       "Clear",
       "Sort",
@@ -183,13 +219,13 @@
       },
       {
         "name": "SetSeparatedText",
-        "body": "SetSeparatedText(${1:Text})",
-        "description": "[MacroStringList] SetSeparatedText('Text')"
+        "body": "SetSeparatedText(${1:Text}, ${2:Separator}, ${3:QuoteChar (opt)})",
+        "description": "[MacroStringList] SetSeparatedText('Text','Separator','QuoteChar (opt)')"
       },
       {
         "name": "GetSeparatedText",
-        "body": "GetSeparatedText(${1:Separator})",
-        "description": "[MacroStringList] GetSeparatedText('Separator')"
+        "body": "GetSeparatedText(${1:Separator}, ${2:QuoteChar (opt)})",
+        "description": "[MacroStringList] GetSeparatedText('Separator','QuoteChar (opt)')"
       }
     ]
   },
@@ -269,6 +305,171 @@
       "SetShowDog",
       "GetFreeField",
       "SetFreeField"
+    ]
+  },
+  "BuchungList": {
+    "constructors": [
+      "CreateFMacroBuchungList",
+      "FibuMacroObject.CreateFMacroBuchungList",
+      "GetExternalFMacroBuchungList",
+      "FibuMacroObject.GetExternalFMacroBuchungList"
+    ],
+    "alias": "BuchungList",
+    "methods": [
+      "NewBuchung",
+      {
+        "name": "GetData",
+        "body": "GetData(${1:Feldbezeichnung})",
+        "description": "[BuchungList] GetData('Feldbezeichnung')"
+      },
+      {
+        "name": "SetData",
+        "body": "SetData(${1:Feldbezeichnung}, ${2:Daten})",
+        "description": "[BuchungList] SetData('Feldbezeichnung','Daten')"
+      },
+      {
+        "name": "ReadBuchungFromList",
+        "body": "ReadBuchungFromList(${1:Index})",
+        "description": "[BuchungList] ReadBuchungFromList(<Index>)"
+      },
+      "WriteDataToBuchung",
+      "AddBuchungToList",
+      {
+        "name": "CopyBuchungToList",
+        "body": "CopyBuchungToList(${1:Buchungsliste}, ${2:Index})",
+        "description": "[BuchungList] CopyBuchungToList(Buchungsliste,<Index (opt.)>)"
+      },
+      "MergePersonenBuchungen",
+      "CountList",
+      {
+        "name": "DeleteBuchung",
+        "body": "DeleteBuchung(${1:Index})",
+        "description": "[BuchungList] DeleteBuchung(<Index>)"
+      },
+      {
+        "name": "InsertBuchung",
+        "body": "InsertBuchung(${1:Index})",
+        "description": "[BuchungList] InsertBuchung(<Index>)"
+      },
+      "ClearList",
+      {
+        "name": "AddDocumentToBuchung",
+        "body": "AddDocumentToBuchung(${1:Dateiname (absoluter Pfad)}, ${2:Kategorie})",
+        "description": "[BuchungList] AddDocumentToBuchung('Dateiname (absoluter Pfad)','Kategorie (opt.)')"
+      },
+      {
+        "name": "ReadDocumentFromBuchung",
+        "body": "ReadDocumentFromBuchung(${1:Index})",
+        "description": "[BuchungList] ReadDocumentFromBuchung(<Index>)"
+      },
+      "CountDocument",
+      {
+        "name": "DeleteDocument",
+        "body": "DeleteDocument(${1:Index})",
+        "description": "[BuchungList] DeleteDocument(<Index>)"
+      },
+      "GetErrorText",
+      "NewKoreErfassung",
+      {
+        "name": "ReadKoreErfassungFromBuchung",
+        "body": "ReadKoreErfassungFromBuchung(${1:Index})",
+        "description": "[BuchungList] ReadKoreErfassungFromBuchung(<Index>)"
+      },
+      "WriteDataToKoreErfassung",
+      "AddKoreErfassungToBuchung",
+      "CountKoreErfassung",
+      {
+        "name": "DeleteKoreErfassung",
+        "body": "DeleteKoreErfassung(${1:Index})",
+        "description": "[BuchungList] DeleteKoreErfassung(<Index>)"
+      },
+      "NewAuszifferung",
+      {
+        "name": "ReadAuszifferungFromBuchung",
+        "body": "ReadAuszifferungFromBuchung(${1:Index})",
+        "description": "[BuchungList] ReadAuszifferungFromBuchung(<Index>)"
+      },
+      "WriteDataToAuszifferung",
+      "AddAuszifferungToBuchung",
+      "CountAuszifferung",
+      {
+        "name": "DeleteAuszifferung",
+        "body": "DeleteAuszifferung(${1:Index})",
+        "description": "[BuchungList] DeleteAuszifferung(<Index>)"
+      },
+      "CountOPZuordnungList",
+      {
+        "name": "ReadOPZuordnungFromBuchung",
+        "body": "ReadOPZuordnungFromBuchung(${1:Index})",
+        "description": "[BuchungList] ReadOPZuordnungFromBuchung(<Index>)"
+      },
+      "NewSrStorno",
+      {
+        "name": "ReadSrStornoFromBuchung",
+        "body": "ReadSrStornoFromBuchung(${1:Index})",
+        "description": "[BuchungList] ReadSrStornoFromBuchung(<Index>)"
+      },
+      "WriteDataToSrStorno",
+      "AddSrStornoToBuchung",
+      "CountSrStorno",
+      "NewProzAuft",
+      {
+        "name": "ReadProzAuftFromBuchung",
+        "body": "ReadProzAuftFromBuchung(${1:Index})",
+        "description": "[BuchungList] ReadProzAuftFromBuchung(<Index>)"
+      },
+      "WriteDataToProzAuft",
+      "AddProzAuftToBuchung",
+      "CountProzAuft",
+      "NewLandwProd",
+      {
+        "name": "ReadLandwProdFromBuchung",
+        "body": "ReadLandwProdFromBuchung(${1:Index})",
+        "description": "[BuchungList] ReadLandwProdFromBuchung(<Index>)"
+      },
+      "WriteDataToLandwProd",
+      "AddLandwProdToBuchung",
+      "CountLandwProd",
+      {
+        "name": "WriteBuErf",
+        "body": "WriteBuErf(${1:Dateiname}, ${2:5.5-BuErf}, ${3:Datei ergänzen})",
+        "description": "[BuchungList] WriteBuErf('Dateiname',<5.5-BuErf (opt.)>,<Datei ergänzen (opt.)>)"
+      },
+      {
+        "name": "AddBuchungByBuchungIdToList",
+        "body": "AddBuchungByBuchungIdToList(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Buchung-ID}, ${4:Mit OP-Auszifferung}, ${5:Mit KORE-Erfassung})",
+        "description": "[BuchungList] AddBuchungByBuchungIdToList(<Firmen-Nr>,<FIBU-Nr>,<Buchung-ID>,<Mit OP-Auszifferung>,<Mit KORE-Erfassung>)"
+      },
+      {
+        "name": "AddBuchungByBelegIdToList",
+        "body": "AddBuchungByBelegIdToList(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Beleg-ID}, ${4:Mit OP-Auszifferung}, ${5:Mit KORE-Erfassung})",
+        "description": "[BuchungList] AddBuchungByBelegIdToList(<Firmen-Nr>,<FIBU-Nr>,<Beleg-ID>,<Mit OP-Auszifferung>,<Mit KORE-Erfassung>)"
+      },
+      {
+        "name": "AddBuchungBySqlToList",
+        "body": "AddBuchungBySqlToList(${1:SQL-Text}, ${2:Mit OP-Auszifferung}, ${3:Mit KORE-Erfassung})",
+        "description": "[BuchungList] AddBuchungBySqlToList('SQL-Text',<Mit OP-Auszifferung>,<Mit KORE-Erfassung>)"
+      },
+      {
+        "name": "AddBuErfToList",
+        "body": "AddBuErfToList(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:BuErf Dateiname}, ${4:Logdatei (z. B. FIBUIMPORT.LOG)})",
+        "description": "[BuchungList] AddBuErfToList(<Firmen-Nr>,<FIBU-Nr>,'BuErf Dateiname','Logdatei (z. B. FIBUIMPORT.LOG)')"
+      },
+      {
+        "name": "WriteExportdate",
+        "body": "WriteExportdate(${1:Export-Datum})",
+        "description": "[BuchungList] WriteExportdate(<Export-Datum>)"
+      },
+      {
+        "name": "SetLogFilename",
+        "body": "SetLogFilename(${1:Dateiname})",
+        "description": "[BuchungList] SetLogFilename('Dateiname')"
+      },
+      {
+        "name": "ImportBuchungenMI",
+        "body": "ImportBuchungenMI(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Logdatei (z. B. FIBUIMPORT.LOG)}, ${4:Import OP-Beträge?})",
+        "description": "[BuchungList] ImportBuchungenMI(<Firmen-Nr>,<FIBU-Nr>,'Logdatei (z. B. FIBUIMPORT.LOG)',<Import OP-Beträge?>)"
+      }
     ]
   },
   "WorkflowTool": {
@@ -405,46 +606,126 @@
   "MacroApiCall": {
     "constructors": ["CreateMacroApiCall", "MacroObject.CreateMacroApiCall", "CreateApiCall", "WwsPpsMacroClasses.CreateApiCall"],
     "methods": [
-      "SetRequestHeader",
+      {
+        "name": "SetRequestHeader",
+        "body": "SetRequestHeader(${1:Name}, ${2:Value})",
+        "description": "[MacroApiCall] SetRequestHeader('Name','Value')"
+      },
       "ClearRequestBody",
-      "AddRequestBody",
-      "GetResponseBody",
-      "SetResponseFile",
+      {
+        "name": "AddRequestBody",
+        "body": "AddRequestBody(${1:Data}, ${2:ContentType})",
+        "description": "[MacroApiCall] AddRequestBody('Data','Content-Type')"
+      },
+      {
+        "name": "GetResponseBody",
+        "body": "GetResponseBody(${1:Position})",
+        "description": "[MacroApiCall] GetResponseBody(<Position>)"
+      },
+      {
+        "name": "SetResponseFile",
+        "body": "SetResponseFile(${1:Dateinamen})",
+        "description": "[MacroApiCall] SetResponseFile('Dateinamen')"
+      },
       "GetResponseHeaders",
-      "SetCredentials",
-      "SetProxy",
-      "EnableLog",
-      "DoCall"
+      {
+        "name": "SetCredentials",
+        "body": "SetCredentials(${1:Benutzername}, ${2:Passwort})",
+        "description": "[MacroApiCall] SetCredentials('Benutzername','Passwort')"
+      },
+      {
+        "name": "SetProxy",
+        "body": "SetProxy(${1:Proxy}, ${2:Benutzername}, ${3:Passwort})",
+        "description": "[MacroApiCall] SetProxy('Proxy','Benutzername','Passwort')"
+      },
+      {
+        "name": "EnableLog",
+        "body": "EnableLog(${1:Value})",
+        "description": "[MacroApiCall] EnableLog(<Value>)"
+      },
+      {
+        "name": "DoCall",
+        "body": "DoCall(${1:Methode}, ${2:URL})",
+        "description": "[MacroApiCall] DoCall('Methode \"\"GET\"\", \"\"POST\"\", ...','URL')"
+      }
     ]
   },
   "MacroBarCodeReader": {
     "constructors": ["CreateMacroBarCodeReader", "MacroObject.CreateMacroBarCodeReader"],
     "methods": [
-      "ReadFile",
+      {
+        "name": "ReadFile",
+        "body": "ReadFile(${1:FileName})",
+        "description": "[MacroBarCodeReader] ReadFile('FileName')"
+      },
       "Count",
-      "GetBarCodeText"
+      {
+        "name": "GetBarCodeText",
+        "body": "GetBarCodeText(${1:Index})",
+        "description": "[MacroBarCodeReader] GetBarCodeText(<Index>)"
+      }
     ]
   },
   "MacroExcelReader": {
     "constructors": ["CreateMacroExcelReader", "MacroObject.CreateMacroExcelReader"],
     "methods": [
-      "Open",
+      {
+        "name": "Open",
+        "body": "Open(${1:FileName})",
+        "description": "[MacroExcelReader] Open('FileName')"
+      },
       "SheetCount",
-      "ActivateSheetByName",
-      "ActivateSheetByIndex",
+      {
+        "name": "ActivateSheetByName",
+        "body": "ActivateSheetByName(${1:Worksheet})",
+        "description": "[MacroExcelReader] ActivateSheetByName('Worksheet')"
+      },
+      {
+        "name": "ActivateSheetByIndex",
+        "body": "ActivateSheetByIndex(${1:Index})",
+        "description": "[MacroExcelReader] ActivateSheetByIndex(<Index>)"
+      },
       "ActiveSheet",
-      "GetValueByName",
-      "GetValueByCoords"
+      {
+        "name": "GetValueByName",
+        "body": "GetValueByName(${1:Cell}, ${2:ResultOnError})",
+        "description": "[MacroExcelReader] GetValueByName('Cell','ResultOnError')"
+      },
+      {
+        "name": "GetValueByCoords",
+        "body": "GetValueByCoords(${1:Column}, ${2:Row}, ${3:ResultOnError})",
+        "description": "[MacroExcelReader] GetValueByCoords(<Column>,<Row>,'ResultOnError')"
+      }
     ]
   },
   "MacroJsonVal": {
     "constructors": ["CreateMacroJsonVal", "MacroObject.CreateMacroJsonVal", "CreateJsonVal", "WwsPpsMacroClasses.CreateJsonVal"],
     "methods": [
-      "ParseJson",
-      "GetValueAsString",
-      "JsonEncode",
-      "KeyExists",
-      "GetCount"
+      {
+        "name": "ParseJson",
+        "body": "ParseJson(${1:Value})",
+        "description": "[MacroJsonVal] ParseJson('Value')"
+      },
+      {
+        "name": "GetValueAsString",
+        "body": "GetValueAsString(${1:Path})",
+        "description": "[MacroJsonVal] GetValueAsString('Path')"
+      },
+      {
+        "name": "JsonEncode",
+        "body": "JsonEncode(${1:Value})",
+        "description": "[MacroJsonVal] JsonEncode('Value')"
+      },
+      {
+        "name": "KeyExists",
+        "body": "KeyExists(${1:Path})",
+        "description": "[MacroJsonVal] KeyExists('Path')"
+      },
+      {
+        "name": "GetCount",
+        "body": "GetCount(${1:Path})",
+        "description": "[MacroJsonVal] GetCount('Path')"
+      }
     ]
   },
   "Termin": {
