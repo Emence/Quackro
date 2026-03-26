@@ -61,24 +61,75 @@ function findMainSectionLine(document) {
 }
 
 //wer979 eigene word suggestion in setting.json die vs code variante deaktiveiren, dann sollte das autocomplete klappen.
-//Nimmt nur LHS von :=
 function getDocumentWords(document, typedPrefix) {
   const words = new Set();
   const text = document.getText();
-  
-  // NUR linke Seite von := → das sind Variablen!
+
+  // QUELLE 1: LHS von :=
   const assignRegex = /\b([A-Za-z_][A-Za-z0-9_]*)\s*:=/g;
   let match;
   while ((match = assignRegex.exec(text)) !== null) {
-    const varName = match[1];
-    if (varName.toLowerCase().startsWith(typedPrefix) && varName.toLowerCase() !== typedPrefix) {
-      words.add(varName);
+    words.add(match[1]);
+  }
+
+  // QUELLE 2: Procedure/Function Parameter
+  const paramRegex = /(?:procedure|function)\s+[A-Za-z_][A-Za-z0-9_]*\s*\(([^)]+)\)/gi;
+  while ((match = paramRegex.exec(text)) !== null) {
+    const params = match[1].split(',');
+    for (const param of params) {
+      const paramName = param.trim();
+      if (/^[A-Za-z_][A-Za-z0-9_]*$/.test(paramName)) {
+        words.add(paramName);
+      }
     }
   }
 
-  return Array.from(words).map(word => {
+  // QUELLE 3: for-Schleifen
+  const forRegex = /\bfor\s+([A-Za-z_][A-Za-z0-9_]*)\s*:=/gi;
+  while ((match = forRegex.exec(text)) !== null) {
+    words.add(match[1]);
+  }
+// QUELLE 4: const Block
+  // const
+  //   cMakroLog = '_MAKRO_.log';
+  //   cWriteLogs = true;
+  const constBlockRegex = /\bconst\b([\s\S]*?)(?=\bvar\b|\bfunction\b|\bprocedure\b|\bmain\b)/gi;
+  while ((match = constBlockRegex.exec(text)) !== null) {
+    const constBody = match[1];
+    const constLineRegex = /\b([A-Za-z_][A-Za-z0-9_]*)\s*=/g;
+    let constMatch;
+    while ((constMatch = constLineRegex.exec(constBody)) !== null) {
+      words.add(constMatch[1]);
+    }
+  }
+
+  // QUELLE 5: var Block
+  // var
+  //   gList : TBMDList;
+  //   gFirmenNr : String;
+  const varBlockRegex = /\bvar\b([\s\S]*?)(?=\bconst\b|\bfunction\b|\bprocedure\b|\bmain\b)/gi;
+  while ((match = varBlockRegex.exec(text)) !== null) {
+    const varBody = match[1];
+    // "gList : TBMDList;" → gList
+    const varLineRegex = /^\s*([A-Za-z_][A-Za-z0-9_]*)/gm;
+    let varMatch;
+    while ((varMatch = varLineRegex.exec(varBody)) !== null) {
+      words.add(varMatch[1]);
+    }
+  }
+  // ← DEBUG: was wurde gefunden?
+  //console.log('[getDocumentWords] typedPrefix:', typedPrefix);
+  //console.log('[getDocumentWords] all words:', Array.from(words));
+
+  const result = Array.from(words)
+    .filter(w => w.toLowerCase().startsWith(typedPrefix) && w.toLowerCase() !== typedPrefix);
+
+  // ← DEBUG: was überlebt den Filter?
+  //console.log('[getDocumentWords] filtered:', result);
+
+  return result.map(word => {
     const item = new vscode.CompletionItem(word, vscode.CompletionItemKind.Variable);
-    item.sortText = `zz_${word.toLowerCase()}`;  // ← UNTEN!
+    item.sortText = `zz_${word.toLowerCase()}`;
     item.detail = '[var] document variable';
     return item;
   });
@@ -163,6 +214,10 @@ function registerLanguageFeatures() {
               return [lineBreakAfterPlus, closeOwnLine, closeSameLine];
             }
 
+            //"lMo"     → wordMatch[1] = "lMo"  → Provider läuft weiter ✅
+            //"lMo "    → wordMatch = null       → return undefined ❌
+            //"lMo("    → wordMatch = null       → return undefined ❌
+            //""        → wordMatch = null       → return undefined ❌
             const wordMatch = textBefore.match(/([A-Za-z_][A-Za-z0-9_]*)$/);
             if (!wordMatch) {
               return undefined;
@@ -214,7 +269,8 @@ function registerLanguageFeatures() {
                 logItem.sortText = '00_log_fallback';
                 return [logItem];
               }
-              return undefined;
+              //return undefined;
+              return wordItems.length > 0 ? wordItems : undefined;
             }
 
             // KONTEXT: Snippet-Aliases (lquery, lmodel, lcsvmgr, lwwsppsmodel)
@@ -240,7 +296,7 @@ function registerLanguageFeatures() {
             const endsWithAliasSuffix = /(?:mgr|file|list|query|model|reader|call|val|tool)$/i.test(typedPrefix);
 
             if (!endsWithAliasSuffix) {
-              return undefined;
+              return wordItems.length > 0 ? wordItems : undefined;
             }
 
             const strictAliases = runtime.filterAliasesByPrefix(runtime.constructorAliasItems, typedPrefix);
@@ -251,6 +307,7 @@ function registerLanguageFeatures() {
             }
 
             return strictAliases;
+           // return wordItems.length > 0 ? wordItems : undefined;
           }
         },
         '.',

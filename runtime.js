@@ -70,6 +70,22 @@ const ENABLE_DIAGNOSTICS = true;
 //
 // ─────────────────────────────────────────────────────────────────────────────
 
+function getDocumentTypeIndex(document) {
+  const index = new Map();
+  const text = document.getText();
+  
+  // LHS von := → Typ aus RHS ermitteln
+  // z.B. lQuery := MacroObject.createMacroQuery(...)
+  //      → lquery → MacroQuery
+  const assignRegex = /\b([A-Za-z_][A-Za-z0-9_]*)\s*:=\s*(?:MacroObject\.)?create(MacroQuery|MacroModel|MacroStringList|MacroList|MacroCSVFile|MacroFileMgr|MacroApiCall|MacroJsonVal|MacroXML)\b/gi;
+  let match;
+  while ((match = assignRegex.exec(text)) !== null) {
+    index.set(match[1].toLowerCase(), match[2]);
+  }
+  
+  return index;
+}
+
 function getExtensionConfig() {
   return vscode.workspace.getConfiguration(EXTENSION_CONFIG_SECTION);
 }
@@ -1398,55 +1414,46 @@ function buildFunctionReturnTypes(cleanText) {
 }
 
 //If your file contains lModel := CreateMacroModel('auftrag'), then later when you type lModel., the language server uses this index to know that lModel is of type MacroModel and can suggest its methods.
-function getDocumentTypeIndex(document) {
-  const cacheKey = document.uri.toString();
-  const cached = typeIndexCache.get(cacheKey);
-  if (cached && cached.version === document.version) {
-    return cached.index;
-  }
+function getDocumentWords(document, typedPrefix) {
+  const words = new Set();
+  const text = document.getText();
 
-  // Parse assignments like: myVar := CreateMacroModel(...)
-  const assignmentPattern = /\b([A-Za-z_][A-Za-z0-9_]*)\b\s*:=\s*([\w.]+)\s*\(/gi;
-  const documentText = document.getText();
-  const cleanDocText = stripStringsAndComments(documentText);
-  const index = new Map();
+  // QUELLE 1: LHS von := (lokale Variablen)
+  const assignRegex = /\b([A-Za-z_][A-Za-z0-9_]*)\s*:=/g;
   let match;
-  while ((match = assignmentPattern.exec(documentText)) !== null) {
-    const varName = match[1].toLowerCase();
-    const ctor = match[2].toLowerCase();
-    const typeName = constructorToType[ctor];
-    if (typeName) {
-      // Keep latest assignment in file order.
-      index.set(varName, typeName);
-    }
+  while ((match = assignRegex.exec(text)) !== null) {
+    words.add(match[1]);
   }
 
-  // Also infer MacroQuery from: myVar := someModel.GetModelQuery()
-  const getModelQueryPattern = /\b([A-Za-z_][A-Za-z0-9_]*)\b\s*:=\s*[A-Za-z_][A-Za-z0-9_]*\.GetModelQuery\s*\(/gi;
-  while ((match = getModelQueryPattern.exec(documentText)) !== null) {
-    const varName = match[1].toLowerCase();
-    index.set(varName, 'MacroQuery');
-  }
-
-  // Also infer types from user-defined functions that return typed objects.
-  // A function that does "Result := KnownConstructor(...)" has a known return type.
-  const funcReturnTypes = buildFunctionReturnTypes(cleanDocText);
-  if (funcReturnTypes.size > 0) {
-    const funcAssignPattern = /\b([A-Za-z_][A-Za-z0-9_]*)\b\s*:=\s*([A-Za-z_][A-Za-z0-9_]*)\s*\(/gi;
-    while ((match = funcAssignPattern.exec(cleanDocText)) !== null) {
-      const varName = match[1].toLowerCase();
-      const callee = match[2].toLowerCase();
-      if (!constructorToType[callee]) {
-        const typeName = funcReturnTypes.get(callee);
-        if (typeName) {
-          index.set(varName, typeName);
-        }
+  // QUELLE 2: Parameter in procedure/function Signaturen
+  // procedure PROC_askList(aMultipleBool, aKeyValueList, ...)
+  const paramRegex = /(?:procedure|function)\s+[A-Za-z_][A-Za-z0-9_]*\s*\(([^)]+)\)/gi;
+  while ((match = paramRegex.exec(text)) !== null) {
+    const params = match[1].split(',');
+    for (const param of params) {
+      const paramName = param.trim();
+      if (/^[A-Za-z_][A-Za-z0-9_]*$/.test(paramName)) {
+        console.log('found func word');
+        words.add(paramName);
       }
     }
   }
 
-  typeIndexCache.set(cacheKey, { version: document.version, index });
-  return index;
+  // QUELLE 3: for-Schleifenvariablen (i, j, k etc.)
+  const forRegex = /\bfor\s+([A-Za-z_][A-Za-z0-9_]*)\s*:=/gi;
+  while ((match = forRegex.exec(text)) !== null) {
+    words.add(match[1]);
+  }
+
+  // Filter + CompletionItems bauen
+  return Array.from(words)
+    .filter(w => w.toLowerCase().startsWith(typedPrefix) && w.toLowerCase() !== typedPrefix)
+    .map(word => {
+      const item = new vscode.CompletionItem(word, vscode.CompletionItemKind.Variable);
+      item.sortText = `zz_${word.toLowerCase()}`;
+      item.detail = '[var] document variable';
+      return item;
+    });
 }
 
 function getVariableTypeAtPosition(document, variableName, position, includeGlobalFallback = true) {
