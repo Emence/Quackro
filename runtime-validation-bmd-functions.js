@@ -25,7 +25,7 @@ function runUnknownBmdFunctionValidationPass(context) {
       const endIdx = startIdx + m[0].length;
       const prevChar = startIdx > 0 ? lines[lineIdx][startIdx - 1] : '';
       const nextChar = endIdx < lines[lineIdx].length ? lines[lineIdx][endIdx] : '';
-      if (fn.startsWith('bmd_mca_')) {
+      if (fn.startsWith('bmd_mca_') || fn.startsWith('bmd_mcu_') || fn.startsWith('bmd_mcv_')) {
         continue;
       }
       if (prevChar === '.' || nextChar === '.') {

@@ -196,7 +196,6 @@ async function collectDiagnostics(rawText, fileName) {
       this.diagnostics = [];
     }
   };
-
   await runtime.validateDocument(document, collection);
   return collection.diagnostics.filter(diagnostic => typeof diagnostic.code === 'string' && diagnostic.code.startsWith('semantic.'));
 }

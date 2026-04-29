@@ -1,6 +1,6 @@
 {
-  "name": "quackro",
-  "displayName": "Quackro",
+  "name": "bmdmacro",
+  "displayName": "bmdmacro",
   "description": "Syntax highlighting, autocomplete, snippets, and tooling for BMD macros",
   "version": "1.0.1",
   "publisher": "Emence",
@@ -25,7 +25,7 @@
     "commands": [
       {
         "command": "bmdmacro.openSettingsUi",
-        "title": "Quackro: Open Config UI",
+        "title": "bmdmacro: Open Config UI",
         "icon": "$(gear)"
       },
       {
@@ -64,7 +64,8 @@
         "extensions": [
           ".mac",
           ".mak",
-          ".quak"
+          ".quak",
+          ".quack"
         ],
         "configuration": "./language-configuration.json"
       }
@@ -133,7 +134,7 @@
     },
    
     "configuration": {
-      "title": "Quackro",
+      "title": "bmdmacro",
       "properties": {
         "bmdmacro.macroUserShort": {
           "type": "string",

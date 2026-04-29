@@ -51,7 +51,7 @@ function requestValidation(document, diagnosticCollection) {
     try {
       while (validationQueued.has(key)) {
         validationQueued.delete(key);
-        try {
+        try {          
           await runtime.validateDocument(document, diagnosticCollection);
         } catch (error) {
           const message = error && error.message ? error.message : String(error);

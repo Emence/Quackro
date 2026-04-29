@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const macroDebugger = require('./macro-debugger');
 const runtime = require('./runtime');
+const WebviewFunctions = require('./Webview-functions');
 
 const CONTEXT_PARAMETER_DIAGNOSTIC_CODES = new Set([
   'semantic.unknown_argument_identifier',
@@ -140,7 +141,22 @@ function registerCommands(context) {
           continue;
         }
 
-        const block = `${runtime.buildLogStatement(variables, useLogProcedure)}\n`;
+        // Find indentation of the last selected line with a variable assignment, fallback to endLine
+        let indent = '';
+        for (let line = endLine; line >= startLine; line--) {
+          const text = document.lineAt(line).text;
+          if (/^\s*[A-Za-z_][A-Za-z0-9_]*\s*:=/.test(text)) {
+            indent = text.match(/^\s*/)[0];
+            break;
+          }
+        }
+        if (!indent && document.lineCount > endLine) {
+          indent = document.lineAt(endLine).text.match(/^\s*/)[0];
+        }
+
+        let block = runtime.buildLogStatement(variables, useLogProcedure);
+        // Indent all lines of the block
+        block = block.split('\n').map(line => indent + line).join('\n') + '\n';
         edit.insert(document.uri, new vscode.Position(endLine + 1, 0), block);
         insertedGroups++;
       }

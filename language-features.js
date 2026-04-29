@@ -60,19 +60,16 @@ function findMainSectionLine(document) {
   return -1;
 }
 
-//wer979 eigene word suggestion in setting.json die vs code variante deaktiveiren, dann sollte das autocomplete klappen.
 function getDocumentWords(document, typedPrefix) {
   const words = new Set();
   const text = document.getText();
 
-  // QUELLE 1: LHS von :=
   const assignRegex = /\b([A-Za-z_][A-Za-z0-9_]*)\s*:=/g;
   let match;
   while ((match = assignRegex.exec(text)) !== null) {
     words.add(match[1]);
   }
 
-  // QUELLE 2: Procedure/Function Parameter
   const paramRegex = /(?:procedure|function)\s+[A-Za-z_][A-Za-z0-9_]*\s*\(([^)]+)\)/gi;
   while ((match = paramRegex.exec(text)) !== null) {
     const params = match[1].split(',');
@@ -84,15 +81,11 @@ function getDocumentWords(document, typedPrefix) {
     }
   }
 
-  // QUELLE 3: for-Schleifen
   const forRegex = /\bfor\s+([A-Za-z_][A-Za-z0-9_]*)\s*:=/gi;
   while ((match = forRegex.exec(text)) !== null) {
     words.add(match[1]);
   }
-// QUELLE 4: const Block
-  // const
-  //   cMakroLog = '_MAKRO_.log';
-  //   cWriteLogs = true;
+
   const constBlockRegex = /\bconst\b([\s\S]*?)(?=\bvar\b|\bfunction\b|\bprocedure\b|\bmain\b)/gi;
   while ((match = constBlockRegex.exec(text)) !== null) {
     const constBody = match[1];
@@ -103,29 +96,18 @@ function getDocumentWords(document, typedPrefix) {
     }
   }
 
-  // QUELLE 5: var Block
-  // var
-  //   gList : TBMDList;
-  //   gFirmenNr : String;
   const varBlockRegex = /\bvar\b([\s\S]*?)(?=\bconst\b|\bfunction\b|\bprocedure\b|\bmain\b)/gi;
   while ((match = varBlockRegex.exec(text)) !== null) {
     const varBody = match[1];
-    // "gList : TBMDList;" → gList
     const varLineRegex = /^\s*([A-Za-z_][A-Za-z0-9_]*)/gm;
     let varMatch;
     while ((varMatch = varLineRegex.exec(varBody)) !== null) {
       words.add(varMatch[1]);
     }
   }
-  // ← DEBUG: was wurde gefunden?
-  //console.log('[getDocumentWords] typedPrefix:', typedPrefix);
-  //console.log('[getDocumentWords] all words:', Array.from(words));
 
   const result = Array.from(words)
     .filter(w => w.toLowerCase().startsWith(typedPrefix) && w.toLowerCase() !== typedPrefix);
-
-  // ← DEBUG: was überlebt den Filter?
-  //console.log('[getDocumentWords] filtered:', result);
 
   return result.map(word => {
     const item = new vscode.CompletionItem(word, vscode.CompletionItemKind.Variable);
@@ -144,7 +126,6 @@ function registerLanguageFeatures() {
             const lineText = document.lineAt(position).text;
             const textBefore = lineText.substring(0, position.character);
 
-            // KONTEXT 1: Punkt-Notation → Objekt-Methoden (lQuery. → MacroQuery-Methods)
             const dotMatch = textBefore.match(/([A-Za-z_][A-Za-z0-9_]*)\.$/);
             if (dotMatch) {
               const varName = dotMatch[1].toLowerCase();
@@ -164,7 +145,6 @@ function registerLanguageFeatures() {
               return typeItems;
             }
 
-            // KONTEXT 2: MacroObject.CreateMacroModel("↑") → Model-Namen vorschlagen
             const createMacroModelContext = runtime.getCreateMacroModelContext(textBefore);
             if (createMacroModelContext) {
               const modelNameItems = runtime.buildMacroModelNameCompletionItems(
@@ -187,10 +167,15 @@ function registerLanguageFeatures() {
                   }
                 }
                 return new vscode.CompletionList(modelNameItems, true);
-              }
+              }              
             }
 
-            // KONTEXT 3: SQL-Block + "+" → SQL Line-Break Helper
+            // [WER979] 29.04.2026 10:29:  BMD Function-Argument-Hilfe
+            const functionArgumentItems = runtime.buildFunctionArgumentCompletionItems(document, position);
+            if (functionArgumentItems.length > 0) {
+              return new vscode.CompletionList(functionArgumentItems, true);
+            }
+
             if (runtime.isInsideSetSqlTextBlock(document, position) && /\+\s*$/.test(textBefore)) {
               const { baseIndent, fragmentIndent } = runtime.getSetSqlTextIndentation(document, position);
               const lineBreakAfterPlus = new vscode.CompletionItem('sql continue with bmd_lineBreak()', vscode.CompletionItemKind.Snippet);
@@ -214,10 +199,6 @@ function registerLanguageFeatures() {
               return [lineBreakAfterPlus, closeOwnLine, closeSameLine];
             }
 
-            //"lMo"     → wordMatch[1] = "lMo"  → Provider läuft weiter ✅
-            //"lMo "    → wordMatch = null       → return undefined ❌
-            //"lMo("    → wordMatch = null       → return undefined ❌
-            //""        → wordMatch = null       → return undefined ❌
             const wordMatch = textBefore.match(/([A-Za-z_][A-Za-z0-9_]*)$/);
             if (!wordMatch) {
               return undefined;
@@ -225,10 +206,8 @@ function registerLanguageFeatures() {
 
             const typedPrefix = wordMatch[1].toLowerCase();
             const isBmdTrigger = typedPrefix.startsWith('bmd_');
-            // wordItems EINMAL berechnen – für ALLE Kontexte verfügbar
             const wordItems = getDocumentWords(document, typedPrefix);
 
-            // FIX 1: SQL-Block + "bmd" VOR isBmdTrigger prüfen! (war vorher nie erreichbar)
             if (runtime.isInsideSetSqlTextBlock(document, position) && isBmdTrigger) {
               const { fragmentIndent } = runtime.getSetSqlTextIndentation(document, position);
               const lineBreakItem = new vscode.CompletionItem('bmd_lineBreak sql', vscode.CompletionItemKind.Snippet);
@@ -244,14 +223,11 @@ function registerLanguageFeatures() {
               return new vscode.CompletionList([...items], true);
             }
 
-            // KONTEXT: User Routines (eigene Procedures/Functions im Dokument)
-            // User Routines + Variablen
             const userRoutineItems = runtime.buildUserRoutineCompletionItems(document, typedPrefix);
             if (userRoutineItems.length > 0) {
-              return [...userRoutineItems, ...wordItems];  // ← Vars dazu!
+              return [...userRoutineItems, ...wordItems];
             }
 
-            // KONTEXT: setParam / params
             if (typedPrefix.startsWith('setparam') || typedPrefix.startsWith('params')) {
               const paramsItem = runtime.buildMissingSetParamCompletion(document, position);
               if (paramsItem) {
@@ -259,7 +235,6 @@ function registerLanguageFeatures() {
               }
             }
 
-            // KONTEXT: log Fallback (nur wenn keine procedure log() vorhanden)
             if (typedPrefix.startsWith('log') || 'log'.startsWith(typedPrefix)) {
               if (!runtime.hasProcedureLog(document)) {
                 const logItem = new vscode.CompletionItem('log', vscode.CompletionItemKind.Snippet);
@@ -269,52 +244,34 @@ function registerLanguageFeatures() {
                 logItem.sortText = '00_log_fallback';
                 return [logItem];
               }
-              //return undefined;
               return wordItems.length > 0 ? wordItems : undefined;
             }
 
-            // KONTEXT: Snippet-Aliases (lquery, lmodel, lcsvmgr, lwwsppsmodel)
-            if (typedPrefix.startsWith('query') || 'query'.startsWith(typedPrefix)) {
-              //console.log('trigger query');
-              return runtime.filterCompletionsByPrefix(runtime.QuerySnippetItems, typedPrefix);
+            const objectSnippetItems = runtime.filterCompletionsByPrefix(runtime.objectSnippetItems, typedPrefix);
+            if (objectSnippetItems.length > 0) {
+              return new vscode.CompletionList(objectSnippetItems, true);
             }
 
-            if (typedPrefix.startsWith('model') || 'model'.startsWith(typedPrefix)) {
-              //console.log('trigger model');
-              return runtime.filterCompletionsByPrefix(runtime.lModelSnippetItems, typedPrefix);
-            }
-
-            if (typedPrefix.startsWith('csvmgr') || 'csvmgr'.startsWith(typedPrefix)) {
-              return runtime.filterCompletionsByPrefix(runtime.lCsvMgrSnippetItems, typedPrefix);
-            }
-
-            if (typedPrefix.startsWith('wwsppsmodel') || 'wwsppsmodel'.startsWith(typedPrefix)) {
-              return runtime.filterCompletionsByPrefix(runtime.lWwsPpsModelSnippetItems, typedPrefix);
-            }
-
-            // KONTEXT: Constructor Aliases (endet auf mgr/file/list/query/...)
             const endsWithAliasSuffix = /(?:mgr|file|list|query|model|reader|call|val|tool)$/i.test(typedPrefix);
-
             if (!endsWithAliasSuffix) {
               return wordItems.length > 0 ? wordItems : undefined;
             }
 
             const strictAliases = runtime.filterAliasesByPrefix(runtime.constructorAliasItems, typedPrefix);
 
-            // KONTEXT: Assignment RHS (:= ...) → Aliases + Assignment Items
             if (/\b[A-Za-z_][A-Za-z0-9_]*\s*:=\s*[A-Za-z0-9_]*$/i.test(textBefore)) {
               return [...strictAliases, ...runtime.filterCompletionsByPrefix(runtime.assignmentCompletionItems, typedPrefix)];
             }
 
             return strictAliases;
-           // return wordItems.length > 0 ? wordItems : undefined;
           }
         },
         '.',
         '_',
         '+',
         '(',
-        "'"        
+        "'",
+        ","
       )
     : { dispose() {} };
 

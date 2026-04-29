@@ -1,0 +1,1997 @@
+{
+  "MacroModel": {
+    "constructors": ["CreateMacroModel", "MacroObject.CreateMacroModel"],
+    "methods": [
+      "GetModelClassName",
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Feldname})",
+        "description": "[MacroModel] GetValue('Feldname')"
+      },
+      {
+        "name": "SetValue",
+        "body": "SetValue(${1:Feldname}, ${2:Wert})",
+        "description": "[MacroModel] SetValue('Feldname','Wert')"
+      },
+      "GetPostItText",
+      "SetPostItText",
+      "LockModel",
+      "UnlockModel",
+      "GetState",
+      "Open",
+      "Close",
+      "Next",
+      "Prior",
+      "First",
+      "Eof",
+      "New",
+      "Edit",
+      "Save",
+      "Delete",
+      "RefreshRow",
+      "GetOldDataValue",
+      "GetUserValue",
+      "GetModelQuery",
+      "GetSelectedCount",
+      "GetSelectedValue"
+    ],
+    "snippets": [
+      {
+        "name": "cons model",
+        "prefix": ["constructor model", "model"],
+        "body": [
+          "${1:lModel} := MacroObject.CreateMacroModel('${2:}');",
+          "$0"
+        ],
+        "description": "[MacroModel] constructor setup"
+      },
+      {
+        "name": "snip model",
+        "prefix": ["snippet model state"],
+        "body": [
+          "${1:lModel} := MacroObject.CreateMacroModel('${2:}');",
+          "",
+          "if (${1}.getState() <> 'msUnknown') then begin",
+          "    ${3}",
+          "end;",
+          "$0"
+        ]
+      }
+    ]
+  },
+  "MacroQuery": {
+    "constructors": ["CreateMacroQuery", "MacroObject.CreateMacroQuery", "FindMacroQuery"],
+    "constructorBody": "CreateMacroQuery('get_'+bmd_getGUID())",
+    "methods": [
+      "GetSQLText",
+      {
+        "name": "SetSQLText",
+        "body": "SetSQLText(${1:' SELECT ...'})",
+        "description": "[MacroQuery] SetSQLText('SQL')"
+      },
+      "SetSqlText",
+      "Open",
+      "Close",
+      "First",
+      "Next",
+      "Prior",
+      "Eof",
+      "GetDisplayText",
+      "IsActive",
+      "RecordCount",
+      {
+        "name": "GetAsString",
+        "body": "GetAsString(${1:Feldname})",
+        "description": "[MacroQuery] GetAsString('Feldname')"
+      },
+      {
+        "name": "SQLAddCondition",
+        "body": "SQLAddCondition(${1:Bedingung})",
+        "description": "[MacroQuery] SQLAddCondition('Bedingung')"
+      },
+      {
+        "name": "SQLAddOrder",
+        "body": "SQLAddOrder(${1:Sortierung})",
+        "description": "[MacroQuery] SQLAddOrder('Sortierung')"
+      },
+      {
+        "name": "SetParamAsString",
+        "body": "SetParamAsString(${1:ParamName}, ${2:Wert})",
+        "description": "[MacroQuery] SetParamAsString('ParamName','Wert')"
+      },
+      "ExecSQL",
+      "Free"
+    ],
+    "snippets": [
+      {
+        "name": "snip query",
+        "prefix": ["query", "lquery"],
+        "body": [
+          "${1:lQuery} := MacroObject.CreateMacroQuery(${2:'get_'+bmd_getGUID()});",
+          "$0"
+        ],
+        "description": "Create only the query variable using naming convention `lQuery`.",
+        "detail": "[pattern] Query constructor",
+        "sortText": "00_query_1"
+      },
+      {
+        "name": "snip query",
+        "prefix": ["query", "lquery"],
+        "body": [
+          "${1:lQuery} := MacroObject.CreateMacroQuery(${2:'get_'+bmd_getGUID()});",
+          "${1}.SetSQLText(${3:' SELECT ...'});",
+          "${1}.Open();",
+          "if (not ${1}.EOF()) then begin",
+          "    while (not ${1}.Eof()) do begin",
+          "        ${4}",
+          "        ${1}.Next();",
+          "    end;",
+          "end",
+          "else begin",
+          "    log('Keine Datenbankergebnisse gefunden.' + bmd_lineBreak() + ${1}.getDisplayText());",
+          "end;",
+          "${1}.Close();",
+          "${1}.Free();",
+          "$0"
+        ]
+      }
+    ]
+  },
+  "MacroCSVFile": {
+    "constructors": ["CreateMacroCSVFile", "MacroObject.CreateMacroCSVFile"],
+    "alias": "CSVMgr",
+    "methods": [
+      "Open",
+      "Close",
+      "Exists",
+      "GetNoOfLines",
+      "GetNoOfCols",
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Row}, ${2:Col})",
+        "description": "[MacroCSVFile] GetValue(<Row>,<Col>)"
+      },
+      {
+        "name": "SetSeparator",
+        "body": "SetSeparator(${1:Separator})",
+        "description": "[MacroCSVFile] SetSeparator('Separator')"
+      },
+      {
+        "name": "SetQuoteChar",
+        "body": "SetQuoteChar(${1:QuoteChar})",
+        "description": "[MacroCSVFile] SetQuoteChar('QuoteChar')"
+      },
+      {
+        "name": "SetCodepage",
+        "body": "SetCodepage(${1:Codepage})",
+        "description": "[MacroCSVFile] SetCodepage('Codepage')"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons csv",
+        "prefix": ["constructor csv", "csv"],
+        "body": [
+          "${1:lCSVMgr} := MacroObject.CreateMacroCSVFile(${2:lFile});",
+          "${1}.SetCodepage('65001');",
+          "${1}.SetQuoteChar('\"');",
+          "${1}.SetSeparator(',');",
+          "$0"
+        ],
+        "description": "[MacroCSVFile] constructor setup"
+      },
+      {
+        "name": "snip csv",
+        "prefix": ["snippet csv"],
+        "body": [
+          "${1:lCSVMgr} := MacroObject.CreateMacroCSVFile(${2:lFile});",
+          "${1}.SetCodepage('65001');",
+          "${1}.SetQuoteChar('\"');",
+          "${1}.SetSeparator(',');",
+          "",
+          "${3:lNoOfLines} := ${1}.GetNoOfLines();",
+          "${4:lNoOfCols} := ${1}.GetNoOfCols();",
+          "",
+          "for ${5:i} := 0 to ${3}-1 do begin",
+          "    for ${6:j} := 0 to ${4}-1 do begin",
+          "        ${7:lWert} := ${1}.GetValue(${5}, ${6});",
+          "        ${8}",
+          "    end;",
+          "end;",
+          "$0"
+        ],
+        "description": "[MacroCSVFile] read loop"
+      }
+    ]
+  },
+  "MacroFileMgr": {
+    "constructors": ["CreateMacroFileMgr", "MacroObject.CreateMacroFileMgr"],
+    "methods": [
+      {
+        "name": "FindFirstFile",
+        "body": "FindFirstFile(${1:FileName})",
+        "description": "[MacroFileMgr] FindFirstFile('FileName')"
+      },
+      "FindNextFile",
+      "FileName",
+      "FileAttributes",
+      "CreationTime",
+      "LastAccessTime",
+      "LastWriteTime",
+      "FileSize",
+      "CloseFile"
+    ],
+    "snippets": [
+      {
+        "name": "cons filemgr",
+        "prefix": ["constructor filemgr", "filemgr"],
+        "body": [
+          "${1:lFileMgr} := MacroObject.CreateMacroFileMgr();",
+          "$0"
+        ],
+        "description": "[MacroFileMgr] constructor setup"
+      }
+    ]
+  },
+  "MacroList": {
+    "constructors": ["CreateMacroList", "MacroObject.CreateMacroList"],
+    "methods": [
+      {
+        "name": "GetMacroList",
+        "body": "GetMacroList(${1:Name})",
+        "description": "[MacroList] GetMacroList('Name')"
+      },
+      {
+        "name": "Add",
+        "body": "Add(${1:Item})",
+        "description": "[MacroList] Add(Item)"
+      },
+      {
+        "name": "GetItem",
+        "body": "GetItem(${1:Index})",
+        "description": "[MacroList] GetItem(<Index>)"
+      },
+      {
+        "name": "Delete",
+        "body": "Delete(${1:Index})",
+        "description": "[MacroList] Delete(<Index>)"
+      },
+      "Count",
+      "Clear",
+      {
+        "name": "IndexOf",
+        "body": "IndexOf(${1:Item})",
+        "description": "[MacroList] IndexOf(Item)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons list",
+        "prefix": ["constructor list", "list"],
+        "body": [
+          "${1:lList} := MacroObject.CreateMacroList();",
+          "$0"
+        ],
+        "description": "[MacroList] constructor setup"
+      }
+    ]
+  },
+  "MacroStringList": {
+    "constructors": ["CreateMacroStringList", "MacroObject.CreateMacroStringList", "FindGlobalMacroStringList", "MacroObject.FindGlobalMacroStringList", "CreateGlobalMacroStringList", "MacroObject.CreateGlobalMacroStringList"],
+    "methods": [
+      {
+        "name": "Add",
+        "body": "Add(${1:Value})",
+        "description": "[MacroStringList] Add('Value')"
+      },
+      {
+        "name": "GetItem",
+        "body": "GetItem(${1:Index})",
+        "description": "[MacroStringList] GetItem(<Index>)"
+      },
+      {
+        "name": "GetName",
+        "body": "GetName(${1:Index})",
+        "description": "[MacroStringList] GetName(<Index>)"
+      },
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Index})",
+        "description": "[MacroStringList] GetValue(<Index>)"
+      },
+      {
+        "name": "Delete",
+        "body": "Delete(${1:Index})",
+        "description": "[MacroStringList] Delete(<Index>)"
+      },
+      "Count",
+      "Clear",
+      "Sort",
+      {
+        "name": "IndexOf",
+        "body": "IndexOf(${1:Value})",
+        "description": "[MacroStringList] IndexOf('Value')"
+      },
+      {
+        "name": "IndexOfName",
+        "body": "IndexOfName(${1:Name})",
+        "description": "[MacroStringList] IndexOfName('Name')"
+      },
+      {
+        "name": "IndexOfValue",
+        "body": "IndexOfValue(${1:Value})",
+        "description": "[MacroStringList] IndexOfValue('Value')"
+      },
+      {
+        "name": "SetKeyValue",
+        "body": "SetKeyValue(${1:Key}, ${2:Value})",
+        "description": "[MacroStringList] SetKeyValue('Key','Value')"
+      },
+      {
+        "name": "GetKeyValue",
+        "body": "GetKeyValue(${1:Key})",
+        "description": "[MacroStringList] GetKeyValue('Key')"
+      },
+      {
+        "name": "SetSeparatedText",
+        "body": "SetSeparatedText(${1:Text}, ${2:Separator}, ${3:QuoteChar (opt)})",
+        "description": "[MacroStringList] SetSeparatedText('Text','Separator','QuoteChar (opt)')"
+      },
+      {
+        "name": "GetSeparatedText",
+        "body": "GetSeparatedText(${1:Separator}, ${2:QuoteChar (opt)})",
+        "description": "[MacroStringList] GetSeparatedText('Separator','QuoteChar (opt)')"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons stringlist",
+        "prefix": ["constructor stringlist", "stringlist"],
+        "body": [
+          "${1:lStringList} := MacroObject.CreateMacroStringList();",
+          "$0"
+        ],
+        "description": "[MacroStringList] constructor setup"
+      }
+    ]
+  },
+  "MacroXMLDocument": {
+    "constructors": ["CreateMacroXMLDocument", "MacroObject.CreateMacroXMLDocument"],
+    "methods": [
+      "GetMacroXMLDocument",
+      "LoadXMLFile",
+      "LoadXMLText",
+      "SaveXMLFile",
+      "ValidateXMLFile",
+      "ValidateXMLText",
+      "GetXMLText",
+      "LoadXMLBuffer",
+      "SaveXMLBuffer",
+      "ClearXMLBuffer",
+      "DeleteXMLBuffer"
+    ],
+    "snippets": [
+      {
+        "name": "cons xmldoc",
+        "prefix": ["constructor xmldoc", "xmldoc"],
+        "body": [
+          "${1:lXmlDoc} := MacroObject.CreateMacroXMLDocument();",
+          "$0"
+        ],
+        "description": "[MacroXMLDocument] constructor setup"
+      }
+    ]
+  },
+  "Absence": {
+    "constructors": ["CreateAbsenceMgr", "CRMMacroObject.CreateAbsenceMgr"],
+    "methods": [
+      "New",
+      "GetDeputy"
+    ],
+    "snippets": [
+      {
+        "name": "cons absence",
+        "prefix": ["constructor absence", "absence"],
+        "body": [
+          "${1:lAbsence} := CRMMacroObject.CreateAbsenceMgr();",
+          "$0"
+        ],
+        "description": "[Absence] constructor setup"
+      }
+    ]
+  },
+  "Task": {
+    "constructors": ["CreateTaskMgr", "CRMMacroObject.CreateTaskMgr"],
+    "methods": [
+      "New",
+      "Load",
+      "Save",
+      "SaveNoMail",
+      "Finish",
+      "GetNr",
+      "GetCaption",
+      "SetCaption",
+      "GetText",
+      "SetText",
+      "AddTextHtml",
+      "GetTextHtml",
+      "SetTextHtml",
+      "GetEmployeeCompanyNo",
+      "GetEmployeeID",
+      "SetEmployee",
+      "GetUserID",
+      "SetUserID",
+      "GetResponsibleCompanyNo",
+      "GetResponsibleID",
+      "SetResponsible",
+      "GetPersonCompanyNo",
+      "GetPersonID",
+      "SetPerson",
+      "AddNotification",
+      "GetStartDate",
+      "SetStartDate",
+      "GetDueDate",
+      "SetDueDate",
+      "GetMainCategory",
+      "SetMainCategory",
+      "GetSubCategory",
+      "SetSubCategory",
+      "GetPriority",
+      "SetPriority",
+      "GetColorCode",
+      "SetColorCode",
+      "GetProjectComp",
+      "GetProjectNo",
+      "GetProjectType",
+      "SetProject",
+      "GetInstitutionNo",
+      "GetInstitutionCountry",
+      "GetInstitutionType",
+      "SetInstitution",
+      "AddDocument",
+      "GetShowDog",
+      "SetShowDog",
+      "GetFreeField",
+      "SetFreeField"
+    ],
+    "snippets": [
+      {
+        "name": "cons task",
+        "prefix": ["constructor task", "task"],
+        "body": [
+          "${1:lTask} := CRMMacroObject.CreateTaskMgr();",
+          "$0"
+        ],
+        "description": "[Task] constructor setup"
+      }
+    ]
+  },
+  "Buchung": {
+    "constructors": [
+      "CreateFMacroBuchung",
+      "FibuMacroObject.CreateFMacroBuchung"
+    ],
+    "methods": [
+      {
+        "name": "SetValue",
+        "body": "SetValue(${1:Firmen-Nr}, ${2:FIBUNr}, ${3:Buchungs-ID}, ${4:Liste mit Feldnamen/Feldwerten})",
+        "description": "[Buchung] SetValue(<Firmen-Nr>,<FIBUNr>,<Buchungs-ID>,<Liste mit Feldnamen/Feldwerten (MacroStringList)>)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons buchung",
+        "prefix": ["constructor buchung", "buchung"],
+        "body": [
+          "${1:lBuchung} := FibuMacroObject.CreateFMacroBuchung(${2:eindeutige Buchungs-Obj. ID});",
+          "$0"
+        ],
+        "description": "[Buchung] constructor setup"
+      }
+    ]
+  },
+  "Sachkonto": {
+    "constructors": [
+      "CreateFMacroSachKonto",
+      "FibuMacroObject.CreateFMacroSachKonto"
+    ],
+    "methods": [
+      {
+        "name": "SetLogFilename",
+        "body": "SetLogFilename(${1:Dateiname})",
+        "description": "[Sachkonto] SetLogFilename('Dateiname')"
+      },
+      {
+        "name": "Load",
+        "body": "Load(${1:Firmen-Nr}, ${2:FIBUNr}, ${3:KontoNr})",
+        "description": "[Sachkonto] Load(<Firmen-Nr>,<FIBUNr>,<KontoNr>)"
+      },
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Feldname})",
+        "description": "[Sachkonto] GetValue('Feldname')"
+      },
+      {
+        "name": "SetValue",
+        "body": "SetValue(${1:Feldname}, ${2:Wert})",
+        "description": "[Sachkonto] SetValue('Feldname','Wert')"
+      },
+      {
+        "name": "DeleteUmstellungskonten",
+        "body": "DeleteUmstellungskonten(${1:Firmen-Nr}, ${2:FIBUNr})",
+        "description": "[Sachkonto] DeleteUmstellungskonten(<Firmen-Nr>,<FIBUNr>)"
+      },
+      {
+        "name": "SetNotiz",
+        "body": "SetNotiz(${1:Kontonotiz}, ${2:An bestehende Notiz anhängen})",
+        "description": "[Sachkonto] SetNotiz('Kontonotiz',<Es wird an eine bereits bestehende Kontonotiz angehängt (1/TRUE) oder überschrieben (0/FALSE)>)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons sachkonto",
+        "prefix": ["constructor sachkonto", "sachkonto"],
+        "body": [
+          "${1:lSachKto} := FibuMacroObject.CreateFMacroSachKonto(${2:eindeutige SachKontoObj-ID});",
+          "$0"
+        ],
+        "description": "[Sachkonto] constructor setup"
+      }
+    ]
+  },
+  "Personenkonto": {
+    "constructors": [
+      "CreateFMacroPersKonto",
+      "FibuMacroObject.CreateFMacroPersKonto"
+    ],
+    "methods": [
+      {
+        "name": "SetLogFilename",
+        "body": "SetLogFilename(${1:Dateiname})",
+        "description": "[Personenkonto] SetLogFilename('Dateiname')"
+      },
+      {
+        "name": "Load",
+        "body": "Load(${1:Firmen-Nr}, ${2:FIBUNr}, ${3:KontoNr})",
+        "description": "[Personenkonto] Load(<Firmen-Nr>,<FIBUNr>,<KontoNr>)"
+      },
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Feldname})",
+        "description": "[Personenkonto] GetValue('Feldname')"
+      },
+      {
+        "name": "SetValue",
+        "body": "SetValue(${1:Feldname}, ${2:Wert})",
+        "description": "[Personenkonto] SetValue('Feldname','Wert')"
+      },
+      {
+        "name": "PersonExists",
+        "body": "PersonExists(${1:Firmen-Nr}, ${2:KontoNr})",
+        "description": "[Personenkonto] PersonExists(<Firmen-Nr>,<KontoNr>)"
+      },
+      {
+        "name": "SetNotiz",
+        "body": "SetNotiz(${1:Kontonotiz}, ${2:An bestehende Notiz anhängen})",
+        "description": "[Personenkonto] SetNotiz('Kontonotiz',<Es wird an eine bereits bestehende Kontonotiz angehängt (1/TRUE) oder überschrieben (0/FALSE)>)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons personenkonto",
+        "prefix": ["constructor personenkonto", "personenkonto"],
+        "body": [
+          "${1:lPersKto} := FibuMacroObject.CreateFMacroPersKonto(${2:eindeutige PersKontoObj-ID});",
+          "$0"
+        ],
+        "description": "[Personenkonto] constructor setup"
+      }
+    ]
+  },
+  "TrSrAblauf": {
+    "constructors": [
+      "CreateFMacroTrSrAblauf",
+      "FibuMacroObject.CreateFMacroTrSrAblauf"
+    ],
+    "methods": [
+      {
+        "name": "Exists",
+        "body": "Exists(${1:Firmen-Nr}, ${2:TR/SR-AblaufNr})",
+        "description": "[TrSrAblauf] Exists(<Firmen-Nr>,<TR/SR-AblaufNr>)"
+      },
+      {
+        "name": "ExistsWithMatchcode",
+        "body": "ExistsWithMatchcode(${1:Firmen-Nr}, ${2:TR/SR-AblaufNr})",
+        "description": "[TrSrAblauf] ExistsWithMatchcode(<Firmen-Nr>,<TR/SR-AblaufNr>)"
+      },
+      {
+        "name": "Insert",
+        "body": "Insert(${1:Stringlist})",
+        "description": "[TrSrAblauf] Insert(Stringlist)"
+      },
+      {
+        "name": "Update",
+        "body": "Update(${1:Stringlist})",
+        "description": "[TrSrAblauf] Update(Stringlist)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons trsrauflauf",
+        "prefix": ["constructor trsrauflauf", "trsrauflauf", "trsrablauf"],
+        "body": [
+          "${1:lTrSrAblauf} := FibuMacroObject.CreateFMacroTrSrAblauf();",
+          "$0"
+        ],
+        "description": "[TrSrAblauf] constructor setup"
+      }
+    ]
+  },
+  "FirmenwerteFibu": {
+    "constructors": [
+      "CreateFMacroFirmenwerteFibu",
+      "FibuMacroObject.CreateFMacroFirmenwerteFibu"
+    ],
+    "methods": [
+      {
+        "name": "SetLogFilename",
+        "body": "SetLogFilename(${1:Dateiname})",
+        "description": "[FirmenwerteFibu] SetLogFilename('Dateiname')"
+      },
+      {
+        "name": "Load",
+        "body": "Load(${1:Firmen-Nr}, ${2:FIBU-Nr})",
+        "description": "[FirmenwerteFibu] Load(<Firmen-Nr>,<FIBU-Nr>)"
+      },
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Feldname})",
+        "description": "[FirmenwerteFibu] GetValue('Feldname')"
+      },
+      {
+        "name": "SetValue",
+        "body": "SetValue(${1:Feldname}, ${2:Wert})",
+        "description": "[FirmenwerteFibu] SetValue('Feldname','Wert')"
+      },
+      {
+        "name": "SetValueByParamList",
+        "body": "SetValueByParamList(${1:MacroStringList})",
+        "description": "[FirmenwerteFibu] SetValueByParamList(MacroStringList)"
+      },
+      {
+        "name": "CreateNewFirmaByPerson",
+        "body": "CreateNewFirmaByPerson(${1:Firmen-Nr}, ${2:PersonenID})",
+        "description": "[FirmenwerteFibu] CreateNewFirmaByPerson(<Firmen-Nr>,<PersonenID>)"
+      },
+      {
+        "name": "CreateNewFibu",
+        "body": "CreateNewFibu(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:MacroStringList (opt.)})",
+        "description": "[FirmenwerteFibu] CreateNewFibu(<Firmen-Nr>,<FIBU-Nr>,<MacroStringList (opt.)>)"
+      },
+      {
+        "name": "CreateVJFibu",
+        "body": "CreateVJFibu(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:MacroStringList (opt.)})",
+        "description": "[FirmenwerteFibu] CreateVJFibu(<Firmen-Nr>,<FIBU-Nr>,<MacroStringList (opt.)>)"
+      },
+      {
+        "name": "CreateFiliale",
+        "body": "CreateFiliale(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:FilialNr}, ${4:LandNr}, ${5:Filialbezeichnung}, ${6:Währung}, ${7:OSS-Schema})",
+        "description": "[FirmenwerteFibu] CreateFiliale(<Firmen-Nr>,<FIBU-Nr>,<FilialNr>,<LandNr>,'Filialbezeichnung','Währung',<OSS-Schema>)"
+      },
+      {
+        "name": "UebernahmeNumUndKtoKreise",
+        "body": "UebernahmeNumUndKtoKreise()",
+        "description": "[FirmenwerteFibu] UebernahmeNumUndKtoKreise()"
+      },
+      {
+        "name": "UebernahmeFibuFiliale",
+        "body": "UebernahmeFibuFiliale()",
+        "description": "[FirmenwerteFibu] UebernahmeFibuFiliale()"
+      },
+      {
+        "name": "UebernahmeFixkonten",
+        "body": "UebernahmeFixkonten()",
+        "description": "[FirmenwerteFibu] UebernahmeFixkonten()"
+      },
+      {
+        "name": "UebernahmeSteuerkonten",
+        "body": "UebernahmeSteuerkonten()",
+        "description": "[FirmenwerteFibu] UebernahmeSteuerkonten()"
+      },
+      {
+        "name": "UebernahmeVJSaldenUndUmsaetze",
+        "body": "UebernahmeVJSaldenUndUmsaetze(${1:Firmen-Nr}, ${2:FIBU-Nr})",
+        "description": "[FirmenwerteFibu] UebernahmeVJSaldenUndUmsaetze(<Firmen-Nr>,<FIBU-Nr>)"
+      },
+      {
+        "name": "UebernahmeBuartUndVariante",
+        "body": "UebernahmeBuartUndVariante()",
+        "description": "[FirmenwerteFibu] UebernahmeBuartUndVariante()"
+      },
+      {
+        "name": "UebernahmeIndivBuSymbol",
+        "body": "UebernahmeIndivBuSymbol()",
+        "description": "[FirmenwerteFibu] UebernahmeIndivBuSymbol()"
+      },
+      {
+        "name": "NeuberechnenSalden",
+        "body": "NeuberechnenSalden(${1:Firmen-Nr}, ${2:FIBU-Nr})",
+        "description": "[FirmenwerteFibu] NeuberechnenSalden(<Firmen-Nr>,<FIBU-Nr>)"
+      },
+      {
+        "name": "VerbuchungZumMonatsende",
+        "body": "VerbuchungZumMonatsende(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Jahr}, ${4:Von Periode}, ${5:Bis Periode (opt.)})",
+        "description": "[FirmenwerteFibu] VerbuchungZumMonatsende(<Firmen-Nr>,<FIBU-Nr>,<Jahr>,<Von Periode>,<Bis Periode (opt.)>)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons firmenwertefibu",
+        "prefix": ["constructor firmenwertefibu", "firmenwertefibu"],
+        "body": [
+          "${1:lFirmenwerteFibu} := FibuMacroObject.CreateFMacroFirmenwerteFibu(${2:eindeutige Firmenwerte-Fibu-Obj.-ID});",
+          "$0"
+        ],
+        "description": "[FirmenwerteFibu] constructor setup"
+      }
+    ]
+  },
+  "Steuerkonto": {
+    "constructors": [
+      "CreateFMacroSteuerkonto",
+      "FibuMacroObject.CreateFMacroSteuerkonto"
+    ],
+    "methods": [
+      {
+        "name": "Load",
+        "body": "Load(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Steuercode}, ${4:FilialNr}, ${5:LandNr}, ${6:Prozentsatz}, ${7:SkontoverbuchKz})",
+        "description": "[Steuerkonto] Load(<Firmen-Nr>,<FIBU-Nr>,<Steuercode>,<FilialNr>,<LandNr>,<Prozentsatz>,<SkontoverbuchKz>)"
+      },
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Feldname})",
+        "description": "[Steuerkonto] GetValue('Feldname')"
+      },
+      {
+        "name": "IstSteuerkonto",
+        "body": "IstSteuerkonto(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:KontoNr})",
+        "description": "[Steuerkonto] IstSteuerkonto(<Firmen-Nr>,<FIBU-Nr>,<KontoNr>)"
+      },
+      {
+        "name": "GetBuchKontoNr",
+        "body": "GetBuchKontoNr(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Steuercode}, ${4:FilialNr}, ${5:LandNr}, ${6:Prozentsatz}, ${7:SkontoverbuchKz}, ${8:Feldname})",
+        "description": "[Steuerkonto] GetBuchKontoNr(<Firmen-Nr>,<FIBU-Nr>,<Steuercode>,<FilialNr>,<LandNr>,<Prozentsatz>,<SkontoverbuchKz>,'Feldname')"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons steuerkonto",
+        "prefix": ["constructor steuerkonto", "steuerkonto"],
+        "body": [
+          "${1:lSteuerkonto} := FibuMacroObject.CreateFMacroSteuerkonto(${2:eindeutige Steuerkonto-Obj.-ID});",
+          "$0"
+        ],
+        "description": "[Steuerkonto] constructor setup"
+      }
+    ]
+  },
+  "Fixkonto": {
+    "constructors": [
+      "CreateFMacroFixkonto",
+      "FibuMacroObject.CreateFMacroFixkonto"
+    ],
+    "methods": [
+      {
+        "name": "Load",
+        "body": "Load(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Kontotyp}, ${4:Kontogruppe}, ${5:KontenkreisNr}, ${6:KontoNr}, ${7:FilialNr})",
+        "description": "[Fixkonto] Load(<Firmen-Nr>,<FIBU-Nr>,<Kontotyp>,<Kontogruppe>,<KontenkreisNr>,<KontoNr>,<FilialNr>)"
+      },
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Feldname})",
+        "description": "[Fixkonto] GetValue('Feldname')"
+      },
+      {
+        "name": "IstFixkonto",
+        "body": "IstFixkonto(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:KontoNr}, ${4:Kontotyp})",
+        "description": "[Fixkonto] IstFixkonto(<Firmen-Nr>,<FIBU-Nr>,<KontoNr>,<Kontotyp>)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons fixkonto",
+        "prefix": ["constructor fixkonto", "fixkonto"],
+        "body": [
+          "${1:lFixkonto} := FibuMacroObject.CreateFMacroFixkonto(${2:eindeutige Fixkonto-Obj.-ID});",
+          "$0"
+        ],
+        "description": "[Fixkonto] constructor setup"
+      }
+    ]
+  },
+  "Auswertungsmanager": {
+    "constructors": [
+      "CreateFMacroAuswertungMgr",
+      "FibuMacroObject.CreateFMacroAuswertungMgr"
+    ],
+    "methods": [
+      {
+        "name": "SetParam",
+        "body": "SetParam(${1:Parameterbezeichnung}, ${2:Ausprägung})",
+        "description": "[Auswertungsmanager] SetParam('Parameterbezeichnung','Ausprägung')"
+      },
+      {
+        "name": "LoadDaten",
+        "body": "LoadDaten()",
+        "description": "[Auswertungsmanager] LoadDaten()"
+      },
+      {
+        "name": "Count",
+        "body": "Count()",
+        "description": "[Auswertungsmanager] Count()"
+      },
+      {
+        "name": "GetKontoByIndex",
+        "body": "GetKontoByIndex(${1:Index})",
+        "description": "[Auswertungsmanager] GetKontoByIndex(<Index>)"
+      },
+      {
+        "name": "GetKontoByKontoNr",
+        "body": "GetKontoByKontoNr(${1:KontoNr})",
+        "description": "[Auswertungsmanager] GetKontoByKontoNr(<KontoNr>)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons auswertungsmgr",
+        "prefix": ["constructor auswertungsmgr", "auswertungsmgr", "auswertungsmanager"],
+        "body": [
+          "${1:lAuswertungMgr} := FibuMacroObject.CreateFMacroAuswertungMgr(${2:Firmen-Nr}, ${3:FIBU-Nr}, ${4:eindeutige Auswertungsmanager-Obj.-ID});",
+          "$0"
+        ],
+        "description": "[Auswertungsmanager] constructor setup"
+      }
+    ]
+  },
+  "Auswertungskonto": {
+    "constructors": [
+      "CreateFMacroAuswertungKonto",
+      "FibuMacroObject.CreateFMacroAuswertungKonto"
+    ],
+    "methods": [
+      {
+        "name": "GetKontoNr",
+        "body": "GetKontoNr()",
+        "description": "[Auswertungskonto] GetKontoNr()"
+      },
+      {
+        "name": "GetMonSaldo",
+        "body": "GetMonSaldo(${1:Monat})",
+        "description": "[Auswertungskonto] GetMonSaldo(<Monat>)"
+      },
+      {
+        "name": "GetEBSaldo",
+        "body": "GetEBSaldo()",
+        "description": "[Auswertungskonto] GetEBSaldo()"
+      },
+      {
+        "name": "GetBilanzsaldo",
+        "body": "GetBilanzsaldo()",
+        "description": "[Auswertungskonto] GetBilanzsaldo()"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons auswertungskonto",
+        "prefix": ["constructor auswertungskonto", "auswertungskonto"],
+        "body": [
+          "${1:lAuswertungKonto} := FibuMacroObject.CreateFMacroAuswertungKonto(${2:eindeutige Auswertungskonto-Obj.-ID});",
+          "$0"
+        ],
+        "description": "[Auswertungskonto] constructor setup"
+      }
+    ]
+  },
+  "OPZuordnung": {
+    "constructors": [
+      "CreateFMacroOPZuordnung",
+      "FibuMacroObject.CreateFMacroOPZuordnung"
+    ],
+    "methods": [
+      {
+        "name": "GetData",
+        "body": "GetData(${1:Feldbezeichnung})",
+        "description": "[OPZuordnung] GetData('Feldbezeichnung')"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons opzuordnung",
+        "prefix": ["constructor opzuordnung", "opzuordnung"],
+        "body": [
+          "${1:lOPZuordnung} := FibuMacroObject.CreateFMacroOPZuordnung(${2:eindeutige OP-Zuordnungs-Obj.-ID});",
+          "$0"
+        ],
+        "description": "[OPZuordnung] constructor setup"
+      }
+    ]
+  },
+  "OPAbstattung": {
+    "constructors": [
+      "CreateFMacroOPAbstattung",
+      "FibuMacroObject.CreateFMacroOPAbstattung"
+    ],
+    "methods": [
+      {
+        "name": "AutoAuszifferungRngZlg",
+        "body": "AutoAuszifferungRngZlg(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Von Konto-Nr}, ${4:Bis Konto-Nr}, ${5:Auszifferungsfeld}, ${6:Mit Meldung}, ${7:Betragsgleichheit})",
+        "description": "[OPAbstattung] AutoAuszifferungRngZlg(<Firmen-Nr>,<FIBU-Nr>,<Von Konto-Nr>,<Bis Konto-Nr>,<Auszifferungsfeld>,<Mit Meldung>,<Betragsgleichheit>)"
+      },
+      {
+        "name": "AutoAuszifferungWennSaldo",
+        "body": "AutoAuszifferungWennSaldo(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Von Konto-Nr}, ${4:Bis Konto-Nr}, ${5:Mit Meldung (opt.)})",
+        "description": "[OPAbstattung] AutoAuszifferungWennSaldo(<Firmen-Nr>,<FIBU-Nr>,<Von Konto-Nr>,<Bis Konto-Nr>,<Mit Meldung (opt.)>)"
+      },
+      {
+        "name": "AddOPToBuchung",
+        "body": "AddOPToBuchung(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Liste der OP-Buchungen}, ${4:Liste der OP-Suchkriterien}, ${5:Logdatei}, ${6:Liste der OP-Zahlungskonditionen (opt.)}, ${7:EB-OP ohne EB-Buchung (opt.)}, ${8:OP ohne Buchung (opt.)}, ${9:Mit EB-OP Aufbau (opt.)})",
+        "description": "[OPAbstattung] AddOPToBuchung(<Firmen-Nr>,<FIBU-Nr>,Liste der OP-Buchungen (MacroBuchungList),Liste der OP-Suchkriterien (MacroList),'Logdatei (z. B. FIBUIMPORT.LOG)',Liste der OP-Zahlungskonditionen (MacroStringList) <opt>,<EB-OP ohne EB-Buchung <opt> (default = EB-OP wird nicht eingebucht, 1 = EB-OP wird ganz normal eingebucht (Saldo-Buchung), 2 = EB-OP wird ganz normal eingebucht (Saldo-Buchung) und gleichzeitig eine Stornobuchung dieser Buchung ohne OP-Betrag.)>,<OP ohne Buchung <opt> (default = OP wird nicht eingebucht, 1 = OP wird ganz normal eingebucht (Saldo-Buchung), 2 = OP wird ganz normal eingebucht (Saldo-Buchung) und gleichzeitig eine Stornobuchung dieser Buchung ohne OP-Betrag.)>,<Mit EB-OP Aufbau <opt> (default = FALSE, EB-OP wird nicht aufgebaut)>)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons opabstattung",
+        "prefix": ["constructor opabstattung", "opabstattung"],
+        "body": [
+          "${1:lOPAbstattung} := FibuMacroObject.CreateFMacroOPAbstattung(${2:eindeutige OP-Abstattungs-Obj.-ID});",
+          "$0"
+        ],
+        "description": "[OPAbstattung] constructor setup"
+      }
+    ]
+  },
+  "DokumentZuordnung": {
+    "constructors": [
+      "CreateFMacroDokumentZu",
+      "FibuMacroObject.CreateFMacroDokumentZu"
+    ],
+    "methods": [
+      {
+        "name": "AddDocumentToBuchungId",
+        "body": "AddDocumentToBuchungId(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Buchung-ID}, ${4:Dateiname}, ${5:DocStempeln (opt.)})",
+        "description": "[DokumentZuordnung] AddDocumentToBuchungId(<Firmen-Nr>,<FIBU-Nr>,<Buchung-ID>,'Dateiname',<DocStempeln (opt.)>)"
+      },
+      {
+        "name": "AddDocumentToArchiv",
+        "body": "AddDocumentToArchiv(${1:Parameter}, ${2:Dokument})",
+        "description": "[DokumentZuordnung] AddDocumentToArchiv(Paramter,<Dokument>)"
+      },
+      {
+        "name": "AddDocumentToExternArchiv",
+        "body": "AddDocumentToExternArchiv(${1:Parameter})",
+        "description": "[DokumentZuordnung] AddDocumentToExternArchiv(Paramter)"
+      },
+      {
+        "name": "ExportDocumentByDKZID",
+        "body": "ExportDocumentByDKZID(${1:Dokumentenzuordnungs-ID}, ${2:Export-Pfad}, ${3:MacroStringList (opt.)})",
+        "description": "[DokumentZuordnung] ExportDocumentByDKZID(<Dokumentenzuordnungs-ID>,'Export-Pfad',<MacroStringList (opt.)>)"
+      },
+      {
+        "name": "DokumentUpdateByBelegId",
+        "body": "DokumentUpdateByBelegId(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:BelegID}, ${4:Typ der Dokumente})",
+        "description": "[DokumentZuordnung] DokumentUpdateByBelegId(<Firmen-Nr>,<FIBU-Nr>,<BelegID>,<Typ der Dokumente>)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons dokumentzuordnung",
+        "prefix": ["constructor dokumentzuordnung", "dokumentzuordnung"],
+        "body": [
+          "${1:lDokumentZuordnung} := FibuMacroObject.CreateFMacroDokumentZu(${2:eindeutige Dokumenten-Zuord.-Obj.-ID});",
+          "$0"
+        ],
+        "description": "[DokumentZuordnung] constructor setup"
+      }
+    ]
+  },
+  "UVAWerte": {
+    "constructors": [
+      "CreateFMacroUVAWerte",
+      "FibuMacroObject.CreateFMacroUVAWerte"
+    ],
+    "methods": [
+      {
+        "name": "ClearList",
+        "body": "ClearList()",
+        "description": "[UVAWerte] ClearList()"
+      },
+      {
+        "name": "Count",
+        "body": "Count()",
+        "description": "[UVAWerte] Count()"
+      },
+      {
+        "name": "AddValueToList",
+        "body": "AddValueToList(${1:LandNr}, ${2:Periode}, ${3:UVA-Feld-Nr.}, ${4:Bemessung}, ${5:Steuer})",
+        "description": "[UVAWerte] AddValueToList(<LandNr>,<Periode>,<UVA-Feld-Nr.>,<Bemessung>,<Steuer>)"
+      },
+      {
+        "name": "ImportList",
+        "body": "ImportList(${1:Firmen-Nr}, ${2:FIBUNr}, ${3:Logfile})",
+        "description": "[UVAWerte] ImportList(<Firmen-Nr>,<FIBUNr>,'Logfile')"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons uvawerte",
+        "prefix": ["constructor uvawerte", "uvawerte"],
+        "body": [
+          "${1:lUVAWerte} := FibuMacroObject.CreateFMacroUVAWerte(${2:eindeutige UVAWerteObj-ID});",
+          "$0"
+        ],
+        "description": "[UVAWerte] constructor setup"
+      }
+    ]
+  },
+  "Filiale": {
+    "constructors": [
+      "CreateFMacroFiliale",
+      "FibuMacroObject.CreateFMacroFiliale"
+    ],
+    "methods": [
+      {
+        "name": "Load",
+        "body": "Load(${1:Firmen-Nr}, ${2:FIBUNr}, ${3:FilialNr})",
+        "description": "[Filiale] Load(<Firmen-Nr>,<FIBUNr>,<FilialNr>)"
+      },
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Feldname})",
+        "description": "[Filiale] GetValue('Feldname')"
+      },
+      {
+        "name": "ExistsFiliale",
+        "body": "ExistsFiliale(${1:Firmen-Nr}, ${2:FIBUNr}, ${3:LandNr})",
+        "description": "[Filiale] ExistsFiliale(<Firmen-Nr>,<FIBUNr>,<LandNr>)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons filiale",
+        "prefix": ["constructor filiale", "filiale"],
+        "body": [
+          "${1:lFiliale} := FibuMacroObject.CreateFMacroFiliale(${2:eindeutige Filiale-Obj.-ID});",
+          "$0"
+        ],
+        "description": "[Filiale] constructor setup"
+      }
+    ]
+  },
+  "BuchungList": {
+    "constructors": [
+      "CreateFMacroBuchungList",
+      "FibuMacroObject.CreateFMacroBuchungList",
+      "GetExternalFMacroBuchungList",
+      "FibuMacroObject.GetExternalFMacroBuchungList"
+    ],
+    "alias": "BuchungList",
+    "methods": [
+      "NewBuchung",
+      {
+        "name": "GetData",
+        "body": "GetData(${1:Feldbezeichnung})",
+        "description": "[BuchungList] GetData('Feldbezeichnung')"
+      },
+      {
+        "name": "SetData",
+        "body": "SetData(${1:Feldbezeichnung}, ${2:Daten})",
+        "description": "[BuchungList] SetData('Feldbezeichnung','Daten')"
+      },
+      {
+        "name": "ReadBuchungFromList",
+        "body": "ReadBuchungFromList(${1:Index})",
+        "description": "[BuchungList] ReadBuchungFromList(<Index>)"
+      },
+      "WriteDataToBuchung",
+      "AddBuchungToList",
+      {
+        "name": "CopyBuchungToList",
+        "body": "CopyBuchungToList(${1:Buchungsliste}, ${2:Index})",
+        "description": "[BuchungList] CopyBuchungToList(Buchungsliste,<Index (opt)>)"
+      },
+      "MergePersonenBuchungen",
+      "CountList",
+      {
+        "name": "DeleteBuchung",
+        "body": "DeleteBuchung(${1:Index})",
+        "description": "[BuchungList] DeleteBuchung(<Index>)"
+      },
+      {
+        "name": "InsertBuchung",
+        "body": "InsertBuchung(${1:Index})",
+        "description": "[BuchungList] InsertBuchung(<Index>)"
+      },
+      "ClearList",
+      {
+        "name": "AddDocumentToBuchung",
+        "body": "AddDocumentToBuchung(${1:Dateiname (absoluter Pfad)}, ${2:Kategorie})",
+        "description": "[BuchungList] AddDocumentToBuchung('Dateiname (absoluter Pfad)','Kategorie (opt)')"
+      },
+      {
+        "name": "ReadDocumentFromBuchung",
+        "body": "ReadDocumentFromBuchung(${1:Index})",
+        "description": "[BuchungList] ReadDocumentFromBuchung(<Index>)"
+      },
+      "CountDocument",
+      {
+        "name": "DeleteDocument",
+        "body": "DeleteDocument(${1:Index})",
+        "description": "[BuchungList] DeleteDocument(<Index>)"
+      },
+      "GetErrorText",
+      "NewKoreErfassung",
+      {
+        "name": "ReadKoreErfassungFromBuchung",
+        "body": "ReadKoreErfassungFromBuchung(${1:Index})",
+        "description": "[BuchungList] ReadKoreErfassungFromBuchung(<Index>)"
+      },
+      "WriteDataToKoreErfassung",
+      "AddKoreErfassungToBuchung",
+      "CountKoreErfassung",
+      {
+        "name": "DeleteKoreErfassung",
+        "body": "DeleteKoreErfassung(${1:Index})",
+        "description": "[BuchungList] DeleteKoreErfassung(<Index>)"
+      },
+      "NewAuszifferung",
+      {
+        "name": "ReadAuszifferungFromBuchung",
+        "body": "ReadAuszifferungFromBuchung(${1:Index})",
+        "description": "[BuchungList] ReadAuszifferungFromBuchung(<Index>)"
+      },
+      "WriteDataToAuszifferung",
+      "AddAuszifferungToBuchung",
+      "CountAuszifferung",
+      {
+        "name": "DeleteAuszifferung",
+        "body": "DeleteAuszifferung(${1:Index})",
+        "description": "[BuchungList] DeleteAuszifferung(<Index>)"
+      },
+      "CountOPZuordnungList",
+      {
+        "name": "ReadOPZuordnungFromBuchung",
+        "body": "ReadOPZuordnungFromBuchung(${1:Index})",
+        "description": "[BuchungList] ReadOPZuordnungFromBuchung(<Index>)"
+      },
+      "NewSrStorno",
+      {
+        "name": "ReadSrStornoFromBuchung",
+        "body": "ReadSrStornoFromBuchung(${1:Index})",
+        "description": "[BuchungList] ReadSrStornoFromBuchung(<Index>)"
+      },
+      "WriteDataToSrStorno",
+      "AddSrStornoToBuchung",
+      "CountSrStorno",
+      "NewProzAuft",
+      {
+        "name": "ReadProzAuftFromBuchung",
+        "body": "ReadProzAuftFromBuchung(${1:Index})",
+        "description": "[BuchungList] ReadProzAuftFromBuchung(<Index>)"
+      },
+      "WriteDataToProzAuft",
+      "AddProzAuftToBuchung",
+      "CountProzAuft",
+      "NewLandwProd",
+      {
+        "name": "ReadLandwProdFromBuchung",
+        "body": "ReadLandwProdFromBuchung(${1:Index})",
+        "description": "[BuchungList] ReadLandwProdFromBuchung(<Index>)"
+      },
+      "WriteDataToLandwProd",
+      "AddLandwProdToBuchung",
+      "CountLandwProd",
+      {
+        "name": "WriteBuErf",
+        "body": "WriteBuErf(${1:Dateiname}, ${2:5.5-BuErf}, ${3:Datei ergänzen})",
+        "description": "[BuchungList] WriteBuErf('Dateiname',<5.5-BuErf (opt)>,<Datei ergänzen (opt)>)"
+      },
+      {
+        "name": "AddBuchungByBuchungIdToList",
+        "body": "AddBuchungByBuchungIdToList(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Buchung-ID}, ${4:Mit OP-Auszifferung}, ${5:Mit KORE-Erfassung})",
+        "description": "[BuchungList] AddBuchungByBuchungIdToList(<Firmen-Nr>,<FIBU-Nr>,<Buchung-ID>,<Mit OP-Auszifferung>,<Mit KORE-Erfassung>)"
+      },
+      {
+        "name": "AddBuchungByBelegIdToList",
+        "body": "AddBuchungByBelegIdToList(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Beleg-ID}, ${4:Mit OP-Auszifferung}, ${5:Mit KORE-Erfassung})",
+        "description": "[BuchungList] AddBuchungByBelegIdToList(<Firmen-Nr>,<FIBU-Nr>,<Beleg-ID>,<Mit OP-Auszifferung>,<Mit KORE-Erfassung>)"
+      },
+      {
+        "name": "AddBuchungBySqlToList",
+        "body": "AddBuchungBySqlToList(${1:SQL-Text}, ${2:Mit OP-Auszifferung}, ${3:Mit KORE-Erfassung})",
+        "description": "[BuchungList] AddBuchungBySqlToList('SQL-Text',<Mit OP-Auszifferung>,<Mit KORE-Erfassung>)"
+      },
+      {
+        "name": "AddBuErfToList",
+        "body": "AddBuErfToList(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:BuErf Dateiname}, ${4:Logdatei (z. B. FIBUIMPORT.LOG)})",
+        "description": "[BuchungList] AddBuErfToList(<Firmen-Nr>,<FIBU-Nr>,'BuErf Dateiname','Logdatei (z. B. FIBUIMPORT.LOG)')"
+      },
+      {
+        "name": "WriteExportdate",
+        "body": "WriteExportdate(${1:Export-Datum})",
+        "description": "[BuchungList] WriteExportdate(<Export-Datum>)"
+      },
+      {
+        "name": "SetLogFilename",
+        "body": "SetLogFilename(${1:Dateiname})",
+        "description": "[BuchungList] SetLogFilename('Dateiname')"
+      },
+      {
+        "name": "ImportBuchungenMI",
+        "body": "ImportBuchungenMI(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Logdatei (z. B. FIBUIMPORT.LOG)}, ${4:Import OP-Beträge?})",
+        "description": "[BuchungList] ImportBuchungenMI(<Firmen-Nr>,<FIBU-Nr>,'Logdatei (z. B. FIBUIMPORT.LOG)',<Import OP-Beträge?>)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons buchunglist",
+        "prefix": ["constructor buchunglist", "buchunglist"],
+        "body": [
+          "${1:lBuchungList} := FibuMacroObject.CreateFMacroBuchungList();",
+          "$0"
+        ],
+        "description": "[BuchungList] constructor setup"
+      }
+    ]
+  },
+  "FirmenwerteKore": {
+    "constructors": [
+      "CreateFMacroFirmenwerteKore",
+      "KoreMacroObject.CreateFMacroFirmenwerteKore"
+    ],
+    "methods": [
+      {
+        "name": "Load",
+        "body": "Load(${1:Firmen-Nr}, ${2:KORE-Nr})",
+        "description": "[FirmenwerteKore] Load(<Firmen-Nr>,<KORE-Nr>)"
+      },
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Feldname})",
+        "description": "[FirmenwerteKore] GetValue('Feldname')"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons firmenwertekore",
+        "prefix": ["constructor firmenwertekore", "firmenwertekore"],
+        "body": [
+          "${1:lFirmenwerteKore} := KoreMacroObject.CreateFMacroFirmenwerteKore(${2:eindeutige Firmenwerte-Kore-Obj.-ID});",
+          "$0"
+        ],
+        "description": "[FirmenwerteKore] constructor setup"
+      }
+    ]
+  },
+  "Kostenstammdaten": {
+    "constructors": [
+      "CreateFMacroKostenstammdaten",
+      "KoreMacroObject.CreateFMacroKostenstammdaten"
+    ],
+    "methods": [
+      {
+        "name": "Load",
+        "body": "Load(${1:Firmen-Nr}, ${2:KORE-Nr}, ${3:Kostentyp}, ${4:Kosten-Nr.})",
+        "description": "[Kostenstammdaten] Load(<Firmen-Nr>,<KORE-Nr>,'Kostentyp','Kosten-Nr.')"
+      },
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Feldname})",
+        "description": "[Kostenstammdaten] GetValue('Feldname')"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons kostenstammdaten",
+        "prefix": ["constructor kostenstammdaten", "kostenstammdaten"],
+        "body": [
+          "${1:lKostenstammdaten} := KoreMacroObject.CreateFMacroKostenstammdaten(${2:eindeutige Kostenstammdaten-Obj.-ID});",
+          "$0"
+        ],
+        "description": "[Kostenstammdaten] constructor setup"
+      }
+    ]
+  },
+  "Umlagereihenfolge": {
+    "constructors": [],
+    "methods": [
+      {
+        "name": "UmlRf_GetNextNo",
+        "body": "UmlRf_GetNextNo(${1:Firmen-Nr}, ${2:KORE-Nr}, ${3:Umlagevarianten-Nr.})",
+        "description": "[Umlagereihenfolge] UmlRf_GetNextNo(<Firmen-Nr>,<KORE-Nr>,<Umlagevarianten-Nr.>)"
+      },
+      {
+        "name": "UmlRf_GetReihenfolgeByKostenNr",
+        "body": "UmlRf_GetReihenfolgeByKostenNr(${1:Firmen-Nr}, ${2:KORE-Nr}, ${3:Umlagevarianten-Nr.}, ${4:Kostentyp}, ${5:Kosten-Nr.})",
+        "description": "[Umlagereihenfolge] UmlRf_GetReihenfolgeByKostenNr(<Firmen-Nr>,<KORE-Nr>,<Umlagevarianten-Nr.>,<Kostentyp>,<Kosten-Nr.>)"
+      },
+      {
+        "name": "UmlRf_GetReihenfolgeByKostenSchluessel",
+        "body": "UmlRf_GetReihenfolgeByKostenSchluessel(${1:Firmen-Nr}, ${2:KORE-Nr}, ${3:Umlagevarianten-Nr.}, ${4:Reihenfolge}, ${5:Kostentyp}, ${6:Kosten-Nr.}, ${7:Kostenschlüssel})",
+        "description": "[Umlagereihenfolge] UmlRf_GetReihenfolgeByKostenSchluessel(<Firmen-Nr>,<KORE-Nr>,<Umlagevarianten-Nr.>,<Reihenfolge>,<Kostentyp>,<Kosten-Nr.>,<Kostenschlüssel>)"
+      },
+      {
+        "name": "UmlRf_Insert",
+        "body": "UmlRf_Insert(${1:Firmen-Nr}, ${2:KORE-Nr}, ${3:Umlagevarianten-Nr.}, ${4:Reihenfolge}, ${5:Kostentyp}, ${6:Kosten-Nr.}, ${7:Kostenschlüssel})",
+        "description": "[Umlagereihenfolge] UmlRf_Insert(<Firmen-Nr>,<KORE-Nr>,<Umlagevarianten-Nr.>,<Reihenfolge>,<Kostentyp>,<Kosten-Nr.>,<Kostenschlüssel>)"
+      },
+      {
+        "name": "UmlRf_Update",
+        "body": "UmlRf_Update(${1:Firmen-Nr}, ${2:KORE-Nr}, ${3:Umlagevarianten-Nr.}, ${4:Reihenfolge}, ${5:Kostentyp}, ${6:Kosten-Nr.}, ${7:Kostenschlüssel})",
+        "description": "[Umlagereihenfolge] UmlRf_Update(<Firmen-Nr>,<KORE-Nr>,<Umlagevarianten-Nr.>,<Reihenfolge>,<Kostentyp>,<Kosten-Nr.>,<Kostenschlüssel>)"
+      }
+    ],
+    "snippets": []
+  },
+  "WorkflowTool": {
+    "constructors": ["CreateWorkflowToolMgr", "CRMMacroObject.CreateWorkflowToolMgr"],
+    "methods": [
+      "SearchWorkflow",
+      "NewInstance",
+      "LoadWorkflowInstance",
+      "SetFreifeld",
+      "UpdateInstanzInfo",
+      "GetValueInstanzinfo"
+    ],
+    "snippets": [
+      {
+        "name": "cons workflowtool",
+        "prefix": ["constructor workflowtool", "workflowtool"],
+        "body": [
+          "${1:lWorkflowTool} := CRMMacroObject.CreateWorkflowToolMgr();",
+          "$0"
+        ],
+        "description": "[WorkflowTool] constructor setup"
+      }
+    ]
+  },
+  "Zustaendigkeit": {
+    "constructors": ["CreateZustaendigkeitMgr", "CRMMacroObject.CreateZustaendigkeitMgr"],
+    "methods": [
+      "GetMitarbeiter"
+    ],
+    "snippets": [
+      {
+        "name": "cons zustaendigkeit",
+        "prefix": ["constructor zustaendigkeit", "zustaendigkeit"],
+        "body": [
+          "${1:lZustaendigkeit} := CRMMacroObject.CreateZustaendigkeitMgr();",
+          "$0"
+        ],
+        "description": "[Zustaendigkeit] constructor setup"
+      }
+    ]
+  },
+  "DokumentMgr": {
+    "constructors": ["CreateDokumentMgr", "CRMMacroObject.CreateDokumentMgr"],
+    "methods": [
+      "AddDocRelation",
+      "GetCategoryByTableName",
+      "ExportDocument",
+      "AssignDocumentToPerson",
+      "AssignDocumentToArchive",
+      "MoveDocToArchive",
+      "GetTextFromDocument",
+      "SetSummaryToDoc"
+    ],
+    "snippets": [
+      {
+        "name": "cons dokumentmgr",
+        "prefix": ["constructor dokumentmgr", "dokumentmgr"],
+        "body": [
+          "${1:lDokumentMgr} := CRMMacroObject.CreateDokumentMgr();",
+          "$0"
+        ],
+        "description": "[DokumentMgr] constructor setup"
+      }
+    ]
+  },
+  "Frist": {
+    "constructors": ["CreateFristMgr", "CRMMacroObject.CreateFristMgr"],
+    "methods": [
+      "New",
+      "Load",
+      "LoadWithoutDog",
+      "Save",
+      "SaveNoMail",
+      "ErledigenHintergrund",
+      "GetNr",
+      "GetCaption",
+      "SetCaption",
+      "GetText",
+      "SetText",
+      "GetEmployeeCompanyNo",
+      "GetEmployeeID",
+      "SetEmployee",
+      "GetResponsibleCompanyNo",
+      "GetResponsibleID",
+      "SetResponsible",
+      "GetPersonCompanyNo",
+      "GetPersonID",
+      "SetPerson",
+      "GetFristart",
+      "SetFristart",
+      "GetFristDatum",
+      "SetFristDatum",
+      "GetFristBeginn",
+      "SetFristBeginn",
+      "GetVorwarndatum",
+      "SetVorwarndatum",
+      "GetProjectComp",
+      "GetProjectNo",
+      "GetProjectType",
+      "SetProject",
+      "GetInstitutionNo",
+      "GetInstitutionCountry",
+      "GetInstitutionType",
+      "SetInstitution",
+      "GetKontaktpersonCompanyNo",
+      "GetKontaktpersonID",
+      "SetKontaktperson",
+      "GetFreifeld01",
+      "SetFreifeld01",
+      "GetFreifeld07",
+      "SetFreifeld07",
+      "GetJahr",
+      "SetJahr",
+      "GetShowDog",
+      "SetShowDog",
+      "AddDocument"
+    ],
+    "snippets": [
+      {
+        "name": "cons frist",
+        "prefix": ["constructor frist", "frist"],
+        "body": [
+          "${1:lFrist} := CRMMacroObject.CreateFristMgr();",
+          "$0"
+        ],
+        "description": "[Frist] constructor setup"
+      }
+    ]
+  },
+  "Lead": {
+    "constructors": ["CreateLeadMgr", "CRMMacroObject.CreateLeadMgr"],
+    "methods": [
+      "NewGui",
+      "New",
+      "Load",
+      "Save",
+      "GetNr",
+      "GetCompanyNo",
+      "GetCaption",
+      "SetCaption",
+      "GetEmployeeCompanyNo",
+      "GetEmployeeID",
+      "SetEmployee",
+      "GetPersonCompanyNo",
+      "GetPersonID",
+      "SetPerson",
+      "GetKontaktpersonCompanyNo",
+      "GetKontaktpersonID",
+      "SetKontaktperson",
+      "GetEntscheiderCompanyNo",
+      "GetEntscheiderID",
+      "SetEntscheiderPerson",
+      "GetProjectComp",
+      "GetProjectNo",
+      "GetProjectType",
+      "SetProject",
+      "GetPipelineId",
+      "SetPipelineId",
+      "GetPipelineNr",
+      "SetPipelineNr",
+      "GetStufe",
+      "SetStufe",
+      "GetStatus",
+      "SetStatus",
+      "GetLeadTypeCompanyNo",
+      "GetLeadTypeNo",
+      "SetLeadType",
+      "GetWaehrungscode",
+      "SetWaehrungscode",
+      "GetAngebotswert",
+      "SetAngebotswert",
+      "GetWahrscheinlichkeit",
+      "SetWahrscheinlichkeit",
+      "GetAbschlussTermin",
+      "SetAbschlussTermin"
+    ],
+    "snippets": [
+      {
+        "name": "cons lead",
+        "prefix": ["constructor lead", "lead"],
+        "body": [
+          "${1:lLead} := CRMMacroObject.CreateLeadMgr();",
+          "$0"
+        ],
+        "description": "[Lead] constructor setup"
+      }
+    ]
+  },
+  "MacroApiCall": {
+    "constructors": ["CreateMacroApiCall", "MacroObject.CreateMacroApiCall", "CreateApiCall", "WwsPpsMacroClasses.CreateApiCall"],
+    "methods": [
+      {
+        "name": "SetRequestHeader",
+        "body": "SetRequestHeader(${1:Name}, ${2:Value})",
+        "description": "[MacroApiCall] SetRequestHeader('Name','Value')"
+      },
+      "ClearRequestBody",
+      {
+        "name": "AddRequestBody",
+        "body": "AddRequestBody(${1:Data}, ${2:ContentType})",
+        "description": "[MacroApiCall] AddRequestBody('Data','Content-Type')"
+      },
+      {
+        "name": "GetResponseBody",
+        "body": "GetResponseBody(${1:Position})",
+        "description": "[MacroApiCall] GetResponseBody(<Position>)"
+      },
+      {
+        "name": "SetResponseFile",
+        "body": "SetResponseFile(${1:Dateinamen})",
+        "description": "[MacroApiCall] SetResponseFile('Dateinamen')"
+      },
+      "GetResponseHeaders",
+      {
+        "name": "SetCredentials",
+        "body": "SetCredentials(${1:Benutzername}, ${2:Passwort})",
+        "description": "[MacroApiCall] SetCredentials('Benutzername','Passwort')"
+      },
+      {
+        "name": "SetProxy",
+        "body": "SetProxy(${1:Proxy}, ${2:Benutzername}, ${3:Passwort})",
+        "description": "[MacroApiCall] SetProxy('Proxy','Benutzername','Passwort')"
+      },
+      {
+        "name": "EnableLog",
+        "body": "EnableLog(${1:Value})",
+        "description": "[MacroApiCall] EnableLog(<Value>)"
+      },
+      {
+        "name": "DoCall",
+        "body": "DoCall(${1:Methode}, ${2:URL})",
+        "description": "[MacroApiCall] DoCall('Methode \"\"GET\"\", \"\"POST\"\", ...','URL')"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons apicall",
+        "prefix": ["constructor apicall", "apicall"],
+        "body": [
+          "${1:lApiCall} := MacroObject.CreateMacroApiCall();",
+          "$0"
+        ],
+        "description": "[MacroApiCall] constructor setup"
+      }
+    ]
+  },
+  "MacroBarCodeReader": {
+    "constructors": ["CreateMacroBarCodeReader", "MacroObject.CreateMacroBarCodeReader"],
+    "methods": [
+      {
+        "name": "ReadFile",
+        "body": "ReadFile(${1:FileName})",
+        "description": "[MacroBarCodeReader] ReadFile('FileName')"
+      },
+      "Count",
+      {
+        "name": "GetBarCodeText",
+        "body": "GetBarCodeText(${1:Index})",
+        "description": "[MacroBarCodeReader] GetBarCodeText(<Index>)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons barcodereader",
+        "prefix": ["constructor barcodereader", "barcodereader"],
+        "body": [
+          "${1:lBarCodeReader} := MacroObject.CreateMacroBarCodeReader();",
+          "$0"
+        ],
+        "description": "[MacroBarCodeReader] constructor setup"
+      }
+    ]
+  },
+  "MacroExcelReader": {
+    "constructors": ["CreateMacroExcelReader", "MacroObject.CreateMacroExcelReader"],
+    "methods": [
+      {
+        "name": "Open",
+        "body": "Open(${1:FileName})",
+        "description": "[MacroExcelReader] Open('FileName')"
+      },
+      "SheetCount",
+      {
+        "name": "ActivateSheetByName",
+        "body": "ActivateSheetByName(${1:Worksheet})",
+        "description": "[MacroExcelReader] ActivateSheetByName('Worksheet')"
+      },
+      {
+        "name": "ActivateSheetByIndex",
+        "body": "ActivateSheetByIndex(${1:Index})",
+        "description": "[MacroExcelReader] ActivateSheetByIndex(<Index>)"
+      },
+      "ActiveSheet",
+      {
+        "name": "GetValueByName",
+        "body": "GetValueByName(${1:Cell}, ${2:ResultOnError})",
+        "description": "[MacroExcelReader] GetValueByName('Cell','ResultOnError')"
+      },
+      {
+        "name": "GetValueByCoords",
+        "body": "GetValueByCoords(${1:Column}, ${2:Row}, ${3:ResultOnError})",
+        "description": "[MacroExcelReader] GetValueByCoords(<Column>,<Row>,'ResultOnError')"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons excelreader",
+        "prefix": ["constructor excelreader", "excelreader"],
+        "body": [
+          "${1:lExcelReader} := MacroObject.CreateMacroExcelReader();",
+          "$0"
+        ],
+        "description": "[MacroExcelReader] constructor setup"
+      }
+    ]
+  },
+  "MacroJsonVal": {
+    "constructors": ["CreateMacroJsonVal", "MacroObject.CreateMacroJsonVal", "CreateJsonVal", "WwsPpsMacroClasses.CreateJsonVal"],
+    "methods": [
+      {
+        "name": "ParseJson",
+        "body": "ParseJson(${1:Value})",
+        "description": "[MacroJsonVal] ParseJson('Value')"
+      },
+      {
+        "name": "GetValueAsString",
+        "body": "GetValueAsString(${1:Path})",
+        "description": "[MacroJsonVal] GetValueAsString('Path')"
+      },
+      {
+        "name": "JsonEncode",
+        "body": "JsonEncode(${1:Value})",
+        "description": "[MacroJsonVal] JsonEncode('Value')"
+      },
+      {
+        "name": "KeyExists",
+        "body": "KeyExists(${1:Path})",
+        "description": "[MacroJsonVal] KeyExists('Path')"
+      },
+      {
+        "name": "GetCount",
+        "body": "GetCount(${1:Path})",
+        "description": "[MacroJsonVal] GetCount('Path')"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons jsonval",
+        "prefix": ["constructor jsonval", "jsonval"],
+        "body": [
+          "${1:lJsonVal} := MacroObject.CreateMacroJsonVal();",
+          "$0"
+        ],
+        "description": "[MacroJsonVal] constructor setup"
+      }
+    ]
+  },
+  "Termin": {
+    "constructors": ["CreateTerminMgr", "CRMMacroObject.CreateTerminMgr"],
+    "methods": [
+      "New",
+      "Load",
+      "Save",
+      "SaveNoMail",
+      "GetNr",
+      "GetVon",
+      "SetVon",
+      "GetBis",
+      "SetBis",
+      "GetCaption",
+      "SetCaption",
+      "GetText",
+      "SetText",
+      "AddTextHtml",
+      "GetTextHtml",
+      "SetTextHtml",
+      "GetEmployeeCompanyNo",
+      "GetEmployeeID",
+      "SetEmployee",
+      "GetPersonCompanyNo",
+      "GetPersonID",
+      "SetPerson",
+      "GetTerminKz",
+      "SetTerminKz",
+      "GetProjectComp",
+      "GetProjectNo",
+      "GetProjectType",
+      "SetProject",
+      "GetTerminOrt",
+      "SetTerminOrt",
+      "GetFreifeld01",
+      "SetFreifeld01",
+      "GetFreifeld02",
+      "SetFreifeld02",
+      "GetFreifeld03",
+      "SetFreifeld03",
+      "GetFreifeld04",
+      "SetFreifeld04",
+      "GetFreifeld05",
+      "SetFreifeld05",
+      "GetFreifeld06",
+      "SetFreifeld06",
+      "GetFreifeld07",
+      "SetFreifeld07",
+      "GetFreifeld08",
+      "SetFreifeld08",
+      "GetFreifeld09",
+      "SetFreifeld09",
+      "GetFreifeld10",
+      "SetFreifeld10",
+      "GetFreifeld11",
+      "SetFreifeld11",
+      "GetFreifeld12",
+      "SetFreifeld12",
+      "GetFreifeld13",
+      "SetFreifeld13",
+      "GetFreifeld14",
+      "SetFreifeld14",
+      "GetFreifeld15",
+      "SetFreifeld15",
+      "GetFreifeld16",
+      "SetFreifeld16",
+      "GetFreifeld17",
+      "SetFreifeld17",
+      "GetFreifeld18",
+      "SetFreifeld18",
+      "GetShowDog",
+      "SetShowDog",
+      "GetEditDog",
+      "SetEditDog",
+      "AddEmployee",
+      "GetPpsKapaId",
+      "SetPpsKapaId",
+      "GetErzeugtVonPps",
+      "SetErzeugtVonPps",
+      "AddReminder",
+      "DeleteReminder",
+      "DeleteAllReminder"
+    ],
+    "snippets": [
+      {
+        "name": "cons termin",
+        "prefix": ["constructor termin", "termin"],
+        "body": [
+          "${1:lTermin} := CRMMacroObject.CreateTerminMgr();",
+          "$0"
+        ],
+        "description": "[Termin] constructor setup"
+      }
+    ]
+  },
+  "WwsPpsMacroModel": {
+    "constructors": ["CreateWwsPpsMacroModel", "WwsPpsMacroClasses.CreateWwsPpsMacroModel", "CreateWwsPpsMacroModel2", "WwsPpsMacroClasses.CreateWwsPpsMacroModel2"],
+    "methods": [
+      "Open",
+      "Close",
+      "Eof",
+      "Next",
+      "Prior",
+      "First",
+      "New",
+      "Edit",
+      "Save",
+      "Delete",
+      "Free",
+      "GetModelQuery",
+      "DsLoadEmpty",
+      "SetValueByName",
+      "SetValueById",
+      "GetValueByName",
+      "GetValueById"
+    ],
+    "snippets": [
+      {
+        "name": "cons wwsppsmodel constructor",
+        "prefix": ["constructor pps", "pps"],
+        "body": [
+          "${1:lModel} := WwsPpsMacroClasses.CreateWwsPpsMacroModel(${2:3122250});",
+          "$0"
+        ],
+        "description": "Create a WwsPpsMacroModel by numeric model ID.",
+        "detail": "[pattern] WwsPpsMacroModel constructor",
+        "sortText": "00_lwwsppsmodel_1"
+      },
+      {
+        "name": "snip wwsppsmodel full",
+        "prefix": ["constructor model", "model"],
+        "body": [
+          "${1:lModel} := WwsPpsMacroClasses.CreateWwsPpsMacroModel(${2:3122250});",
+          "${3:lQuery} := ${1}.GetModelQuery();",
+          "${3}.SetSQLText(${4:' SELECT ...'});",
+          "${1}.Open();",
+          "while not ${1}.Eof() do begin",
+          "    ${1}.Edit();",
+          "    ${1}.SetValueByName(${5:'FieldName'}, ${6:Value});",
+          "    ${1}.Save();",
+          "    ${1}.Next();",
+          "end;",
+          "${1}.Close();",
+          "${1}.Free();",
+          "$0"
+        ]
+      }
+    ]
+  },
+  "WwsPpsSpecialMacroModel": {
+    "constructors": ["CreateWwsPpsSpecialMacroModel", "WwsPpsMacroClasses.CreateWwsPpsSpecialMacroModel"],
+    "methods": [
+      "Open",
+      "Close",
+      "Eof",
+      "Next",
+      "Prior",
+      "First",
+      "New",
+      "Edit",
+      "Save",
+      "Delete",
+      "Free",
+      "GetModelQuery",
+      "DsLoadEmpty",
+      "SetValueByName",
+      "SetValueById",
+      "GetValueByName",
+      "GetValueById"
+    ],
+    "snippets": [
+      {
+        "name": "cons wwsppsspecialmodel",
+        "prefix": ["constructor ppsspecial", "ppsspecial"],
+        "body": [
+          "${1:lModel} := WwsPpsMacroClasses.CreateWwsPpsSpecialMacroModel(${2:3122250});",
+          "$0"
+        ],
+        "description": "[WwsPpsSpecialMacroModel] constructor setup"
+      }
+    ]
+  },
+  "PepMacroModel": {
+    "constructors": ["CreatePepMacroModel", "WwsPpsMacroClasses.CreatePepMacroModel", "CreatePepMacroModel2", "WwsPpsMacroClasses.CreatePepMacroModel2"],
+    "methods": [
+      "Open",
+      "Close",
+      "Eof",
+      "Next",
+      "Prior",
+      "First",
+      "New",
+      "Edit",
+      "Save",
+      "Delete",
+      "Free",
+      "IncludeOptMdUsage",
+      "GetModelQuery",
+      {
+        "name": "SetValue",
+        "body": "SetValue(${1:Feldname}, ${2:Wert})",
+        "description": "[PepMacroModel] SetValue('MCA_Feldname','Wert')"
+      },
+      {
+        "name": "GetValue",
+        "body": "GetValue(${1:Feldname})",
+        "description": "[PepMacroModel] GetValue('MCA_Feldname')"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons pepmodel",
+        "prefix": ["constructor pepmodel", "pepmodel"],
+        "body": [
+          "${1:lModel} := WwsPpsMacroClasses.CreatePepMacroModel(${2:3122250});",
+          "$0"
+        ],
+        "description": "[PepMacroModel] constructor setup"
+      }
+    ]
+  },
+  "Vorgang": {
+    "constructors": ["CreateVorgang", "WwsPpsMacroClasses.CreateVorgang", "CreateVorgang2", "WwsPpsMacroClasses.CreateVorgang2"],
+    "methods": [
+      "DsDispatch"
+    ],
+    "snippets": [
+      {
+        "name": "cons vorgang",
+        "prefix": ["constructor vorgang", "vorgang"],
+        "body": [
+          "${1:lVorgang} := WwsPpsMacroClasses.CreateVorgang();",
+          "$0"
+        ],
+        "description": "[Vorgang] constructor setup"
+      }
+    ]
+  },
+  "MaterialConsumption": {
+    "constructors": ["CreateMaterialConsumption", "WwsPpsMacroClasses.CreateMaterialConsumption"],
+    "methods": [
+      "ClearKeys",
+      "SetStockKey",
+      "SetAccountingText",
+      "SetArticleColorKey",
+      "SetArticleSizeKey",
+      "SetArticleProcessKey",
+      "SetArticleQStatus",
+      "SetArticleAttributes",
+      "SetArticleIdentification",
+      "SetLotKey",
+      "SetSerialKey",
+      "SetSSCC",
+      "SetAssembleUser",
+      "SetAssembleDate",
+      "SetPreparationUser",
+      "SetPreparationDate",
+      "RecordMaterialConsumption",
+      "GetLastRecordedPieceListId"
+    ],
+    "snippets": [
+      {
+        "name": "cons materialconsumption",
+        "prefix": ["constructor materialconsumption", "materialconsumption"],
+        "body": [
+          "${1:lMaterialConsumption} := WwsPpsMacroClasses.CreateMaterialConsumption();",
+          "$0"
+        ],
+        "description": "[MaterialConsumption] constructor setup"
+      }
+    ]
+  },
+  "WWSParamMD": {
+    "constructors": ["CreateWWSParamMD", "WwsPpsMacroClasses.CreateWWSParamMD"],
+    "methods": [
+      "SetCompanyNo",
+      "Invoice_OnlineInvoiceHU_AccToBranch"
+    ],
+    "snippets": [
+      {
+        "name": "cons wwsparammd",
+        "prefix": ["constructor wwsparammd", "wwsparammd"],
+        "body": [
+          "${1:lWWSParamMD} := WwsPpsMacroClasses.CreateWWSParamMD();",
+          "$0"
+        ],
+        "description": "[WWSParamMD] constructor setup"
+      }
+    ]
+  },
+  "WWSIncomingInvoiceMD": {
+    "constructors": ["CreateWWSIncomingInvoiceMD", "WwsPpsMacroClasses.CreateWWSIncomingInvoiceMD"],
+    "methods": [
+      "SetKeyValues",
+      "GetValue"
+    ],
+    "snippets": [
+      {
+        "name": "cons wwsincominginvoicemd",
+        "prefix": ["constructor wwsincominginvoicemd", "wwsincominginvoicemd"],
+        "body": [
+          "${1:lWWSIncomingInvoiceMD} := WwsPpsMacroClasses.CreateWWSIncomingInvoiceMD();",
+          "$0"
+        ],
+        "description": "[WWSIncomingInvoiceMD] constructor setup"
+      }
+    ]
+  }
+}

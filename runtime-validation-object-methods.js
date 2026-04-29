@@ -7,7 +7,7 @@
  * - MacroModel field naming conventions for GetValue/SetValue
  *
  * Unknown plain BMD_ function calls are handled in
- * runtime-validation-bmd-functions.js.
+ * runtime-validation-bmdmacro.js.
  */
 function runObjectMethodValidationPass(context) {
   const {
@@ -53,11 +53,17 @@ function runObjectMethodValidationPass(context) {
       }
 
       const receiverPosition = new vscode.Position(lineIdx, m.index);
-      const typeName = getVariableTypeAtPosition(document, m[1], receiverPosition, false) || paramTypeIndex.get(receiverLower);
+
+      let typeName = getVariableTypeAtPosition(document, m[1], receiverPosition, true);
+      if (!typeName) {
+        typeName = paramTypeIndex.get(receiverLower);
+      }
+
       if (!typeName) {
         if (paramTypeIndex.has(receiverLower)) {
           continue;
         }
+
         const colStart = m.index + m[1].length + 1;
         diagnostics.push(createCodedDiagnostic(
           new vscode.Range(lineIdx, m.index, lineIdx, colStart + m[2].length),

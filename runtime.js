@@ -14,7 +14,6 @@ const fs = require('fs');
 const childProcess = require('child_process');
 const util = require('util');
 const parser = require('./parser');
-const { buildSettingsWebviewHtml } = require('./runtime-settings-webview');
 const { runIdentifierValidationPass } = require('./runtime-validation-identifiers');
 const { runRoutineResultValidationPass } = require('./runtime-validation-routine-result');
 const { runComparisonValidationPass } = require('./runtime-validation-comparisons');
@@ -70,21 +69,43 @@ const ENABLE_DIAGNOSTICS = true;
 //
 // ─────────────────────────────────────────────────────────────────────────────
 
+//Infer Datatypes für Objekte
+//Aus lModel := MacroObject.createMacroModel('Artikel'); würde der Eintrag lmodel -> MacroModel entstehen.
 function getDocumentTypeIndex(document) {
+  const key = `${document.uri.toString()}::${document.version}`;
+  const cached = typeIndexCache.get(key);
+  if (cached) {
+    return cached;
+  }
+
   const index = new Map();
   const text = document.getText();
-  
-  // LHS von := → Typ aus RHS ermitteln
-  // z.B. lQuery := MacroObject.createMacroQuery(...)
-  //      → lquery → MacroQuery
-  const assignRegex = /\b([A-Za-z_][A-Za-z0-9_]*)\s*:=\s*(?:MacroObject\.)?create(MacroQuery|MacroModel|MacroStringList|MacroList|MacroCSVFile|MacroFileMgr|MacroApiCall|MacroJsonVal|MacroXML)\b/gi;
+
+  const constructorNames = Array.from(new Set(Object.keys(constructorToType)))
+    .sort((a, b) => b.length - a.length)
+    .map(escapeRegExp);
+
+  const assignRe = new RegExp(
+    `\\b([A-Za-z_][A-Za-z0-9_]*)\\s*(?::=|=)\\s*([A-Za-z_][A-Za-z0-9_.]*)\\b`,
+    'gi'
+  );
+
   let match;
-  while ((match = assignRegex.exec(text)) !== null) {
-    index.set(match[1].toLowerCase(), match[2]);
+  while ((match = assignRe.exec(text)) !== null) {
+    const varName = match[1];
+    const ctorName = match[2].toLowerCase();
+
+    const typeName = constructorToType[ctorName];
+    if (typeName) {
+      index.set(varName.toLowerCase(), typeName);
+    }
   }
-  
+
+  typeIndexCache.set(key, index);
   return index;
 }
+
+
 
 function getExtensionConfig() {
   return vscode.workspace.getConfiguration(EXTENSION_CONFIG_SECTION);
@@ -104,62 +125,9 @@ function getRuntimeConfig() {
   };
 }
 
-function openSettingsWebview(context) {
-  const panel = vscode.window.createWebviewPanel(
-    'bmdmacroSettings',
-    'BMD Macro Config',
-    vscode.ViewColumn.Active,
-    { enableScripts: true }
-  );
-
-  const render = () => {
-    panel.webview.html = buildSettingsWebviewHtml(getRuntimeConfig());
-  };
-
-  render();
-
-  panel.webview.onDidReceiveMessage(
-    async message => {
-      try {
-        const config = getExtensionConfig();
-
-        if (message.type === 'reset') {
-          await config.update('sqlServer', DEFAULT_SQL_SERVER, vscode.ConfigurationTarget.Global);
-          await config.update('sqlDatabase', DEFAULT_SQL_DATABASE, vscode.ConfigurationTarget.Global);
-          await config.update('sqlFormulaId', DEFAULT_SQL_FORMULA_ID, vscode.ConfigurationTarget.Global);
-          await config.update('macroUserShort', DEFAULT_MACRO_USER_SHORT, vscode.ConfigurationTarget.Global);
-          await config.update('macroUseLogProc', DEFAULT_MACRO_USE_LOG_PROC, vscode.ConfigurationTarget.Global);
-          await config.update('validateOnSave', DEFAULT_VALIDATE_ON_SAVE, vscode.ConfigurationTarget.Global);
-          render();
-          panel.webview.postMessage({ type: 'saved' });
-          return;
-        }
-
-        if (message.type !== 'save' || !message.payload) {
-          return;
-        }
-
-        const payload = message.payload;
-        await config.update('sqlServer', String(payload.sqlServer || '').trim(), vscode.ConfigurationTarget.Global);
-        await config.update('sqlDatabase', String(payload.sqlDatabase || '').trim(), vscode.ConfigurationTarget.Global);
-        await config.update('sqlFormulaId', String(payload.sqlFormulaId || '').trim(), vscode.ConfigurationTarget.Global);
-        await config.update('macroUserShort', String(payload.macroUserShort || '').trim(), vscode.ConfigurationTarget.Global);
-        await config.update('macroUseLogProc', Boolean(payload.macroUseLogProc), vscode.ConfigurationTarget.Global);
-        await config.update('validateOnSave', Boolean(payload.validateOnSave), vscode.ConfigurationTarget.Global);
-        panel.webview.postMessage({ type: 'saved' });
-      } catch (error) {
-        const messageText = error && error.message ? error.message : String(error);
-        panel.webview.postMessage({ type: 'error', payload: messageText });
-      }
-    },
-    undefined,
-    context.subscriptions
-  );
-}
-
 // Load structured object data: type -> { constructors, methods }
 const objectsData = JSON.parse(
-  fs.readFileSync(path.join(__dirname, 'snippets', 'objects-data.json'), 'utf8')
+  fs.readFileSync(path.join(__dirname, 'snippets', 'objects.json'), 'utf8')
 );
 
 // Build reverse map: constructor name -> type name
@@ -271,6 +239,187 @@ for (const entry of Object.values(functionsData)) {
 
 const constructorPrefixes = new Set(Object.keys(constructorToType));
 
+
+function getFunctionCallContextAtPosition(document, position) {
+  const text = document.getText();
+  const offset = document.offsetAt(position);
+  let depth = 0;
+  let inString = false;
+  let openParenOffset = -1;
+
+  for (let i = offset - 1; i >= 0; i--) {
+    const ch = text[i];
+
+    if (inString) {
+      if (ch === "'" && text[i - 1] !== "'") inString = false;
+      continue;
+    }
+
+    if (ch === "'") {
+      inString = true;
+      continue;
+    }
+
+    if (ch === ')') {
+      depth++;
+      continue;
+    }
+
+    if (ch === '(') {
+      if (depth === 0) {
+        openParenOffset = i;
+        break;
+      }
+      depth--;
+    }
+  }
+
+  if (openParenOffset < 0) return null;
+
+  let nameEnd = openParenOffset;
+  let nameStart = nameEnd - 1;
+  while (nameStart >= 0 && /[A-Za-z0-9_]/.test(text[nameStart])) {
+    nameStart--;
+  }
+  nameStart++;
+
+  const functionName = text.slice(nameStart, nameEnd).trim();
+  if (!functionName) return null;
+
+  const argsText = text.slice(openParenOffset + 1, offset);
+  const args = splitArgumentsWithPositions(argsText);
+  const currentArgIndex = args.length - 1;
+
+  return {
+    functionName,
+    functionNameLower: functionName.toLowerCase(),
+    currentArgIndex,
+    args
+  };
+}
+
+//[WER979] 29.04.2026 10:31: List der weiteren optionalen Parameter für autocomplete bei ergänzen von weiteren PArametern für Funktionen die schon im Code sind.
+function buildFunctionArgumentCompletionItems(document, position) {
+  const context = getFunctionCallContextAtPosition(document, position);
+  if (!context) {
+    return [];
+  }
+
+  const signature = functionSignaturesByName.get(context.functionNameLower);
+  if (!signature || !Array.isArray(signature.params) || signature.params.length === 0) {
+    return [];
+  }
+
+  const paramIndex = context.currentArgIndex;
+  if (paramIndex < 0 || paramIndex >= signature.params.length) {
+    return [];
+  }
+
+  const currentArg = context.args[paramIndex];
+  const currentArgText = currentArg ? String(currentArg.text || '').trim() : '';
+  if (currentArgText.length > 0) {
+    return [];
+  }
+
+  const currentParam = signature.params[paramIndex];
+  if (!currentParam) {
+    return [];
+  }
+
+  const items = [];
+
+  const primaryItem = new vscode.CompletionItem(
+    `${currentParam.label}${currentParam.optional ? '(opt)' : ''}`,
+    vscode.CompletionItemKind.Field
+  );
+
+  if (currentParam.kind === 'string') {
+    primaryItem.insertText = new vscode.SnippetString(`'\${1:${currentParam.label}}'`);
+  } else {
+    primaryItem.insertText = new vscode.SnippetString(`\${1:${currentParam.label}}`);
+  }
+
+  primaryItem.detail = `${context.functionName} · Argument ${paramIndex + 1} von ${signature.totalCount}`;
+
+  const signatureLabel = `${context.functionName}(${signature.params
+    .map(param => param.raw || param.label)
+    .join(', ')})`;
+
+  primaryItem.documentation = new vscode.MarkdownString(
+    `**${context.functionName}**\n\n` +
+    `Aktuelles Argument: **${currentParam.label}**${currentParam.optional ? ' *(optional)*' : ''}\n\n` +
+    `Signatur: \`${signatureLabel}\``
+  );
+
+  primaryItem.sortText = '00000';
+  primaryItem.preselect = true;
+  items.push(primaryItem);
+
+  const nextParams = signature.params.slice(paramIndex + 1, paramIndex + 3);
+  for (let i = 0; i < nextParams.length; i++) {
+    const nextParam = nextParams[i];
+    const hintItem = new vscode.CompletionItem(
+      `Danach: ${nextParam.label}${nextParam.optional ? ' (opt)' : ''}`,
+      vscode.CompletionItemKind.Text
+    );
+    hintItem.insertText = '';
+    hintItem.detail = `${context.functionName} · Folgeargument`;
+    hintItem.documentation = new vscode.MarkdownString(
+      `Nächstes mögliches Argument: **${nextParam.label}**${nextParam.optional ? ' *(optional)*' : ''}`
+    );
+    hintItem.sortText = `0000${i + 1}`;
+    items.push(hintItem);
+  }
+
+  return items;
+}
+
+//[WER979] 29.04.2026 10:02: Diese Funktion prüft, ob ein Komma eingegeben wurde, um die Argumentvorschläge für Funktionen erneut auszulösen. Sie überprüft, ob die Änderung ein einzelnes Komma ist und ob der Cursor sich in einem Funktionsaufruf befindet, für den Signaturen definiert sind. Wenn ja, wird die Vorschlagsliste erneut geöffnet.
+function shouldRetriggerFunctionArgumentSuggest(event) {
+  if (!event || !event.document || !Array.isArray(event.contentChanges) || event.contentChanges.length !== 1) {
+    return false;
+  }
+
+  const change = event.contentChanges[0];
+  if (!change || change.rangeLength !== 0 || typeof change.text !== 'string') {
+    return false;
+  }
+
+  // Nicht nur exakt "," akzeptieren, sondern auch ", " oder ",\t"
+  if (!change.text.includes(',')) {
+    return false;
+  }
+
+  const editor = vscode.window.activeTextEditor;
+  if (!editor || editor.document.uri.toString() !== event.document.uri.toString()) {
+    return false;
+  }
+
+  const fallbackPosition = change.range.start.translate(0, change.text.length);
+  const positionAfterChange =
+    editor.selection &&
+    editor.selection.active &&
+    editor.selection.active.line === fallbackPosition.line &&
+    editor.selection.active.character >= change.range.start.character
+      ? editor.selection.active
+      : fallbackPosition;
+
+  const context = getFunctionCallContextAtPosition(event.document, positionAfterChange);
+  if (!context) {
+    return false;
+  }
+
+  if (!functionSignaturesByName.has(context.functionNameLower)) {
+    return false;
+  }
+
+  const currentArg = context.args[context.currentArgIndex];
+  const currentArgText = currentArg ? String(currentArg.text || '').trim() : '';
+
+  // Nur retriggern, wenn wir im neuen/leeren Argument stehen.
+  return currentArgText.length === 0;
+}
+
 function normalizeSnippetBody(body) {
   if (Array.isArray(body)) {
     return body.join('\n');
@@ -314,14 +463,12 @@ function isBmdFunctionLikeCallToken(text, startIndex, endIndex, lowerToken) {
   return isCallToken(text, endIndex);
 }
 
+// Function um MacroModelNamen vorzuschlagen egal ob in quotes oder ohne
 function normalizeCreateMacroModelSnippetBody(bodyText) {
   if (typeof bodyText !== 'string' || !/createmacromodel\s*\(/i.test(bodyText)) {
     return bodyText;
   }
 
-  // Keep cursor inside quotes but avoid a numeric default that can suppress
-  // completion filtering in snippet-placeholder mode.
-  //wer979 Check logic - schaut aus als wärens zwei zeilen zu viel
   return bodyText
     .replace(/(CreateMacroModel\s*\(\s*')\$\{1:[^}]*\}(')/i, "$1${1:}$2")
     .replace(/(CreateMacroModel\s*\(\s*')\$1(')/i, "$1${1:}$2")
@@ -495,16 +642,20 @@ function classifyArgumentKind(text) {
     return null;
   }
 
-  const trimmed = text.trim().replace(/;\s*$/, '');
+  const trimmed = text.trim().replace(/,$/, '');
   if (!trimmed) {
     return null;
   }
 
-  if (/^'(?:''|[^'])*'$/.test(trimmed)) {
+  if (/^'([^']|'')*'$/.test(trimmed)) {
     return 'string';
   }
 
-  if (/^[+-]?(?:\d+(?:[.,]\d+)?|[.,]\d+)$/.test(trimmed)) {
+  if (/^(?:#\d+)+$/.test(trimmed)) {
+    return 'string';
+  }
+
+  if (/^-?(?:\d+\.?\d*|\.\d+)$/.test(trimmed)) {
     return 'number';
   }
 
@@ -790,6 +941,39 @@ for (const [typeName, typeData] of Object.entries(objectsData)) {
   }
 }
 
+const objectSnippetItems = [];
+for (const [typeName, typeData] of Object.entries(objectsData)) {
+  for (const snippet of (typeData.snippets || [])) {
+    if (!snippet || typeof snippet !== 'object') {
+      continue;
+    }
+
+    const label = snippet.name || `${typeName} snippet`;
+    const body = normalizeSnippetBody(snippet.body);
+    if (!body) {
+      continue;
+    }
+
+    const prefixes = Array.isArray(snippet.prefix)
+      ? snippet.prefix.filter(p => typeof p === 'string' && p.trim())
+      : [snippet.prefix].filter(p => typeof p === 'string' && p.trim());
+
+    const item = new vscode.CompletionItem(label, vscode.CompletionItemKind.Snippet);
+    item.insertText = new vscode.SnippetString(body);
+    item.detail = snippet.detail || `[pattern] ${typeName}`;
+    item.documentation = new vscode.MarkdownString(
+      snippet.description || `Snippet for ${typeName}`
+    );
+    item.sortText = snippet.sortText || `00_${typeName.toLowerCase()}_snippet_${label.toLowerCase().replace(/\s+/g, '_')}`;
+
+    if (prefixes.length > 0) {
+      item.filterText = prefixes.join(' ');
+    }
+
+    objectSnippetItems.push(item);
+  }
+}
+
 const assignmentCompletionItems = [...constructorNewItems, ...globalConstructorCompletionItems];
 //const bmdCompletionItems = globalCompletionItems.filter(item =>
 //  getCompletionLabelText(item).toLowerCase().startsWith('bmd_')
@@ -810,152 +994,6 @@ globalCompletionItems.forEach(item => {
   }
 });
 
-const QuerySnippetItems = [];
-{
-  const macroQueryType = objectsData.MacroQuery;
-  if (macroQueryType) {
-    const macroQueryCtor = preferredConstructor(macroQueryType) || 'MacroObject.CreateMacroQuery';
-    const ctorArgsTemplate = constructorArgsTemplateFromSnippet(
-      constructorBodyByPrefix.get(macroQueryCtor.toLowerCase())
-    );
-    const queryCtorCall = `${macroQueryCtor}(${ctorArgsTemplate !== null ? ctorArgsTemplate : "'get_'+bmd_getGUID()"})`;
-
-    const ctorOnly = new vscode.CompletionItem('query constructor', vscode.CompletionItemKind.Snippet);
-    ctorOnly.insertText = new vscode.SnippetString(`\${1:lQuery} := ${queryCtorCall};\n\$0`);
-    ctorOnly.detail = '[pattern] Query constructor';
-    ctorOnly.documentation = new vscode.MarkdownString('Create only the query variable using naming convention `lQuery`.');
-    ctorOnly.sortText = '00_query_1';
-    QuerySnippetItems.push(ctorOnly);
-
-    const fullFlow = new vscode.CompletionItem('query full', vscode.CompletionItemKind.Snippet);
-    fullFlow.insertText = new vscode.SnippetString(
-      `\${1:lQuery} := ${queryCtorCall};\n` +
-      `\${1}.SetSQLText(\${2:' SELECT ...'});\n` +
-      `\${1}.Open();\n` +
-      `while not \${1}.Eof() do begin\n` +
-      `    \${3}\n` +
-      `    \${1}.Next();\n` +
-      `end;\n` +
-      `\${1}.Close();\n` +
-      `\${1}.Free();\n` +
-      `\$0`
-    );
-    fullFlow.detail = '[pattern] Query lifecycle';
-    fullFlow.documentation = new vscode.MarkdownString('Create, open, iterate with `while not ... Eof()`, close and free.');
-    fullFlow.sortText = '00_query_2';
-    QuerySnippetItems.push(fullFlow);
-  }
-}
-
-const lModelSnippetItems = [];
-{
-  const macroModelType = objectsData.MacroModel;
-  if (macroModelType) {
-    const macroModelCtor = preferredConstructor(macroModelType) || 'MacroObject.CreateMacroModel';
-    const modelCtorCall = `${macroModelCtor}(${macroModelConstructorArgs(1)})`;
-
-    const ctorOnly = new vscode.CompletionItem('lmodel constructor', vscode.CompletionItemKind.Snippet);
-    ctorOnly.insertText = new vscode.SnippetString(`\${1:lModel} := ${modelCtorCall};\n\$0`);
-    ctorOnly.detail = '[pattern] Model constructor';
-    ctorOnly.documentation = new vscode.MarkdownString('Create only the model variable using naming convention `lModel`.');
-    ctorOnly.filterText = 'lmodel';
-    ctorOnly.preselect = true;
-    ctorOnly.sortText = '00_lmodel_1';
-    lModelSnippetItems.push(ctorOnly);
-
-    const stateCheck = new vscode.CompletionItem('lmodel state', vscode.CompletionItemKind.Snippet);
-    stateCheck.insertText = new vscode.SnippetString(
-      `\${1:lModel} := ${modelCtorCall};\n\n` +
-      `if (\${1}.getState() <> 'msUnknown') then begin\n` +
-      `    \${2}\n` +
-      `end;\n` +
-      `\$0`
-    );
-    stateCheck.detail = '[pattern] Model state guard';
-    stateCheck.documentation = new vscode.MarkdownString('Create `lModel` and guard usage with a `getState()` check.');
-    stateCheck.filterText = 'lmodel';
-    stateCheck.sortText = '00_lmodel_2';
-    lModelSnippetItems.push(stateCheck);
-  }
-}
-
-const lCsvMgrSnippetItems = [];
-{
-  const csvCtor = 'MacroObject.CreateMacroCSVFile';
-  const csvCtorCall = `${csvCtor}(\${2:lFile})`;
-
-  const ctorOnly = new vscode.CompletionItem('lcsvmgr constructor', vscode.CompletionItemKind.Snippet);
-  ctorOnly.insertText = new vscode.SnippetString(
-    `\${1:lCSVMgr} := ${csvCtorCall};\n` +
-    `\${1}.SetCodepage('65001');\n` +
-    `\${1}.SetQuoteChar('"');\n` +
-    `\${1}.SetSeparator(',');\n` +
-    `\$0`
-  );
-  ctorOnly.detail = '[pattern] CSV constructor setup';
-  ctorOnly.documentation = new vscode.MarkdownString('Create and configure lCSVMgr with codepage, quote char and separator.');
-  ctorOnly.sortText = '00_lcsvmgr_1';
-  lCsvMgrSnippetItems.push(ctorOnly);
-
-  const loopFlow = new vscode.CompletionItem('lcsvmgr loop', vscode.CompletionItemKind.Snippet);
-  loopFlow.insertText = new vscode.SnippetString(
-    `\${1:lCSVMgr} := ${csvCtorCall};\n` +
-    `\${1}.SetCodepage('65001');\n` +
-    `\${1}.SetQuoteChar('"');\n` +
-    `\${1}.SetSeparator(',');\n\n` +
-    `\${3:lNoOfLines} := \${1}.GetNoOfLines();\n` +
-    `\${4:lNoOfCols} := \${1}.GetNoOfCols();\n\n` +
-    `for \${5:i} := 0 to \${3}-1 do begin\n` +
-    `    for \${6:j} := 0 to \${4}-1 do begin\n` +
-    `        \${7:lWert} := \${1}.getValue(\${5},\${6});\n` +
-    `        \${8}\n` +
-    `    end;\n` +
-    `end;\n` +
-    `\$0`
-  );
-  loopFlow.detail = '[pattern] CSV read loop';
-  loopFlow.documentation = new vscode.MarkdownString('Create/configure lCSVMgr and generate nested row/column loop with getValue(i,j).');
-  loopFlow.sortText = '00_lcsvmgr_2';
-  lCsvMgrSnippetItems.push(loopFlow);
-}
-
-const lWwsPpsModelSnippetItems = [];
-{
-  const wwsppsCtor = 'WwsPpsMacroClasses.CreateWwsPpsMacroModel';
-
-  const ctorOnly = new vscode.CompletionItem('lwwsppsmodel constructor', vscode.CompletionItemKind.Snippet);
-  ctorOnly.insertText = new vscode.SnippetString(
-    `\${1:lModel} := ${wwsppsCtor}(\${2:3122250});\n\$0`
-  );
-  ctorOnly.detail = '[pattern] WwsPpsMacroModel constructor';
-  ctorOnly.documentation = new vscode.MarkdownString('Create a WwsPpsMacroModel by numeric model ID.');
-  ctorOnly.sortText = '00_lwwsppsmodel_1';
-  lWwsPpsModelSnippetItems.push(ctorOnly);
-
-  const fullFlow = new vscode.CompletionItem('lwwsppsmodel full', vscode.CompletionItemKind.Snippet);
-  fullFlow.insertText = new vscode.SnippetString(
-    `\${1:lModel} := ${wwsppsCtor}(\${2:3122250});\n` +
-    `\${3:lQuery} := \${1}.GetModelQuery();\n` +
-    `\${3}.SetSQLText(\${4:' SELECT ...'});\n` +
-    `\${1}.Open();\n` +
-    `while not \${1}.Eof() do begin\n` +
-    `    \${1}.Edit();\n` +
-    `    \${1}.SetValueByName(\${5:'FieldName'}, \${6:Value});\n` +
-    `    \${1}.Save();\n` +
-    `    \${1}.Next();\n` +
-    `end;\n` +
-    `\${1}.Close();\n` +
-    `\${1}.Free();\n` +
-    `\$0`
-  );
-  fullFlow.detail = '[pattern] WwsPpsMacroModel full lifecycle';
-  fullFlow.documentation = new vscode.MarkdownString(
-    'Instantiate model by ID (e.g. `3122250`), get query, open, iterate with Edit/SetValueByName/Save/Next, then Close and Free.'
-  );
-  fullFlow.sortText = '00_lwwsppsmodel_2';
-  lWwsPpsModelSnippetItems.push(fullFlow);
-}
-
 function getCompletionLabelText(item) {
   if (typeof item.label === 'string') {
     return item.label;
@@ -974,17 +1012,43 @@ function filterCompletionsByPrefix(items, prefix) {
   const lowerPrefix = prefix.toLowerCase();
   const startsWith = [];
   const contains = [];
+
   for (const item of items) {
     const label = getCompletionLabelText(item).toLowerCase();
+    const filterText = typeof item.filterText === 'string'
+      ? item.filterText.toLowerCase()
+      : '';
+
+    const filterTokens = filterText.split(/\s+/).filter(Boolean);
+
+    // PRIORITÄT 1: zuerst sichtbarer Name / label
     if (label.startsWith(lowerPrefix)) {
       startsWith.push(item);
-    } else if (lowerPrefix.length >= 3 && label.includes(lowerPrefix)) {
-      contains.push(item);
+      continue;
+    }
+
+    // PRIORITÄT 2: danach echte Trigger / Prefixe aus filterText
+    if (filterTokens.some(token => token.startsWith(lowerPrefix))) {
+      startsWith.push(item);
+      continue;
+    }
+
+    // OPTIONAL: contains nur als Fallback
+    if (lowerPrefix.length >= 3) {
+      if (label.includes(lowerPrefix)) {
+        contains.push(item);
+        continue;
+      }
+
+      if (filterTokens.some(token => token.includes(lowerPrefix))) {
+        contains.push(item);
+        continue;
+      }
     }
   }
+
   return [...startsWith, ...contains];
 }
-
 // Aliases only shown when the typed prefix is within 2 chars of the full alias length,
 // preventing e.g. "frist" from triggering the "fristmgr" snippet.
 function filterAliasesByPrefix(items, prefix) {
@@ -1089,6 +1153,8 @@ function hasAllQueryWordPrefixes(queryWords, candidateWords) {
   );
 }
 
+//Vorschlag aller bekannten Modelnamen
+//lModel := MacroObject.CreateMacroModel('1');<-- Name statt 1
 function buildMacroModelNameCompletionItems(typedPrefix, insideQuote) {
   if (macroModelDefinitions.length === 0) {
     return [];
@@ -1253,6 +1319,11 @@ for (const [typeName, typeData] of Object.entries(objectsData)) {
   methodSignaturesByType[typeName] = methodSignatureMap;
 }
 
+//TODO
+//wer979 mit getInferredParamTypeAtPosition zusammenlegen
+//Diese Funktion durchsucht bereinigten Code nach procedure- und function-Definitionen, liest deren formale Parameter aus und sucht anschließend nach Aufrufstellen derselben Routine. Für jede Parameterposition versucht sie dann, aus dem tatsächlich übergebenen Argument über den vorhandenen typeIndex einen Typ abzuleiten und speichert das Ergebnis in einer Map param-name -> type.
+//
+//Wichtig ist dabei: Die Funktion arbeitet globaler und gibt eine Sammlung zurück, nicht nur einen Einzelwert. Außerdem trägt sie für nicht auflösbare Parameter trotzdem einen Eintrag mit null ein, damit später erkennbar bleibt, dass der Parameter schon betrachtet wurde.
 function getProcedureFunctionParamTypes(cleanText, typeIndex) {
   // Maps param-name (lowercase) -> inferred type, by examining each call site.
   const paramTypes = new Map();
@@ -1290,6 +1361,10 @@ function getProcedureFunctionParamTypes(cleanText, typeIndex) {
   return paramTypes;
 }
 
+// TODO 
+//wer979 mit getProcedureFunctionParamTypes zusammenlegen
+//Diese Funktion ist feiner aufgelöst: Sie sammelt zuerst alle Routine-Definitionen, bestimmt dann, in welcher Definition sich die aktuelle Cursor-Position befindet, und prüft danach, ob der gesuchte Variablenname dort überhaupt ein Parameter ist. Erst wenn das zutrifft, durchsucht sie die Aufrufstellen genau dieser aktiven Routine und holt den Typ des Arguments an derselben Parameterposition.
+//Das Ergebnis ist kein Mapping für alle Parameter, sondern genau ein Typ oder undefined für den konkreten Parameter an der aktuellen Stelle. Sie ist damit ideal für kontextabhängige Completion oder Validierung direkt am Cursor.
 function getInferredParamTypeAtPosition(cleanText, variableNameLower, cursorOffset, typeIndex) {
   const defs = [];
   const defRe = /\b(?:procedure|function)\s+(\w+)\s*\(([^)]*)\)/gi;
@@ -1413,6 +1488,7 @@ function buildFunctionReturnTypes(cleanText) {
   return returnTypes;
 }
 
+//Namenssammlung für Completion, damit auch lokale Variablen vorgeschlagen werden. Baut einen Index aller Variablennamen im Dokument
 //If your file contains lModel := CreateMacroModel('auftrag'), then later when you type lModel., the language server uses this index to know that lModel is of type MacroModel and can suggest its methods.
 function getDocumentWords(document, typedPrefix) {
   const words = new Set();
@@ -1456,6 +1532,10 @@ function getDocumentWords(document, typedPrefix) {
     });
 }
 
+//Addition to getDocumentTypeIndex
+// only searches local cursorpos - 200.000
+// Die globale Fallback (getDocumentTypeIndex) greift nur ein, wenn lokal nichts gefunden wird, und deckt so auch Fälle ab, wo die Zuweisung weit oben steht. Zusätzlich kann getVariableTypeAtPosition noch Parameter-Typen aus Funktionsaufrufen ableiten (getInferredParamTypeAtPosition), was getDocumentTypeIndex gar nicht kann.
+//wer979 TODO: nur getDocumentTypeIndex sollte reichen wenn infer Type noch eingebaut wird. bzw nur getVariableTypeAtPosition. Eines von beiden sollte reichen.
 function getVariableTypeAtPosition(document, variableName, position, includeGlobalFallback = true) {
   // Fast path for autocomplete: search a bounded window before cursor first.
   const cursorOffset = document.offsetAt(position);
@@ -1499,243 +1579,6 @@ function getVariableTypeAtPosition(document, variableName, position, includeGlob
   const cleanText = stripStringsAndComments(document.getText());
   const cursorOffsetInClean = document.offsetAt(position);
   return getInferredParamTypeAtPosition(cleanText, variableName.toLowerCase(), cursorOffsetInClean, typeIndex);
-}
-
-async function uploadMacroToFormula(macroText) {
-  const runtimeConfig = getRuntimeConfig();
-  const macroBase64 = Buffer.from(macroText, 'utf8').toString('base64');
-  const script = `
-$macroText = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String('${macroBase64}'))
-$connectionString = 'Server=${runtimeConfig.sqlServer};Database=${runtimeConfig.sqlDatabase};Integrated Security=True;TrustServerCertificate=True;'
-$connection = New-Object System.Data.SqlClient.SqlConnection $connectionString
-
-try {
-  $connection.Open()
-  $command = $connection.CreateCommand()
-  $command.CommandText = @'
-UPDATE BMD.FOX_FORMELTEXT
-SET FOX_FORMELTEXT = @bmdmacro
-WHERE FOX_FORMELNR = @formulaNr
-'@
-
-  $null = $command.Parameters.Add('@bmdmacro', [System.Data.SqlDbType]::NVarChar, -1)
-  $command.Parameters['@bmdmacro'].Value = $macroText
-  $null = $command.Parameters.Add('@formulaNr', [System.Data.SqlDbType]::BigInt)
-  $command.Parameters['@formulaNr'].Value = ${runtimeConfig.sqlFormulaId}
-
-  $rows = $command.ExecuteNonQuery()
-  Write-Output $rows
-}
-finally {
-  if ($connection.State -ne [System.Data.ConnectionState]::Closed) {
-    $connection.Close()
-  }
-  $connection.Dispose()
-}
-`;
-
-  const encodedScript = Buffer.from(script, 'utf16le').toString('base64');
-  const result = await execFile(
-    'powershell.exe',
-    ['-NoProfile', '-NonInteractive', '-EncodedCommand', encodedScript],
-    { maxBuffer: 10 * 1024 * 1024 }
-  );
-
-  return (result.stdout || '').trim();
-}
-
-async function executeMacroForFormula(formulaNr) {
-  const args = [
-    '/PRODUCT=BMDNTCS',
-    '/DBALIAS=NB-WER979\\BMD:BMD',
-    '/USERID=vsc',
-    '/PWD=vvsscc',
-    '/FUNC=MCS_MACRO_EXECUTE',
-    `/FOR_FORMELNR=${formulaNr}`,
-    '/PARAM1=abc123',
-    '/FINISH'
-  ];
-
-  await new Promise((resolve, reject) => {
-    const child = childProcess.spawn(BMD_EXECUTABLE, args, {
-      detached: true,
-      stdio: 'ignore',
-      windowsHide: false
-    });
-
-    child.once('error', reject);
-    child.once('spawn', () => {
-      child.unref();
-      resolve();
-    });
-  });
-}
-
-function getDebugSqlConfig() {
-  const runtimeConfig = getRuntimeConfig();
-  return {
-    enabled: DEBUG_SQL_ENABLED,
-    server: runtimeConfig.sqlServer || DEBUG_SQL_SERVER,
-    database: runtimeConfig.sqlDatabase || DEBUG_SQL_DATABASE,
-    useIntegratedSecurity: DEBUG_SQL_USE_INTEGRATED_SECURITY,
-    username: DEBUG_SQL_USERNAME,
-    password: DEBUG_SQL_PASSWORD,
-    trustServerCertificate: DEBUG_SQL_TRUST_SERVER_CERTIFICATE,
-    timeoutSeconds: DEBUG_SQL_TIMEOUT_SECONDS,
-    maxRows: DEBUG_SQL_MAX_ROWS
-  };
-}
-
-async function executeDebugSql(sqlText, parameters = {}) {
-  const config = getDebugSqlConfig();
-  if (!config.enabled) {
-    throw new Error('Debug SQL execution is disabled in extension.js');
-  }
-
-  const trimmedSql = typeof sqlText === 'string' ? sqlText.trim() : '';
-  if (!trimmedSql) {
-    throw new Error('SQL text is empty.');
-  }
-
-  const sqlBase64 = Buffer.from(trimmedSql, 'utf8').toString('base64');
-  const paramsJsonBase64 = Buffer.from(JSON.stringify(parameters || {}), 'utf8').toString('base64');
-  const script = `
-  [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false)
-  $OutputEncoding = [System.Text.UTF8Encoding]::new($false)
-  $ProgressPreference = 'SilentlyContinue'
-$sqlText = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String('${sqlBase64}'))
-$paramsJson = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String('${paramsJsonBase64}'))
-  $params = @{}
-  if (-not [string]::IsNullOrWhiteSpace($paramsJson)) {
-    $parsedParams = ConvertFrom-Json $paramsJson
-    if ($parsedParams -is [System.Collections.IDictionary]) {
-      foreach ($k in $parsedParams.Keys) {
-        $params[[string]$k] = $parsedParams[$k]
-      }
-    }
-    else {
-      foreach ($p in $parsedParams.PSObject.Properties) {
-        $params[[string]$p.Name] = $p.Value
-      }
-    }
-  }
-$useIntegratedSecurity = ${config.useIntegratedSecurity ? '$true' : '$false'}
-$trustServerCertificate = ${config.trustServerCertificate ? '$true' : '$false'}
-$timeoutSeconds = ${config.timeoutSeconds}
-$maxRows = ${config.maxRows}
-
-if ($useIntegratedSecurity) {
-  $connectionString = 'Server=${config.server};Database=${config.database};Integrated Security=True;TrustServerCertificate=' + $trustServerCertificate + ';'
-}
-else {
-  $connectionString = 'Server=${config.server};Database=${config.database};User ID=${config.username};Password=${config.password};TrustServerCertificate=' + $trustServerCertificate + ';'
-}
-
-$connection = New-Object System.Data.SqlClient.SqlConnection $connectionString
-$result = $null
-
-try {
-  $connection.Open()
-  $command = $connection.CreateCommand()
-  $normalizedSql = [System.Text.RegularExpressions.Regex]::Replace($sqlText, ':([A-Za-z_][A-Za-z0-9_]*)', '@$1')
-  $command.CommandText = $normalizedSql
-  $command.CommandTimeout = $timeoutSeconds
-
-  foreach ($entry in $params.GetEnumerator()) {
-    $paramName = [string]$entry.Key
-    if (-not $paramName.StartsWith('@')) {
-      $paramName = '@' + $paramName
-    }
-
-    $parameter = $command.Parameters.Add($paramName, [System.Data.SqlDbType]::NVarChar, -1)
-    if ($null -eq $entry.Value -or [string]::IsNullOrEmpty([string]$entry.Value)) {
-      $parameter.Value = [System.DBNull]::Value
-    }
-    else {
-      $parameter.Value = [string]$entry.Value
-    }
-  }
-
-  $trimmed = $normalizedSql.TrimStart()
-  $isReaderQuery = $trimmed.StartsWith('SELECT', [System.StringComparison]::OrdinalIgnoreCase) -or $trimmed.StartsWith('WITH', [System.StringComparison]::OrdinalIgnoreCase)
-
-  if ($isReaderQuery) {
-    $reader = $command.ExecuteReader()
-    try {
-      $columns = @()
-      for ($i = 0; $i -lt $reader.FieldCount; $i++) {
-        $columns += $reader.GetName($i)
-      }
-
-      $rows = @()
-      $count = 0
-      while ($reader.Read() -and $count -lt $maxRows) {
-        $row = @{}
-        foreach ($col in $columns) {
-          $value = $reader[$col]
-          if ($null -eq $value -or $value -is [System.DBNull]) {
-            $row[$col] = $null
-          }
-          else {
-            $row[$col] = [string]$value
-          }
-        }
-        $rows += $row
-        $count++
-      }
-
-      $result = @{
-        kind = 'resultSet'
-        sql = $normalizedSql
-        columns = $columns
-        rows = $rows
-        rowCount = $rows.Count
-        truncated = $reader.Read()
-      }
-    }
-    finally {
-      $reader.Close()
-    }
-  }
-  else {
-    $rowsAffected = $command.ExecuteNonQuery()
-    $result = @{
-      kind = 'nonQuery'
-      sql = $normalizedSql
-      rowsAffected = $rowsAffected
-    }
-  }
-
-  $json = $result | ConvertTo-Json -Depth 10 -Compress
-  Write-Output $json
-}
-finally {
-  if ($connection.State -ne [System.Data.ConnectionState]::Closed) {
-    $connection.Close()
-  }
-  $connection.Dispose()
-}
-`;
-
-  const encodedScript = Buffer.from(script, 'utf16le').toString('base64');
-  const result = await execFile(
-    'powershell.exe',
-    ['-NoProfile', '-NonInteractive', '-EncodedCommand', encodedScript],
-    { maxBuffer: 20 * 1024 * 1024 }
-  );
-
-  const stdout = (result.stdout || '').trim();
-  if (!stdout) {
-    throw new Error('SQL command returned no output.');
-  }
-
-  return JSON.parse(stdout);
-}
-
-function parseAffectedRows(outputText) {
-  if (!outputText) return 0;
-  const match = outputText.match(/-?\d+/);
-  return match ? Number.parseInt(match[0], 10) : 0;
 }
 
 /**
@@ -1816,125 +1659,6 @@ function stripStringsAndComments(text) {
   return out.join('');
 }
 
-function pad2(value) {
-  return String(value).padStart(2, '0');
-}
-
-function formatDateTime(now) {
-  const dd = pad2(now.getDate());
-  const mm = pad2(now.getMonth() + 1);
-  const yyyy = now.getFullYear();
-  const hh = pad2(now.getHours());
-  const min = pad2(now.getMinutes());
-  const ss = pad2(now.getSeconds());
-  return `${dd}.${mm}.${yyyy} ${hh}:${min}:${ss}`;
-}
-
-function formatMacroId(now, macroUserShort) {
-  const yyyy = now.getFullYear();
-  const mm = pad2(now.getMonth() + 1);
-  const dd = pad2(now.getDate());
-  const hh = pad2(now.getHours());
-  const min = pad2(now.getMinutes());
-  const ss = pad2(now.getSeconds());
-  return `${macroUserShort}_${yyyy}_${mm}_${dd}_${hh}_${min}_${ss}`;
-}
-
-function suggestedMakroLogName(macroUserShort) {
-  return `_MAKRO_${macroUserShort}.log`;
-}
-
-function buildMandatoryMacroHeader() {
-  const runtimeConfig = getRuntimeConfig();
-  const now = new Date();
-  const macroId = formatMacroId(now, runtimeConfig.macroUserShort);
-  const createdAt = formatDateTime(now);
-  const lines = [
-    '//==============================================',
-    `// MakroId : "${macroId}"`,
-    '// Kundennummer :',
-    '// MacroNo : -1',
-    `// Erstelldatum : ${createdAt}`,
-    `// Ersteller : ${runtimeConfig.macroUserShort}`,
-    '// Eingerichtet von/am : ',
-    '// Beschreibung : ',
-    '//==============================================',
-    '',
-    '//==============================================',
-    '// Constants',
-    '//==============================================',
-    'const',
-    `    cMakroLog = '${suggestedMakroLogName(runtimeConfig.macroUserShort)}';`
-  ];
-
-  if (runtimeConfig.macroUseLogProc) {
-    lines.push('    cWriteLogs = true;');
-    lines.push('');
-  } else {
-    lines.push('');
-  }
-
-  lines.push('//==============================================');
-  lines.push('// Global Variables');
-  lines.push('//==============================================');
-  lines.push('');
-  lines.push('//==============================================');
-  lines.push('// Functions / Procedures');
-  lines.push('//==============================================');
-
-  if (runtimeConfig.macroUseLogProc) {
-    lines.push('//----------------------------------------------');
-    lines.push('// Procedure: log// Schreibt den uebergebenen String in den Log der Konstante "cMakroLog", falls "cWriteLogs" true ist.');
-    lines.push('//----------------------------------------------');
-    lines.push('procedure log(aLogString)');
-    lines.push('begin');
-    lines.push('    if (cWriteLogs) then begin');
-    lines.push('        bmd_writeToLogFile(cMakroLog, aLogString);');
-    lines.push('    end;');
-    lines.push('end;');
-    lines.push('');
-  }
-
-  lines.push('//==============================================');
-  lines.push('// MAIN');
-  lines.push('//==============================================');
-
-  if (runtimeConfig.macroUseLogProc) {
-    lines.push(`log('Start Makro: "' + cMakroLog + '"==================================================');`);
-  } else {
-    lines.push(`BMD_WRITETOLOGFILE(cMakroLog, 'Start Makro: "' + cMakroLog + '"==================================================');`);
-  }
-
-  lines.push('Result:=true;');
-  lines.push('');
-  lines.push('');
-  lines.push('');
-  lines.push('');
-
-  if (runtimeConfig.macroUseLogProc) {
-    lines.push(`log('Ende Makro: "' + cMakroLog + '"==================================================');`);
-  } else {
-    lines.push(`BMD_WRITETOLOGFILE(cMakroLog, 'Ende Makro: "' + cMakroLog + '"==================================================');`);
-  }
-
-  lines.push('');
-  return lines.join('\n');
-}
-
-async function ensureMandatoryHeaderForNewMacro(document) {
-  if (!isMacroDocument(document)) {
-    return;
-  }
-
-  if (document.getText().trim().length !== 0) {
-    return;
-  }
-
-  const edit = new vscode.WorkspaceEdit();
-  edit.insert(document.uri, new vscode.Position(0, 0), buildMandatoryMacroHeader());
-  await vscode.workspace.applyEdit(edit);
-}
-
 function isMacroDocument(document) {
   if (!document) {
     return false;
@@ -2007,6 +1731,7 @@ function buildUserRoutineCompletionItems(document, typedPrefix) {
   return items;
 }
 
+//Sucht Functionsname für Autocompletion um innerhalb der Klammer Parameter oder Hilfe anzuzeigen die für diese Function relevant ist
 function findProcedureAtPosition(document, position) {
   // Find the procedure/function name being called at the cursor position
   const line = document.lineAt(position.line).text;
@@ -2044,6 +1769,9 @@ function findProcedureAtPosition(document, position) {
   return null;
 }
 
+/***************************************************/
+/* SQL FUNCTIONS - START
+/***************************************************/
 function isInsideSetSqlTextBlock(document, position) {
   const startLine = Math.max(0, position.line - 40);
   for (let line = position.line; line >= startLine; line--) {
@@ -2182,6 +1910,35 @@ function buildMissingSetParamCompletion(document, position, requestedQueryVar) {
   return item;
 }
 
+/***************************************************/
+/* SQL FUNCTIONS - END
+/***************************************************/
+
+//F4 Shortcut Log Zeile generieren
+function buildLogStatement(variableNames, useLogProcedure) {
+  const prefix = useLogProcedure ? 'log(' : 'BMD_WRITETOLOGFILE(cMakroLog, ';
+  // Find max length for alignment
+  const maxVarLen = variableNames.reduce((max, v) => Math.max(max, v.length), 0);
+  const parts = variableNames.map((variableName, index) => {
+    // For all but the first line, pad so that the variable name starts at the same column
+    let lead = '';
+    if (index === 0) {
+      lead = '';
+    } else {
+      // Find the position of the variable name in the first line
+      // The first line is: 'varName: "' + ...
+      // So, lead = spaces to align the quote before the variable name
+      lead = ' '.repeat(prefix.length);
+    }
+    const paddedVar = variableName.padEnd(maxVarLen, ' ');
+    const suffix = index === variableNames.length - 1 ? ');' : ' +';
+    return `${lead}'${paddedVar}: "' + bmd_concat(${variableName},'"') + bmd_lineBreak()${suffix}`;
+  });
+
+  return `${prefix}${parts.join('\n')}`;
+}
+
+//LHS Alle Variablennamen als Set - wird in commands.json bei F4 aufgerufen um eine Logzeile für alle markierten Variablen zu erzeugen
 function extractAssignedVariables(document, startLine, endLine) {
   const seen = new Set();
   const variables = [];
@@ -2205,17 +1962,6 @@ function extractAssignedVariables(document, startLine, endLine) {
   }
 
   return variables;
-}
-
-function buildLogStatement(variableNames, useLogProcedure) {
-  const prefix = useLogProcedure ? 'log(' : 'BMD_WRITETOLOGFILE(cMakroLog, ';
-  const parts = variableNames.map((variableName, index) => {
-    const lead = index === 0 ? '' : '    ';
-    const suffix = index === variableNames.length - 1 ? ');' : ' +';
-    return `${lead}'${variableName}: "' + bmd_concat(${variableName},'"') + bmd_lineBreak()${suffix}`;
-  });
-
-  return `${prefix}${parts.join('\n')}`;
 }
 
 function yieldToEventLoop() {
@@ -2308,6 +2054,31 @@ async function validateDocument(document, diagnosticCollection) {
     runningOffset += lines[i].length + 1;
   }
 
+  const sharedTypeIndex = getDocumentTypeIndex(document);
+  let sharedProcedureFunctionParamTypes;
+  const variableTypeCache = new Map();
+
+  function getSharedProcedureFunctionParamTypes(cleanTextArg, typeIndexArg) {
+    if (!sharedProcedureFunctionParamTypes) {
+      sharedProcedureFunctionParamTypes = getProcedureFunctionParamTypes(
+        cleanTextArg || cleanText,
+        typeIndexArg || sharedTypeIndex
+      );
+    }
+    return sharedProcedureFunctionParamTypes;
+  }
+
+  function getCachedVariableTypeAtPosition(documentArg, variableName, position, includeGlobalFallback = true) {
+    const key = `${String(variableName).toLowerCase()}@${position.line}:${position.character}:${includeGlobalFallback ? 1 : 0}`;
+    if (variableTypeCache.has(key)) {
+      return variableTypeCache.get(key);
+    }
+
+    const resolvedType = getVariableTypeAtPosition(documentArg, variableName, position, includeGlobalFallback);
+    variableTypeCache.set(key, resolvedType);
+    return resolvedType;
+  }
+
   function isContextParameter(lowerIdentifier) {
     return contextParameterNames.has(lowerIdentifier);
   }
@@ -2393,9 +2164,10 @@ async function validateDocument(document, diagnosticCollection) {
     constructorNamespaces,
     constructorToType,
     knownMethodsByType,
-    getDocumentTypeIndex,
-    getProcedureFunctionParamTypes,
-    getVariableTypeAtPosition,
+    getDocumentTypeIndex: () => sharedTypeIndex,
+    getProcedureFunctionParamTypes: (cleanTextArg, typeIndexArg) => getSharedProcedureFunctionParamTypes(cleanTextArg, typeIndexArg),
+    getVariableTypeAtPosition: (documentArg, variableName, position, includeGlobalFallback) =>
+      getCachedVariableTypeAtPosition(documentArg, variableName, position, includeGlobalFallback),
     createCodedDiagnostic
   });
 
@@ -2417,9 +2189,10 @@ async function validateDocument(document, diagnosticCollection) {
     constructorNamespaces,
     functionSignaturesByName,
     methodSignaturesByType,
-    getDocumentTypeIndex,
-    getProcedureFunctionParamTypes,
-    getVariableTypeAtPosition,
+    getDocumentTypeIndex: () => sharedTypeIndex,
+    getProcedureFunctionParamTypes: (cleanTextArg, typeIndexArg) => getSharedProcedureFunctionParamTypes(cleanTextArg, typeIndexArg),
+    getVariableTypeAtPosition: (documentArg, variableName, position, includeGlobalFallback) =>
+      getCachedVariableTypeAtPosition(documentArg, variableName, position, includeGlobalFallback),
     getArgumentKindAtOffset,
     describeExpectedArgument,
     hasAssignmentBeforeOffset,
@@ -2465,50 +2238,6 @@ async function validateDocument(document, diagnosticCollection) {
   diagnosticCollection.set(document.uri, diagnostics);
 }
 
-/**
- * Format a BMD macro document: re-indent based on begin/end nesting only.
- * Keywords like 'then', 'do', 'repeat', 'else' don't introduce new blocks
- * since they're always used with 'begin'.
- */
-function formatDocument(text) {
-  const lines = text.split('\n');
-  const result = [];
-  let indent = 0;
-  const indentStr = '    '; // 4 spaces per indent level
-
-  for (const rawLine of lines) {
-    let line = rawLine.trimStart();
-    if (!line) {
-      // Preserve blank lines
-      result.push('');
-      continue;
-    }
-
-    // Check if this line starts with 'end' or 'until' — decrease indent for printing
-    const startsWithEnd = /^\b(end|until)\b/i.test(line);
-    let lineIndent = indent;
-    if (startsWithEnd && indent > 0) {
-      lineIndent--;
-    }
-
-    // Apply current indentation
-    result.push(indentStr.repeat(lineIndent) + line);
-
-    // Count ONLY 'begin' increases and 'end'/'until' decreases (NOT then/do/repeat/else)
-    const beginCount = (line.match(/\bbegin\b/gi) || []).length;
-    let endCount = (line.match(/\b(end|until)\b/gi) || []).length;
-
-    // If line starts with end/until, we already applied it above, so don't count it again
-    if (startsWithEnd) {
-      endCount--;
-    }
-
-    indent = Math.max(0, lineIndent + beginCount - endCount);
-  }
-
-  return result.join('\n');
-}
-
 function clearCachedTypeIndex(document) {
   const key = document.uri.toString();
   typeIndexCache.delete(key);
@@ -2517,20 +2246,13 @@ function clearCachedTypeIndex(document) {
 module.exports = {
   ENABLE_COMPLETION_PROVIDER,
   ENABLE_DIAGNOSTICS,
-  openSettingsWebview,
   getRuntimeConfig,
-  getDebugSqlConfig,
-  uploadMacroToFormula,
-  executeDebugSql,
-  parseAffectedRows,
   completionItemsByType,
   constructorAliasItems,
   assignmentCompletionItems,
   bmdCompletionItems,
-  QuerySnippetItems,
-  lModelSnippetItems,
-  lCsvMgrSnippetItems,
-  lWwsPpsModelSnippetItems,
+  objectSnippetItems,
+  buildFunctionArgumentCompletionItems,
   getVariableTypeAtPosition,
   getCreateMacroModelContext,
   buildMacroModelNameCompletionItems,
@@ -2542,9 +2264,7 @@ module.exports = {
   filterAliasesByPrefix,
   findProcedureAtPosition,
   extractProcedureDefinitions,
-  formatDocument,
   shouldRetriggerModelNameSuggest,
-  ensureMandatoryHeaderForNewMacro,
   isMacroDocument,
   hasProcedureLog,
   extractAssignedVariables,

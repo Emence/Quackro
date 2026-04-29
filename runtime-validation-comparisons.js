@@ -62,8 +62,8 @@ function runComparisonValidationPass(context) {
         diagnostics.push(createCodedDiagnostic(
           new vscode.Range(startPos, endPos),
           `Prefer string literal '${numStr}' over number in equality/inequality comparison. ` +
-          `In macros, values are typically strings; '${numStr}' also handles NULL returns correctly. ` +
-          `Use relational operators (<, >, <=, >=) if numeric ordering is intended.`,
+          `In macros, values are typically strings; '${numStr}' also handles NULL returns correctly. ` ,
+          
           vscode.DiagnosticSeverity.Warning,
           'semantic.numeric_literal_equality_comparison'
         ));
@@ -71,19 +71,21 @@ function runComparisonValidationPass(context) {
     }
 
     const relationalStringPatterns = [
-      /(?:<=|>=|<|>)\s*('(?:\d+\.?\d*)')/g,
-      /('(?:\d+\.?\d*)')\s*(?:<=|>=|<|>)/g
+       /(?:<=|>=|<(?!>)|(?<!<)>)\s*('(?:\d+\.?\d*)')/g,
+       /('(?:\d+\.?\d*)')\s*(?:<=|>=|<(?!>)|(?<!<)>)/g
     ];
 
     for (const pat of relationalStringPatterns) {
       pat.lastIndex = 0;
       let m;
+      //console.log('[relational] rawCondText:', rawCondText);
       while ((m = pat.exec(rawCondText)) !== null) {
         const quotedNum = m[1];
         const tokenOffsetInCondition = m.index + m[0].indexOf(quotedNum);
         const absOffset = baseOffset + tokenOffsetInCondition;
         const startPos = document.positionAt(absOffset);
         const endPos = document.positionAt(absOffset + quotedNum.length);
+        //console.log('[relational] match:', m[0], 'full:', m);
         diagnostics.push(createCodedDiagnostic(
           new vscode.Range(startPos, endPos),
           `Relational comparisons must use numbers, not strings. Use ${quotedNum.slice(1, -1)} instead of ${quotedNum}.`,

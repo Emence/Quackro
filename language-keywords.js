@@ -15,6 +15,7 @@ const BMD_KEYWORD_LIST = [
   'downto',
   'else',
   'end',
+  'exit',
   'except',
   'for',
   'function',

@@ -265,7 +265,34 @@ function tokenizeLine(rawLine, lineOffset) {
       });
       continue;
     }
+    if (char === '#') {
+      const start = index;
+      index++; // '#'
 
+      if (index >= rawLine.length || !isDigit(rawLine[index])) {
+        tokens.push({
+          kind: 'invalid',
+          text: '#',
+          message: "Expected digits after '#'.",
+          code: 'syntax.invalidcharliteral',
+          start: start + lineOffset,
+          end: start + 1 + lineOffset
+        });
+        continue;
+      }
+
+      while (index < rawLine.length && isDigit(rawLine[index])) {
+        index++;
+      }
+
+      tokens.push({
+        kind: 'char',
+        text: rawLine.slice(start, index),
+        start: start + lineOffset,
+        end: index + lineOffset
+      });
+      continue;
+    }
     if (isIdentifierStart(char)) {
       const start = index;
       index++;
@@ -499,7 +526,7 @@ function isCaseLabelToken(token) {
     return false;
   }
 
-  return token.kind === 'string' || token.kind === 'number' || token.kind === 'identifier';
+  return token.kind === 'string' || token.kind === 'number' || token.kind === 'identifier' || token.kind === 'char';
 }
 
 function looksLikeCaseLabelLine(tokens) {
@@ -659,6 +686,7 @@ class LineParser {
           return this.parseReturn();
         case 'break':
         case 'continue':
+        case 'exit':
           this.advance();
           return { kind: token.lower, requiresSemicolon: false, hasTerminator: false };
         case 'const':
@@ -1029,7 +1057,7 @@ class LineParser {
       throw this.errorAtCurrent('Expected expression.', 'syntax.expected_expression');
     }
 
-    if (token.kind === 'number' || token.kind === 'string') {
+    if (token.kind === 'number' || token.kind === 'string' || token.kind === 'char'){
       this.advance();
       return;
     }
@@ -1342,15 +1370,102 @@ function collectDocumentStructureDiagnosticData(rawText, cleanText, lines, lineO
   return diagnostics;
 }
 
+function endsWithOpenExpression(tokens) {
+  if (!Array.isArray(tokens) || tokens.length === 0) {
+    return false;
+  }
+
+  let parenDepth = 0;
+  for (const token of tokens) {
+    if (token.kind === 'symbol') {
+      if (token.text === '(') {
+        parenDepth++;
+      } else if (token.text === ')') {
+        parenDepth = Math.max(0, parenDepth - 1);
+      }
+    }
+  }
+
+  if (parenDepth > 0) {
+    return true;
+  }
+
+  const lastToken = tokens[tokens.length - 1];
+  if (!lastToken) {
+    return false;
+  }
+
+  if (lastToken.kind === 'keyword' && (lastToken.lower === 'and' || lastToken.lower === 'or' || lastToken.lower === 'not')) {
+    return true;
+  }
+
+  if (lastToken.kind === 'symbol' && ['+', '-', '*', '/', '=', '<>', '<', '>', '<=', '>=', '('].includes(lastToken.text)) {
+    return true;
+  }
+
+  return false;
+}
+
+function hasTopLevelKeyword(tokens, keyword) {
+  let parenDepth = 0;
+
+  for (const token of tokens) {
+    if (token.kind === 'symbol') {
+      if (token.text === '(') {
+        parenDepth++;
+        continue;
+      }
+
+      if (token.text === ')') {
+        parenDepth = Math.max(0, parenDepth - 1);
+        continue;
+      }
+    }
+
+    if (
+      parenDepth === 0 &&
+      token.kind === 'keyword' &&
+      token.lower === keyword
+    ) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+
+
 function collectStatementDiagnosticData(rawText, options = {}) {
-  const cleanText = typeof options.cleanText === 'string' ? options.cleanText : stripStringsAndComments(rawText);
-  const lines = cleanText.split('\n');
-  const rawLines = rawText.split('\n');
-  const lineOffsets = Array.isArray(options.lineOffsets) ? options.lineOffsets : buildLineOffsets(lines);
-  const getScopeIdAtOffset = typeof options.getScopeIdAtOffset === 'function'
-    ? options.getScopeIdAtOffset
-    : buildScopeIdResolver(lines, lineOffsets);
-  const diagnostics = collectDocumentStructureDiagnosticData(rawText, cleanText, lines, lineOffsets);
+  const safeRawText = typeof rawText === 'string' ? rawText : '';
+  const cleanText =
+    typeof options.cleanText === 'string'
+      ? options.cleanText
+      : stripStringsAndComments(safeRawText);
+
+  const lines = String(cleanText).split('\n');
+  const rawLines = String(safeRawText).split('\n');
+  const maxLineCount = Math.max(lines.length, rawLines.length);
+
+  while (lines.length < maxLineCount) lines.push('');
+  while (rawLines.length < maxLineCount) rawLines.push('');
+
+  const lineOffsets = Array.isArray(options.lineOffsets)
+    ? options.lineOffsets
+    : buildLineOffsets(lines);
+
+  const getScopeIdAtOffset =
+    typeof options.getScopeIdAtOffset === 'function'
+      ? options.getScopeIdAtOffset
+      : buildScopeIdResolver(lines, lineOffsets);
+
+  const diagnostics = collectDocumentStructureDiagnosticData(
+    safeRawText,
+    cleanText,
+    lines,
+    lineOffsets
+  );
+
   const {
     constDeclLineIdx,
     routineDeclLineIdx,
@@ -1364,19 +1479,17 @@ function collectStatementDiagnosticData(rawText, options = {}) {
 
   for (let lineIdx = 0; lineIdx < rawLines.length; lineIdx++) {
     const rawLine = rawLines[lineIdx].replace(/\r$/, '');
-    const cleanLine = lines[lineIdx] || '';
+    const cleanLine = lines[lineIdx];
 
-    // If rawLine has content but cleanLine is entirely whitespace the line is
-    // wholly inside a block comment ({ } or (* *)) — skip it entirely.
-    if (rawLine.trim() !== '' && cleanLine.trim() === '') {
+    if (!rawLine.trim() || !cleanLine.trim()) {
       continue;
     }
 
-    if (/^\s*(\/\/.*)?$/.test(rawLine)) {
+    if (/^\s*\/\//.test(rawLine)) {
       continue;
     }
 
-    if (/^\s*end\s+else\b/i.test(rawLine)) {
+    if (/^\s*(end|else)\b/i.test(rawLine)) {
       continue;
     }
 
@@ -1392,18 +1505,21 @@ function collectStatementDiagnosticData(rawText, options = {}) {
         continue;
       }
 
-      diagnostics.push(createDiagnostic(
-        lineOffsets[lineIdx] + match.index,
-        lineOffsets[lineIdx] + match.index + match[0].length,
-        rule.message,
-        'error',
-        `syntax.invalid_keyword.${rule.keyword}`
-      ));
+      diagnostics.push(
+        createDiagnostic(
+          lineOffsets[lineIdx] + match.index,
+          lineOffsets[lineIdx] + match.index + match[0].length,
+          rule.message,
+          'error',
+          `syntax.invalidkeyword.${rule.keyword}`
+        )
+      );
     }
 
     const lineOffset = lineOffsets[lineIdx];
     const inRoutineBody = getScopeIdAtOffset(lineOffset) !== 'main';
-    const tokens = tokenizeLine(rawLine, lineOffset);
+
+    let tokens = tokenizeLine(rawLine, lineOffset);
     if (tokens.length === 0) {
       continue;
     }
@@ -1412,41 +1528,129 @@ function collectStatementDiagnosticData(rawText, options = {}) {
       continue;
     }
 
-    const firstToken = tokens[0];
-    const hasStringToken = tokens.some(token => token.kind === 'string');
-    const lastToken = tokens[tokens.length - 1];
-    const lineEndsWithConcatOperator = !!lastToken && lastToken.kind === 'symbol' && lastToken.text === '+';
+    let firstToken = tokens[0];
+    let hasStringLikeToken = tokens.some(
+      token => token.kind === 'string' || token.kind === 'char'
+    );
+    let lastToken = tokens[tokens.length - 1];
+    let lineEndsWithConcatOperator =
+      !!lastToken && lastToken.kind === 'symbol' && lastToken.text === '+';
 
     if (inStringConcatenationContinuation) {
-      if (firstToken.kind === 'string') {
-        inStringConcatenationContinuation = lineEndsWithConcatOperator;
-        continue;
-      }
-      inStringConcatenationContinuation = false;
+      inStringConcatenationContinuation = lineEndsWithConcatOperator;
+      continue;
     }
 
-    if (hasStringToken && lineEndsWithConcatOperator) {
+    if (hasStringLikeToken && lineEndsWithConcatOperator) {
       inStringConcatenationContinuation = true;
       continue;
     }
 
+    if (
+      firstToken.kind === 'keyword' &&
+      (firstToken.lower === 'if' ||
+        firstToken.lower === 'while' ||
+        firstToken.lower === 'for')
+    ) {
+      const terminator =
+        firstToken.lower === 'if'
+          ? 'then'
+          : 'do';
+
+      const shouldCollectMultilineHeader =
+        !hasTopLevelKeyword(tokens, terminator) ||
+        endsWithOpenExpression(tokens, terminator);
+
+      if (shouldCollectMultilineHeader) {
+        let lookaheadLineIdx = lineIdx;
+
+        while (
+          !hasTopLevelKeyword(tokens, terminator) &&
+          lookaheadLineIdx + 1 < rawLines.length
+        ) {
+          lookaheadLineIdx++;
+          const nextRawLine = rawLines[lookaheadLineIdx].replace(/\r$/, '');
+          const nextCleanLine = lines[lookaheadLineIdx];
+
+          if (!nextRawLine.trim() || !nextCleanLine.trim()) {
+            continue;
+          }
+
+          if (/^\s*\/\//.test(nextRawLine)) {
+            continue;
+          }
+
+          if (/^\s*(end|else)\b/i.test(nextRawLine)) {
+            continue;
+          }
+
+          for (const rule of INVALID_KEYWORD_RULES) {
+            const invalidKeywordRe = new RegExp(`\\b${rule.keyword}\\b`, 'i');
+            const match = invalidKeywordRe.exec(nextCleanLine);
+            if (!match) {
+              continue;
+            }
+
+            const prevChar = match.index > 0 ? nextCleanLine[match.index - 1] : '';
+            if (prevChar === '.') {
+              continue;
+            }
+
+            diagnostics.push(
+              createDiagnostic(
+                lineOffsets[lookaheadLineIdx] + match.index,
+                lineOffsets[lookaheadLineIdx] + match.index + match[0].length,
+                rule.message,
+                'error',
+                `syntax.invalidkeyword.${rule.keyword}`
+              )
+            );
+          }
+
+          const nextTokens = tokenizeLine(nextRawLine, lineOffsets[lookaheadLineIdx]);
+          if (nextTokens.length === 0) {
+            continue;
+          }
+
+          tokens = tokens.concat(nextTokens);
+          lineIdx = lookaheadLineIdx;
+        }
+
+        if (tokens.length === 0) {
+          continue;
+        }
+
+        firstToken = tokens[0];
+        hasStringLikeToken = tokens.some(
+          token => token.kind === 'string' || token.kind === 'char'
+        );
+        lastToken = tokens[tokens.length - 1];
+        lineEndsWithConcatOperator =
+          !!lastToken && lastToken.kind === 'symbol' && lastToken.text === '+';
+      }
+    }
+
     if (firstToken.kind === 'keyword' && firstToken.lower === 'var') {
       if (routineDeclLineIdx.has(lineIdx) || inRoutineBody) {
-        diagnostics.push(createDiagnostic(
-          firstToken.start,
-          firstToken.end,
-          "'var' is only valid at macro top level, not inside functions or procedures.",
-          'error',
-          'syntax.invalid_var_scope'
-        ));
+        diagnostics.push(
+          createDiagnostic(
+            firstToken.start,
+            firstToken.end,
+            'var is only valid at macro top level, not inside functions or procedures.',
+            'error',
+            'syntax.invalidvarscope'
+          )
+        );
       } else if (!validTopLevelVarLineIdx.has(lineIdx)) {
-        diagnostics.push(createDiagnostic(
-          firstToken.start,
-          firstToken.end,
-          "'var' is only valid at the beginning of a macro or immediately after const blocks.",
-          'error',
-          'syntax.invalid_var_position'
-        ));
+        diagnostics.push(
+          createDiagnostic(
+            firstToken.start,
+            firstToken.end,
+            'var is only valid at the beginning of a macro or immediately after const blocks.',
+            'error',
+            'syntax.invalidvarposition'
+          )
+        );
       }
     }
 
@@ -1471,45 +1675,65 @@ function collectStatementDiagnosticData(rawText, options = {}) {
       const parser = new LineParser(tokens);
       let statement = null;
 
-      if (inConstSection && !(firstToken.kind === 'keyword' && firstToken.lower === 'const')) {
+      if (
+        inConstSection &&
+        !(firstToken.kind === 'keyword' && firstToken.lower === 'const')
+      ) {
         parser.parseConstDeclarationBody();
-        statement = { kind: 'const-decl', requiresSemicolon: true, hasTerminator: parser.matchSymbol(';') };
-      } else if (inVarSection && !(firstToken.kind === 'keyword' && firstToken.lower === 'var')) {
+        statement = {
+          kind: 'const-decl',
+          requiresSemicolon: true,
+          hasTerminator: parser.matchSymbol(';')
+        };
+      } else if (
+        inVarSection &&
+        !(firstToken.kind === 'keyword' && firstToken.lower === 'var')
+      ) {
         parser.parseVarDeclarationBody();
-        statement = { kind: 'var-decl', requiresSemicolon: false, hasTerminator: parser.matchSymbol(';') };
+        statement = {
+          kind: 'var-decl',
+          requiresSemicolon: false,
+          hasTerminator: parser.matchSymbol(';')
+        };
       } else {
         statement = parser.parseStatementList();
       }
 
       if (!parser.atEnd()) {
         const trailing = parser.current();
-        diagnostics.push(createDiagnostic(
-          trailing.start,
-          trailing.end,
-          `Unexpected token '${trailing.text}'.`,
-          'error',
-          'syntax.unexpected_token'
-        ));
+        diagnostics.push(
+          createDiagnostic(
+            trailing.start,
+            trailing.end,
+            `Unexpected token ${trailing.text}.`,
+            'error',
+            'syntax.unexpectedtoken'
+          )
+        );
         continue;
       }
 
       if (statement && statement.requiresSemicolon && !statement.hasTerminator) {
-        diagnostics.push(createDiagnostic(
-          Math.max(lastToken.start, lastToken.end - 1),
-          lastToken.end,
-          "Statement should end with ';' (optional, but recommended).",
-          'warning',
-          'syntax.semicolon_recommended'
-        ));
+        diagnostics.push(
+          createDiagnostic(
+            Math.max(lastToken.start, lastToken.end - 1),
+            lastToken.end,
+            'Statement should end with ; (optional, but recommended).',
+            'warning',
+            'syntax.semicolonrecommended'
+          )
+        );
       }
     } catch (error) {
-      diagnostics.push(createDiagnostic(
-        error.start,
-        error.end,
-        error.message,
-        'error',
-        error.code || 'syntax.parse_error'
-      ));
+      diagnostics.push(
+        createDiagnostic(
+          error.start,
+          error.end,
+          error.message,
+          'error',
+          error.code || 'syntax.parseerror'
+        )
+      );
     }
   }
 

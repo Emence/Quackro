@@ -1,0 +1,25 @@
+{
+  "builtins": [
+    {
+      "name": "wer979 29.04.2026: noch nicht in Verwendung",
+      "kind": "context-param",
+      "type": "boolean",
+      "contexts": ["dialog-macro"],
+      "description": "True, wenn das Makro im Dialog-Kontext läuft"
+    },
+    {
+      "name": "PARAM_ISACTIONMACRO_WINDOW",
+      "kind": "context-param",
+      "type": "boolean",
+      "contexts": ["window-macro"],
+      "description": "True, wenn das Makro im Fenster-Kontext läuft"
+    },
+    {
+      "name": "PARAM_MODALRESULT",
+      "kind": "context-param",
+      "type": "number",
+      "contexts": ["window-macro", "dialog-close"],
+      "description": "ModalResult des aktuellen Dialogs"
+    }
+  ]
+}
