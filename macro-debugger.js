@@ -54,25 +54,28 @@ function escapeRegExp(text) {
 }
 
 /**
- * Extract all `const name = 'value';` entries from the raw text.
+ * Extract simple constants from raw text.
  * Returns Map<lowerName, value>.
  */
 function extractConstants(rawText) {
   const consts = new Map();
-  // Match:  name = 'literal string value'
-  const re = /\b([A-Za-z_][A-Za-z0-9_]*)\s*=\s*'([^']*)'/g;
+
+  // quoted string constants, also über mehrere Zeilen
+  const reStr = /\b([A-Za-z_][A-Za-z0-9_]*)\s*=\s*'((?:[^']|'')*)'/g;
   let m;
-  while ((m = re.exec(rawText)) !== null) {
-    consts.set(m[1].toLowerCase(), m[2]);
+  while ((m = reStr.exec(rawText)) !== null) {
+    consts.set(m[1].toLowerCase(), m[2].replace(/''/g, "'"));
   }
-  // Also match numeric / boolean const values (unquoted)
-  const reNum = /\b([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(true|false|\d[\d.]*)\b/gi;
+
+  // numeric / boolean constants
+  const reNum = /\b([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(true|false|-?\d+(?:\.\d+)?)\b/gi;
   while ((m = reNum.exec(rawText)) !== null) {
     const key = m[1].toLowerCase();
     if (!consts.has(key)) {
       consts.set(key, m[2]);
     }
   }
+
   return consts;
 }
 

@@ -66,6 +66,10 @@ const DEFAULT_MACRO_USE_LOG_PROC = true;
 const DEFAULT_VALIDATE_ON_SAVE = false;
 const ENABLE_COMPLETION_PROVIDER = true;
 const ENABLE_DIAGNOSTICS = true;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CONFIG HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 //
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -124,6 +128,10 @@ function getRuntimeConfig() {
     validateOnSave: Boolean(config.get('validateOnSave', DEFAULT_VALIDATE_ON_SAVE))
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DATA LOADING
+// ─────────────────────────────────────────────────────────────────────────────
 
 // Load structured object data: type -> { constructors, methods }
 const objectsData = JSON.parse(
@@ -239,6 +247,10 @@ for (const entry of Object.values(functionsData)) {
 
 const constructorPrefixes = new Set(Object.keys(constructorToType));
 
+
+// ─────────────────────────────────────────────────────────────────────────────
+// COMPLETION CONTEXT
+// ─────────────────────────────────────────────────────────────────────────────
 
 function getFunctionCallContextAtPosition(document, position) {
   const text = document.getText();
@@ -420,6 +432,10 @@ function shouldRetriggerFunctionArgumentSuggest(event) {
   return currentArgText.length === 0;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// BASIC HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function normalizeSnippetBody(body) {
   if (Array.isArray(body)) {
     return body.join('\n');
@@ -474,6 +490,10 @@ function normalizeCreateMacroModelSnippetBody(bodyText) {
     .replace(/(CreateMacroModel\s*\(\s*')\$1(')/i, "$1${1:}$2")
     .replace(/(CreateMacroModel\s*\(\s*)'[^']*'(\s*\))/i, "$1'${1:}'$2");
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SIGNATURE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function splitArgumentsWithPositions(argsText) {
   const parts = [];
@@ -742,6 +762,10 @@ function signatureHasStringParams(signature) {
   return !!(signature && Array.isArray(signature.params) && signature.params.some(param => param && param.kind === 'string'));
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// SIGNATURE INDEXES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const functionSignaturesByName = new Map();
 for (const entry of Object.values(functionsData)) {
   if (!entry || !entry.prefix) {
@@ -767,6 +791,10 @@ for (const entry of Object.values(functionsData)) {
     }
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CONSTRUCTOR HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function constructorPlaceholderForType(typeName) {
   const lower = typeName.toLowerCase();
@@ -849,6 +877,10 @@ function isGlobalCompletionPrefix(prefix) {
   const lower = prefix.toLowerCase();
   return lower.startsWith('bmd_') || constructorPrefixes.has(lower) || lower === 'query' || lower === 'model';
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// COMPLETION ITEM COLLECTIONS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const globalCompletionItems = [];
 const globalConstructorCompletionItems = [];
@@ -975,24 +1007,35 @@ for (const [typeName, typeData] of Object.entries(objectsData)) {
 }
 
 const assignmentCompletionItems = [...constructorNewItems, ...globalConstructorCompletionItems];
-//const bmdCompletionItems = globalCompletionItems.filter(item =>
-//  getCompletionLabelText(item).toLowerCase().startsWith('bmd_')
-//);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// COMPLETION ITEM HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+function cloneCompletionItemWithOverrides(item, overrides = {}) {
+  const cloned = new vscode.CompletionItem(
+    overrides.label !== undefined ? overrides.label : item.label,
+    overrides.kind !== undefined ? overrides.kind : item.kind
+  );
+
+  cloned.insertText = overrides.insertText !== undefined ? overrides.insertText : item.insertText;
+  cloned.documentation = overrides.documentation !== undefined ? overrides.documentation : item.documentation;
+  cloned.detail = overrides.detail !== undefined ? overrides.detail : item.detail;
+  cloned.filterText = overrides.filterText !== undefined ? overrides.filterText : item.filterText;
+  cloned.sortText = overrides.sortText !== undefined ? overrides.sortText : item.sortText;
+  cloned.preselect = overrides.preselect !== undefined ? overrides.preselect : item.preselect;
+
+  return cloned;
+}
 
 // besser neu bauen statt aus globalCompletionItems extrahieren
 // damit sorttext nicht verloren geht, is anscheinend ein bekannter bug.
-const bmdCompletionItems = [];
-globalCompletionItems.forEach(item => {
-  if (getCompletionLabelText(item).toLowerCase().startsWith('bmd_')) {
-    const bmdItem = new vscode.CompletionItem(item.label, item.kind);
-    bmdItem.insertText = item.insertText;
-    bmdItem.documentation = item.documentation;
-    bmdItem.sortText = `00_${item.label.toLowerCase()}`;  // ← FORCE!
-    //item.sortText = `00_bmd_${prefix.padStart(30, '0')}`;  // ← 00_bmd_000...!    
-    bmdItem.preselect = true;
-    bmdCompletionItems.push(bmdItem);
-  }
-});
+const bmdCompletionItems = globalCompletionItems
+  .filter(item => getCompletionLabelText(item).toLowerCase().startsWith('bmd_'))
+  .map(item => cloneCompletionItemWithOverrides(item, {
+    sortText: `00_${getCompletionLabelText(item).toLowerCase()}`,
+    preselect: true
+  }));
 
 function getCompletionLabelText(item) {
   if (typeof item.label === 'string') {
@@ -1003,6 +1046,10 @@ function getCompletionLabelText(item) {
   }
   return '';
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// COMPLETION FILTERING
+// ─────────────────────────────────────────────────────────────────────────────
 
 function filterCompletionsByPrefix(items, prefix) {
   if (!prefix) {
@@ -1220,6 +1267,10 @@ function escapeRegExp(text) {
 // Cache parsed variable->type maps per document version to avoid full rescans on each '.'
 const typeIndexCache = new Map();
 
+// ─────────────────────────────────────────────────────────────────────────────
+// TYPE INFERENCE
+// ─────────────────────────────────────────────────────────────────────────────
+
 function normalizeMethodEntry(typeName, methodEntry) {
   function normalizeFallbackBody(name, body) {
     if (typeof body !== 'string') {
@@ -1290,6 +1341,10 @@ for (const [typeName, typeData] of Object.entries(objectsData)) {
     });
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// METHOD INDEXES
+// ─────────────────────────────────────────────────────────────────────────────
+
 // Build set of known method names per type (lowercase) for method validation
 const knownMethodsByType = {};
 const methodSignaturesByType = {};
@@ -1319,103 +1374,120 @@ for (const [typeName, typeData] of Object.entries(objectsData)) {
   methodSignaturesByType[typeName] = methodSignatureMap;
 }
 
-//TODO
-//wer979 mit getInferredParamTypeAtPosition zusammenlegen
-//Diese Funktion durchsucht bereinigten Code nach procedure- und function-Definitionen, liest deren formale Parameter aus und sucht anschließend nach Aufrufstellen derselben Routine. Für jede Parameterposition versucht sie dann, aus dem tatsächlich übergebenen Argument über den vorhandenen typeIndex einen Typ abzuleiten und speichert das Ergebnis in einer Map param-name -> type.
-//
-//Wichtig ist dabei: Die Funktion arbeitet globaler und gibt eine Sammlung zurück, nicht nur einen Einzelwert. Außerdem trägt sie für nicht auflösbare Parameter trotzdem einen Eintrag mit null ein, damit später erkennbar bleibt, dass der Parameter schon betrachtet wurde.
-function getProcedureFunctionParamTypes(cleanText, typeIndex) {
-  // Maps param-name (lowercase) -> inferred type, by examining each call site.
-  const paramTypes = new Map();
+function parseRoutineParameters(paramsText) {
+  return String(paramsText || '')
+    .split(',')
+    .map(param => param.trim())
+    .filter(param => /^[A-Za-z_][A-Za-z0-9_]*$/.test(param));
+}
 
+function buildRoutineDefinitions(cleanText) {
+  const definitions = [];
   const defRe = /\b(?:procedure|function)\s+(\w+)\s*\(([^)]*)\)/gi;
-  let defMatch;
-  while ((defMatch = defRe.exec(cleanText)) !== null) {
-    const funcName = defMatch[1];
-    const rawParams = defMatch[2].split(',').map(p => p.trim()).filter(p => /^[A-Za-z_][A-Za-z0-9_]*$/.test(p));
-    if (rawParams.length === 0) continue;
+  let match;
 
-    // Find a call site: FuncName(arg1, arg2, ...)
-    const callRe = new RegExp(`\\b${escapeRegExp(funcName)}\\s*\\(([^)]*)\\)`, 'gi');
-    let callMatch;
-    while ((callMatch = callRe.exec(cleanText)) !== null) {
-      // Skip the definition line itself
-      if (callMatch.index === defMatch.index) continue;
-      const rawArgs = callMatch[1].split(',').map(a => a.trim());
-      for (let i = 0; i < Math.min(rawParams.length, rawArgs.length); i++) {
-        if (paramTypes.has(rawParams[i].toLowerCase())) continue; // already resolved
-        const argType = typeIndex.get(rawArgs[i].toLowerCase());
+  while ((match = defRe.exec(cleanText)) !== null) {
+    definitions.push({
+      name: match[1],
+      nameLower: match[1].toLowerCase(),
+      params: parseRoutineParameters(match[2]),
+      index: match.index
+    });
+  }
+
+  return definitions;
+}
+
+function findRoutineCalls(cleanText, routineDef) {
+  if (!routineDef || typeof routineDef.name !== 'string' || !routineDef.name) {
+    return [];
+  }
+
+  const calls = [];
+  const callRe = new RegExp(`\\b${escapeRegExp(routineDef.name)}\\s*\\(([^)]*)\\)`, 'gi');
+  let match;
+
+  while ((match = callRe.exec(cleanText)) !== null) {
+    if (match.index == routineDef.index) {
+      continue;
+    }
+
+    calls.push({
+      index: match.index,
+      args: match[1].split(',').map(arg => arg.trim())
+    });
+  }
+
+  return calls;
+}
+
+function getActiveRoutineDefinition(definitions, cursorOffset, totalLength) {
+  for (let i = 0; i < definitions.length; i++) {
+    const current = definitions[i];
+    const next = definitions[i + 1];
+    const end = next ? next.index : totalLength;
+    if (cursorOffset >= current.index && cursorOffset < end) {
+      return current;
+    }
+  }
+
+  return null;
+}
+
+function getProcedureFunctionParamTypes(cleanText, typeIndex) {
+  const paramTypes = new Map();
+  const definitions = buildRoutineDefinitions(cleanText);
+
+  for (const definition of definitions) {
+    if (definition.params.length === 0) {
+      continue;
+    }
+
+    const calls = findRoutineCalls(cleanText, definition);
+    for (const call of calls) {
+      for (let i = 0; i < Math.min(definition.params.length, call.args.length); i++) {
+        const paramKey = definition.params[i].toLowerCase();
+        if (paramTypes.has(paramKey)) {
+          continue;
+        }
+
+        const argType = typeIndex.get(call.args[i].toLowerCase());
         if (argType) {
-          paramTypes.set(rawParams[i].toLowerCase(), argType);
+          paramTypes.set(paramKey, argType);
         }
       }
     }
 
-    // Any remaining params with no type still get a sentinel entry so we can skip them
-    for (const p of rawParams) {
-      if (!paramTypes.has(p.toLowerCase())) {
-        paramTypes.set(p.toLowerCase(), null);
+    for (const param of definition.params) {
+      const paramKey = param.toLowerCase();
+      if (!paramTypes.has(paramKey)) {
+        paramTypes.set(paramKey, null);
       }
     }
   }
+
   return paramTypes;
 }
 
-// TODO 
-//wer979 mit getProcedureFunctionParamTypes zusammenlegen
-//Diese Funktion ist feiner aufgelöst: Sie sammelt zuerst alle Routine-Definitionen, bestimmt dann, in welcher Definition sich die aktuelle Cursor-Position befindet, und prüft danach, ob der gesuchte Variablenname dort überhaupt ein Parameter ist. Erst wenn das zutrifft, durchsucht sie die Aufrufstellen genau dieser aktiven Routine und holt den Typ des Arguments an derselben Parameterposition.
-//Das Ergebnis ist kein Mapping für alle Parameter, sondern genau ein Typ oder undefined für den konkreten Parameter an der aktuellen Stelle. Sie ist damit ideal für kontextabhängige Completion oder Validierung direkt am Cursor.
 function getInferredParamTypeAtPosition(cleanText, variableNameLower, cursorOffset, typeIndex) {
-  const defs = [];
-  const defRe = /\b(?:procedure|function)\s+(\w+)\s*\(([^)]*)\)/gi;
-  let m;
-  while ((m = defRe.exec(cleanText)) !== null) {
-    const params = m[2]
-      .split(',')
-      .map(p => p.trim())
-      .filter(p => /^[A-Za-z_][A-Za-z0-9_]*$/.test(p));
-
-    defs.push({
-      name: m[1],
-      params,
-      index: m.index
-    });
-  }
-
-  let activeDef;
-  for (let i = 0; i < defs.length; i++) {
-    const current = defs[i];
-    const next = defs[i + 1];
-    const end = next ? next.index : cleanText.length;
-    if (cursorOffset >= current.index && cursorOffset < end) {
-      activeDef = current;
-      break;
-    }
-  }
-
-  if (!activeDef) {
+  const definitions = buildRoutineDefinitions(cleanText);
+  const activeDefinition = getActiveRoutineDefinition(definitions, cursorOffset, cleanText.length);
+  if (!activeDefinition) {
     return undefined;
   }
 
-  const paramIndex = activeDef.params.findIndex(p => p.toLowerCase() === variableNameLower);
+  const paramIndex = activeDefinition.params.findIndex(param => param.toLowerCase() === variableNameLower);
   if (paramIndex === -1) {
     return undefined;
   }
 
-  const callRe = new RegExp(`\\b${escapeRegExp(activeDef.name)}\\s*\\(([^)]*)\\)`, 'gi');
-  let callMatch;
-  while ((callMatch = callRe.exec(cleanText)) !== null) {
-    // Skip the definition header itself.
-    if (callMatch.index === activeDef.index) {
+  const calls = findRoutineCalls(cleanText, activeDefinition);
+  for (const call of calls) {
+    if (paramIndex >= call.args.length) {
       continue;
     }
 
-    const args = callMatch[1].split(',').map(a => a.trim());
-    if (paramIndex >= args.length) {
-      continue;
-    }
-
-    const inferredType = typeIndex.get(args[paramIndex].toLowerCase());
+    const inferredType = typeIndex.get(call.args[paramIndex].toLowerCase());
     if (inferredType) {
       return inferredType;
     }
@@ -1492,42 +1564,56 @@ function buildFunctionReturnTypes(cleanText) {
 //If your file contains lModel := CreateMacroModel('auftrag'), then later when you type lModel., the language server uses this index to know that lModel is of type MacroModel and can suggest its methods.
 function getDocumentWords(document, typedPrefix) {
   const words = new Set();
-  const text = document.getText();
-
-  // QUELLE 1: LHS von := (lokale Variablen)
-  const assignRegex = /\b([A-Za-z_][A-Za-z0-9_]*)\s*:=/g;
+  
+  // SCHLÜSSEL: Strings und Kommentare bereinigen, damit Regex sauber läuft
+  const cleanText = stripStringsAndComments(document.getText());
+  
+  // QUELLE 1: LHS von Zuweisungen (lVar := Wert)
+  const assignRegex = /(\b[A-Za-z_][A-Za-z0-9_]*)\s*:=/g;
   let match;
-  while ((match = assignRegex.exec(text)) !== null) {
+  while ((match = assignRegex.exec(cleanText)) !== null) {
     words.add(match[1]);
   }
-
+  
   // QUELLE 2: Parameter in procedure/function Signaturen
-  // procedure PROC_askList(aMultipleBool, aKeyValueList, ...)
-  const paramRegex = /(?:procedure|function)\s+[A-Za-z_][A-Za-z0-9_]*\s*\(([^)]+)\)/gi;
-  while ((match = paramRegex.exec(text)) !== null) {
-    const params = match[1].split(',');
+  const paramRegex = /procedure\s+|function\s+([A-Za-z_][A-Za-z0-9_]*)?\s*\(([^)]*)\)/gi;
+  while ((match = paramRegex.exec(cleanText)) !== null) {
+    // Header-Name extrahieren
+    if (match[1]) words.add(match[1]);
+    
+    // Parameter extrahieren
+    const params = match[2].split(',').map(param => param.trim());
     for (const param of params) {
-      const paramName = param.trim();
-      if (/^[A-Za-z_][A-Za-z0-9_]*$/.test(paramName)) {
-        console.log('found func word');
-        words.add(paramName);
-      }
+      const paramName = param.match(/^[A-Za-z_][A-Za-z0-9_]*/);
+      if (paramName) words.add(paramName[0]);
     }
   }
-
-  // QUELLE 3: for-Schleifenvariablen (i, j, k etc.)
-  const forRegex = /\bfor\s+([A-Za-z_][A-Za-z0-9_]*)\s*:=/gi;
-  while ((match = forRegex.exec(text)) !== null) {
+  
+  // QUELLE 3: for-Schleifenvariablen
+  const forRegex = /(\b[A-Za-z_][A-Za-z0-9_]*)\s+(in|to|downto)\b/gi;
+  while ((match = forRegex.exec(cleanText)) !== null) {
     words.add(match[1]);
   }
-
-  // Filter + CompletionItems bauen
+  
+  // QUELLE 4: NEU - const-Blöcke (auch nach Multiline-Strings)
+  const constRegex = /const\s+((?:\b[A-Za-z_][A-Za-z0-9_]*\s*=\s*[^;]+;?\s*)+)/gi;
+  while ((match = constRegex.exec(cleanText)) !== null) {
+    const constBlock = match[1];
+    // Alle Deklarationen im Block extrahieren
+    const declRegex = /\b([A-Za-z_][A-Za-z0-9_]*)\s*=\s*[^;]+;?/g;
+    let declMatch;
+    while ((declMatch = declRegex.exec(constBlock)) !== null) {
+      words.add(declMatch[1]);
+    }
+  }
+  
+  // Filter für typedPrefix
   return Array.from(words)
-    .filter(w => w.toLowerCase().startsWith(typedPrefix) && w.toLowerCase() !== typedPrefix)
+    .filter(w => w.toLowerCase().startsWith(typedPrefix.toLowerCase()))
     .map(word => {
       const item = new vscode.CompletionItem(word, vscode.CompletionItemKind.Variable);
-      item.sortText = `zz_${word.toLowerCase()}`;
-      item.detail = '[var] document variable';
+      item.sortText = `zz${word.toLowerCase()}`;
+      item.detail = 'var (document)';
       return item;
     });
 }
@@ -1586,6 +1672,10 @@ function getVariableTypeAtPosition(document, variableName, position, includeGlob
  * line comments (// ...), and block comments ({ ... }) with spaces so that
  * all character offsets (line / column) are preserved for diagnostics.
  */
+// ─────────────────────────────────────────────────────────────────────────────
+// DOCUMENT ANALYSIS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function stripStringsAndComments(text) {
   const out = Array.from(text);
   const len = out.length;
@@ -1772,6 +1862,10 @@ function findProcedureAtPosition(document, position) {
 /***************************************************/
 /* SQL FUNCTIONS - START
 /***************************************************/
+// ─────────────────────────────────────────────────────────────────────────────
+// SQL HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function isInsideSetSqlTextBlock(document, position) {
   const startLine = Math.max(0, position.line - 40);
   for (let line = position.line; line >= startLine; line--) {
@@ -1964,6 +2058,10 @@ function extractAssignedVariables(document, startLine, endLine) {
   return variables;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// DIAGNOSTIC HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function yieldToEventLoop() {
   return new Promise(resolve => setImmediate(resolve));
 }
@@ -2055,29 +2153,36 @@ async function validateDocument(document, diagnosticCollection) {
   }
 
   const sharedTypeIndex = getDocumentTypeIndex(document);
-  let sharedProcedureFunctionParamTypes;
-  const variableTypeCache = new Map();
 
-  function getSharedProcedureFunctionParamTypes(cleanTextArg, typeIndexArg) {
-    if (!sharedProcedureFunctionParamTypes) {
-      sharedProcedureFunctionParamTypes = getProcedureFunctionParamTypes(
-        cleanTextArg || cleanText,
-        typeIndexArg || sharedTypeIndex
-      );
-    }
-    return sharedProcedureFunctionParamTypes;
+  function createValidationRuntime() {
+    let sharedProcedureFunctionParamTypes;
+    const variableTypeCache = new Map();
+
+    return {
+      getDocumentTypeIndex: () => sharedTypeIndex,
+      getProcedureFunctionParamTypes(cleanTextArg, typeIndexArg) {
+        if (!sharedProcedureFunctionParamTypes) {
+          sharedProcedureFunctionParamTypes = getProcedureFunctionParamTypes(
+            cleanTextArg || cleanText,
+            typeIndexArg || sharedTypeIndex
+          );
+        }
+        return sharedProcedureFunctionParamTypes;
+      },
+      getVariableTypeAtPosition(documentArg, variableName, position, includeGlobalFallback = true) {
+        const key = `${String(variableName).toLowerCase()}@${position.line}:${position.character}:${includeGlobalFallback ? 1 : 0}`;
+        if (variableTypeCache.has(key)) {
+          return variableTypeCache.get(key);
+        }
+
+        const resolvedType = getVariableTypeAtPosition(documentArg, variableName, position, includeGlobalFallback);
+        variableTypeCache.set(key, resolvedType);
+        return resolvedType;
+      }
+    };
   }
 
-  function getCachedVariableTypeAtPosition(documentArg, variableName, position, includeGlobalFallback = true) {
-    const key = `${String(variableName).toLowerCase()}@${position.line}:${position.character}:${includeGlobalFallback ? 1 : 0}`;
-    if (variableTypeCache.has(key)) {
-      return variableTypeCache.get(key);
-    }
-
-    const resolvedType = getVariableTypeAtPosition(documentArg, variableName, position, includeGlobalFallback);
-    variableTypeCache.set(key, resolvedType);
-    return resolvedType;
-  }
+  const validationRuntime = createValidationRuntime();
 
   function isContextParameter(lowerIdentifier) {
     return contextParameterNames.has(lowerIdentifier);
@@ -2165,9 +2270,8 @@ async function validateDocument(document, diagnosticCollection) {
     constructorToType,
     knownMethodsByType,
     getDocumentTypeIndex: () => sharedTypeIndex,
-    getProcedureFunctionParamTypes: (cleanTextArg, typeIndexArg) => getSharedProcedureFunctionParamTypes(cleanTextArg, typeIndexArg),
-    getVariableTypeAtPosition: (documentArg, variableName, position, includeGlobalFallback) =>
-      getCachedVariableTypeAtPosition(documentArg, variableName, position, includeGlobalFallback),
+    getProcedureFunctionParamTypes: validationRuntime.getProcedureFunctionParamTypes,
+    getVariableTypeAtPosition: validationRuntime.getVariableTypeAtPosition,
     createCodedDiagnostic
   });
 
@@ -2190,9 +2294,8 @@ async function validateDocument(document, diagnosticCollection) {
     functionSignaturesByName,
     methodSignaturesByType,
     getDocumentTypeIndex: () => sharedTypeIndex,
-    getProcedureFunctionParamTypes: (cleanTextArg, typeIndexArg) => getSharedProcedureFunctionParamTypes(cleanTextArg, typeIndexArg),
-    getVariableTypeAtPosition: (documentArg, variableName, position, includeGlobalFallback) =>
-      getCachedVariableTypeAtPosition(documentArg, variableName, position, includeGlobalFallback),
+    getProcedureFunctionParamTypes: validationRuntime.getProcedureFunctionParamTypes,
+    getVariableTypeAtPosition: validationRuntime.getVariableTypeAtPosition,
     getArgumentKindAtOffset,
     describeExpectedArgument,
     hasAssignmentBeforeOffset,
@@ -2271,4 +2374,4 @@ module.exports = {
   buildLogStatement,
   validateDocument,
   clearCachedTypeIndex
-};
+};  

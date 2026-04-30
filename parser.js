@@ -216,9 +216,35 @@ function buildScopeIdResolver(lines, lineOffsets) {
   };
 }
 
-function tokenizeLine(rawLine, lineOffset) {
+function tokenizeLine(rawLine, lineOffset, startInString = false) {
   const tokens = [];
   let index = 0;
+  let endsInOpenString = false;   // ← muss vorhanden sein
+
+  if (startInString) {
+    let closed = false;
+    while (index < rawLine.length) {
+      if (rawLine[index] === "'") {
+        if (index + 1 < rawLine.length && rawLine[index + 1] === "'") {
+          index += 2;
+          continue;
+        }
+        index++;
+        closed = true;
+        break;
+      }
+      index++;
+    }
+    tokens.push({
+      kind: 'string',
+      text: rawLine.slice(0, index),
+      start: lineOffset,
+      end: index + lineOffset
+    });
+    if (!closed) {
+      return { tokens, endsInOpenString: true };
+    }
+  }
 
   while (index < rawLine.length) {
     const char = rawLine[index];
@@ -244,6 +270,7 @@ function tokenizeLine(rawLine, lineOffset) {
 
     if (char === "'") {
       const start = index;
+      let strClosed = false;
       index++;
       while (index < rawLine.length) {
         if (rawLine[index] === "'") {
@@ -252,11 +279,14 @@ function tokenizeLine(rawLine, lineOffset) {
             continue;
           }
           index++;
+          strClosed = true;
           break;
         }
         index++;
       }
-
+      if (!strClosed) {
+        endsInOpenString = true;
+      }
       tokens.push({
         kind: 'string',
         text: rawLine.slice(start, index),
@@ -518,7 +548,7 @@ function tokenizeLine(rawLine, lineOffset) {
     index++;
   }
 
-  return tokens;
+  return { tokens, endsInOpenString };
 }
 
 function isCaseLabelToken(token) {
@@ -1123,6 +1153,24 @@ class LineParser {
   }
 }
 
+function lineEndsInUnclosedString(rawLine) {
+  let inStr = false;
+  for (let i = 0; i < rawLine.length; i++) {
+    const ch = rawLine[i];
+    if (!inStr && ch === '/' && i + 1 < rawLine.length && rawLine[i + 1] === '/') break;
+    if (ch === "'") {
+      if (!inStr) {
+        inStr = true;
+      } else if (i + 1 < rawLine.length && rawLine[i + 1] === "'") {
+        i++; // escaped ''
+      } else {
+        inStr = false;
+      }
+    }
+  }
+  return inStr;
+}
+
 function computeDeclarationInfo(rawLines, lines, lineOffsets, getScopeIdAtOffset) {
   const constDeclLineIdx = new Set();
   const routineDeclLineIdx = new Set();
@@ -1133,11 +1181,19 @@ function computeDeclarationInfo(rawLines, lines, lineOffsets, getScopeIdAtOffset
   let declarationAreaOpen = true;
   let inTopLevelConstBlock = false;
   let inTopLevelVarBlock = false;
+  let prevLineInUnclosedString = false;  // NEU
 
   for (let lineIdx = 0; lineIdx < rawLines.length; lineIdx++) {
     const rawLine = rawLines[lineIdx].replace(/\r$/, '');
     const cleanLine = lines[lineIdx] || '';
 
+    // NEU: String-Fortsetzungszeile – Block-Zustand nicht verändern
+    if (prevLineInUnclosedString) {
+      prevLineInUnclosedString = lineEndsInUnclosedString(rawLine);
+      continue;
+    }
+    prevLineInUnclosedString = lineEndsInUnclosedString(rawLine);
+    
     if (/^\s*(procedure|function)\b/i.test(cleanLine)) {
       inRoutineDeclaration = true;
       routineDeclLineIdx.add(lineIdx);
@@ -1164,8 +1220,16 @@ function computeDeclarationInfo(rawLines, lines, lineOffsets, getScopeIdAtOffset
     }
 
     if (inConstBlock) {
-      if (/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=(?!=|>|:)/.test(rawLine)) {
+      const constTokResult = tokenizeLine(rawLine, lineOffsets[lineIdx], prevLineInUnclosedString);
+      const constTokens = constTokResult.tokens;
+      const constStartsDeclaration = /^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=(?!=|>|:)/.test(rawLine);
+      const constContinuesExpression = !constStartsDeclaration && endsWithOpenExpression(constTokens);
+      const constIsContinuationLine = !constStartsDeclaration && prevLineInUnclosedString;
+
+      if (constStartsDeclaration) {
         constDeclLineIdx.add(lineIdx);
+      } else if (constIsContinuationLine || constContinuesExpression || constTokens.length === 0) {
+        // Stay inside the const block while a declaration continues on following lines.
       } else {
         inConstBlock = false;
       }
@@ -1436,6 +1500,43 @@ function hasTopLevelKeyword(tokens, keyword) {
 
 
 
+function hasTopLevelSymbol(tokens, symbol) {
+  let parenDepth = 0;
+
+  for (const token of tokens) {
+    if (token.kind === 'symbol') {
+      if (token.text === '(') {
+        parenDepth++;
+        continue;
+      }
+
+      if (token.text === ')') {
+        parenDepth = Math.max(0, parenDepth - 1);
+        continue;
+      }
+
+      if (parenDepth === 0 && token.text === symbol) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+
+function looksLikeConstDeclarationStart(tokens) {
+  if (!Array.isArray(tokens) || tokens.length < 3) {
+    return false;
+  }
+
+  return (
+    tokens[0].kind === 'identifier' &&
+    tokens[1].kind === 'symbol' &&
+    tokens[1].text === '='
+  );
+}
+
 function collectStatementDiagnosticData(rawText, options = {}) {
   const safeRawText = typeof rawText === 'string' ? rawText : '';
   const cleanText =
@@ -1476,6 +1577,7 @@ function collectStatementDiagnosticData(rawText, options = {}) {
   let inConstSection = false;
   let inVarSection = false;
   let inStringConcatenationContinuation = false;
+  let prevLineEndsInOpenString = false;
 
   for (let lineIdx = 0; lineIdx < rawLines.length; lineIdx++) {
     const rawLine = rawLines[lineIdx].replace(/\r$/, '');
@@ -1519,10 +1621,15 @@ function collectStatementDiagnosticData(rawText, options = {}) {
     const lineOffset = lineOffsets[lineIdx];
     const inRoutineBody = getScopeIdAtOffset(lineOffset) !== 'main';
 
-    let tokens = tokenizeLine(rawLine, lineOffset);
+    const tokResult = tokenizeLine(rawLine, lineOffset, prevLineEndsInOpenString);
+    let tokens = tokResult.tokens;
+    prevLineEndsInOpenString = tokResult.endsInOpenString;
+
     if (tokens.length === 0) {
       continue;
     }
+
+    const statementStartLineIdx = lineIdx;
 
     if (looksLikeCaseLabelLine(tokens)) {
       continue;
@@ -1536,17 +1643,103 @@ function collectStatementDiagnosticData(rawText, options = {}) {
     let lineEndsWithConcatOperator =
       !!lastToken && lastToken.kind === 'symbol' && lastToken.text === '+';
 
+    const mayBelongToDeclarationBody =
+      looksLikeConstDeclarationStart(tokens) ||
+      constDeclLineIdx.has(statementStartLineIdx) ||
+      varDeclLineIdx.has(statementStartLineIdx) ||
+      inConstSection ||
+      inVarSection;
+
     if (inStringConcatenationContinuation) {
       inStringConcatenationContinuation = lineEndsWithConcatOperator;
-      continue;
+      if (!mayBelongToDeclarationBody) {
+        continue;
+      }
     }
 
-    if (hasStringLikeToken && lineEndsWithConcatOperator) {
+    if (lineEndsWithConcatOperator) {
       inStringConcatenationContinuation = true;
-      continue;
+      if (!mayBelongToDeclarationBody) {
+        continue;
+      }
     }
 
-    if (
+    // General multi-line lookahead: collect continuation lines when
+    // parentheses are still open (e.g. multi-line function-call arguments).
+    // endsWithOpenExpression also returns true for trailing binary operators
+    // (+, -, etc.) so this covers the variable-concat case not caught by
+    // inStringConcatenationContinuation above.
+    if (endsWithOpenExpression(tokens)) {
+      let lookaheadLineIdx = lineIdx;
+      let lookaheadEndsInOpenString = tokResult.endsInOpenString;
+
+      while (endsWithOpenExpression(tokens) && lookaheadLineIdx + 1 < rawLines.length) {
+        lookaheadLineIdx++;
+        const nextRawLine = rawLines[lookaheadLineIdx].replace(/\r$/, '');
+        const nextCleanLine = lines[lookaheadLineIdx] || '';
+
+        if (!nextRawLine.trim() || !nextCleanLine.trim()) {
+          continue;
+        }
+
+        if (/^\s*\/\//.test(nextRawLine)) {
+          continue;
+        }
+
+        if (/^\s*(end|else)\b/i.test(nextRawLine)) {
+          break;
+        }
+
+        for (const rule of INVALID_KEYWORD_RULES) {
+          const invalidKeywordRe = new RegExp(`\\b${rule.keyword}\\b`, 'i');
+          const match = invalidKeywordRe.exec(nextCleanLine);
+          if (!match) {
+            continue;
+          }
+
+          const prevChar = match.index > 0 ? nextCleanLine[match.index - 1] : '';
+          if (prevChar === '.') {
+            continue;
+          }
+
+          diagnostics.push(
+            createDiagnostic(
+              lineOffsets[lookaheadLineIdx] + match.index,
+              lineOffsets[lookaheadLineIdx] + match.index + match[0].length,
+              rule.message,
+              'error',
+              `syntax.invalidkeyword.${rule.keyword}`
+            )
+          );
+        }
+
+        const nextTokResult = tokenizeLine(nextRawLine, lineOffsets[lookaheadLineIdx], lookaheadEndsInOpenString);
+        const nextTokens = nextTokResult.tokens;
+        lookaheadEndsInOpenString = nextTokResult.endsInOpenString;
+        if (nextTokens.length === 0) {
+          continue;
+        }
+
+        tokens = tokens.concat(nextTokens);
+        lineIdx = lookaheadLineIdx;
+      }
+
+      prevLineEndsInOpenString = lookaheadEndsInOpenString;
+
+      if (tokens.length === 0) {
+        continue;
+      }
+
+      firstToken = tokens[0];
+      hasStringLikeToken = tokens.some(
+        token => token.kind === 'string' || token.kind === 'char'
+      );
+      lastToken = tokens[tokens.length - 1];
+      lineEndsWithConcatOperator =
+        !!lastToken && lastToken.kind === 'symbol' && lastToken.text === '+';
+    }
+
+        if (
       firstToken.kind === 'keyword' &&
       (firstToken.lower === 'if' ||
         firstToken.lower === 'while' ||
@@ -1563,6 +1756,7 @@ function collectStatementDiagnosticData(rawText, options = {}) {
 
       if (shouldCollectMultilineHeader) {
         let lookaheadLineIdx = lineIdx;
+        let lookaheadEndsInOpenString2 = tokResult.endsInOpenString;
 
         while (
           !hasTopLevelKeyword(tokens, terminator) &&
@@ -1607,15 +1801,18 @@ function collectStatementDiagnosticData(rawText, options = {}) {
             );
           }
 
-          const nextTokens = tokenizeLine(nextRawLine, lineOffsets[lookaheadLineIdx]);
+          const nextTokResult2 = tokenizeLine(nextRawLine, lineOffsets[lookaheadLineIdx], lookaheadEndsInOpenString2);
+          const nextTokens = nextTokResult2.tokens;
+          lookaheadEndsInOpenString2 = nextTokResult2.endsInOpenString;
           if (nextTokens.length === 0) {
             continue;
           }
-
           tokens = tokens.concat(nextTokens);
           lineIdx = lookaheadLineIdx;
         }
 
+        prevLineEndsInOpenString = lookaheadEndsInOpenString2;
+        
         if (tokens.length === 0) {
           continue;
         }
@@ -1630,6 +1827,151 @@ function collectStatementDiagnosticData(rawText, options = {}) {
       }
     }
 
+    if (firstToken.kind === 'keyword' && firstToken.lower === 'const') {
+      inConstSection = true;
+      inVarSection = false;
+    } else if (constDeclLineIdx.has(statementStartLineIdx)) {
+      inConstSection = true;
+    } else if (!looksLikeConstDeclarationStart(tokens)) {
+      inConstSection = false;
+    }
+
+    if (firstToken.kind === 'keyword' && firstToken.lower === 'var') {
+      inVarSection = true;
+    } else if (varDeclLineIdx.has(statementStartLineIdx)) {
+      inVarSection = true;
+    } else {
+      inVarSection = false;
+    }
+
+    const isConstDeclarationContext =
+      (firstToken.kind === 'keyword' && firstToken.lower === 'const') ||
+      constDeclLineIdx.has(statementStartLineIdx) ||
+      inConstSection;
+
+    if (
+      isConstDeclarationContext &&
+      !(firstToken.kind === 'keyword' && firstToken.lower === 'const') &&
+      !hasTopLevelSymbol(tokens, ';')
+    ) {
+      let lookaheadLineIdx = lineIdx;
+      let lookaheadEndsInOpenStringConst = prevLineEndsInOpenString;
+
+      while (
+        !hasTopLevelSymbol(tokens, ';') &&
+        lookaheadLineIdx + 1 < rawLines.length
+      ) {
+        lookaheadLineIdx++;
+        const nextRawLine = rawLines[lookaheadLineIdx].replace(/\r$/, '');
+        const nextCleanLine = lines[lookaheadLineIdx] || '';
+
+        if (!nextRawLine.trim() || !nextCleanLine.trim()) {
+          continue;
+        }
+
+        if (/^\s*\/\//.test(nextRawLine)) {
+          continue;
+        }
+
+        if (/^\s*(end|else|begin|procedure|function|const|var)\b/i.test(nextRawLine)) {
+          break;
+        }
+
+        const nextTokResultConst = tokenizeLine(
+          nextRawLine,
+          lineOffsets[lookaheadLineIdx],
+          lookaheadEndsInOpenStringConst
+        );
+        const nextTokens = nextTokResultConst.tokens;
+        lookaheadEndsInOpenStringConst = nextTokResultConst.endsInOpenString;
+
+        if (nextTokens.length === 0) {
+          continue;
+        }
+
+        tokens = tokens.concat(nextTokens);
+        lineIdx = lookaheadLineIdx;
+      }
+
+      prevLineEndsInOpenString = lookaheadEndsInOpenStringConst;
+
+      if (tokens.length === 0) {
+        continue;
+      }
+
+      firstToken = tokens[0];
+      hasStringLikeToken = tokens.some(
+        token => token.kind === 'string' || token.kind === 'char'
+      );
+      lastToken = tokens[tokens.length - 1];
+      lineEndsWithConcatOperator =
+        !!lastToken && lastToken.kind === 'symbol' && lastToken.text === '+';
+    }
+
+    const isVarDeclarationContext =
+      (firstToken.kind === 'keyword' && firstToken.lower === 'var') ||
+      validTopLevelVarLineIdx.has(statementStartLineIdx) ||
+      varDeclLineIdx.has(statementStartLineIdx);
+
+    if (
+      isVarDeclarationContext &&
+      !(firstToken.kind === 'keyword' && firstToken.lower === 'var') &&
+      !hasTopLevelSymbol(tokens, ';')
+    ) {
+      let lookaheadLineIdx = lineIdx;
+      let lookaheadEndsInOpenString3 = prevLineEndsInOpenString;
+
+      while (
+        !hasTopLevelSymbol(tokens, ';') &&
+        lookaheadLineIdx + 1 < rawLines.length
+      ) {
+        lookaheadLineIdx++;
+        const nextRawLine = rawLines[lookaheadLineIdx].replace(/\r$/, '');
+        const nextCleanLine = lines[lookaheadLineIdx] || '';
+
+        if (!nextRawLine.trim() || !nextCleanLine.trim()) {
+          continue;
+        }
+
+        if (/^\s*\/\//.test(nextRawLine)) {
+          continue;
+        }
+
+        if (/^\s*(end|else|begin|procedure|function|const|var)\b/i.test(nextRawLine)) {
+          break;
+        }
+
+        const nextTokResult3 = tokenizeLine(
+          nextRawLine,
+          lineOffsets[lookaheadLineIdx],
+          lookaheadEndsInOpenString3
+        );
+        const nextTokens = nextTokResult3.tokens;
+        lookaheadEndsInOpenString3 = nextTokResult3.endsInOpenString;
+
+        if (nextTokens.length === 0) {
+          continue;
+        }
+
+        tokens = tokens.concat(nextTokens);
+        lineIdx = lookaheadLineIdx;
+      }
+
+      prevLineEndsInOpenString = lookaheadEndsInOpenString3;
+
+      if (tokens.length === 0) {
+        continue;
+      }
+
+      firstToken = tokens[0];
+      hasStringLikeToken = tokens.some(
+        token => token.kind === 'string' || token.kind === 'char'
+      );
+      lastToken = tokens[tokens.length - 1];
+      lineEndsWithConcatOperator =
+        !!lastToken && lastToken.kind === 'symbol' && lastToken.text === '+';
+    }
+
     if (firstToken.kind === 'keyword' && firstToken.lower === 'var') {
       if (routineDeclLineIdx.has(lineIdx) || inRoutineBody) {
         diagnostics.push(
@@ -1641,7 +1983,7 @@ function collectStatementDiagnosticData(rawText, options = {}) {
             'syntax.invalidvarscope'
           )
         );
-      } else if (!validTopLevelVarLineIdx.has(lineIdx)) {
+      } else if (!validTopLevelVarLineIdx.has(statementStartLineIdx)) {
         diagnostics.push(
           createDiagnostic(
             firstToken.start,
@@ -1653,23 +1995,7 @@ function collectStatementDiagnosticData(rawText, options = {}) {
         );
       }
     }
-
-    if (firstToken.kind === 'keyword' && firstToken.lower === 'const') {
-      inConstSection = true;
-      inVarSection = false;
-    } else if (constDeclLineIdx.has(lineIdx)) {
-      inConstSection = true;
-    } else {
-      inConstSection = false;
-    }
-
-    if (firstToken.kind === 'keyword' && firstToken.lower === 'var') {
-      inVarSection = true;
-    } else if (varDeclLineIdx.has(lineIdx)) {
-      inVarSection = true;
-    } else {
-      inVarSection = false;
-    }
+    // inConstSection / inVarSection were determined earlier to support multiline declaration collection.
 
     try {
       const parser = new LineParser(tokens);

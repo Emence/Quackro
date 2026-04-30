@@ -1890,37 +1890,37 @@
     "description": "[MaterialConsumption] BMD_BOM_START_RETURNMATERIAL_DIALOG(<Eps-Id>,<MA-Firma>,'MA-ID')"
   },
   "CRMWF - Instanzparameter abfragen": {
-  "prefix": "BMD_1751587 //CRMWF - Instanzparameter abfragen",
-  "body": "BMD_1751587(${1:Type}) //CRMWF - Instanzparameter abfragen",
-  "description": "CRMWF - Instanzparameter abfragen"
+    "prefix": "BMD_1751587",
+    "body": "BMD_1751587(${1:Type}) //CRMWF - Instanzparameter abfragen",
+    "description": "CRMWF - Instanzparameter abfragen"
   },
   "CRMWF - Mitarbeiter hinzufügen": {
-    "prefix": "BMD_1751728 //CRMWF - Mitarbeiter hinzufügen",
+    "prefix": "BMD_1751728",
     "body": "BMD_1751728(${1:FirmenNr}, ${2:Personen-ID}) //CRMWF - Mitarbeiter hinzufügen",
     "description": "CRMWF - Mitarbeiter hinzufügen"
   },
   "CRMWF - Instanzvariable speichern": {
-    "prefix": "BMD_1751776 //CRMWF - Instanzvariable speichern",
+    "prefix": "BMD_1751776",
     "body": "BMD_1751776(${1:Name}, ${2:Wert}) //CRMWF - Instanzvariable speichern",
     "description": "CRMWF - Instanzvariable speichern"
   },
   "CRMWF - Instanzvariable laden": {
-    "prefix": "BMD_1751777 //CRMWF - Instanzvariable laden",
+    "prefix": "BMD_1751777",
     "body": "BMD_1751777(${1:Name}) //CRMWF - Instanzvariable laden",
     "description": "CRMWF - Instanzvariable laden"
   },
   "CRMWF - AskValueStr -> Instanzvariable": {
-    "prefix": "BMD_1751780 //CRMWF - AskValueStr -> Instanzvariable",
+    "prefix": "BMD_1751780",
     "body": "BMD_1751780('${1:Fenstertitel}', '${2:Anzeigetext}', ${3:Defaultwert}, ${4:Instanzvariable}) //CRMWF - AskValueStr -> Instanzvariable",
     "description": "CRMWF - AskValueStr -> Instanzvariable"
   },
   "CRMWF - AskValueList -> Instanzvariable": {
-    "prefix": "BMD_1751779 //CRMWF - AskValueList -> Instanzvariable",
+    "prefix": "BMD_1751779",
     "body": "BMD_1751779(${1:Werteliste}, ${2:Texteliste}, ${3:Instanzvariable}) //CRMWF - AskValueList -> Instanzvariable",
     "description": "CRMWF - AskValueList -> Instanzvariable"
   },
   "CRMWF - AskMultipleValues -> Instanzvariable": {
-    "prefix": "BMD_1751781 //CRMWF - AskMultipleValues -> Instanzvariable",
+    "prefix": "BMD_1751781",
     "body": "BMD_1751781('${1:Fenstertitel}', ${2:Werte}, ${3:Defaultwert}, ${4:Separator}, ${5:Instanzvariable}) //CRMWF - AskMultipleValues -> Instanzvariable",
     "description": "CRMWF - AskMultipleValues -> Instanzvariable"
   },

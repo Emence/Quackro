@@ -2,7 +2,7 @@
   "name": "bmdmacro",
   "displayName": "bmdmacro",
   "description": "Syntax highlighting, autocomplete, snippets, and tooling for BMD macros",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "publisher": "Emence",
   "main": "./extension.js",
   "scripts": {

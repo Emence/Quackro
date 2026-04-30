@@ -41,37 +41,74 @@ function runIdentifierValidationPass(context) {
 
   const knownIdentifiers = new Set(['true', 'false', 'nil', 'result']);
 
-  {
-    const constDeclLineRe = /^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=(?!=|>|:)/;
+    {
     const constKeywordRe = /^\s*const\b/i;
     const blankOrCommentRe = /^\s*(\/\/.*)?$/;
+    const newConstDeclRe = /^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=/i;
     let inConstBlock = false;
+    let pendingConstName = null;
 
-    for (const line of rawLines) {
-      const trimmedLine = line.replace(/\r$/, '');
+    for (let lineIdx = 0; lineIdx < rawLines.length; lineIdx++) {
+      const line = rawLines[lineIdx].replace(/\r$/, '');
+      const trimmedLine = line.trim();
 
-      if (constKeywordRe.test(trimmedLine)) {
+      if (constKeywordRe.test(line)) {
         inConstBlock = true;
-        const rest = trimmedLine.replace(/^\s*const\s*/i, '');
-        const inlineMatch = constDeclLineRe.exec(rest);
+        if (pendingConstName) {
+          knownIdentifiers.add(pendingConstName.toLowerCase());
+        }
+        pendingConstName = null;
+
+        const rest = trimmedLine.replace(/^\s*const\s*/i, '').trim();
+        const inlineMatch = newConstDeclRe.exec(rest);
         if (inlineMatch) {
-          knownIdentifiers.add(inlineMatch[1].toLowerCase());
+          pendingConstName = inlineMatch[1];
+          if (rest.includes(';')) {
+            knownIdentifiers.add(pendingConstName.toLowerCase());
+            pendingConstName = null;
+          }
         }
         continue;
       }
 
-      if (blankOrCommentRe.test(trimmedLine)) {
+      if (blankOrCommentRe.test(line)) {
         continue;
       }
 
-      if (inConstBlock) {
-        const declMatch = constDeclLineRe.exec(trimmedLine);
-        if (declMatch) {
-          knownIdentifiers.add(declMatch[1].toLowerCase());
-        } else {
-          inConstBlock = false;
-        }
+      if (!inConstBlock) {
+        continue;
       }
+
+      if (/^(var|procedure|function|begin)\b/i.test(trimmedLine)) {
+        if (pendingConstName) {
+          knownIdentifiers.add(pendingConstName.toLowerCase());
+          pendingConstName = null;
+        }
+        inConstBlock = false;
+        continue;
+      }
+
+      const newDeclMatch = newConstDeclRe.exec(trimmedLine);
+      if (newDeclMatch) {
+        if (pendingConstName) {
+          knownIdentifiers.add(pendingConstName.toLowerCase());
+        }
+        pendingConstName = newDeclMatch[1];
+        if (trimmedLine.includes(';')) {
+          knownIdentifiers.add(pendingConstName.toLowerCase());
+          pendingConstName = null;
+        }
+        continue;
+      }
+
+      if (pendingConstName && trimmedLine.includes(';')) {
+        knownIdentifiers.add(pendingConstName.toLowerCase());
+        pendingConstName = null;
+      }
+    }
+
+    if (pendingConstName) {
+      knownIdentifiers.add(pendingConstName.toLowerCase());
     }
   }
 

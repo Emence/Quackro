@@ -2,7 +2,11 @@
   "MacroModel": {
     "constructors": ["CreateMacroModel", "MacroObject.CreateMacroModel"],
     "methods": [
-      "GetModelClassName",
+      {
+        "name": "GetModelClassName",
+        "body": "GetModelClassName(${1:Number})",
+        "description": "[MacroModel] GetModelClassName('Number')"
+      },
       {
         "name": "GetValue",
         "body": "GetValue(${1:Feldname})",
@@ -13,27 +17,111 @@
         "body": "SetValue(${1:Feldname}, ${2:Wert})",
         "description": "[MacroModel] SetValue('Feldname','Wert')"
       },
-      "GetPostItText",
-      "SetPostItText",
-      "LockModel",
-      "UnlockModel",
-      "GetState",
-      "Open",
-      "Close",
-      "Next",
-      "Prior",
-      "First",
-      "Eof",
-      "New",
-      "Edit",
-      "Save",
-      "Delete",
-      "RefreshRow",
-      "GetOldDataValue",
-      "GetUserValue",
-      "GetModelQuery",
-      "GetSelectedCount",
-      "GetSelectedValue"
+      {
+        "name": "GetPostItText",
+        "body": "GetPostItText()",
+        "description": "[MacroModel] GetPostItText()"
+      },
+      {
+        "name": "SetPostItText",
+        "body": "SetPostItText(${1:Text})",
+        "description": "[MacroModel] SetPostItText('Text')"
+      },
+      {
+        "name": "LockModel",
+        "body": "LockModel()",
+        "description": "[MacroModel] LockModel()"
+      },
+      {
+        "name": "UnlockModel",
+        "body": "UnlockModel()",
+        "description": "[MacroModel] UnlockModel()"
+      },
+      {
+        "name": "GetState",
+        "body": "GetState()",
+        "description": "[MacroModel] GetState()"
+      },
+      {
+        "name": "Open",
+        "body": "Open()",
+        "description": "[MacroModel] Open()"
+      },
+      {
+        "name": "Close",
+        "body": "Close()",
+        "description": "[MacroModel] Close()"
+      },
+      {
+        "name": "Next",
+        "body": "Next()",
+        "description": "[MacroModel] Next()"
+      },
+      {
+        "name": "Prior",
+        "body": "Prior()",
+        "description": "[MacroModel] Prior()"
+      },
+      {
+        "name": "First",
+        "body": "First()",
+        "description": "[MacroModel] First()"
+      },
+      {
+        "name": "Eof",
+        "body": "Eof()",
+        "description": "[MacroModel] Eof()"
+      },
+      {
+        "name": "New",
+        "body": "New()",
+        "description": "[MacroModel] New()"
+      },
+      {
+        "name": "Edit",
+        "body": "Edit()",
+        "description": "[MacroModel] Edit()"
+      },
+      {
+        "name": "Save",
+        "body": "Save()",
+        "description": "[MacroModel] Save()"
+      },
+      {
+        "name": "Delete",
+        "body": "Delete()",
+        "description": "[MacroModel] Delete()"
+      },
+      {
+        "name": "RefreshRow",
+        "body": "RefreshRow()",
+        "description": "[MacroModel] RefreshRow()"
+      },
+      {
+        "name": "GetOldDataValue",
+        "body": "GetOldDataValue(${1:FieldName})",
+        "description": "[MacroModel] GetOldDataValue('FieldName')"
+      },
+      {
+        "name": "GetUserValue",
+        "body": "GetUserValue(${1:FirmenNr}, ${2:FieldName})",
+        "description": "[MacroModel] GetUserValue('FirmenNr','FieldName')"
+      },
+      {
+        "name": "GetModelQuery",
+        "body": "GetModelQuery()",
+        "description": "[MacroModel] GetModelQuery()"
+      },
+      {
+        "name": "GetSelectedCount",
+        "body": "GetSelectedCount()",
+        "description": "[MacroModel] GetSelectedCount()"
+      },
+      {
+        "name": "GetSelectedValue",
+        "body": "GetSelectedValue(${1:Index}, ${2:Feldname})",
+        "description": "[MacroModel] GetSelectedValue(<Index>,'Feldname')"
+      }
     ],
     "snippets": [
       {
@@ -134,6 +222,30 @@
           "${1}.Free();",
           "$0"
         ]
+      }
+    ]
+  },
+  "CSVImport":{
+    "constructors": [
+      "CreateCSVImportVariabel",
+      "MacroObject.CreateCSVImportVariabel"
+    ],
+    "methods": [
+      {
+        "name": "CSVImportVariabel",
+        "body": "CSVImportVariabel(${1:Parameter})",
+        "description": "[CSVImport] CSVImportVariabel(Parameter)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons csvimport",
+        "prefix": ["constructor csvimport", "csvimport"],
+        "body": [
+          "${1:lCSVImport} := MacroObject.CreateCSVImportVariabel('${2:}');",
+          "$0"
+        ],
+        "description": "[CSVImport] constructor setup"
       }
     ]
   },
@@ -355,30 +467,150 @@
       }
     ]
   },
-  "MacroXMLDocument": {
-    "constructors": ["CreateMacroXMLDocument", "MacroObject.CreateMacroXMLDocument"],
+  "XMLDocument":{
+    "constructors": [
+      "CreateMacroXMLDocument",
+      "MacroObject.CreateMacroXMLDocument"
+    ],
     "methods": [
-      "GetMacroXMLDocument",
-      "LoadXMLFile",
-      "LoadXMLText",
-      "SaveXMLFile",
-      "ValidateXMLFile",
-      "ValidateXMLText",
-      "GetXMLText",
-      "LoadXMLBuffer",
-      "SaveXMLBuffer",
-      "ClearXMLBuffer",
-      "DeleteXMLBuffer"
+      {
+        "name": "AddXMLAttribute",
+        "body": "AddXMLAttribute(${1:VarMyNode}, ${2:AttrName}, ${3:AttrValue})",
+        "description": "[XMLDocument] AddXMLAttribute(VarMyNode,AttrName,AttrValue)"
+      },
+      {
+        "name": "AddXMLNode",
+        "body": "AddXMLNode(${1:VarMyParentNode}, ${2:NodeName}, ${3:NodeValue})",
+        "description": "[XMLDocument] AddXMLNode(VarMyParentNode,NodeName,NodeValue)"
+      },
+      {
+        "name": "GetFirstChildXMLNode",
+        "body": "GetFirstChildXMLNode(${1:VarMyParentNode})",
+        "description": "[XMLDocument] GetFirstChildXMLNode(VarMyParentNode)"
+      },
+      {
+        "name": "GetFirstXMLNode",
+        "body": "GetFirstXMLNode(${1:VarMyNode})",
+        "description": "[XMLDocument] GetFirstXMLNode(VarMyNode)"
+      },
+      {
+        "name": "GetLastChildXMLNode",
+        "body": "GetLastChildXMLNode(${1:VarMyParentNode})",
+        "description": "[XMLDocument] GetLastChildXMLNode(VarMyParentNode)"
+      },
+      {
+        "name": "GetNextSiblingXMLNode",
+        "body": "GetNextSiblingXMLNode(${1:VarMyNode})",
+        "description": "[XMLDocument] GetNextSiblingXMLNode(VarMyNode)"
+      },
+      {
+        "name": "GetPrevSiblingXMLNode",
+        "body": "GetPrevSiblingXMLNode(${1:VarMyNode})",
+        "description": "[XMLDocument] GetPrevSiblingXMLNode(VarMyNode)"
+      },
+      {
+        "name": "InsertBeforeXMLNode",
+        "body": "InsertBeforeXMLNode(${1:VarMyNode}, ${2:NodeName}, ${3:NodeValue})",
+        "description": "[XMLDocument] InsertBeforeXMLNode(VarMyNode,NodeName,NodeValue)"
+      },
+      {
+        "name": "NewXMLDoc",
+        "body": "NewXMLDoc(${1:Version}, ${2:Encoding})",
+        "description": "[XMLDocument] NewXMLDoc(Version,Encoding)"
+      },
+      {
+        "name": "RemoveXMLNode",
+        "body": "RemoveXMLNode(${1:VarMyNode})",
+        "description": "[XMLDocument] RemoveXMLNode(VarMyNode)"
+      },
+      {
+        "name": "SearchXMLAttribute",
+        "body": "SearchXMLAttribute(${1:NodeName}, ${2:AttributeName})",
+        "description": "[XMLDocument] SearchXMLAttribute(NodeName,AttributeName)"
+      },
+      {
+        "name": "SearchXMLNode",
+        "body": "SearchXMLNode(${1:NodeName})",
+        "description": "[XMLDocument] SearchXMLNode(NodeName)"
+      },
+      {
+        "name": "SetXMLNameSpace",
+        "body": "SetXMLNameSpace(${1:VarMyNode}, ${2:AttrName}, ${3:AttrValue})",
+        "description": "[XMLDocument] SetXMLNameSpace(VarMyNode,AttrName,AttrValue)"
+      }
     ],
     "snippets": [
       {
-        "name": "cons xmldoc",
-        "prefix": ["constructor xmldoc", "xmldoc"],
+        "name": "cons xmldocument",
+        "prefix": ["constructor xmldocument", "xmldocument"],
         "body": [
-          "${1:lXmlDoc} := MacroObject.CreateMacroXMLDocument();",
+          "${1:lXmlDoc} := MacroObject.CreateMacroXMLDocument('${2:}');",
           "$0"
         ],
-        "description": "[MacroXMLDocument] constructor setup"
+        "description": "[XMLDocument] constructor setup"
+      }
+    ]
+  },
+  "XMLNode":{
+    "constructors": [
+      "CreateMacroXMLDocument",
+      "MacroObject.CreateMacroXMLDocument"
+    ],
+    "methods": [
+      {
+        "name": "NodeAttributeName",
+        "body": "NodeAttributeName(${1:Index})",
+        "description": "[XMLNode] NodeAttributeName(Index)"
+      },
+      {
+        "name": "NodeAttributeValue",
+        "body": "NodeAttributeValue(${1:Index})",
+        "description": "[XMLNode] NodeAttributeValue(Index)"
+      },
+      {
+        "name": "NodeAttributeValueByName",
+        "body": "NodeAttributeValueByName(${1:Attribute})",
+        "description": "[XMLNode] NodeAttributeValueByName(Attribute)"
+      },
+      {
+        "name": "NodeAttributesCount",
+        "body": "NodeAttributesCount()",
+        "description": "[XMLNode] NodeAttributesCount()"
+      },
+      {
+        "name": "NodeName",
+        "body": "NodeName()",
+        "description": "[XMLNode] NodeName()"
+      },
+      {
+        "name": "NodeNamespaceURI",
+        "body": "NodeNamespaceURI()",
+        "description": "[XMLNode] NodeNamespaceURI()"
+      },
+      {
+        "name": "NodeParsed",
+        "body": "NodeParsed()",
+        "description": "[XMLNode] NodeParsed()"
+      },
+      {
+        "name": "NodePrefix",
+        "body": "NodePrefix()",
+        "description": "[XMLNode] NodePrefix()"
+      },
+      {
+        "name": "NodeText",
+        "body": "NodeText()",
+        "description": "[XMLNode] NodeText()"
+      },
+      {
+        "name": "NodeType",
+        "body": "NodeType()",
+        "description": "[XMLNode] NodeType()"
+      },
+      {
+        "name": "NodeXml",
+        "body": "NodeXml()",
+        "description": "[XMLNode] NodeXml()"
       }
     ]
   },
@@ -665,13 +897,13 @@
       },
       {
         "name": "CreateNewFibu",
-        "body": "CreateNewFibu(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:MacroStringList (opt.)})",
-        "description": "[FirmenwerteFibu] CreateNewFibu(<Firmen-Nr>,<FIBU-Nr>,<MacroStringList (opt.)>)"
+        "body": "CreateNewFibu(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:MacroStringList (opt)})",
+        "description": "[FirmenwerteFibu] CreateNewFibu(<Firmen-Nr>,<FIBU-Nr>,<MacroStringList (opt)>)"
       },
       {
         "name": "CreateVJFibu",
-        "body": "CreateVJFibu(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:MacroStringList (opt.)})",
-        "description": "[FirmenwerteFibu] CreateVJFibu(<Firmen-Nr>,<FIBU-Nr>,<MacroStringList (opt.)>)"
+        "body": "CreateVJFibu(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:MacroStringList (opt)})",
+        "description": "[FirmenwerteFibu] CreateVJFibu(<Firmen-Nr>,<FIBU-Nr>,<MacroStringList (opt)>)"
       },
       {
         "name": "CreateFiliale",
@@ -720,8 +952,8 @@
       },
       {
         "name": "VerbuchungZumMonatsende",
-        "body": "VerbuchungZumMonatsende(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Jahr}, ${4:Von Periode}, ${5:Bis Periode (opt.)})",
-        "description": "[FirmenwerteFibu] VerbuchungZumMonatsende(<Firmen-Nr>,<FIBU-Nr>,<Jahr>,<Von Periode>,<Bis Periode (opt.)>)"
+        "body": "VerbuchungZumMonatsende(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Jahr}, ${4:Von Periode}, ${5:Bis Periode (opt)})",
+        "description": "[FirmenwerteFibu] VerbuchungZumMonatsende(<Firmen-Nr>,<FIBU-Nr>,<Jahr>,<Von Periode>,<Bis Periode (opt)>)"
       }
     ],
     "snippets": [
@@ -929,12 +1161,12 @@
       },
       {
         "name": "AutoAuszifferungWennSaldo",
-        "body": "AutoAuszifferungWennSaldo(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Von Konto-Nr}, ${4:Bis Konto-Nr}, ${5:Mit Meldung (opt.)})",
-        "description": "[OPAbstattung] AutoAuszifferungWennSaldo(<Firmen-Nr>,<FIBU-Nr>,<Von Konto-Nr>,<Bis Konto-Nr>,<Mit Meldung (opt.)>)"
+        "body": "AutoAuszifferungWennSaldo(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Von Konto-Nr}, ${4:Bis Konto-Nr}, ${5:Mit Meldung (opt)})",
+        "description": "[OPAbstattung] AutoAuszifferungWennSaldo(<Firmen-Nr>,<FIBU-Nr>,<Von Konto-Nr>,<Bis Konto-Nr>,<Mit Meldung (opt)>)"
       },
       {
         "name": "AddOPToBuchung",
-        "body": "AddOPToBuchung(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Liste der OP-Buchungen}, ${4:Liste der OP-Suchkriterien}, ${5:Logdatei}, ${6:Liste der OP-Zahlungskonditionen (opt.)}, ${7:EB-OP ohne EB-Buchung (opt.)}, ${8:OP ohne Buchung (opt.)}, ${9:Mit EB-OP Aufbau (opt.)})",
+        "body": "AddOPToBuchung(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Liste der OP-Buchungen}, ${4:Liste der OP-Suchkriterien}, ${5:Logdatei}, ${6:Liste der OP-Zahlungskonditionen (opt)}, ${7:EB-OP ohne EB-Buchung (opt)}, ${8:OP ohne Buchung (opt)}, ${9:Mit EB-OP Aufbau (opt)})",
         "description": "[OPAbstattung] AddOPToBuchung(<Firmen-Nr>,<FIBU-Nr>,Liste der OP-Buchungen (MacroBuchungList),Liste der OP-Suchkriterien (MacroList),'Logdatei (z. B. FIBUIMPORT.LOG)',Liste der OP-Zahlungskonditionen (MacroStringList) <opt>,<EB-OP ohne EB-Buchung <opt> (default = EB-OP wird nicht eingebucht, 1 = EB-OP wird ganz normal eingebucht (Saldo-Buchung), 2 = EB-OP wird ganz normal eingebucht (Saldo-Buchung) und gleichzeitig eine Stornobuchung dieser Buchung ohne OP-Betrag.)>,<OP ohne Buchung <opt> (default = OP wird nicht eingebucht, 1 = OP wird ganz normal eingebucht (Saldo-Buchung), 2 = OP wird ganz normal eingebucht (Saldo-Buchung) und gleichzeitig eine Stornobuchung dieser Buchung ohne OP-Betrag.)>,<Mit EB-OP Aufbau <opt> (default = FALSE, EB-OP wird nicht aufgebaut)>)"
       }
     ],
@@ -958,8 +1190,8 @@
     "methods": [
       {
         "name": "AddDocumentToBuchungId",
-        "body": "AddDocumentToBuchungId(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Buchung-ID}, ${4:Dateiname}, ${5:DocStempeln (opt.)})",
-        "description": "[DokumentZuordnung] AddDocumentToBuchungId(<Firmen-Nr>,<FIBU-Nr>,<Buchung-ID>,'Dateiname',<DocStempeln (opt.)>)"
+        "body": "AddDocumentToBuchungId(${1:Firmen-Nr}, ${2:FIBU-Nr}, ${3:Buchung-ID}, ${4:Dateiname}, ${5:DocStempeln (opt)})",
+        "description": "[DokumentZuordnung] AddDocumentToBuchungId(<Firmen-Nr>,<FIBU-Nr>,<Buchung-ID>,'Dateiname',<DocStempeln (opt)>)"
       },
       {
         "name": "AddDocumentToArchiv",
@@ -973,8 +1205,8 @@
       },
       {
         "name": "ExportDocumentByDKZID",
-        "body": "ExportDocumentByDKZID(${1:Dokumentenzuordnungs-ID}, ${2:Export-Pfad}, ${3:MacroStringList (opt.)})",
-        "description": "[DokumentZuordnung] ExportDocumentByDKZID(<Dokumentenzuordnungs-ID>,'Export-Pfad',<MacroStringList (opt.)>)"
+        "body": "ExportDocumentByDKZID(${1:Dokumentenzuordnungs-ID}, ${2:Export-Pfad}, ${3:MacroStringList (opt)})",
+        "description": "[DokumentZuordnung] ExportDocumentByDKZID(<Dokumentenzuordnungs-ID>,'Export-Pfad',<MacroStringList (opt)>)"
       },
       {
         "name": "DokumentUpdateByBelegId",
@@ -1243,6 +1475,144 @@
       }
     ]
   },
+  "ERKontrolle": {
+    "constructors": [
+      "CreateFMacroERKontrolle",
+      "FibuMacroObject.CreateFMacroERKontrolle"
+    ],
+    "methods": [
+      {
+        "name": "AddDocumentToER",
+        "body": "AddDocumentToER(${1:Firmen-Nr.}, ${2:FIBU-Nr.}, ${3:Buchungs-ID}, ${4:Dateiname}, ${5:DocStempeln opt})",
+        "description": "[ERKontrolle] AddDocumentToER(Firmen-Nr.,FIBU-Nr.,Buchungs-ID,Dateiname,DocStempeln opt)"
+      },
+      {
+        "name": "AddDocumentToERByArchivNr",
+        "body": "AddDocumentToERByArchivNr(${1:Firmen-Nr.}, ${2:FIBU-Nr.}, ${3:Archiv-Nr.}, ${4:Beleg-ID}, ${5:Dateiname}, ${6:DocStempeln opt})",
+        "description": "[ERKontrolle] AddDocumentToERByArchivNr(Firmen-Nr.,FIBU-Nr.,Archiv-Nr.,Beleg-ID,Dateiname,DocStempeln opt)"
+      },
+      {
+        "name": "DeleteERBuchung",
+        "body": "DeleteERBuchung(${1:Firmen-Nr.}, ${2:FIBU-Nr.}, ${3:Buchungs-ID})",
+        "description": "[ERKontrolle] DeleteERBuchung(Firmen-Nr.,FIBU-Nr.,Buchungs-ID)"
+      },
+      {
+        "name": "DeleteERKonto",
+        "body": "DeleteERKonto(${1:Firmen-Nr.}, ${2:FIBU-Nr.}, ${3:KontoNr})",
+        "description": "[ERKontrolle] DeleteERKonto(Firmen-Nr.,FIBU-Nr.,KontoNr)"
+      },
+      {
+        "name": "DeleteERKost",
+        "body": "DeleteERKost(${1:Firmen-Nr.}, ${2:FIBU-Nr.}, ${3:KostNr})",
+        "description": "[ERKontrolle] DeleteERKost(Firmen-Nr.,FIBU-Nr.,KostNr)"
+      },
+      {
+        "name": "InsertERBuchung",
+        "body": "InsertERBuchung(${1:Firmen-Nr.}, ${2:FIBU-Nr.}, ${3:Liste der Buchungsdaten})",
+        "description": "[ERKontrolle] InsertERBuchung(Firmen-Nr.,FIBU-Nr.,Liste der Buchungsdaten)"
+      },
+      {
+        "name": "InsertERKonto",
+        "body": "InsertERKonto(${1:Firmen-Nr.}, ${2:FIBU-Nr.}, ${3:Liste der Kontodaten})",
+        "description": "[ERKontrolle] InsertERKonto(Firmen-Nr.,FIBU-Nr.,Liste der Kontodaten)"
+      },
+      {
+        "name": "InsertERKost",
+        "body": "InsertERKost(${1:Firmen-Nr.}, ${2:FIBU-Nr.}, ${3:Liste der Kostendaten})",
+        "description": "[ERKontrolle] InsertERKost(Firmen-Nr.,FIBU-Nr.,Liste der Kostendaten)"
+      },
+      {
+        "name": "InsertERMitarbeiterZu",
+        "body": "InsertERMitarbeiterZu(${1:Firmen-Nr.}, ${2:FIBU-Nr.}, ${3:Mitarbeiterzuordnung})",
+        "description": "[ERKontrolle] InsertERMitarbeiterZu(Firmen-Nr.,FIBU-Nr.,Mitarbeiterzuordnung)"
+      },
+      {
+        "name": "ReadEInvoiceXMLDocument",
+        "body": "ReadEInvoiceXMLDocument(${1:Dateiname})",
+        "description": "[ERKontrolle] ReadEInvoiceXMLDocument(Dateiname)"
+      },
+      {
+        "name": "SetERKontoGrossAmountEntry",
+        "body": "SetERKontoGrossAmountEntry(${1:Firmen-Nr.}, ${2:FIBU-Nr.}, ${3:KontoNr}, ${4:Wert})",
+        "description": "[ERKontrolle] SetERKontoGrossAmountEntry(Firmen-Nr.,FIBU-Nr.,KontoNr,Wert)"
+      },
+      {
+        "name": "SetWorkFlowToER",
+        "body": "SetWorkFlowToER(${1:Firmen-Nr.}, ${2:FIBU-Nr.}, ${3:Workflow-ID})",
+        "description": "[ERKontrolle] SetWorkFlowToER(Firmen-Nr.,FIBU-Nr.,Workflow-ID)"
+      },
+      {
+        "name": "UpdateBuchungStatus",
+        "body": "UpdateBuchungStatus(${1:Firmen-Nr.}, ${2:FIBU-Nr.}, ${3:Buchungs-ID}, ${4:Status})",
+        "description": "[ERKontrolle] UpdateBuchungStatus(Firmen-Nr.,FIBU-Nr.,Buchungs-ID,Status)"
+      },
+      {
+        "name": "UpdateDocument",
+        "body": "UpdateDocument(${1:Firmen-Nr.}, ${2:FIBU-Nr.}, ${3:Buchungs-ID}, ${4:Dateiname})",
+        "description": "[ERKontrolle] UpdateDocument(Firmen-Nr.,FIBU-Nr.,Buchungs-ID,Dateiname)"
+      },
+      {
+        "name": "VerbuchenER",
+        "body": "VerbuchenER(${1:Firmen-Nr.}, ${2:FIBU-Nr.})",
+        "description": "[ERKontrolle] VerbuchenER(Firmen-Nr.,FIBU-Nr.)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons erkontrolle",
+        "prefix": ["constructor erkontrolle", "erkontrolle"],
+        "body": [
+          "${1:lERKontrolle} := FibuMacroObject.CreateFMacroERKontrolle('${2:}');",
+          "$0"
+        ],
+        "description": "[ERKontrolle] constructor setup"
+      }
+    ]
+  },
+  "Kore": {
+    "constructors": [
+      "CreateNewKore",
+      "KoreMacroObject.CreateNewKore"
+    ],
+    "methods": [
+      {
+        "name": "CreateNewKore",
+        "body": "CreateNewKore(${1:Firmen-Nr.}, ${2:KORE-Nr.})",
+        "description": "[Kore] CreateNewKore(Firmen-Nr.,KORE-Nr.)"
+      },
+      {
+        "name": "CreateNewKostentyp",
+        "body": "CreateNewKostentyp(${1:Firmen-Nr.}, ${2:KORE-Nr.}, ${3:Kostentyp})",
+        "description": "[Kore] CreateNewKostentyp(Firmen-Nr.,KORE-Nr.,Kostentyp)"
+      },
+      {
+        "name": "CreateVJKore",
+        "body": "CreateVJKore(${1:Firmen-Nr.}, ${2:KORE-Nr.})",
+        "description": "[Kore] CreateVJKore(Firmen-Nr.,KORE-Nr.)"
+      },
+      {
+        "name": "DeleteUmstellungsKonten",
+        "body": "DeleteUmstellungsKonten(${1:Firmen-Nr.}, ${2:KORE-Nr.})",
+        "description": "[Kore] DeleteUmstellungsKonten(Firmen-Nr.,KORE-Nr.)"
+      },
+      {
+        "name": "KoreFibuZuordnung",
+        "body": "KoreFibuZuordnung(${1:Firmen-Nr.}, ${2:KORE-Nr.})",
+        "description": "[Kore] KoreFibuZuordnung(Firmen-Nr.,KORE-Nr.)"
+      }
+    ],
+    "snippets": [
+      {
+        "name": "cons kore",
+        "prefix": ["constructor kore", "kore"],
+        "body": [
+          "${1:lKore} := KoreMacroObject.CreateNewKore('${2:}');",
+          "$0"
+        ],
+        "description": "[Kore] constructor setup"
+      }
+    ]
+  },
   "FirmenwerteKore": {
     "constructors": [
       "CreateFMacroFirmenwerteKore",
@@ -1372,23 +1742,58 @@
     ]
   },
   "DokumentMgr": {
-    "constructors": ["CreateDokumentMgr", "CRMMacroObject.CreateDokumentMgr"],
+    "constructors": [
+      "CreateDokumentMgr",
+      "CRMMacroObject.CreateDokumentMgr"
+    ],
     "methods": [
-      "AddDocRelation",
-      "GetCategoryByTableName",
-      "ExportDocument",
-      "AssignDocumentToPerson",
-      "AssignDocumentToArchive",
-      "MoveDocToArchive",
-      "GetTextFromDocument",
-      "SetSummaryToDoc"
+      {
+        "name": "AddDocRelation",
+        "body": "AddDocRelation(${1:Archiv-Nr.}, ${2:Dokumenten-Nr.}, ${3:Kategorie}, ${4:DKZ-ID})",
+        "description": "[DokumentMgr] AddDocRelation(<Archiv-Nr.>,<Dokumenten-Nr.>,<Kategorie>,<DKZ-ID>)"
+      },
+      {
+        "name": "GetCategoryByTableName",
+        "body": "GetCategoryByTableName(${1:Tabellenname})",
+        "description": "[DokumentMgr] GetCategoryByTableName('Tabellenname')"
+      },
+      {
+        "name": "ExportDocument",
+        "body": "ExportDocument(${1:Archiv-Nr.}, ${2:Dokumenten-Nr.}, ${3:Export-Verzeichnis}, ${4:Exportformat}, ${5:Versionsnummer})",
+        "description": "[DokumentMgr] ExportDocument(<Archiv-Nr.>,<Dokumenten-Nr.>,'Export-Verzeichnis',<Exportformat>,<Versionsnummer>)"
+      },
+      {
+        "name": "AssignDocumentToPerson",
+        "body": "AssignDocumentToPerson(${1:Von Archiv-Nr.}, ${2:Von Dokumenten-Nr.}, ${3:Personenfirma}, ${4:PersonenID}, ${5:Kategorie}, ${6:Projekt-Firma}, ${7:ProjektNr})",
+        "description": "[DokumentMgr] AssignDocumentToPerson(<Von Archiv-Nr.>,<Von Dokumenten-Nr.>,<Personenfirma>,'PersonenID','Kategorie',<Projekt-Firma>,<ProjektNr>)"
+      },
+      {
+        "name": "AssignDocumentToArchive",
+        "body": "AssignDocumentToArchive(${1:Von Archiv-Nr.}, ${2:Von Dokumenten-Nr.}, ${3:Auf Archiv-Nr.}, ${4:Personenfirma}, ${5:PersonenID}, ${6:Kategorie}, ${7:Projekt-Firma}, ${8:ProjektNr})",
+        "description": "[DokumentMgr] AssignDocumentToArchive(<Von Archiv-Nr.>,<Von Dokumenten-Nr.>,<Auf Archiv-Nr.>,<Personenfirma>,'PersonenID','Kategorie',<Projekt-Firma>,<ProjektNr>)"
+      },
+      {
+        "name": "MoveDocToArchive",
+        "body": "MoveDocToArchive(${1:Von Archiv-Nr.}, ${2:Von Dokumenten-Nr.}, ${3:Auf Archiv-Nr.}, ${4:Personenfirma}, ${5:PersonenID}, ${6:Kategorie})",
+        "description": "[DokumentMgr] MoveDocToArchive(<Von Archiv-Nr.>,<Von Dokumenten-Nr.>,<Auf Archiv-Nr.>,<Personenfirma>,'PersonenID','Kategorie')"
+      },
+      {
+        "name": "GetTextFromDocument",
+        "body": "GetTextFromDocument(${1:Archiv-Nr.}, ${2:Dokumenten-Nr.})",
+        "description": "[DokumentMgr] GetTextFromDocument(<Archiv-Nr.>,<Dokumenten-Nr.>)"
+      },
+      {
+        "name": "SetSummaryToDoc",
+        "body": "SetSummaryToDoc(${1:Archiv-Nr.}, ${2:Dokumenten-Nr.}, ${3:Zusammenfassung})",
+        "description": "[DokumentMgr] SetSummaryToDoc(<Archiv-Nr.>,<Dokumenten-Nr.>,'Zusammenfassung')"
+      }
     ],
     "snippets": [
       {
         "name": "cons dokumentmgr",
         "prefix": ["constructor dokumentmgr", "dokumentmgr"],
         "body": [
-          "${1:lDokumentMgr} := CRMMacroObject.CreateDokumentMgr();",
+          "${1:lDokumentMgr} := CRMMacroObject.CreateDokumentMgr(${2:Eindeutige Dokumenttool-Object-ID});",
           "$0"
         ],
         "description": "[DokumentMgr] constructor setup"
